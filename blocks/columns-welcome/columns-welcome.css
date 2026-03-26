@@ -1,0 +1,74 @@
+/* stylelint-disable */
+
+/* Columns Welcome - Image + welcome text section */
+.columns-welcome > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.columns-welcome > div > div {
+  flex: 1;
+}
+
+.columns-welcome > div > div img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+}
+
+.columns-welcome > div > div:not(:has(img)) {
+  padding: var(--spacing-l) var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Heading */
+.columns-welcome h3 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 36px;
+  padding: 0 0 28px;
+  margin: 0;
+}
+
+/* Description - welcome variant has taller line-height (24px vs 22px) */
+.columns-welcome p {
+  font-size: 0.875rem;
+  line-height: 24px;
+  color: var(--color-text);
+  padding: 0 0 28px;
+  margin: 0;
+}
+
+/* Arrow-style CTA links - black color for welcome variant */
+.columns-welcome a:any-link {
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.39px;
+  color: var(--color-black);
+  display: block;
+  padding: 15px 36px 15px 0;
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='%23262626' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 12px;
+}
+
+.columns-welcome a:any-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 900px) {
+  .columns-welcome > div {
+    flex-direction: row;
+    min-height: 400px;
+  }
+
+  .columns-welcome > div > div:not(:has(img)) {
+    padding: 48px 72px;
+  }
+}

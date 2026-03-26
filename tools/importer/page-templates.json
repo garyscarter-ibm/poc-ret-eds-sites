@@ -1,0 +1,272 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/"
+      ],
+      "description": "Main dealership homepage with hero video carousel, sales/service ratings widget, featured model showcase, news & offers cards, promotional image-text banners, and dealer locator map",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [".heroCarousel .carousel-cell.heroCell"]
+        },
+        {
+          "name": "columns-model-showcase",
+          "instances": ["#soc5Series"]
+        },
+        {
+          "name": "cards-car-locator",
+          "instances": [".splitPromoNavigation"]
+        },
+        {
+          "name": "cards-news",
+          "instances": [".homeSpace .triplePanel"]
+        },
+        {
+          "name": "columns",
+          "instances": [".splitBannerTeaserCMS"]
+        },
+        {
+          "name": "columns-welcome",
+          "instances": [".splitFrameTeaserCMS"]
+        },
+        {
+          "name": "cards-about",
+          "instances": ["#aboutUs .triplePanel"]
+        },
+        {
+          "name": "tabs-dealer-locator",
+          "instances": [".contact-us-module"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero",
+          "name": "Hero Carousel",
+          "selector": ".heroCarousel",
+          "style": "dark",
+          "blocks": ["hero"],
+          "defaultContent": []
+        },
+        {
+          "id": "featured-model",
+          "name": "Featured Model Showcase",
+          "selector": "#soc5Series",
+          "style": "dark",
+          "blocks": ["columns-model-showcase"],
+          "defaultContent": []
+        },
+        {
+          "id": "car-locator",
+          "name": "Car Locator Links",
+          "selector": ".splitPromoNavigation",
+          "style": "dark",
+          "blocks": ["cards-car-locator"],
+          "defaultContent": []
+        },
+        {
+          "id": "news-offers",
+          "name": "News & Offers",
+          "selector": ".homeSpace",
+          "style": "light-grey",
+          "blocks": ["cards-news"],
+          "defaultContent": [".homeSpace .contentHolder.title h2"]
+        },
+        {
+          "id": "promotional-teasers",
+          "name": "Promotional Teasers",
+          "selector": ".splitBannerTeaserCMS",
+          "style": null,
+          "blocks": ["columns"],
+          "defaultContent": []
+        },
+        {
+          "id": "welcome-message",
+          "name": "Welcome Message",
+          "selector": ".splitFrameTeaserCMS",
+          "style": null,
+          "blocks": ["columns-welcome"],
+          "defaultContent": []
+        },
+        {
+          "id": "about-us",
+          "name": "About Us",
+          "selector": "#aboutUs",
+          "style": "light-grey",
+          "blocks": ["cards-about"],
+          "defaultContent": ["#aboutUs .contentHolder.title h2"]
+        },
+        {
+          "id": "disclaimer",
+          "name": "Disclaimer",
+          "selector": ".termTextModule",
+          "style": "light-grey",
+          "blocks": [],
+          "defaultContent": [".termTextModule .termTextCMS"]
+        },
+        {
+          "id": "dealer-locator",
+          "name": "Dealer Locator",
+          "selector": ".contact-us-module",
+          "style": null,
+          "blocks": ["tabs-dealer-locator"],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "service-booking-page",
+      "urls": [
+        "https://grassicksbmw.bmw-retailer-service.co.uk/"
+      ],
+      "description": "BMW retailer service booking page with multi-step form wizard (vehicle lookup, servicing options, appointment scheduling), announcement banner, and service benefits cards",
+      "blocks": []
+    },
+    {
+      "name": "section-landing-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/cars/",
+        "https://www.grassicksbmw.co.uk/business/",
+        "https://www.grassicksbmw.co.uk/finance/finance-options/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service/",
+        "https://www.grassicksbmw.co.uk/about-us/",
+        "https://www.grassicksbmw.co.uk/bmw-electric/",
+        "https://www.grassicksbmw.co.uk/finance/insurance-solutions/"
+      ],
+      "description": "Major section entry pages with full-width hero, Flickity carousels, alternating image-text content blocks, FAQ accordions, and dealer locator map",
+      "blocks": []
+    },
+    {
+      "name": "news-listing-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/about-us/news-events/"
+      ],
+      "description": "News and events listing page with featured hero article banner, category filter tabs, and horizontal news card grid with thumbnails",
+      "blocks": []
+    },
+    {
+      "name": "news-article-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/bmw-loyalty-offer/",
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/bmw-approved-used-electric-apr-offer/",
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/bmw-approved-used-electric-deposit-contribution-offer/",
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/bmw-help-recalls/",
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/the-neue-klasse/",
+        "https://www.grassicksbmw.co.uk/about-us/news-events/news/used-cars-deposit-contribution-offer/"
+      ],
+      "description": "Individual news or offer article with hero image, category label, date, article body with optional data tables, CTA buttons, terms and conditions section, and recent posts carousel",
+      "blocks": []
+    },
+    {
+      "name": "car-model-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/cars/1-series/1-series/",
+        "https://www.grassicksbmw.co.uk/cars/x-series/ix3/"
+      ],
+      "description": "Vehicle model detail page with specs stats bar in hero, image carousel, highlights feature carousel, interactive trim selector with accordion, finance offer banner, trade-in valuation form, and sticky bottom CTA bar",
+      "blocks": []
+    },
+    {
+      "name": "promotional-offer-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/content/bmw-1-series-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-2-series-coupe-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-3-series-saloon-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-i5-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-ix3-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-m5-touring-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-x1-pch/",
+        "https://www.grassicksbmw.co.uk/content/bmw-x5-pch/"
+      ],
+      "description": "PCH finance offer landing page with split hero (vehicle image left, pricing and CTAs right), descriptive content block, full-width promotional banner with overlay text, and legal disclaimer section",
+      "blocks": []
+    },
+    {
+      "name": "feature-detail-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/business/bmw-business-finance-options/",
+        "https://www.grassicksbmw.co.uk/business/bmw-electric-fleet/",
+        "https://www.grassicksbmw.co.uk/business/bmw-for-fleet/",
+        "https://www.grassicksbmw.co.uk/business/business-service-and-maintenance/",
+        "https://www.grassicksbmw.co.uk/business/customer-promise/",
+        "https://www.grassicksbmw.co.uk/finance/bmw-select/",
+        "https://www.grassicksbmw.co.uk/finance/contract-hire/",
+        "https://www.grassicksbmw.co.uk/finance/hire-purchase/",
+        "https://www.grassicksbmw.co.uk/finance/why-finance-with-us/",
+        "https://www.grassicksbmw.co.uk/finance/insurance-solutions/bmw-flex-car-insurance/",
+        "https://www.grassicksbmw.co.uk/finance/insurance-solutions/bmw-insured-warranty/",
+        "https://www.grassicksbmw.co.uk/finance/insurance-solutions/bmw-roadside-assistance/",
+        "https://www.grassicksbmw.co.uk/finance/insurance-solutions/electric-and-hybrid-cover-with-bmw-flex-car-insurance/",
+        "https://www.grassicksbmw.co.uk/your-bmw/accessories-lifestyle/",
+        "https://www.grassicksbmw.co.uk/your-bmw/accessories/accessory-packs/genuine-bmw-parts/",
+        "https://www.grassicksbmw.co.uk/your-bmw/charging-networks-and-accessories/",
+        "https://www.grassicksbmw.co.uk/your-bmw/connecteddrive/",
+        "https://www.grassicksbmw.co.uk/your-bmw/know-your-bmw/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service/repairs/",
+        "https://www.grassicksbmw.co.uk/your-bmw/warranty/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/personalised-pricing/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/air-conditioning/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/bmw-engine-oil/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/electric-car-servicing/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/exclusive-servicing-benefits/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/fast-lane-servicing/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/mot-and-mot-protect/",
+        "https://www.grassicksbmw.co.uk/your-bmw/service-page/proactive-care/",
+        "https://www.grassicksbmw.co.uk/your-bmw/aftersales/0-financing/",
+        "https://www.grassicksbmw.co.uk/your-bmw/aftersales/bmw-service-inclusive/",
+        "https://www.grassicksbmw.co.uk/your-bmw/aftersales/pay-monthly-service-plan/",
+        "https://www.grassicksbmw.co.uk/motability/"
+      ],
+      "description": "Product or service detail page with hero image and CTAs, alternating image-text blocks, bullet point lists, optional feature comparison tables, FAQ section, and distributed CTAs throughout body content",
+      "blocks": []
+    },
+    {
+      "name": "form-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/contact-us/",
+        "https://www.grassicksbmw.co.uk/appointment-booking-form/",
+        "https://www.grassicksbmw.co.uk/realtime-booking-form/",
+        "https://www.grassicksbmw.co.uk/sell-your-bmw/",
+        "https://www.grassicksbmw.co.uk/finance-quote-request/",
+        "https://www.grassicksbmw.co.uk/business-finance-quote-request/"
+      ],
+      "description": "Form-centric pages with hero section, department contact details, useful links card grid, tabbed dealer info with maps, and contact or booking forms with consent checkboxes",
+      "blocks": []
+    },
+    {
+      "name": "legal-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/hero-content/site-terms-and-conditions/",
+        "https://www.grassicksbmw.co.uk/hero-content/site-cookies/",
+        "https://www.grassicksbmw.co.uk/hero-content/site-complaints-procedure/",
+        "https://www.grassicksbmw.co.uk/hero-content/site-privacy-policy/",
+        "https://www.grassicksbmw.co.uk/hero-content/site-company-information/",
+        "https://www.grassicksbmw.co.uk/modern-slavery-statement/",
+        "https://www.grassicksbmw.co.uk/motor-industry-code-of-practice/",
+        "https://www.grassicksbmw.co.uk/product-safety-enquiry/"
+      ],
+      "description": "Legal and compliance pages with compact hero image and heading, followed by long-form prose text content with hierarchical headings and no interactive elements",
+      "blocks": []
+    },
+    {
+      "name": "customer-reviews-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/about-us/customer-reviews/"
+      ],
+      "description": "Customer reviews page with sales and service star ratings summary, category filter tabs, chronological review card list with dates and star ratings, and CTA banner",
+      "blocks": []
+    },
+    {
+      "name": "content-page",
+      "urls": [
+        "https://www.grassicksbmw.co.uk/content/my-bmw-app-overview/",
+        "https://www.grassicksbmw.co.uk/content/speak-up-line/",
+        "https://www.grassicksbmw.co.uk/vacancies/",
+        "https://www.grassicksbmw.co.uk/hero-content/servicing-vnext-repairs-and-accidents"
+      ],
+      "description": "Standalone content pages for app overviews, compliance information, job listings, and miscellaneous content with hero and mixed content blocks",
+      "blocks": []
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+/* stylelint-disable */
+
+/* Footer container */
+footer {
+  background-color: #262626;
+  color: #fff;
+  font-family: var(--body-font-family);
+}
+
+footer .footer {
+  max-width: unset;
+  padding: 0;
+}
+
+footer .footer-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 44px 144px 0;
+}
+
+/* Three-column layout */
+footer .footer-columns {
+  display: flex;
+  align-items: flex-start;
+}
+
+footer .footer-legal {
+  width: 48%;
+}
+
+footer .footer-contact {
+  width: 20%;
+}
+
+footer .footer-quicklinks {
+  width: 30%;
+}
+
+/* Headings */
+footer h2 {
+  font-size: 1.125rem;
+  font-weight: 300;
+  font-family: var(--body-font-family);
+  color: #fff;
+  margin: 0;
+  padding-bottom: 18px;
+}
+
+/* All lists */
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  padding: 0 0 4px;
+  margin: 0;
+  line-height: 1.2rem;
+}
+
+/* Links */
+footer a:any-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--body-font-family);
+  line-height: 1.2rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Legal column: 2-column grid for links, flowing column-first */
+footer .footer-legal ul {
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  column-gap: 64px;
+}
+
+/* Social links: horizontal row with icon circles */
+footer .footer-social {
+  display: flex;
+  gap: 15px;
+}
+
+footer .footer-social li {
+  padding: 0;
+}
+
+footer .footer-social a:any-link {
+  display: block;
+  width: 32px;
+  height: 32px;
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 32px 32px;
+  overflow: hidden;
+}
+
+footer .footer-social a:hover {
+  text-decoration: none;
+}
+
+footer .footer-social a[href*="facebook"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M17.5 12.5h2l-.5 2.5h-1.5V22h-3v-7H13v-2.5h1.5V11c0-1.97 1.2-3 2.94-3H19.5v2.5h-2z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a[href*="twitter"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M11.5 22.2c5.5 0 8.5-4.6 8.5-8.5v-.4c.6-.4 1.1-1 1.5-1.6-.5.2-1.1.4-1.7.5.6-.4 1.1-1 1.3-1.7-.6.3-1.2.6-1.9.7a3 3 0 0 0-5.1 2.7 8.5 8.5 0 0 1-6.2-3.1 3 3 0 0 0 .9 4 3 3 0 0 1-1.4-.4 3 3 0 0 0 2.4 3c-.4.1-.9.2-1.4.1a3 3 0 0 0 2.8 2.1 6 6 0 0 1-4.5 1.2 8.5 8.5 0 0 0 4.8 1.4' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a[href*="instagram"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Crect x='10' y='10' width='12' height='12' rx='3' fill='none' stroke='%23fff' stroke-width='1.2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='none' stroke='%23fff' stroke-width='1.2'/%3E%3Ccircle cx='19.5' cy='12.5' r='0.8' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a[href*="linkedin"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M12 14v7h-2v-7h2zm-1-3.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM14 14h2v1c.3-.5 1-1.2 2.2-1.2 2.3 0 2.8 1.5 2.8 3.5V21h-2v-3.4c0-.8-.02-1.9-1.2-1.9-1.2 0-1.3.9-1.3 1.8V21h-2.5v-7z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+footer .footer-social a[href*="youtube"] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpath d='M22.5 13.2a2 2 0 0 0-1.4-1.4C19.8 11.5 16 11.5 16 11.5s-3.8 0-5.1.3a2 2 0 0 0-1.4 1.4c-.3 1.3-.3 4-.3 4s0 2.7.3 4a2 2 0 0 0 1.4 1.4c1.3.3 5.1.3 5.1.3s3.8 0 5.1-.3a2 2 0 0 0 1.4-1.4c.3-1.3.3-4 .3-4s0-2.7-.3-4z' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cpolygon points='14.5,19 19,16.8 14.5,14.5' fill='%23fff'/%3E%3C/svg%3E");
+}
+
+/* Copyright */
+footer .footer-copyright {
+  border-top: 1px solid #7d7d7d;
+  padding: 22px 0;
+  margin: 66px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.2rem;
+  color: #fff;
+}

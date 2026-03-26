@@ -1,0 +1,480 @@
+/* stylelint-disable */
+
+/*
+ * Grassicks BMW - Design System
+ * Migrated from https://www.grassicksbmw.co.uk/
+ */
+
+/* ===== BMW Fonts ===== */
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Bold.woff2') format('woff2');
+}
+
+/* ===== Fallback Fonts ===== */
+@font-face {
+  font-family: bmw-fallback;
+  size-adjust: 100%;
+  src: local('Arial');
+}
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  /* --- Colors --- */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text: #262626;
+  --color-text-light: #666;
+  --color-background: #fff;
+  --color-background-grey: #f5f5f5;
+  --color-background-light-grey: #f9f9f9;
+  --color-bmw-blue: #1c69d4;
+  --color-bmw-blue-hover: #1557b0;
+  --color-border: #262626;
+  --color-border-light: #d4d4d4;
+
+  /* --- Typography --- */
+  --body-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
+  --heading-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
+
+  /* Body */
+  --body-font-size: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-font-weight: 400;
+  --body-line-height: 1.5;
+  --body-color: var(--color-text);
+
+  /* Headings */
+  --heading-font-weight-light: 300;
+  --heading-font-weight-bold: 700;
+  --heading-line-height: 1.2;
+  --heading-color: var(--color-text);
+
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 14px;
+
+  /* Labels (small uppercase text) */
+  --label-font-size: 10px;
+  --label-font-weight: 700;
+  --label-letter-spacing: 0.8px;
+
+  /* --- Spacing --- */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --spacing-section: 80px;
+
+  /* --- Layout --- */
+  --content-width: 1200px;
+  --content-width-narrow: 900px;
+  --section-padding: 48px 24px;
+
+  /* --- Buttons --- */
+  --button-font-family: var(--body-font-family);
+  --button-font-size: 13px;
+  --button-font-weight: 700;
+  --button-letter-spacing: 0.39px;
+  --button-padding: 12px 24px;
+  --button-border-radius: 0;
+  --button-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  /* Primary button */
+  --button-primary-bg: var(--color-bmw-blue);
+  --button-primary-color: var(--color-white);
+  --button-primary-border: 1px solid var(--color-bmw-blue);
+  --button-primary-bg-hover: var(--color-bmw-blue-hover);
+  --button-primary-border-hover: 1px solid var(--color-bmw-blue-hover);
+
+  /* Secondary button */
+  --button-secondary-bg: transparent;
+  --button-secondary-color: var(--color-text);
+  --button-secondary-border: 1px solid var(--color-text);
+  --button-secondary-bg-hover: var(--color-text);
+  --button-secondary-color-hover: var(--color-white);
+
+  /* --- Links --- */
+  --link-color: var(--color-bmw-blue);
+  --link-color-hover: var(--color-bmw-blue-hover);
+  --link-text-decoration: none;
+  --link-text-decoration-hover: underline;
+  --link-transition: color 0.2s ease;
+
+  /* --- Focus --- */
+  --focus-outline: 2px solid var(--color-bmw-blue);
+  --focus-outline-offset: 2px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 8%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+/* ===== Base Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===== Body ===== */
+body {
+  display: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.appear {
+  display: block;
+}
+
+header {
+  height: 64px;
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight-light);
+  line-height: var(--heading-line-height);
+  color: var(--heading-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  scroll-margin: calc(64px + 1em);
+}
+
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--heading-font-size-l);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.33;
+}
+
+h4 {
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  letter-spacing: var(--label-letter-spacing);
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.3;
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+}
+
+/* ===== Links ===== */
+a:any-link {
+  color: var(--link-color);
+  text-decoration: var(--link-text-decoration);
+  transition: var(--link-transition);
+}
+
+a:hover {
+  color: var(--link-color-hover);
+  text-decoration: var(--link-text-decoration-hover);
+}
+
+a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Buttons ===== */
+a.button:any-link,
+button {
+  display: inline-block;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  letter-spacing: var(--button-letter-spacing);
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: var(--button-transition);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* Primary by default */
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg);
+  border: var(--button-primary-border);
+}
+
+a.button:hover,
+button:hover {
+  background-color: var(--button-primary-bg-hover);
+  border: var(--button-primary-border-hover);
+}
+
+a.button:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Secondary button */
+a.button.secondary,
+button.secondary {
+  color: var(--button-secondary-color);
+  background-color: var(--button-secondary-bg);
+  border: var(--button-secondary-border);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  color: var(--button-secondary-color-hover);
+  background-color: var(--button-secondary-bg-hover);
+}
+
+/* ===== Images ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Lists ===== */
+ul,
+ol {
+  padding-left: 1.5em;
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ===== Main Content Layout ===== */
+main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+main > .section {
+  padding: var(--section-padding);
+}
+
+main > .section > .default-content-wrapper {
+  max-width: var(--content-width-narrow);
+  margin: 0 auto;
+}
+
+/* ===== Section Styles ===== */
+
+/* Dark section: dark background with white text */
+main > .section.dark {
+  background-color: var(--color-text);
+  color: var(--color-white);
+  max-width: 100%;
+  margin: 0;
+}
+
+main > .section.dark > div {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4,
+main > .section.dark h5,
+main > .section.dark h6,
+main > .section.dark p {
+  color: var(--color-white);
+}
+
+main > .section.dark a:any-link {
+  color: var(--color-white);
+}
+
+main > .section.dark a.button:any-link {
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg);
+  border: var(--button-primary-border);
+}
+
+main > .section.dark a.button.secondary:any-link {
+  color: var(--color-white);
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+}
+
+main > .section.dark a.button.secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+/* Light-grey section: subtle grey background */
+main > .section.light-grey {
+  background-color: var(--color-background-grey);
+  max-width: 100%;
+  margin: 0;
+}
+
+main > .section.light-grey > div {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* ===== Section Metadata (hidden) ===== */
+.section-metadata {
+  display: none;
+}
+
+/* ===== Metadata Block (hidden) ===== */
+.metadata {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 600px) {
+  :root {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 24px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 56px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 24px;
+    --section-padding: 64px 32px;
+  }
+}
+
+/* ===== Page-level Section Spacing ===== */
+
+/* Columns section: white background (original has grey only for NEWS, white for columns) */
+main > .section.cards-news-container {
+  background-color: var(--color-white);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Grey background for NEWS heading - stretches full width */
+main > .section.cards-news-container > .default-content-wrapper:first-child {
+  background-color: var(--color-background-grey);
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 64px 32px 0;
+}
+
+/* Grey background for news cards */
+main > .section.cards-news-container > .cards-news-wrapper {
+  background-color: var(--color-background-grey);
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 0 32px;
+}
+
+main > .section.cards-about-container {
+  padding-bottom: 0;
+}
+
+main > .section.tabs-dealer-locator-container {
+  padding-top: 0;
+  padding-bottom: 50px;
+}
+
+/* Block wrapper vertical spacing within sections */
+/* Specificity must beat main > .section.light-grey > div { margin: 0 auto } (0,2,2) */
+.section.cards-news-container .cards-news-wrapper {
+  margin-bottom: 88px;
+}
+
+.section.cards-news-container .columns-wrapper {
+  margin-bottom: 0;
+}
+
+/* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US) */
+main > .section > .default-content-wrapper > h2 {
+  font-size: 36px;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 64px;
+}
+
+/* Dealer locator H2 - smaller, left-aligned, uppercase */
+main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+  margin-bottom: 0;
+}
+
+@media (max-width: 599px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
