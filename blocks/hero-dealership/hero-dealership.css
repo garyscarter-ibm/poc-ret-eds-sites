@@ -12,11 +12,13 @@
   --hd-title-size: 2.5rem;
   --hd-title-weight: 300;
   --hd-title-line-height: 1.2;
+  --hd-title-letter-spacing: normal;
   --hd-subtitle-size: 1.125rem;
   --hd-subtitle-weight: 300;
   --hd-subtitle-line-height: 1.5;
   --hd-subtitle-max-width: 500px;
   --hd-welcome-size: 0;
+  --hd-welcome-line-height: 0;
   --hd-welcome-display: none;
   --hd-container-min-height: 100vh;
   --hd-content-padding: calc(64px + var(--spacing-xl)) var(--spacing-m) var(--spacing-xl) 86px;
@@ -53,17 +55,19 @@
 .hero-dealership.mini {
   --hd-font-heading: MINISerif-Regular, serif;
   --hd-font-body: MINISansSerif-Regular, sans-serif;
-  --hd-title-size: 3rem;
+  --hd-title-size: 64px;
   --hd-title-weight: 700;
   --hd-title-line-height: 1;
+  --hd-title-letter-spacing: 1px;
   --hd-subtitle-size: 1.125rem;
   --hd-subtitle-weight: 400;
   --hd-subtitle-line-height: 1.35;
   --hd-subtitle-max-width: 460px;
-  --hd-welcome-size: 2.25rem;
+  --hd-welcome-size: 44px;
+  --hd-welcome-line-height: 44px;
   --hd-welcome-display: block;
-  --hd-container-min-height: auto;
-  --hd-content-padding: 32px;
+  --hd-container-min-height: 840px;
+  --hd-content-padding: 56px;
   --hd-cta-font-size: 1.125rem;
   --hd-cta-font-weight: 400;
   --hd-cta-padding: 8px 24px;
@@ -81,8 +85,8 @@
   --hd-rating-label-weight: 700;
   --hd-rating-score-size: 1.5rem;
   --hd-star-color: #d4af37;
-  --hd-reviews-bg: rgb(0 0 0 / 80%);
-  --hd-reviews-padding: 16px 24px;
+  --hd-reviews-bg: rgb(0 0 0);
+  --hd-reviews-padding: 0;
   --hd-frame-display: block;
   --hd-gradient: radial-gradient(
     at 66% 50%,
@@ -94,9 +98,12 @@
 /* === Section & Wrapper === */
 main > .section.hero-dealership-container {
   padding: 0;
+  max-width: 100vw;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
-main > .section > .hero-dealership-wrapper {
+main > .section.hero-dealership-container > .hero-dealership-wrapper {
   max-width: 100%;
   padding: 0;
   margin: 0;
@@ -163,7 +170,7 @@ main > .section > .hero-dealership-wrapper {
   font-style: italic;
   color: var(--color-white);
   margin: 0;
-  line-height: 1.2;
+  line-height: var(--hd-welcome-line-height);
 }
 
 /* === Title (H1) === */
@@ -175,8 +182,22 @@ main > .section > .hero-dealership-wrapper {
   text-transform: uppercase;
   margin: 0;
   padding: 0 0 20px;
-  max-width: 620px;
+  max-width: 700px;
   line-height: var(--hd-title-line-height);
+  letter-spacing: var(--hd-title-letter-spacing);
+}
+
+.hero-dealership.mini .hero-dealership-title {
+  margin: 10px 0 12px;
+  padding: 0;
+  max-width: none;
+}
+
+/* MINI: content row fills full width, top-aligned, above frame */
+.hero-dealership.mini > div:nth-child(2) {
+  max-width: 100%;
+  justify-content: flex-start;
+  z-index: 4;
 }
 
 /* === Subtitle / Description === */
@@ -248,25 +269,88 @@ main > .section > .hero-dealership-wrapper {
   text-decoration: none;
 }
 
+/* MINI: tighter spacing above CTAs */
+.hero-dealership.mini .hero-dealership-subtitle {
+  padding-bottom: 0;
+}
+
 /* MINI: inline button layout */
 .hero-dealership.mini .hero-dealership-ctas {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  display: block;
+  margin-top: 32px;
+  padding-bottom: 0;
+  overflow: hidden;
 }
 
 .hero-dealership.mini .hero-dealership-btn {
-  float: none;
+  float: left;
   width: auto;
   letter-spacing: normal;
+  line-height: 18px;
+  margin-right: 16px;
+}
+
+.hero-dealership.mini .hero-dealership-btn:last-child {
+  margin-right: 0;
 }
 
 /* === Ratings Section === */
 .hero-dealership-ratings {
-  padding-top: 0;
   background: var(--hd-reviews-bg);
   padding: var(--hd-reviews-padding);
-  border-radius: 4px;
+  border-radius: 0;
+}
+
+/* MINI: full-width black bar at bottom of hero */
+.hero-dealership.mini .hero-dealership-ratings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-left: -56px;
+  margin-right: -56px;
+  margin-bottom: -56px;
+  width: calc(100% + 112px);
+}
+
+.hero-dealership.mini .hero-dealership-ratings-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-dealership.mini .hero-dealership-rating {
+  display: flex;
+  float: none;
+  width: auto;
+  padding: 26px 40px;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-dealership.mini .hero-dealership-rating-label {
+  padding: 0;
+  margin: 0;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.hero-dealership.mini .hero-dealership-stars-row {
+  display: flex;
+  align-items: center;
+}
+
+.hero-dealership.mini .hero-dealership-reviews-link {
+  display: none;
+}
+
+.hero-dealership.mini .hero-dealership-rating-score {
+  display: inline;
+  font-family: var(--hd-font-heading);
+  font-size: 26px;
+  font-weight: 400;
+  margin-left: 5px;
+  line-height: 17px;
 }
 
 .hero-dealership-ratings-row {
@@ -331,9 +415,20 @@ main > .section > .hero-dealership-wrapper {
   background-repeat: no-repeat;
 }
 
-/* MINI gold stars */
+/* MINI gold stars - larger 17x17 */
+.hero-dealership.mini .star {
+  width: 17px;
+  height: 17px;
+}
+
 .hero-dealership.mini .star-full {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 15'%3E%3Cpath d='M8 0l2.47 4.74L16 5.73l-3.88 3.93L13 15 8 12.47 3 15l.88-5.34L0 5.73l5.53-1L8 0z' fill='%23d4af37'/%3E%3C/svg%3E");
+  background-size: 17px 17px;
+}
+
+.hero-dealership.mini .star-empty {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 15'%3E%3Cpath d='M8 0l2.47 4.74L16 5.73l-3.88 3.93L13 15 8 12.47 3 15l.88-5.34L0 5.73l5.53-1L8 0z' fill='%23ffffff' opacity='0.3'/%3E%3C/svg%3E");
+  background-size: 17px 17px;
 }
 
 /* Score number */
@@ -370,9 +465,19 @@ main > .section > .hero-dealership-wrapper {
 .hero-dealership-frame {
   display: var(--hd-frame-display);
   position: absolute;
-  inset: 24px;
+  inset: 56px;
   z-index: 3;
   pointer-events: none;
+}
+
+/* MINI: align frame with content area, stop above ratings bar */
+.hero-dealership.mini .hero-dealership-frame {
+  top: 124px; /* 4px below "Welcome To" text top, matching original offset */
+  bottom: 132px; /* 56px inset + 76px ratings bar */
+}
+
+.hero-dealership.mini .hero-dealership-frame .frame-left {
+  top: 47%; /* ~30px below CTAs, matching original gap */
 }
 
 .hero-dealership-frame .frame-top,
@@ -383,32 +488,36 @@ main > .section > .hero-dealership-wrapper {
   background-color: #01693e;
 }
 
+/* Top: starts after "Welcome To" text, extends to right edge */
 .hero-dealership-frame .frame-top {
   top: 0;
-  left: 0;
-  right: 40%;
-  height: 8px;
+  left: 25%;
+  right: 0;
+  height: 12px;
 }
 
+/* Right: full height */
 .hero-dealership-frame .frame-right {
   top: 0;
   right: 0;
-  bottom: 40%;
-  width: 8px;
+  bottom: 0;
+  width: 12px;
 }
 
+/* Bottom: full width */
 .hero-dealership-frame .frame-bottom {
   bottom: 0;
   right: 0;
-  left: 40%;
-  height: 8px;
+  left: 0;
+  height: 12px;
 }
 
+/* Left: starts below CTAs, extends to bottom */
 .hero-dealership-frame .frame-left {
   bottom: 0;
   left: 0;
-  top: 40%;
-  width: 8px;
+  top: 47%;
+  width: 12px;
 }
 
 /* === Responsive: Mobile === */
@@ -465,7 +574,56 @@ main > .section > .hero-dealership-wrapper {
   }
 
   .hero-dealership-frame {
-    inset: 12px;
+    inset: 16px;
+  }
+
+  .hero-dealership.mini .hero-dealership-frame {
+    top: calc(68px + var(--spacing-s)); /* 4px below Welcome To text top */
+    bottom: 128px; /* 16px inset + 112px stacked ratings bar */
+  }
+
+  .hero-dealership.mini .hero-dealership-frame .frame-top {
+    left: 35%; /* wider offset to clear Welcome To text at mobile width */
+  }
+
+  .hero-dealership.mini .hero-dealership-frame .frame-left {
+    top: 42%; /* tighter gap below CTAs at mobile */
+  }
+
+  /* Fix ratings margins to match mobile padding (16px not 56px) */
+  .hero-dealership.mini .hero-dealership-ratings {
+    margin-left: calc(-1 * var(--spacing-s));
+    margin-right: calc(-1 * var(--spacing-s));
+    margin-bottom: calc(-1 * var(--spacing-s));
+    width: calc(100% + 2 * var(--spacing-s));
+  }
+
+  .hero-dealership.mini .hero-dealership-ratings-row {
+    flex-wrap: wrap;
+  }
+
+  .hero-dealership.mini .hero-dealership-rating {
+    padding: 8px 12px;
+    gap: 4px;
+  }
+
+  .hero-dealership.mini .hero-dealership-rating-label {
+    font-size: 0.875rem;
+  }
+
+  .hero-dealership.mini .hero-dealership-rating-score {
+    font-size: 1.125rem;
+    margin-left: 3px;
+  }
+
+  .hero-dealership-frame .frame-top,
+  .hero-dealership-frame .frame-bottom {
+    height: 8px;
+  }
+
+  .hero-dealership-frame .frame-right,
+  .hero-dealership-frame .frame-left {
+    width: 8px;
   }
 }
 
@@ -473,6 +631,41 @@ main > .section > .hero-dealership-wrapper {
 @media (min-width: 600px) and (max-width: 899px) {
   .hero-dealership.mini > div:nth-child(2) {
     padding: calc(64px + var(--spacing-m)) var(--spacing-m) var(--spacing-m);
+  }
+
+  .hero-dealership-frame {
+    inset: 32px;
+  }
+
+  .hero-dealership.mini .hero-dealership-frame {
+    top: calc(68px + var(--spacing-m)); /* 4px below Welcome To text top */
+    bottom: 108px; /* 32px inset + 76px ratings bar */
+  }
+
+  .hero-dealership.mini .hero-dealership-frame .frame-top {
+    left: 32%; /* wider offset to clear Welcome To text at tablet width */
+  }
+
+  .hero-dealership.mini .hero-dealership-frame .frame-left {
+    top: 42%; /* tighter gap below CTAs at tablet */
+  }
+
+  /* Fix ratings margins to match tablet padding (24px not 56px) */
+  .hero-dealership.mini .hero-dealership-ratings {
+    margin-left: calc(-1 * var(--spacing-m));
+    margin-right: calc(-1 * var(--spacing-m));
+    margin-bottom: calc(-1 * var(--spacing-m));
+    width: calc(100% + 2 * var(--spacing-m));
+  }
+
+  .hero-dealership-frame .frame-top,
+  .hero-dealership-frame .frame-bottom {
+    height: 8px;
+  }
+
+  .hero-dealership-frame .frame-right,
+  .hero-dealership-frame .frame-left {
+    width: 8px;
   }
 }
 
@@ -483,6 +676,6 @@ main > .section > .hero-dealership-wrapper {
   }
 
   .hero-dealership.mini > div:nth-child(2) {
-    padding: 96px 48px 48px;
+    padding: 120px 56px 56px;
   }
 }
