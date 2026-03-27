@@ -51,12 +51,6 @@ export default function decorate(block) {
       panel.appendChild(columns);
     }
 
-    // Add "View map" toggle link
-    const mapToggle = document.createElement('button');
-    mapToggle.className = 'tabs-dealer-locator-map-toggle';
-    mapToggle.textContent = 'View map';
-    panel.appendChild(mapToggle);
-
     // Add map section (hidden by default)
     const mapSection = document.createElement('div');
     mapSection.className = 'tabs-dealer-locator-map-section';
@@ -83,6 +77,12 @@ export default function decorate(block) {
     mapSection.appendChild(areasDiv);
 
     panel.appendChild(mapSection);
+
+    // Add "View map" toggle link (after map section, matching original layout)
+    const mapToggle = document.createElement('button');
+    mapToggle.className = 'tabs-dealer-locator-map-toggle';
+    mapToggle.textContent = 'View map';
+    panel.appendChild(mapToggle);
 
     // Toggle map on click
     mapToggle.addEventListener('click', () => {

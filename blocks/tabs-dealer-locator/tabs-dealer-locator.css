@@ -101,8 +101,8 @@
   margin-top: 10px;
 }
 
-/* View map / Close map toggle link */
-.tabs-dealer-locator-map-toggle {
+/* View map / Close map toggle link - override global button styles */
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle {
   display: inline-block;
   margin-top: 16px;
   color: rgb(28 105 212);
@@ -114,10 +114,26 @@
   border: none;
   padding: 0;
   font-family: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-align: left;
+  white-space: normal;
+  border-radius: 0;
+  transition: none;
 }
 
-.tabs-dealer-locator-map-toggle:hover {
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:hover {
   text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:focus,
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:focus-visible {
+  outline: none;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 /* Map container - hidden by default */

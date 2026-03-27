@@ -1,0 +1,10 @@
+{
+  "name": "cards-news",
+  "description": "News and offers card grid with image thumbnails, category labels, headlines, description text, and Read more CTA links",
+  "sourceContext": {
+    "originUrl": "https://www.grassicksbmw.co.uk/"
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"]
+  }
+}
