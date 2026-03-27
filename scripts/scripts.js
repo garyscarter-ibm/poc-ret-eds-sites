@@ -10,6 +10,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -132,7 +133,12 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('header'));
+  const header = doc.querySelector('header');
+  if (getMetadata('header') !== 'off') {
+    loadHeader(header);
+  } else {
+    header.remove();
+  }
 
   const main = doc.querySelector('main');
   await loadSections(main);
@@ -141,7 +147,12 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('footer'));
+  const footer = doc.querySelector('footer');
+  if (getMetadata('footer') !== 'off') {
+    loadFooter(footer);
+  } else {
+    footer.remove();
+  }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

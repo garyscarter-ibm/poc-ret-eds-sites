@@ -1,0 +1,10 @@
+{
+  "name": "columns",
+  "description": "Base two-column layout block used for content sections with image and text side by side",
+  "sourceContext": {
+    "originUrl": "https://www.grassicksbmw.co.uk/"
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"]
+  }
+}

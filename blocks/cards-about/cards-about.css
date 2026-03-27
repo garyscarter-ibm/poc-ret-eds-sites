@@ -80,17 +80,28 @@
   font-size: 0.8125rem;
   letter-spacing: 0.39px;
   color: var(--color-white);
-  display: block;
-  padding: 15px 36px 15px 0;
+  display: inline-block;
+  padding: 15px 18px 15px 0;
   text-decoration: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right center;
-  background-size: 12px;
+  background-size: 8px;
 }
 
 .cards-about a:any-link:hover {
   text-decoration: underline;
+}
+
+/* Tablet: 2 cards side by side, 3rd hidden */
+@media (min-width: 600px) and (max-width: 899px) {
+  .cards-about {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-about > div:nth-child(3) {
+    display: none;
+  }
 }
 
 /* Desktop: 3 cards side by side */

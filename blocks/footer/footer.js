@@ -23,10 +23,17 @@ export default async function decorate(block) {
     if (cols[1]) cols[1].classList.add('footer-contact');
     if (cols[2]) cols[2].classList.add('footer-quicklinks');
 
-    // Mark the social links list in quick links
+    // Extract "Follow us" into its own div for responsive reordering
     if (cols[2]) {
+      const headings = cols[2].querySelectorAll('h2');
       const lists = cols[2].querySelectorAll('ul');
-      if (lists[1]) lists[1].classList.add('footer-social');
+      if (headings[1] && lists[1]) {
+        const followDiv = document.createElement('div');
+        followDiv.classList.add('footer-follow');
+        followDiv.append(headings[1], lists[1]);
+        lists[1].classList.add('footer-social');
+        columns.append(followDiv);
+      }
     }
   }
 

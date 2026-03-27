@@ -2,10 +2,15 @@
 
 /* Model Showcase - Full-width video with overlapping content card */
 .columns-model-showcase-wrapper {
-  max-width: 100%;
   padding: 0;
-  margin: 0;
   background-color: var(--color-background-grey);
+}
+
+/* Break out of 1200px section container to full viewport width */
+main > .section.dark > .columns-model-showcase-wrapper {
+  max-width: 100vw;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 /* Override dark section colors (needs high specificity) */
@@ -24,8 +29,13 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
   color: var(--color-bmw-blue);
 }
 
-.section.dark .columns-model-showcase-wrapper .showcase-fuel {
+main > .section.dark .columns-model-showcase-wrapper .showcase-fuel {
   color: var(--color-text-light);
+}
+
+main > .section.dark .columns-model-showcase-wrapper .spec-num,
+main > .section.dark .columns-model-showcase-wrapper .spec-unit {
+  color: var(--color-black);
 }
 
 .columns-model-showcase > div {
@@ -36,6 +46,7 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
 /* ===== Video ===== */
 .columns-model-showcase .showcase-media {
   width: 100%;
+  min-height: 483px;
   background-color: var(--color-black);
   overflow: hidden;
   display: flex;
@@ -57,7 +68,7 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
   background-color: var(--color-white);
   max-width: 1024px;
   width: calc(100% - 256px);
-  padding: 34px 40px 24px 40px;
+  padding: 34px 40px 0 40px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -72,19 +83,20 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
 
 .columns-model-showcase h2 {
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 15px;
+  margin-bottom: 0;
+  padding-bottom: 15px;
   line-height: 1.2;
 }
 
 .columns-model-showcase .showcase-fuel {
-  font-size: 0.625rem;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--color-text-light);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .columns-model-showcase .showcase-desc {
@@ -99,22 +111,23 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
 .columns-model-showcase .showcase-specs {
   flex: 0 0 auto;
   display: flex;
-  gap: 32px;
+  gap: 0;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 16px 0 0;
 }
 
 .columns-model-showcase .showcase-specs li {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 0 0 0 20px;
   padding-left: 20px;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #c1c1c1;
 }
 
 .columns-model-showcase .showcase-specs li:first-child {
   padding-left: 0;
+  margin-left: 0;
   border-left: none;
 }
 
@@ -148,15 +161,15 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
 .columns-model-showcase .spec-num {
   font-size: 1rem;
   font-weight: 400;
-  color: var(--color-text);
+  color: var(--color-black);
   display: inline;
 }
 
 .columns-model-showcase .spec-unit {
   font-size: 0.75rem;
   font-weight: 400;
-  color: var(--color-text);
-  margin-left: 2px;
+  color: var(--color-black);
+  margin-left: 0.25em;
   display: inline;
 }
 
@@ -165,7 +178,7 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
   flex-basis: 100%;
   display: flex;
   justify-content: flex-end;
-  padding-top: 12px;
+  padding: 10px 0 20px;
 }
 
 .columns-model-showcase .showcase-link {
@@ -213,6 +226,10 @@ main > .section.dark .columns-model-showcase-wrapper a:any-link {
 
   .columns-model-showcase .showcase-cta {
     justify-content: flex-start;
+  }
+
+  .columns-model-showcase .showcase-media {
+    min-height: 280px;
   }
 
   .columns-model-showcase .showcase-media video {

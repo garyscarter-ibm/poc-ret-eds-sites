@@ -23,6 +23,7 @@
 
 .cards-news > div > div:first-child p {
   margin: 0;
+  padding: 0;
   height: 100%;
 }
 
@@ -102,8 +103,8 @@
   text-decoration: underline;
 }
 
-/* Desktop: 2 cards side by side */
-@media (min-width: 900px) {
+/* Tablet+: 2 cards side by side */
+@media (min-width: 600px) {
   .cards-news {
     grid-template-columns: repeat(2, 1fr);
   }

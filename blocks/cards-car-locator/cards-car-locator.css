@@ -84,8 +84,8 @@
   text-decoration: underline;
 }
 
-/* Desktop: side by side */
-@media (min-width: 900px) {
+/* Tablet+: side by side */
+@media (min-width: 600px) {
   .cards-car-locator {
     flex-direction: row;
   }
