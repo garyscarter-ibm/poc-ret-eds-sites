@@ -1,0 +1,107 @@
+/* stylelint-disable */
+
+/* Cards About - Dark overlay cards with white text (3 columns on desktop) */
+.cards-about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Image cards use shared .overlay-card + .overlay-card--tinted (shared-components.css) */
+.cards-about > div {
+  min-height: 488px;
+}
+
+/* Text cell padding for image cards */
+.cards-about > div > div:last-child:not(:first-child) {
+  padding: 35px;
+}
+
+/* === Text-only card (brand-color background link list) === */
+.cards-about > div:not(:has(img)) {
+  background-color: var(--color-bmw-blue, rgb(6 83 182));
+}
+
+.cards-about > div:not(:has(img)) > div {
+  padding: 35px;
+}
+
+/* === Typography - all cards have white text === */
+.cards-about h5 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--color-white);
+  padding: 0 0 24px;
+  margin: 0;
+}
+
+.cards-about p {
+  margin: 0;
+}
+
+/* Tablet: 2 cards side by side, 3rd hidden */
+@media (min-width: 600px) and (max-width: 899px) {
+  .cards-about {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-about > div:nth-child(3) {
+    display: none;
+  }
+}
+
+/* Desktop: 3 cards side by side */
+@media (min-width: 900px) {
+  .cards-about {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* === MINI Brand Variant === */
+.cards-about.mini > div:not(:has(img)) {
+  background-color: #01693e;
+}
+
+.cards-about.mini > div {
+  min-height: 400px;
+}
+
+/* MINI: gradient tint — dark at top for text readability, clear at bottom */
+.cards-about.mini > div.overlay-card--tinted > div:first-child::after {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 65%) 0%, rgb(0 0 0 / 20%) 50%, rgb(0 0 0 / 0%) 100%);
+}
+
+/* MINI: text at top of card */
+.cards-about.mini > div > div:last-child:not(:first-child) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 28px 28px 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.cards-about.mini h5 {
+  font-family: MINISerif-Bold, serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+  padding: 0 0 12px;
+}
+
+.cards-about.mini p {
+  font-family: MINISansSerif-Regular, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #fff;
+  margin: 0;
+}
+
+/* MINI: white chevron CTA — inherit shared defaults, just set font */
+.cards-about.mini a.cta-chevron.cta-chevron--white {
+  font-family: MINISansSerif-Regular, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+}

@@ -1,0 +1,24 @@
+/* stylelint-disable */
+
+/* Banner Terms - Disclaimer/terms text banner */
+.banner-terms {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 64px 16px;
+}
+
+.banner-terms p {
+  font-size: 1rem;
+  line-height: 1.375;
+  color: var(--color-text);
+  margin: 0 0 7px;
+}
+
+.banner-terms p:last-child {
+  margin-bottom: 0;
+}
+
+/* === MINI Brand Variant === */
+.banner-terms.mini p {
+  font-family: MINISansSerif-Regular, sans-serif;
+}

@@ -1,0 +1,70 @@
+/* stylelint-disable */
+
+/* Tiles CTA - "Find Your MINI" two-card CTA section */
+.tiles-cta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 0 86px;
+}
+
+.tiles-cta > div {
+  background-color: var(--color-white);
+  border: 1px solid rgb(204 204 204);
+  border-radius: 8px;
+  padding: 32px 16px;
+  min-height: 170px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Arrow chevron in top-right of each tile */
+.tiles-cta > div::after {
+  content: '';
+  position: absolute;
+  top: 32px;
+  right: 16px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #000;
+  border-right: 2px solid #000;
+  transform: rotate(45deg);
+}
+
+/* Title - target p directly so global p rules don't override */
+.tiles-cta > div > div:first-child p {
+  font-family: MINISerif-Bold, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000;
+  line-height: 20px;
+  margin: 0 0 12px;
+}
+
+/* Description paragraphs */
+.tiles-cta > div > div:last-child p {
+  margin: 0;
+  font-family: MINISansSerif-Regular, sans-serif;
+  font-size: 1rem;
+  color: #000;
+  line-height: 1.5rem;
+}
+
+/* First paragraph in content area (description text) gets top padding */
+.tiles-cta > div > div:last-child p:first-child {
+  padding-top: 24px;
+}
+
+/* Hide link paragraphs — original tiles are fully clickable cards with no visible link text */
+.tiles-cta > div > div:last-child p:has(.tiles-cta-link) {
+  display: none;
+}
+
+/* Desktop: 2 columns */
+@media (min-width: 600px) {
+  .tiles-cta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
