@@ -1,83 +1,162 @@
+/* stylelint-disable */
+
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Grassicks BMW - Design System
+ * Migrated from https://www.grassicksbmw.co.uk/
  */
 
+/* ===== BMW Fonts ===== */
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: BMWTypeNextLatin;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/BMWTypeNextLatin-Bold.woff2') format('woff2');
+}
+
+/* ===== Fallback Fonts ===== */
+@font-face {
+  font-family: bmw-fallback;
+  size-adjust: 100%;
+  src: local('Arial');
+}
+
+/* ===== CSS Custom Properties ===== */
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* --- Colors --- */
+  --color-white: #fff;
+  --color-black: #000;
+  --color-text: #262626;
+  --color-text-light: #666;
+  --color-background: #fff;
+  --color-background-grey: #f5f5f5;
+  --color-background-light-grey: #f9f9f9;
+  --color-bmw-blue: #1c69d4;
+  --color-bmw-blue-hover: #1557b0;
+  --color-border: #262626;
+  --color-border-light: #d4d4d4;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* --- Typography --- */
+  --body-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
+  --heading-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
+  --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* Body */
+  --body-font-size: 16px;
+  --body-font-size-s: 14px;
+  --body-font-size-xs: 12px;
+  --body-font-weight: 400;
+  --body-line-height: 1.5;
+  --body-color: var(--color-text);
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* Headings */
+  --heading-font-weight-light: 300;
+  --heading-font-weight-bold: 700;
+  --heading-line-height: 1.2;
+  --heading-color: var(--color-text);
 
-  /* nav height */
-  --nav-height: 64px;
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 14px;
+
+  /* Labels (small uppercase text) */
+  --label-font-size: 10px;
+  --label-font-weight: 700;
+  --label-letter-spacing: 0.8px;
+
+  /* --- Spacing --- */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --spacing-section: 80px;
+
+  /* --- Layout --- */
+  --content-width: 1200px;
+  --content-width-narrow: 900px;
+  --section-padding: 48px 24px;
+
+  /* --- Buttons --- */
+  --button-font-family: var(--body-font-family);
+  --button-font-size: 13px;
+  --button-font-weight: 700;
+  --button-letter-spacing: 0.39px;
+  --button-padding: 12px 24px;
+  --button-border-radius: 0;
+  --button-transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  /* Primary button */
+  --button-primary-bg: var(--color-bmw-blue);
+  --button-primary-color: var(--color-white);
+  --button-primary-border: 1px solid var(--color-bmw-blue);
+  --button-primary-bg-hover: var(--color-bmw-blue-hover);
+  --button-primary-border-hover: 1px solid var(--color-bmw-blue-hover);
+
+  /* Secondary button */
+  --button-secondary-bg: transparent;
+  --button-secondary-color: var(--color-text);
+  --button-secondary-border: 1px solid var(--color-text);
+  --button-secondary-bg-hover: var(--color-text);
+  --button-secondary-color-hover: var(--color-white);
+
+  /* --- Links --- */
+  --link-color: var(--color-bmw-blue);
+  --link-color-hover: var(--color-bmw-blue-hover);
+  --link-text-decoration: none;
+  --link-text-decoration-hover: underline;
+  --link-transition: color 0.2s ease;
+
+  /* --- Focus --- */
+  --focus-outline: 2px solid var(--color-bmw-blue);
+  --focus-outline-offset: 2px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 8%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 10%);
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+/* ===== Base Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
-}
-
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
-}
-
+/* ===== Body ===== */
 body {
   display: none;
   margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  padding: 0;
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--body-color);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body.appear {
@@ -85,241 +164,419 @@ body.appear {
 }
 
 header {
-  height: var(--nav-height);
+  height: 64px;
 }
 
-header .header,
-footer .footer {
-  visibility: hidden;
-}
-
-header .header[data-block-status="loaded"],
-footer .footer[data-block-status="loaded"] {
-  visibility: visible;
-}
-
+/* ===== Typography ===== */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
+  font-weight: var(--heading-font-weight-light);
+  line-height: var(--heading-line-height);
+  color: var(--heading-color);
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  scroll-margin: calc(64px + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  text-transform: uppercase;
 }
 
-code,
-pre {
+h2 {
+  font-size: var(--heading-font-size-l);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.33;
+}
+
+h4 {
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  letter-spacing: var(--label-letter-spacing);
+  text-transform: uppercase;
+}
+
+h5 {
+  font-size: var(--heading-font-size-l);
+  line-height: 1.3;
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
   font-size: var(--body-font-size-s);
+  line-height: 1.5;
 }
 
-pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
-  overflow-x: auto;
-  white-space: pre;
-}
-
-main > div {
-  margin: 40px 16px;
-}
-
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* links */
+/* ===== Links ===== */
 a:any-link {
   color: var(--link-color);
-  text-decoration: none;
-  overflow-wrap: break-word;
+  text-decoration: var(--link-text-decoration);
+  transition: var(--link-transition);
 }
 
 a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+  color: var(--link-color-hover);
+  text-decoration: var(--link-text-decoration-hover);
 }
 
-/* buttons */
-p.button-wrapper {
-  margin: 12px 0;
+a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
+/* ===== Buttons ===== */
 a.button:any-link,
-button.button {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
+button {
+  display: inline-block;
+  font-family: var(--button-font-family);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  letter-spacing: var(--button-letter-spacing);
+  line-height: 1;
   text-decoration: none;
+  text-align: center;
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
   cursor: pointer;
+  transition: var(--button-transition);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+
+  /* Primary by default */
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg);
+  border: var(--button-primary-border);
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+a.button:hover,
+button:hover {
+  background-color: var(--button-primary-bg-hover);
+  border: var(--button-primary-border-hover);
 }
 
-a.button.primary,
-button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+a.button:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
+/* Secondary button */
 a.button.secondary,
-button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+button.secondary {
+  color: var(--button-secondary-color);
+  background-color: var(--button-secondary-bg);
+  border: var(--button-secondary-border);
 }
 
 a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+button.secondary:hover {
+  color: var(--button-secondary-color-hover);
+  background-color: var(--button-secondary-bg-hover);
 }
 
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
-a.button.accent,
-button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
-}
-
-a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
-}
-
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-main img {
+/* ===== Images ===== */
+img {
   max-width: 100%;
-  width: auto;
   height: auto;
+  display: block;
 }
 
-.icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-}
-
-.icon img {
-  height: 100%;
-  width: 100%;
-}
-
-/* sections */
-main > .section {
-  margin: 40px 0;
-}
-
-main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
-}
-
-main > .section:first-of-type {
+/* ===== Lists ===== */
+ul,
+ol {
+  padding-left: 1.5em;
   margin-top: 0;
+  margin-bottom: var(--spacing-s);
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ===== Main Content Layout ===== */
+main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+main > .section {
+  padding: var(--section-padding);
+}
+
+main > .section > .default-content-wrapper {
+  max-width: var(--content-width-narrow);
+  margin: 0 auto;
+}
+
+/* ===== Section Styles ===== */
+
+/* Dark section: dark background with white text */
+main > .section.dark {
+  background-color: var(--color-text);
+  color: var(--color-white);
+  max-width: 100%;
+  margin: 0;
+}
+
+main > .section.dark > div {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4,
+main > .section.dark h5,
+main > .section.dark h6,
+main > .section.dark p {
+  color: var(--color-white);
+}
+
+main > .section.dark a:any-link {
+  color: var(--color-white);
+}
+
+main > .section.dark a.button:any-link {
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-bg);
+  border: var(--button-primary-border);
+}
+
+main > .section.dark a.button.secondary:any-link {
+  color: var(--color-white);
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+}
+
+main > .section.dark a.button.secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-text);
+}
+
+/* Light-grey section: subtle grey background */
+main > .section.light-grey {
+  background-color: var(--color-background-grey);
+  max-width: 100%;
+  margin: 0;
+}
+
+main > .section.light-grey > div {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* ===== Section Metadata (hidden) ===== */
+.section-metadata {
+  display: none;
+}
+
+/* ===== Metadata Block (hidden) ===== */
+.metadata {
+  display: none;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 600px) {
+  :root {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 36px;
+    --heading-font-size-l: 24px;
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 56px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 24px;
+    --section-padding: 64px 32px;
+  }
+}
+
+/* ===== Page-level Section Spacing ===== */
+
+/* BMW model showcase and car locator sections: grey background (matches original #F5F5F5) */
+main > .section.columns-model-showcase-container,
+main > .section.cards-car-locator-container {
+  background-color: var(--color-background-grey);
+}
+
+/* Columns section: white background (original has grey only for NEWS, white for columns) */
+main > .section.cards-news-container {
+  background-color: var(--color-white);
+  padding-top: 0;
+  padding-bottom: 75px;
+}
+
+/* Grey background for NEWS heading - stretches full width */
+main > .section.cards-news-container > .default-content-wrapper:first-child {
+  background-color: var(--color-background-grey);
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 64px 32px 0;
+  overflow: hidden;
+}
+
+/* Grey background for news cards */
+main > .section.cards-news-container > .cards-news-wrapper {
+  background-color: var(--color-background-grey);
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 0 32px;
+}
+
+main > .section.cards-about-container {
+  padding-bottom: 88px;
+}
+
+main > .section.tabs-dealer-locator-container {
+  background-color: var(--color-white);
+  padding-top: 0;
+}
+
+/* Dealer locator heading wrapper - add spacing above */
+main > .section.tabs-dealer-locator-container > .default-content-wrapper:nth-child(2) {
+  padding-top: 64px;
+}
+
+/* Terms disclaimer text - grey background stretching full width (matches original #f9f9f9) */
+main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child {
+  background-color: var(--color-background-light-grey);
+  margin-left: -32px;
+  margin-right: -32px;
+  padding: 32px 32px;
+}
+
+/* Block wrapper vertical spacing within sections */
+/* Specificity must beat main > .section.light-grey > div { margin: 0 auto } (0,2,2) */
+.section.cards-news-container .cards-news-wrapper {
+  margin-bottom: 88px;
+}
+
+.section.cards-news-container .columns-wrapper {
+  margin-bottom: 75px;
+}
+
+/* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US) */
+main > .section > .default-content-wrapper > h2 {
+  font-size: 36px;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 64px;
+}
+
+/* Dealer locator H2 - smaller, left-aligned, uppercase */
+main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+  margin-bottom: 0;
+}
+
+/* MINI brand overrides for body text, section headings, and global colors */
+.section:has(.mini) {
+  font-family: MINISansSerif-Regular, sans-serif;
+  color: #000;
+}
+
+.section:has(.mini) p {
+  font-family: MINISansSerif-Regular, sans-serif;
+  color: #000;
+}
+
+.section:has(.mini) h2,
+.section:has(.mini) h3,
+.section:has(.mini) h4,
+.section:has(.mini) h5 {
+  color: #000;
+}
+
+/* MINI section-level H2 headings: 32px centered uppercase (matching original) */
+main > .section:has(.mini) > .default-content-wrapper > h2 {
+  font-family: MINISerif-Bold, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 32px;
+  letter-spacing: normal;
+  color: #000;
+}
+
+/* MINI section-level H3 headings: same style as H2 for consistency */
+main > .section:has(.mini) > .default-content-wrapper > h3 {
+  font-family: MINISerif-Bold, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 32px;
+  letter-spacing: normal;
+  color: #000;
+  margin-bottom: 64px;
+}
+
+/* MINI dealer locator: override BMW grey background on heading wrapper and add top padding */
+main > .section.tabs-dealer-locator-container:has(.mini) {
+  padding-top: 48px;
+}
+
+main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrapper:first-child {
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+/* MINI dealer locator H2: smaller than main section headings (28px matching original) */
+main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrapper > h2 {
+  font-size: 28px;
+  line-height: 21px;
+  padding-bottom: 24px;
+}
+
+/* MINI page grey background sections (matches original #F5F5F5) */
+.section.carousel-offers-container:has(.mini),
+.section.banner-terms-container:has(.mini) {
+  background-color: var(--color-background-grey);
+}
+
+/* MINI page section padding adjustments */
+.section.tiles-cta-container:has(.mini) {
+  padding-top: 86px;
+  padding-bottom: 0;
+}
+
+/* tiles-CTA section heading: extra bottom margin */
+.section.tiles-cta-container:has(.mini) > .default-content-wrapper > h2 {
+  margin: 0 0 40px;
+}
+
+.section.tiles-contact-container:has(.mini) {
+  padding-top: 80px;
+  padding-bottom: 65px;
+}
+
+@media (max-width: 599px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }

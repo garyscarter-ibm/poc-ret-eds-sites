@@ -1,0 +1,10 @@
+{
+  "name": "footer",
+  "description": "Dark background site footer with three-column layout: Legal Information links in 2-column grid, Contact links, and Quick links with Follow us social icons and copyright line",
+  "sourceContext": {
+    "originUrl": "https://www.grassicksbmw.co.uk/"
+  },
+  "usage": {
+    "pagesUsing": ["/content/index-bmw", "/content/index-mini"]
+  }
+}

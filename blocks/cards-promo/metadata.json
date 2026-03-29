@@ -1,0 +1,13 @@
+{
+  "name": "cards-promo",
+  "description": "Promotional cards with image backgrounds and overlay text. Common block shared between BMW (News & Offers Triple Panel) and MINI (Promo Cards, Triple Column Feature Panels).",
+  "sourceContext": {
+    "bmwSelector": ".triplePanel .panel.homePagePanel",
+    "miniSelector": ".promoCards .myHeroItem02, .tripleColumnCMS .columnCMS",
+    "bmwInstances": 2,
+    "miniInstances": 5
+  },
+  "usage": {
+    "pagesUsing": []
+  }
+}

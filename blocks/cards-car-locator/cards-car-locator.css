@@ -1,0 +1,61 @@
+/* stylelint-disable */
+
+/* Section wrapper - light grey background like original */
+.cards-car-locator-wrapper {
+  max-width: 100%;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/* Block - two cards side by side on desktop */
+.cards-car-locator {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0 0;
+}
+
+/* Each card uses shared .overlay-card (shared-components.css) */
+.cards-car-locator > div {
+  min-height: 420px;
+}
+
+/* Text overlay - positioned bottom-right like original */
+/* Specificity (0,3,2) beats shared .overlay-card > div:last-child:not(:first-child) (0,3,1) */
+.cards-car-locator > div.overlay-card > div:last-child {
+  position: absolute;
+  bottom: 15px;
+  right: 19px;
+  z-index: 1;
+  text-align: right;
+}
+
+.cards-car-locator > div > div:last-child p {
+  margin: 0;
+}
+
+/* Heading */
+.cards-car-locator h3 {
+  color: var(--color-white);
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1.2;
+  padding: 0 0 4px;
+  margin: 0;
+}
+
+/* CTA links — right-aligned within the overlay text container */
+.cards-car-locator a.cta-chevron {
+  margin-left: auto;
+}
+
+/* Tablet+: side by side */
+@media (min-width: 600px) {
+  .cards-car-locator {
+    flex-direction: row;
+  }
+
+  .cards-car-locator > div {
+    flex: 1;
+  }
+}

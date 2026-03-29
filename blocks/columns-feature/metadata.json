@@ -1,0 +1,13 @@
+{
+  "name": "columns-feature",
+  "description": "Image+text split teaser with alternating layout. Common block shared between BMW (Split Banner Teaser) and MINI (Teaser Model) sites. Supports multiple rows with automatic alternating image/text positions.",
+  "sourceContext": {
+    "bmwSelector": ".splitBannerTeaserCMS",
+    "miniSelector": ".teaserModel",
+    "bmwInstances": 6,
+    "miniInstances": 2
+  },
+  "usage": {
+    "pagesUsing": []
+  }
+}
