@@ -1,0 +1,129 @@
+/* stylelint-disable */
+
+/* Columns Welcome - Image + welcome text section */
+
+/* Full-bleed: break out of content-width container */
+main > .section.columns-welcome-container {
+  width: 100vw;
+  max-width: none;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 0;
+}
+
+main > .section.columns-welcome-container > .columns-welcome-wrapper {
+  max-width: none;
+  margin: 0;
+}
+
+/* Mobile: stacked layout */
+.columns-welcome > div {
+  display: block;
+  overflow: hidden;
+}
+
+.columns-welcome > div > div img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+}
+
+.columns-welcome > div > div:not(:has(img)) {
+  padding: var(--spacing-l) var(--spacing-m);
+  background-color: var(--color-white);
+}
+
+/* Heading */
+.columns-welcome h3 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 36px;
+  padding: 0 0 28px;
+  margin: 0;
+}
+
+/* Description */
+.columns-welcome p {
+  font-size: 0.875rem;
+  line-height: 19.2px;
+  color: var(--color-text);
+  padding: 0 0 28px;
+  margin: 0;
+}
+
+/* Remove extra padding from link wrapper paragraph */
+.columns-welcome p:last-child {
+  padding-bottom: 0;
+}
+
+/* Arrow-style CTA links - blue arrow matching original */
+.columns-welcome a:any-link {
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.39px;
+  color: var(--color-black);
+  display: inline-block;
+  padding: 15px 24px 15px 0;
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='%231c69d4' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 12px;
+}
+
+.columns-welcome a:any-link:hover {
+  text-decoration: underline;
+}
+
+/* Tablet: simple side-by-side layout */
+@media (min-width: 600px) and (max-width: 899px) {
+  .columns-welcome > div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .columns-welcome > div > div:has(img) {
+    flex: 0 0 34%;
+  }
+
+  .columns-welcome > div > div:not(:has(img)) {
+    flex: 1;
+    padding: 28px 24px;
+  }
+}
+
+/* Desktop: float-based overlapping layout matching original */
+@media (min-width: 900px) {
+  .columns-welcome {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .columns-welcome > div {
+    margin-bottom: 75px;
+  }
+
+  /* Image column: float right, constrained to original height */
+  .columns-welcome > div > div:has(img) {
+    float: right;
+    width: 55.5%;
+    height: 605px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* Text column: float left, overlaps image with negative margin */
+  .columns-welcome > div > div:not(:has(img)) {
+    float: left;
+    width: 55.5%;
+    height: 605px;
+    margin-top: -490px;
+    position: relative;
+    z-index: 2;
+    padding: 133px 102px 133px 192px;
+    overflow: hidden;
+  }
+}

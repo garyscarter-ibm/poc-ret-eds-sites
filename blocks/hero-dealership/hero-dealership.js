@@ -1,24 +1,36 @@
 export default function decorate(block) {
+  const isMini = block.classList.contains('mini');
+
   const contentRow = block.children[1];
   if (!contentRow) return;
 
   const children = [...contentRow.children];
 
-  // Find headings by position — works with any heading level
+  // Find optional "Welcome To" paragraph (a div containing only a short <p>, before any heading)
+  let welcomeDiv = null;
+  const firstChild = children[0];
+  if (firstChild) {
+    const p = firstChild.querySelector('p');
+    const h = firstChild.querySelector('h1, h2, h3, h4, h5, h6');
+    if (p && !h && p.textContent.trim().length < 30) {
+      welcomeDiv = firstChild;
+      p.classList.add('hero-dealership-welcome');
+    }
+  }
+
+  // Find headings
   const headingDivs = children.filter((d) => d.querySelector('h1, h2, h3, h4, h5, h6'));
   const titleDiv = headingDivs[0];
   const subtitleDiv = headingDivs[1];
 
-  // Add semantic classes so CSS targets role, not tag
-  if (titleDiv) titleDiv.querySelector('h1, h2, h3, h4, h5, h6').classList.add('hero-title');
-  if (subtitleDiv) subtitleDiv.querySelector('h1, h2, h3, h4, h5, h6').classList.add('hero-subtitle');
+  if (titleDiv) titleDiv.querySelector('h1, h2, h3, h4, h5, h6').classList.add('hero-dealership-title');
+  if (subtitleDiv) subtitleDiv.querySelector('h1, h2, h3, h4, h5, h6').classList.add('hero-dealership-subtitle');
 
-  // Find CTA links (divs with just a link, not ratings text)
+  // Find CTA links (exclude ratings and review text)
   const ctaDivs = children.filter((d) => {
     const a = d.querySelector('a');
     const p = d.querySelector('p');
     if (!a || !p) return false;
-    // Exclude ratings text and review link
     const text = p.textContent.trim();
     if (text.includes('SALES') || text.includes('SERVICE')) return false;
     if (text.includes('reviews')) return false;
@@ -28,7 +40,8 @@ export default function decorate(block) {
   // Find rating paragraphs
   const ratingDivs = children.filter((d) => {
     const p = d.querySelector('p');
-    return p && (p.textContent.includes('SALES') || p.textContent.includes('SERVICE'));
+    if (p) return p.textContent.includes('SALES') || p.textContent.includes('SERVICE');
+    return d.textContent.includes('SALES:') || d.textContent.includes('SERVICE:');
   });
 
   // Find review link
@@ -40,58 +53,59 @@ export default function decorate(block) {
   // Build CTA buttons container
   if (ctaDivs.length > 0) {
     const ctaContainer = document.createElement('div');
-    ctaContainer.className = 'hero-ctas';
+    ctaContainer.className = 'hero-dealership-ctas';
     ctaDivs.forEach((d, i) => {
       const a = d.querySelector('a');
       if (a) {
-        a.className = i === 0 ? 'hero-btn hero-btn-primary' : 'hero-btn hero-btn-secondary';
+        if (isMini) {
+          // MINI: both buttons are secondary style
+          a.className = 'hero-dealership-btn hero-dealership-btn-secondary';
+        } else {
+          a.className = i === 0
+            ? 'hero-dealership-btn hero-dealership-btn-primary'
+            : 'hero-dealership-btn hero-dealership-btn-secondary';
+        }
         ctaContainer.append(a);
       }
       d.remove();
     });
-    // Insert after subtitle
     if (subtitleDiv) subtitleDiv.after(ctaContainer);
   }
 
   // Build ratings container
   if (ratingDivs.length > 0) {
     const ratingsContainer = document.createElement('div');
-    ratingsContainer.className = 'hero-ratings';
+    ratingsContainer.className = 'hero-dealership-ratings';
 
     const ratingsRow = document.createElement('div');
-    ratingsRow.className = 'hero-ratings-row';
+    ratingsRow.className = 'hero-dealership-ratings-row';
 
     ratingDivs.forEach((d) => {
-      const p = d.querySelector('p');
-      if (!p) return;
-      const text = p.textContent.trim();
+      const text = d.textContent.trim();
       const match = text.match(/(SALES|SERVICE):\s*([\d.]+)/);
       if (!match) return;
 
       const label = match[1];
       const score = match[2];
 
-      // Each rating: block container with float:left (like original)
       const ratingEl = document.createElement('div');
-      ratingEl.className = 'hero-rating';
+      ratingEl.className = 'hero-dealership-rating';
 
-      // Title on its own line (block h3)
       const labelEl = document.createElement('h3');
-      labelEl.className = 'hero-rating-label';
+      labelEl.className = 'hero-dealership-rating-label';
       labelEl.textContent = label;
 
-      // Stars row: floated star spans + inline score
       const starsRow = document.createElement('div');
-      starsRow.className = 'hero-stars-row';
+      starsRow.className = 'hero-dealership-stars-row';
       const fullStars = Math.floor(parseFloat(score));
-      for (let s = 0; s < 5; s++) {
+      for (let s = 0; s < 5; s += 1) {
         const star = document.createElement('span');
         star.className = s < fullStars ? 'star star-full' : 'star star-empty';
         starsRow.append(star);
       }
 
       const scoreEl = document.createElement('span');
-      scoreEl.className = 'hero-rating-score';
+      scoreEl.className = 'hero-dealership-rating-score';
       scoreEl.textContent = score;
       starsRow.append(scoreEl);
 
@@ -102,16 +116,23 @@ export default function decorate(block) {
 
     ratingsContainer.append(ratingsRow);
 
-    // Add review link
     if (reviewDiv) {
       const a = reviewDiv.querySelector('a');
       if (a) {
-        a.className = 'hero-reviews-link';
+        a.className = 'hero-dealership-reviews-link';
         ratingsContainer.append(a);
       }
       reviewDiv.remove();
     }
 
     contentRow.append(ratingsContainer);
+  }
+
+  // MINI: add decorative frame elements
+  if (isMini) {
+    const frame = document.createElement('div');
+    frame.className = 'hero-dealership-frame';
+    frame.innerHTML = '<span class="frame-top"></span><span class="frame-right"></span><span class="frame-bottom"></span><span class="frame-left"></span>';
+    block.append(frame);
   }
 }
