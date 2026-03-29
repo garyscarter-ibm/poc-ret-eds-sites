@@ -112,6 +112,9 @@ header .nav-brand {
   order: 3;
   margin-left: auto;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 header .nav-brand > div {
@@ -194,6 +197,9 @@ header nav .nav-sections ul > li > a[href="#"]::after {
 header nav .nav-tools {
   order: 2;
   margin-left: 48px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 header nav .nav-tools > div {
@@ -325,6 +331,12 @@ header nav[aria-expanded='true'] .nav-tools {
   z-index: 1;
 }
 
+header nav[aria-expanded='true'] .nav-tools {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
 header nav[aria-expanded='true'] .nav-tools > div {
   flex-direction: column;
   align-items: stretch;
@@ -433,6 +445,12 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
     background-color: #f5f5f5;
   }
 
+  header nav[aria-expanded='true'] .nav-tools {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
   header nav[aria-expanded='true'] .nav-tools > div {
     flex-direction: row;
     align-items: center;
@@ -492,6 +510,9 @@ header .header.mini .nav-brand {
 header .header.mini .nav-tools {
   order: 2;
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 
 header .header.mini .nav-hamburger {
@@ -514,6 +535,10 @@ header .header.mini nav .nav-hamburger button {
 }
 
 /* MINI brand: MINI logo LEFT, dealer name RIGHT */
+header .header.mini .nav-brand {
+  flex-direction: row-reverse;
+}
+
 header .header.mini .nav-brand > div {
   flex-direction: row-reverse;
 }
@@ -580,6 +605,12 @@ header .header.mini nav[aria-expanded='true'] .nav-tools {
   padding: 0;
   background-color: transparent;
   margin-left: auto;
+}
+
+header .header.mini nav[aria-expanded='true'] .nav-tools {
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
 }
 
 header .header.mini nav[aria-expanded='true'] .nav-tools > div {
@@ -716,6 +747,9 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     margin: 0 -24px;
     background-color: #000;
     padding: 0;
+    justify-content: center;
+    gap: 0;
+    height: 40px;
   }
 
   header .header.mini .nav-tools > div {
@@ -750,6 +784,9 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     background-color: #000;
     padding: 0;
     margin-left: -24px;
+    flex-direction: row;
+    height: 40px;
+    gap: 0;
   }
 
   header .header.mini nav[aria-expanded='true'] .nav-tools > div {
