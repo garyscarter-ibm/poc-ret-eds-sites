@@ -1,23 +1,20 @@
 {
   "blocks": {
     "data": [
-      { "name": "Hero Dealership", "path": "/block-library/hero-dealership" },
-      { "name": "Hero Dealership (MINI)", "path": "/block-library/hero-dealership-mini" },
-      { "name": "Hero", "path": "/block-library/hero" },
-      { "name": "Cards", "path": "/block-library/cards" },
-      { "name": "Cards About", "path": "/block-library/cards-about" },
-      { "name": "Cards Car Locator", "path": "/block-library/cards-car-locator" },
-      { "name": "Cards News", "path": "/block-library/cards-news" },
-      { "name": "Cards Promo", "path": "/block-library/cards-promo" },
-      { "name": "Carousel Models", "path": "/block-library/carousel-models" },
-      { "name": "Carousel Offers", "path": "/block-library/carousel-offers" },
-      { "name": "Columns", "path": "/block-library/columns" },
-      { "name": "Columns Feature", "path": "/block-library/columns-feature" },
-      { "name": "Columns Model Showcase", "path": "/block-library/columns-model-showcase" },
-      { "name": "Tabs Dealer Locator", "path": "/block-library/tabs-dealer-locator" },
-      { "name": "Tiles Contact", "path": "/block-library/tiles-contact" },
-      { "name": "Tiles CTA", "path": "/block-library/tiles-cta" },
-      { "name": "Banner Terms", "path": "/block-library/banner-terms" }
+      { "name": "Hero Dealership", "path": "/docs/library/hero-dealership" },
+      { "name": "Hero Dealership (MINI)", "path": "/docs/library/hero-dealership-mini" },
+      { "name": "Cards About", "path": "/docs/library/cards-about" },
+      { "name": "Cards Car Locator", "path": "/docs/library/cards-car-locator" },
+      { "name": "Cards News", "path": "/docs/library/cards-news" },
+      { "name": "Cards Promo", "path": "/docs/library/cards-promo" },
+      { "name": "Carousel Models", "path": "/docs/library/carousel-models" },
+      { "name": "Carousel Offers", "path": "/docs/library/carousel-offers" },
+      { "name": "Columns Feature", "path": "/docs/library/columns-feature" },
+      { "name": "Columns Model Showcase", "path": "/docs/library/columns-model-showcase" },
+      { "name": "Tabs Dealer Locator", "path": "/docs/library/tabs-dealer-locator" },
+      { "name": "Tiles Contact", "path": "/docs/library/tiles-contact" },
+      { "name": "Tiles CTA", "path": "/docs/library/tiles-cta" },
+      { "name": "Banner Terms", "path": "/docs/library/banner-terms" }
     ]
   }
 }
