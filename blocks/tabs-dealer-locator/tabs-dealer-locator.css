@@ -1,0 +1,186 @@
+/* stylelint-disable */
+
+/* Tabs Dealer Locator - Tabbed dealer contact info (Sales/Service/Parts) */
+.tabs-dealer-locator {
+  max-width: 936px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Tab navigation - centered row of tab buttons */
+.tabs-dealer-locator-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+/* Tab buttons - override global button styles */
+.tabs-dealer-locator .tabs-dealer-locator-tab {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgb(102 102 102);
+  letter-spacing: normal;
+  font-family: inherit;
+  line-height: inherit;
+  transition: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-tab:hover {
+  background-color: transparent;
+  border: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-tab:focus,
+.tabs-dealer-locator .tabs-dealer-locator-tab:focus-visible {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-tab.active {
+  color: rgb(28 105 212);
+}
+
+/* Content box with border */
+.tabs-dealer-locator-content {
+  border: 1px solid rgb(221 221 221);
+  padding: 24px 16px;
+}
+
+/* Panels - hidden by default, shown when active */
+.tabs-dealer-locator-panel {
+  display: none;
+}
+
+.tabs-dealer-locator-panel.active {
+  display: block;
+}
+
+/* 3-column layout for Address / Opening Hours / Phone */
+.tabs-dealer-locator-columns {
+  display: flex;
+  gap: 24px;
+}
+
+.tabs-dealer-locator-col {
+  flex: 1;
+}
+
+/* Column headers (Address, Opening Hours, Phone) */
+.tabs-dealer-locator h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.2;
+}
+
+/* Info text */
+.tabs-dealer-locator p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Space between heading and first paragraph (matches original ul margin) */
+.tabs-dealer-locator h4 + p {
+  margin-top: 10px;
+}
+
+/* View map / Close map toggle link - override global button styles */
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle {
+  display: inline-block;
+  margin-top: 16px;
+  color: rgb(28 105 212);
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  line-height: inherit;
+  letter-spacing: normal;
+  text-align: left;
+  white-space: normal;
+  border-radius: 0;
+  transition: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:hover {
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:focus,
+.tabs-dealer-locator .tabs-dealer-locator-map-toggle:focus-visible {
+  outline: none;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* Map container - hidden by default */
+.tabs-dealer-locator-map-section {
+  display: none;
+  margin-top: 16px;
+}
+
+.tabs-dealer-locator-map-section.active {
+  display: block;
+}
+
+.tabs-dealer-locator-map-section h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Google Maps embed iframe */
+.tabs-dealer-locator-map-section iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+/* Areas served */
+.tabs-dealer-locator-areas {
+  margin-top: 12px;
+}
+
+.tabs-dealer-locator-areas h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.tabs-dealer-locator-areas p {
+  font-size: 0.875rem;
+  color: rgb(102 102 102);
+}
+
+/* Mobile: stack columns */
+@media (max-width: 899px) {
+  .tabs-dealer-locator-columns {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

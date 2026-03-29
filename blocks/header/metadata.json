@@ -1,0 +1,10 @@
+{
+  "name": "header",
+  "description": "Responsive site header with dealer name and BMW logo, desktop navigation menu with expandable sections, and action links for test drive booking, service booking, and phone contact",
+  "sourceContext": {
+    "originUrl": "https://www.grassicksbmw.co.uk/"
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"]
+  }
+}

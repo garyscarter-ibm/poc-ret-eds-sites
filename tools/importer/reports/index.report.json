@@ -1,0 +1,23 @@
+{
+  "status": "success",
+  "url": "https://www.grassicksbmw.co.uk/",
+  "path": "index",
+  "timestamp": "2026-03-20T10:21:20.161Z",
+  "title": "Grassicks | Official BMW Dealership in Perth",
+  "template": "homepage",
+  "blocks": [
+    "hero",
+    "columns-model-showcase",
+    "cards-car-locator",
+    "cards-news",
+    "columns",
+    "columns",
+    "columns",
+    "columns",
+    "columns",
+    "columns",
+    "columns-welcome",
+    "cards-about",
+    "tabs-dealer-locator"
+  ]
+}

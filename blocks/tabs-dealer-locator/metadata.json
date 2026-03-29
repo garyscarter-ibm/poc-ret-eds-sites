@@ -1,0 +1,10 @@
+{
+  "name": "tabs-dealer-locator",
+  "description": "Tabbed dealer contact info with Sales/Service/Parts tabs, address, opening hours, phone, and Google Maps embed",
+  "sourceContext": {
+    "originUrl": "https://www.grassicksbmw.co.uk/"
+  },
+  "usage": {
+    "pagesUsing": ["/content/index"]
+  }
+}
