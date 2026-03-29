@@ -21,15 +21,45 @@ export default async function decorate(block) {
   const columns = footer.querySelector(':scope > div');
   if (columns) {
     columns.classList.add('footer-columns');
-    const cols = columns.querySelectorAll(':scope > div');
+    let cols = [...columns.querySelectorAll(':scope > div')];
+
+    // da.live serves flat structure (no inner divs) - group by h2 headings
+    if (cols.length === 0) {
+      const headings = [...columns.querySelectorAll(':scope > h2')];
+      const groups = headings.map((h2) => {
+        const col = document.createElement('div');
+        col.append(h2);
+        let next = h2.nextSibling;
+        while (next && !(next.nodeType === 1 && next.tagName === 'H2')) {
+          const current = next;
+          next = next.nextSibling;
+          if (current.nodeType === 1) col.append(current);
+        }
+        return col;
+      });
+      // Merge extra groups into the 3rd column (e.g. Quick links + Follow us)
+      if (groups.length > 3) {
+        for (let i = 3; i < groups.length; i += 1) {
+          while (groups[i].firstChild) groups[2].append(groups[i].firstChild);
+        }
+        groups.length = 3;
+      }
+      cols = groups;
+      // Move copyright out before appending columns
+      const copyright = columns.querySelector(':scope > p');
+      columns.replaceChildren(...cols);
+      if (copyright) footer.append(copyright);
+    }
+
     if (cols[0]) cols[0].classList.add('footer-legal');
     if (cols[1]) cols[1].classList.add('footer-contact');
     if (cols[2]) cols[2].classList.add('footer-quicklinks');
 
     // Extract "Follow us" into its own div for responsive reordering
-    if (cols[2]) {
-      const headings = cols[2].querySelectorAll('h2');
-      const lists = cols[2].querySelectorAll('ul');
+    const quicklinksCol = cols[2];
+    if (quicklinksCol) {
+      const headings = quicklinksCol.querySelectorAll('h2');
+      const lists = quicklinksCol.querySelectorAll('ul');
       if (headings[1] && lists[1]) {
         const followDiv = document.createElement('div');
         followDiv.classList.add('footer-follow');

@@ -7,10 +7,17 @@ export default function decorate(block) {
 
   // Create video from mp4 link + poster image
   if (mediaCol) {
-    const link = [...mediaCol.querySelectorAll('a')].find((a) => a.href.endsWith('.mp4'));
+    const link = [...mediaCol.querySelectorAll('a')].find((a) => a.href.endsWith('.mp4')
+      || a.textContent.trim().endsWith('.mp4')
+      || (a.title && a.title.endsWith('.mp4')));
     const img = mediaCol.querySelector('img');
 
     if (link) {
+      // Use href if it ends with .mp4, otherwise fall back to textContent or title
+      const videoSrc = link.href.endsWith('.mp4')
+        ? link.href
+        : (link.textContent.trim().endsWith('.mp4') ? link.textContent.trim() : link.title);
+
       const video = document.createElement('video');
       video.autoplay = true;
       video.muted = true;
@@ -20,7 +27,7 @@ export default function decorate(block) {
       if (img) video.poster = img.src;
 
       const source = document.createElement('source');
-      source.src = link.href;
+      source.src = videoSrc;
       source.type = 'video/mp4';
       video.append(source);
 
