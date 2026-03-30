@@ -1,16 +1,25 @@
 /* stylelint-disable */
 
+/* ===== Button Reset ===== */
+/* Undoes global a.button:any-link styles when blocks use links as plain text CTAs */
+.link-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--cta-font-size);
+}
+
 /* ===== Chevron CTA Link ===== */
 .cta-chevron {
   font-weight: 700;
-  font-size: 0.8125rem;
+  font-size: var(--cta-font-size);
   letter-spacing: 0.39px;
   display: block;
   width: fit-content;
   text-decoration: none;
   background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 12px;
+  background-position: 100% 0;
+  background-size: auto;
   padding: 15px 36px 15px 0;
 }
 
@@ -21,7 +30,7 @@
 /* White chevron — dark backgrounds (double-class specificity beats a:any-link) */
 .cta-chevron.cta-chevron--white {
   color: var(--color-white);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M20.243 26.243l4.263-4.228-4.243-4.243' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
 }
 
 .cta-chevron.cta-chevron--white:hover {
@@ -31,7 +40,7 @@
 /* Blue chevron — light backgrounds */
 .cta-chevron.cta-chevron--blue {
   color: var(--color-bmw-blue);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='%231c69d4' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M20.243 26.243l4.263-4.228-4.243-4.243' fill='none' stroke='%231c69d4' stroke-width='2'/%3E%3C/svg%3E");
 }
 
 .cta-chevron.cta-chevron--blue:hover {
@@ -124,4 +133,97 @@
   font-weight: 400;
   color: var(--color-white);
   margin-left: 8px;
+}
+
+/* ===== Hidden Scrollbar ===== */
+/* Apply to horizontal scroll tracks to hide scrollbar across browsers */
+.scroll-hidden {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Carousel Nav Button ===== */
+/* Circular prev/next button base — used by carousel-models and carousel-offers */
+.carousel-nav-btn {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: var(--color-white, #fff);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  color: var(--color-text, #333);
+  transition: background-color 0.2s ease;
+}
+
+.carousel-nav-btn:hover {
+  background: #f0f0f0;
+}
+
+.carousel-nav-btn:focus,
+.carousel-nav-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+
+.carousel-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  background: var(--color-white, #fff);
+}
+
+.carousel-nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== MINI Pill Button ===== */
+/* Rounded pill CTA used by MINI brand blocks (hero, carousel-models, columns-feature) */
+.cta-pill {
+  display: inline-block;
+  font-family: MINISansSerif-Regular, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid #fff;
+  border-radius: 28px;
+  padding: 10px 28px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background: none;
+  text-align: center;
+}
+
+/* Primary: filled white with dark text */
+.cta-pill--primary {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.cta-pill--primary:hover {
+  background: rgb(230 230 230);
+}
+
+/* Secondary: outline with white/dark border */
+.cta-pill--secondary {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+
+.cta-pill--secondary:hover {
+  background: #fff;
+  color: #000;
 }

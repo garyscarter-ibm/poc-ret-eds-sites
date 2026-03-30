@@ -1,3 +1,5 @@
+import { createCarouselButton, wireCarouselScroll } from '../../scripts/block-utils.js';
+
 // Model-specific showcase background colors (matched from original site)
 const MODEL_COLORS = {
   'mini cooper electric': { bg: '#2D46DF', light: false },
@@ -31,7 +33,9 @@ export default function decorate(block) {
       text: a.textContent.trim(),
       href: a.getAttribute('href') || '#',
     }));
-    return { name, img, tagline, links };
+    return {
+      name, img, tagline, links,
+    };
   });
 
   // Clear block
@@ -88,7 +92,7 @@ export default function decorate(block) {
   strip.className = 'carousel-models-strip';
 
   const thumbTrack = document.createElement('div');
-  thumbTrack.className = 'carousel-models-thumbs';
+  thumbTrack.className = 'carousel-models-thumbs scroll-hidden';
 
   const thumbs = models.map((model, i) => {
     const thumb = document.createElement('button');
@@ -110,15 +114,8 @@ export default function decorate(block) {
   });
 
   // Prev/next for thumbnail strip
-  const prevBtn = document.createElement('button');
-  prevBtn.className = 'carousel-models-strip-prev';
-  prevBtn.setAttribute('aria-label', 'Previous models');
-  prevBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'carousel-models-strip-next';
-  nextBtn.setAttribute('aria-label', 'Next models');
-  nextBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
+  const prevBtn = createCarouselButton('prev', { classPrefix: 'carousel-models-strip', ariaPrefix: 'models' });
+  const nextBtn = createCarouselButton('next', { classPrefix: 'carousel-models-strip', ariaPrefix: 'models' });
 
   strip.append(prevBtn, thumbTrack, nextBtn);
   block.append(strip);
@@ -211,16 +208,10 @@ export default function decorate(block) {
   // Strip scroll
   function getScrollAmount() {
     if (thumbs.length === 0) return 200;
-    return thumbs[0].offsetWidth + 16;
+    return (thumbs[0].offsetWidth + 16) * 2;
   }
 
-  prevBtn.addEventListener('click', () => {
-    thumbTrack.scrollBy({ left: -getScrollAmount() * 2, behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    thumbTrack.scrollBy({ left: getScrollAmount() * 2, behavior: 'smooth' });
-  });
+  wireCarouselScroll(thumbTrack, prevBtn, nextBtn, { scrollAmount: getScrollAmount });
 
   // Init first model
   setActive(0);
