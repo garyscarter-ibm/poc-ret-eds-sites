@@ -121,6 +121,9 @@
   --button-secondary-bg-hover: var(--color-text);
   --button-secondary-color-hover: var(--color-white);
 
+  /* --- CTA --- */
+  --cta-font-size: 0.8125rem;
+
   /* --- Links --- */
   --link-color: var(--color-bmw-blue);
   --link-color-hover: var(--color-bmw-blue-hover);
@@ -391,7 +394,7 @@ main > .section.light-grey > div {
 }
 
 /* ===== Responsive ===== */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   :root {
     --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 36px;
@@ -399,12 +402,12 @@ main > .section.light-grey > div {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   :root {
     --heading-font-size-xxl: 56px;
     --heading-font-size-xl: 40px;
     --heading-font-size-l: 24px;
-    --section-padding: 64px 32px;
+    --section-padding: 64px 0;
   }
 }
 
@@ -426,18 +429,23 @@ main > .section.cards-news-container {
 /* Grey background for NEWS heading - stretches full width */
 main > .section.cards-news-container > .default-content-wrapper:first-child {
   background-color: var(--color-background-grey);
-  margin-left: -32px;
-  margin-right: -32px;
-  padding: 64px 32px 0;
+  padding: 64px 24px 0;
   overflow: hidden;
 }
 
 /* Grey background for news cards */
 main > .section.cards-news-container > .cards-news-wrapper {
   background-color: var(--color-background-grey);
-  margin-left: -32px;
-  margin-right: -32px;
-  padding: 0 32px;
+  padding: 0 24px;
+}
+
+/* Mobile/tablet: stretch backgrounds beyond section padding */
+@media (max-width: 1023px) {
+  main > .section.cards-news-container > .default-content-wrapper:first-child,
+  main > .section.cards-news-container > .cards-news-wrapper {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
 }
 
 main > .section.cards-about-container {
@@ -457,9 +465,14 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper:nth-chi
 /* Terms disclaimer text - grey background stretching full width (matches original #f9f9f9) */
 main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child {
   background-color: var(--color-background-light-grey);
-  margin-left: -32px;
-  margin-right: -32px;
-  padding: 32px 32px;
+  padding: 32px 24px;
+}
+
+@media (max-width: 1023px) {
+  main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
 }
 
 /* Block wrapper vertical spacing within sections */
@@ -571,7 +584,7 @@ main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrap
   padding-bottom: 65px;
 }
 
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   h1 {
     font-size: 28px;
   }

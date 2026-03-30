@@ -171,18 +171,18 @@ main > .section > .columns-model-showcase-wrapper {
   white-space: nowrap;
 }
 
-/* Override EDS button styling on links */
+/* CTA link — extends .link-reset from shared-components.css */
 .columns-model-showcase a.button:any-link {
   background: none;
   border: none;
   padding: 0;
   color: var(--color-bmw-blue);
-  font-size: 0.8125rem;
+  font-size: var(--cta-font-size);
   letter-spacing: 0.39px;
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   .columns-model-showcase .showcase-content {
     margin-top: -40px;
     width: calc(100% - 32px);
@@ -231,7 +231,7 @@ main > .section > .columns-model-showcase-wrapper {
   }
 }
 
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .columns-model-showcase .showcase-media {
     min-height: 450px;
   }

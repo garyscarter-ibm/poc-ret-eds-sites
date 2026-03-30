@@ -16,5 +16,11 @@
       { "name": "Tiles CTA", "path": "/docs/library/tiles-cta" },
       { "name": "Banner Terms", "path": "/docs/library/banner-terms" }
     ]
+  },
+  "templates": {
+    "data": [
+      { "name": "BMW Dealer Homepage", "path": "/content/templates/bmw-homepage" },
+      { "name": "MINI Dealer Homepage", "path": "/content/templates/mini-homepage" }
+    ]
   }
 }

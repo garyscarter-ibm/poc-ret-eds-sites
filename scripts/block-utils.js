@@ -158,3 +158,77 @@ export function findReviewDiv(children) {
     return a && a.textContent.includes('reviews');
   });
 }
+
+/**
+ * Strips EDS auto-decorated `.button` and `.button-container` classes from links
+ * within a container element. Useful in blocks (e.g. nav, cards) where the default
+ * button styling is unwanted.
+ * @param {HTMLElement} container - The container to strip button classes from
+ */
+export function stripButtonClasses(container) {
+  container.querySelectorAll('.button').forEach((btn) => {
+    btn.className = '';
+    const bc = btn.closest('.button-container');
+    if (bc) bc.className = '';
+  });
+}
+
+/**
+ * Creates a circular carousel navigation button (prev or next).
+ * @param {'prev'|'next'} direction - Button direction
+ * @param {Object} [options]
+ * @param {string} [options.classPrefix='carousel'] - CSS class prefix
+ * @param {string} [options.ariaPrefix='items'] - Label suffix for aria-label
+ * @param {'svg'|'char'} [options.style='svg'] - Use SVG chevron or Unicode character
+ * @returns {HTMLButtonElement}
+ */
+export function createCarouselButton(direction, options = {}) {
+  const {
+    classPrefix = 'carousel',
+    ariaPrefix = 'items',
+    style = 'svg',
+  } = options;
+
+  const btn = document.createElement('button');
+  btn.className = `${classPrefix}-${direction} carousel-nav-btn`;
+  btn.setAttribute('aria-label', `${direction === 'prev' ? 'Previous' : 'Next'} ${ariaPrefix}`);
+
+  if (style === 'svg') {
+    const path = direction === 'prev' ? 'M15 6l-6 6 6 6' : 'M9 6l6 6-6 6';
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="${path}"/></svg>`;
+  } else {
+    btn.textContent = direction === 'prev' ? '\u2039' : '\u203A';
+  }
+
+  return btn;
+}
+
+/**
+ * Wires scroll-based prev/next button behaviour on a horizontal scroll track.
+ * @param {HTMLElement} track - The scrollable track element
+ * @param {HTMLButtonElement} prevBtn - Previous button
+ * @param {HTMLButtonElement} nextBtn - Next button
+ * @param {Object} [options]
+ * @param {number|(() => number)} [options.scrollAmount=300] - Pixels to scroll per click
+ * @param {boolean} [options.disableAtEdges=false] - Auto-disable buttons at scroll edges
+ */
+export function wireCarouselScroll(track, prevBtn, nextBtn, options = {}) {
+  const { scrollAmount = 300, disableAtEdges = false } = options;
+
+  const getAmount = typeof scrollAmount === 'function' ? scrollAmount : () => scrollAmount;
+
+  prevBtn.addEventListener('click', () => {
+    track.scrollBy({ left: -getAmount(), behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    track.scrollBy({ left: getAmount(), behavior: 'smooth' });
+  });
+
+  if (disableAtEdges) {
+    track.addEventListener('scroll', () => {
+      prevBtn.disabled = track.scrollLeft <= 0;
+      nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+    });
+  }
+}

@@ -14,9 +14,12 @@ export default function decorate(block) {
 
     if (link) {
       // Use href if it ends with .mp4, otherwise fall back to textContent or title
-      const videoSrc = link.href.endsWith('.mp4')
-        ? link.href
-        : (link.textContent.trim().endsWith('.mp4') ? link.textContent.trim() : link.title);
+      let videoSrc = link.title;
+      if (link.href.endsWith('.mp4')) {
+        videoSrc = link.href;
+      } else if (link.textContent.trim().endsWith('.mp4')) {
+        videoSrc = link.textContent.trim();
+      }
 
       const video = document.createElement('video');
       video.autoplay = true;
@@ -99,13 +102,14 @@ export default function decorate(block) {
       if (match) {
         const numSpan = document.createElement('span');
         numSpan.className = 'spec-num';
-        numSpan.textContent = match[1];
+        const [, numText, unitText] = match;
+        numSpan.textContent = numText;
         valueSpan.append(numSpan);
 
-        if (match[2]) {
+        if (unitText) {
           const unitSpan = document.createElement('span');
           unitSpan.className = 'spec-unit';
-          unitSpan.textContent = match[2];
+          unitSpan.textContent = unitText;
           valueSpan.append(unitSpan);
         }
       } else {

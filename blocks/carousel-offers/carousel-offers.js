@@ -1,10 +1,12 @@
+import { createCarouselButton, wireCarouselScroll } from '../../scripts/block-utils.js';
+
 export default function decorate(block) {
   const rows = [...block.children];
   if (rows.length === 0) return;
 
   // Build scroll track
   const track = document.createElement('div');
-  track.className = 'carousel-offers-track';
+  track.className = 'carousel-offers-track scroll-hidden';
 
   rows.forEach((row) => {
     const card = document.createElement('div');
@@ -42,28 +44,12 @@ export default function decorate(block) {
   block.append(track);
 
   // Add prev/next buttons
-  const prevBtn = document.createElement('button');
-  prevBtn.className = 'carousel-offers-prev';
-  prevBtn.textContent = '\u2039';
+  const prevBtn = createCarouselButton('prev', { classPrefix: 'carousel-offers', ariaPrefix: 'offers', style: 'char' });
   prevBtn.disabled = true;
 
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'carousel-offers-next';
-  nextBtn.textContent = '\u203A';
+  const nextBtn = createCarouselButton('next', { classPrefix: 'carousel-offers', ariaPrefix: 'offers', style: 'char' });
 
   block.append(prevBtn, nextBtn);
 
-  // Scroll handling
-  const scrollAmount = 300;
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  track.addEventListener('scroll', () => {
-    prevBtn.disabled = track.scrollLeft <= 0;
-    nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-  });
+  wireCarouselScroll(track, prevBtn, nextBtn, { scrollAmount: 300, disableAtEdges: true });
 }

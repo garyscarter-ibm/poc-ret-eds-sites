@@ -62,17 +62,17 @@
   padding: 0 0 8px;
 }
 
-/* CTA link override */
+/* CTA link — extends .link-reset from shared-components.css */
 .cards-promo a.button:any-link {
   background: none;
   border: none;
   padding: 0;
   color: var(--color-white);
-  font-size: 0.8125rem;
+  font-size: var(--cta-font-size);
 }
 
 /* Tablet+: 2 columns */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .cards-promo {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -83,7 +83,7 @@
 }
 
 /* Desktop: 3 columns (if 3+ cards) */
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .cards-promo {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
@@ -172,7 +172,7 @@
   font-weight: 400;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .cards-promo.mini > div {
     min-height: 240px;
   }

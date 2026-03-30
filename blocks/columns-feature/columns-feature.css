@@ -7,6 +7,11 @@
   flex-direction: column;
   gap: 0;
   min-height: 300px;
+  margin-bottom: 50px;
+}
+
+.columns-feature > div:last-child {
+  margin-bottom: 0;
 }
 
 /* Image column */
@@ -58,12 +63,12 @@
   margin: 0;
 }
 
-/* CTA link - override EDS button styles */
+/* CTA link — extends .link-reset from shared-components.css */
 .columns-feature a.button:any-link {
   background: none;
   border: none;
   padding: 0;
-  font-size: 0.8125rem;
+  font-size: var(--cta-font-size);
 }
 
 /* BMW CTA chevron link: pull up closer to text */
@@ -72,7 +77,7 @@
 }
 
 /* Tablet+ : side by side */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .columns-feature > div {
     flex-direction: row;
     min-height: 386px;
@@ -94,7 +99,15 @@
 }
 
 /* Desktop: larger text padding */
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
+  .columns-feature > div {
+    margin-bottom: 75px;
+  }
+
+  .columns-feature > div:last-child {
+    margin-bottom: 0;
+  }
+
   .columns-feature-image {
     flex: 0 0 42%;
   }
@@ -149,10 +162,10 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   padding: 0 0 28px;
 }
 
-/* BMW welcome CTA: black text link (not blue) */
+/* BMW welcome CTA: black text, blue chevron (inherits from cta-chevron--blue), tighter line-height */
 .columns-feature.welcome:not(.mini) .cta-chevron {
   color: #000;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E");
+  line-height: 15px;
 }
 
 .columns-feature.welcome:not(.mini) .cta-chevron:hover {
@@ -163,7 +176,41 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   padding-bottom: 0;
 }
 
-@media (min-width: 900px) {
+/* === Welcome Mobile (below 768px) === */
+@media (max-width: 767px) {
+  /* BMW mobile: shorter image, smaller centered heading */
+  .columns-feature.welcome:not(.mini) .columns-feature-image {
+    height: 220px;
+    min-height: 220px;
+  }
+
+  .columns-feature.welcome:not(.mini) .columns-feature-text {
+    padding: 41px 19px;
+  }
+
+  .columns-feature.welcome:not(.mini) h3,
+  .columns-feature.welcome:not(.mini) h5 {
+    font-size: 1.5rem;
+    line-height: 32px;
+    text-align: center;
+    padding-bottom: 24px;
+  }
+
+  .columns-feature.welcome:not(.mini) p {
+    line-height: 22px;
+  }
+
+  /* MINI mobile: hide image (typography overrides at end of file) */
+  .columns-feature.welcome.mini .columns-feature-image {
+    display: none;
+  }
+
+  .columns-feature.welcome.mini .columns-feature-text {
+    padding: 31px 17px 25px 17px;
+  }
+}
+
+@media (min-width: 1024px) {
   .columns-feature.welcome > div {
     flex-direction: row;
     position: relative;
@@ -179,11 +226,55 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
 
   .columns-feature.welcome .columns-feature-text {
     flex: 0 0 55.5%;
-    padding: 133px 102px 133px 192px;
+    padding: 133px 115px 133px 216px;
     margin-right: -11%;
     position: relative;
     z-index: 2;
     order: 1;
+  }
+
+  /* MINI welcome desktop: tighter heading and CTA spacing */
+  .columns-feature.welcome.mini h3,
+  .columns-feature.welcome.mini h5 {
+    padding-bottom: 16px;
+  }
+
+  .columns-feature.welcome.mini .cta-chevron {
+    margin-top: 7px;
+  }
+}
+
+/* === Welcome Tablet (768px–1023px) === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Override generic tablet row layout for welcome variant */
+  .columns-feature.welcome > div {
+    flex-direction: column;
+  }
+
+  /* BMW: stacked with image top-right, text overlapping below */
+  .columns-feature.welcome:not(.mini) .columns-feature-image {
+    flex: none;
+    width: 79%;
+    height: 550px;
+    margin-left: auto;
+  }
+
+  .columns-feature.welcome:not(.mini) .columns-feature-text {
+    width: 79%;
+    margin-top: -100px;
+    padding: 100px 100px 77px 77px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* MINI: hide image, full-width text (typography overrides at end of file) */
+  .columns-feature.welcome.mini .columns-feature-image {
+    display: none;
+  }
+
+  .columns-feature.welcome.mini .columns-feature-text {
+    padding: 41px 34px 25px 34px;
+    flex: 1;
   }
 }
 
@@ -294,10 +385,48 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   color: #000;
   font-size: 1.125rem;
   font-weight: 400;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M4 1l5 5-5 5' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M20.243 26.243l4.263-4.228-4.243-4.243' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  background-position: 100% 10px;
+  padding-right: 34px;
   letter-spacing: normal;
 }
 
 .columns-feature.welcome.mini .cta-chevron:hover {
   color: #000;
+}
+
+/* === MINI Welcome Responsive (must come after base MINI rules to win cascade) === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .columns-feature.welcome.mini h3,
+  .columns-feature.welcome.mini h5 {
+    line-height: 24px;
+    padding-bottom: 16px;
+  }
+
+  .columns-feature.welcome.mini p {
+    padding: 0 0 16px;
+  }
+
+  .columns-feature.welcome.mini .cta-chevron {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .columns-feature.welcome.mini h3,
+  .columns-feature.welcome.mini h5 {
+    font-size: 1.5rem;
+    line-height: 18px;
+    padding-bottom: 16px;
+  }
+
+  .columns-feature.welcome.mini p {
+    font-size: 1rem;
+    line-height: 22px;
+    padding: 0 0 16px;
+  }
+
+  .columns-feature.welcome.mini .cta-chevron {
+    font-size: 1rem;
+  }
 }

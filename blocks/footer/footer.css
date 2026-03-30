@@ -14,7 +14,7 @@ footer .footer {
 
 footer .footer-content {
   max-width: 1440px;
-  margin: 0 128px;
+  margin: 0 144px;
   padding: 44px 0 0;
 }
 
@@ -147,7 +147,7 @@ footer .footer-copyright {
 }
 
 /* Tablet: stack vertically, keep Legal 2-column grid */
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   footer .footer-content {
     margin: 0 20px;
   }
@@ -176,7 +176,7 @@ footer .footer-copyright {
 }
 
 /* Mobile: single column Legal, Follow us reordered to top */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   footer .footer-legal ul {
     display: block;
   }
@@ -238,7 +238,7 @@ footer .footer.mini .footer-legal ul {
   display: block;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   footer .footer.mini .footer-columns {
     grid-template-columns: repeat(2, 1fr);
     gap: 0 32px;
@@ -249,7 +249,7 @@ footer .footer.mini .footer-legal ul {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   footer .footer.mini .footer-columns {
     grid-template-columns: 1fr;
   }

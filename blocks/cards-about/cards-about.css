@@ -41,7 +41,7 @@
 }
 
 /* Tablet: 2 cards side by side, 3rd hidden */
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .cards-about {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -52,7 +52,7 @@
 }
 
 /* Desktop: 3 cards side by side */
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .cards-about {
     grid-template-columns: repeat(3, 1fr);
   }
