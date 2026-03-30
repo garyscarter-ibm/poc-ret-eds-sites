@@ -178,7 +178,7 @@
 }
 
 /* Mobile: stack columns */
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .tabs-dealer-locator-columns {
     flex-direction: column;
     gap: 24px;

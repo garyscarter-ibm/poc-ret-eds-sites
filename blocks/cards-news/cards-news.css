@@ -59,7 +59,7 @@
 }
 
 /* Tablet+: 2 cards side by side */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .cards-news {
     grid-template-columns: repeat(2, 1fr);
   }

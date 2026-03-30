@@ -63,7 +63,7 @@
 }
 
 /* Desktop: 2 columns */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .tiles-cta {
     grid-template-columns: repeat(2, 1fr);
   }

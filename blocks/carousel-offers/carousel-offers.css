@@ -139,13 +139,13 @@
   border: 1px solid rgb(200 200 200);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .carousel-offers-card {
     flex: 0 0 calc(50% - 8px);
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .carousel-offers-card {
     flex: 0 0 calc(33.333% - 12px);
   }

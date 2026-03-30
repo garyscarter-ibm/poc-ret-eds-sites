@@ -261,7 +261,7 @@
 }
 
 /* === Responsive === */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .carousel-models-slide {
     padding: 56px 32px 48px;
   }
@@ -275,7 +275,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .carousel-models-slide {
     padding: 64px 48px 56px;
   }

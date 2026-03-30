@@ -50,7 +50,7 @@
 }
 
 /* Tablet+: side by side */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .cards-car-locator {
     flex-direction: row;
   }

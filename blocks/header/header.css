@@ -382,7 +382,7 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
 }
 
 /* ===== Small mobile ===== */
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   header nav .nav-tools {
     gap: 24px;
     margin-left: 32px;
@@ -401,7 +401,7 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
 }
 
 /* ===== Desktop ===== */
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   header nav {
     padding: 0 32px;
   }
@@ -692,7 +692,7 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
    ============================================================ */
 
 /* --- Tablet and below (< 900px): hide phone, adjust brand/menu --- */
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   /* Hide phone number on tablet and mobile */
   header .header.mini .nav-tools p:has(a[href^="tel:"]) {
     display: none;
@@ -711,14 +711,14 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
 }
 
 /* --- Tablet (600–899px): expanded menu padding --- */
-@media (min-width: 600px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
     padding: 0 48px;
   }
 }
 
 /* --- Mobile (≤ 599px): black tool strip below header bar --- */
-@media (max-width: 599px) {
+@media (max-width: 767px) {
   /* Allow nav to wrap so tools drop to second row */
   header .header.mini nav {
     height: auto;

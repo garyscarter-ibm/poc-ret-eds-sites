@@ -7,6 +7,11 @@
   flex-direction: column;
   gap: 0;
   min-height: 300px;
+  margin-bottom: 50px;
+}
+
+.columns-feature > div:last-child {
+  margin-bottom: 0;
 }
 
 /* Image column */
@@ -72,7 +77,7 @@
 }
 
 /* Tablet+ : side by side */
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .columns-feature > div {
     flex-direction: row;
     min-height: 386px;
@@ -94,7 +99,15 @@
 }
 
 /* Desktop: larger text padding */
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
+  .columns-feature > div {
+    margin-bottom: 75px;
+  }
+
+  .columns-feature > div:last-child {
+    margin-bottom: 0;
+  }
+
   .columns-feature-image {
     flex: 0 0 42%;
   }
@@ -163,7 +176,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   padding-bottom: 0;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .columns-feature.welcome > div {
     flex-direction: row;
     position: relative;
