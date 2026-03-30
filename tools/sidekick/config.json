@@ -1,0 +1,11 @@
+{
+  "project": "Sytner Dealership",
+  "plugins": [
+    {
+      "id": "library",
+      "title": "Library",
+      "environments": ["edit"],
+      "url": "https://www.aem.live/tools/sidekick/library?base=https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page&ref=/tools/sidekick/library.json"
+    }
+  ]
+}
