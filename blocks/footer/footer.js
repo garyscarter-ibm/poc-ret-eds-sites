@@ -28,8 +28,8 @@ export default async function decorate(block) {
       const headings = [...columns.querySelectorAll(':scope > h2')];
       const groups = headings.map((h2) => {
         const col = document.createElement('div');
-        col.append(h2);
         let next = h2.nextSibling;
+        col.append(h2);
         while (next && !(next.nodeType === 1 && next.tagName === 'H2')) {
           const current = next;
           next = next.nextSibling;

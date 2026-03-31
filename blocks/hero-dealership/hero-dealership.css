@@ -126,8 +126,14 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   overflow: hidden;
 }
 
-.hero-dealership > div:first-child p {
+.hero-dealership > div:first-child p,
+.hero-dealership > div:first-child > div {
   margin: 0;
+  height: 100%;
+}
+
+.hero-dealership > div:first-child picture {
+  display: block;
   height: 100%;
 }
 
