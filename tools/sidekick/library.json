@@ -19,8 +19,8 @@
   },
   "templates": {
     "data": [
-      { "name": "BMW Dealer Homepage", "path": "/content/templates/bmw-homepage" },
-      { "name": "MINI Dealer Homepage", "path": "/content/templates/mini-homepage" }
+      { "name": "BMW Dealer Homepage", "path": "/templates/bmw-homepage" },
+      { "name": "MINI Dealer Homepage", "path": "/templates/mini-homepage" }
     ]
   }
 }
