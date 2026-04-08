@@ -325,6 +325,16 @@ main > .section > .default-content-wrapper {
   margin: 0 auto;
 }
 
+/* X7 Brochure theme: full-bleed layout — no max-width on main, zero section spacing */
+body.x7-brochure main {
+  max-width: 100%;
+}
+
+body.x7-brochure main > .section {
+  padding: 0;
+  margin: 0;
+}
+
 /* ===== Section Styles ===== */
 
 /* Dark section: dark background with white text */

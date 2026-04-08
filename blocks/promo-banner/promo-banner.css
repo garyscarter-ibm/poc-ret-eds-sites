@@ -1,0 +1,138 @@
+/* Promo Banner block
+   Full-width background image with text overlay
+   Matching BMW X7 brochure "BMW for Business" section */
+
+.promo-banner {
+  padding: 0;
+}
+
+.promo-banner .promo-banner-container {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  min-height: 500px;
+  background-size: cover;
+  background-position: center right;
+  display: flex;
+  align-items: center;
+}
+
+/* Dark gradient overlay — left side for text readability */
+.promo-banner .promo-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 70%) 0%,
+    rgb(0 0 0 / 50%) 35%,
+    rgb(0 0 0 / 15%) 60%,
+    transparent 80%
+  );
+  z-index: 1;
+}
+
+/* Text content positioned on the left */
+.promo-banner .promo-banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 50px;
+  max-width: 480px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
+}
+
+.promo-banner .promo-banner-heading {
+  font-family: var(--heading-font-family);
+  font-size: 25px;
+  font-weight: 300;
+  line-height: 35px;
+  color: #fff;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.promo-banner .promo-banner-body {
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 21px;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.promo-banner .promo-banner-body strong,
+.promo-banner .promo-banner-body b {
+  font-weight: 700;
+}
+
+/* CTA link with chevron */
+.promo-banner .promo-banner-link {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(28 105 212);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.promo-banner .promo-banner-link::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%231c69d4' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.promo-banner .promo-banner-link:hover {
+  text-decoration: underline;
+}
+
+/* Scroll animation — applied via specificity on the same selector above */
+
+.promo-banner.in-viewport .promo-banner-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (width <= 767px) {
+  .promo-banner .promo-banner-container {
+    min-height: 400px;
+    background-position: center;
+  }
+
+  .promo-banner .promo-banner-content {
+    padding: 40px 24px;
+    max-width: 100%;
+  }
+
+  .promo-banner .promo-banner-heading {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .promo-banner .promo-banner-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 70%) 0%,
+      rgb(0 0 0 / 40%) 60%,
+      transparent 100%
+    );
+  }
+}
+
+@media (width >= 1200px) {
+  .promo-banner .promo-banner-container {
+    min-height: 600px;
+  }
+
+  .promo-banner .promo-banner-content {
+    padding: 80px;
+    max-width: 520px;
+  }
+}

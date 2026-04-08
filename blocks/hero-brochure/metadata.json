@@ -1,0 +1,15 @@
+{
+  "name": "hero-brochure",
+  "description": "Full-viewport background image hero for BMW brochure pages. The model branding (e.g. THE X7) is baked into the photograph — no text overlay. Supports fade-in animation on scroll.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/",
+    "selector": "section.ripley__Block--block__fw:has(.viewer-background)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7",
+      "/content/brochures/x7/exterior-design",
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

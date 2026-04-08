@@ -1,0 +1,150 @@
+{
+  "templates": [
+    {
+      "name": "bmw-x7-brochure",
+      "urls": [
+        "https://luxury-brochures.bmw.co.uk/x7/",
+        "https://luxury-brochures.bmw.co.uk/x7/exterior-design",
+        "https://luxury-brochures.bmw.co.uk/x7/interior-design"
+      ],
+      "description": "BMW X7 luxury brochure page with full-screen hero sections, model specs, and lifestyle imagery",
+      "blocks": [
+        {
+          "name": "hero-brochure",
+          "instances": [
+            "section#block-e318bd70-8a4a-407f-99d6-631e5cb3064e"
+          ]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [
+            "section#block-6d6cdf9c-bb42-48a1-b2cc-ea445db5a346"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1-hero",
+          "name": "Hero - X7 Header",
+          "selector": "section#block-e318bd70-8a4a-407f-99d6-631e5cb3064e",
+          "style": "dark",
+          "blocks": [
+            "hero-brochure"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2-x7-front",
+          "name": "X7 Front View",
+          "selector": "section#block-37971ba8-6290-4b2f-8748-3f712b42853b",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "img.ripley__Image--image[src*='905f45b1']"
+          ]
+        },
+        {
+          "id": "section-3-x7-rear",
+          "name": "X7 Rear View",
+          "selector": "section#block-a289dbb9-9062-401b-8eff-d50d2ee3c17f",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "img.ripley__Image--image[src*='d242803c']"
+          ]
+        },
+        {
+          "id": "section-4-forwardism",
+          "name": "This Is Forwardism",
+          "selector": "section#block-ae617328-7116-4499-b2ae-78e64c838d0b",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "p span.sc-fYqjzR",
+            "h2"
+          ]
+        },
+        {
+          "id": "section-5-interior",
+          "name": "Interior Detail Image",
+          "selector": "section#block-8b3c48a4-05bc-429c-b6a0-63a59fb40335",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "img.ripley__Image--image[src*='b6b1bfd5']"
+          ]
+        },
+        {
+          "id": "section-6-convertible",
+          "name": "Convertible Image",
+          "selector": "section#block-f44875a0-9f23-4afb-9c40-87dc780cc318",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "img.ripley__Image--image[src*='459ac2b8']"
+          ]
+        },
+        {
+          "id": "section-7-elegance",
+          "name": "Elegance In Every Detail",
+          "selector": "section#block-16954c91-c434-480b-9e82-d96a0abb166f",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "p span.sc-fYqjzR",
+            "h2"
+          ]
+        },
+        {
+          "id": "section-8-steering",
+          "name": "Steering Wheel Detail",
+          "selector": "section#block-2c7284a2-c0bc-4121-b4aa-6a7ea1ddfd0f",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "img.ripley__Image--image[src*='454825cc']"
+          ]
+        },
+        {
+          "id": "section-9-cabin",
+          "name": "Full Interior Background",
+          "selector": "section#block-efe4a4c7-96dd-4584-ac07-0b2ebdeeda8e",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            ".viewer-background img"
+          ]
+        },
+        {
+          "id": "section-10-luxury",
+          "name": "Luxury Without Limits",
+          "selector": "section#block-d920c2dc-9ab1-46a8-aa99-b9da9ce3395a",
+          "style": "dark",
+          "blocks": [],
+          "defaultContent": [
+            "h2",
+            "p"
+          ]
+        },
+        {
+          "id": "section-11-business",
+          "name": "BMW for Business CTA",
+          "selector": "section#block-6d6cdf9c-bb42-48a1-b2cc-ea445db5a346",
+          "style": "dark",
+          "blocks": [
+            "columns-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-12-footer",
+          "name": "Footer",
+          "selector": "section#block-3376a1d3-4961-402c-a642-28dccbeb8ea7",
+          "style": null,
+          "blocks": [],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

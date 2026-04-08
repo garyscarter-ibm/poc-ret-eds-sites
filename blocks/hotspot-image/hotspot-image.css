@@ -1,0 +1,113 @@
+/* Hotspot Image block
+   Full-width car image with positioned clickable hotspot markers
+   Matching the Foleon brochure KEY HIGHLIGHTS section */
+
+.hotspot-image {
+  padding: 0;
+}
+
+.hotspot-image .hotspot-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hotspot-image .hotspot-image-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Hotspot marker */
+.hotspot-image .hotspot-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Pulsing dot */
+.hotspot-image .hotspot-dot {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 90%);
+  border: 2px solid rgb(255 255 255 / 60%);
+  box-shadow: 0 0 0 0 rgb(255 255 255 / 40%);
+  animation: hotspot-pulse 2s ease-out infinite;
+  transition: transform 0.2s ease;
+}
+
+.hotspot-image .hotspot-marker:hover .hotspot-dot,
+.hotspot-image .hotspot-marker:focus .hotspot-dot,
+.hotspot-image .hotspot-marker:focus-within .hotspot-dot {
+  transform: scale(1.3);
+  background: #fff;
+  animation: none;
+}
+
+@keyframes hotspot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 40%);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgb(255 255 255 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 0%);
+  }
+}
+
+/* Tooltip */
+.hotspot-image .hotspot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgb(0 0 0 / 80%);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.hotspot-image .hotspot-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgb(0 0 0 / 80%);
+}
+
+.hotspot-image .hotspot-marker:hover .hotspot-tooltip,
+.hotspot-image .hotspot-marker:focus .hotspot-tooltip,
+.hotspot-image .hotspot-marker:focus-within .hotspot-tooltip {
+  opacity: 1;
+}
+
+/* Responsive: smaller dots on mobile */
+@media (width <= 767px) {
+  .hotspot-image .hotspot-dot {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hotspot-image .hotspot-tooltip {
+    font-size: 0.625rem;
+    padding: 4px 8px;
+  }
+}

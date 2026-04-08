@@ -1,0 +1,43 @@
+/* CTA Bar block
+   Horizontal row of icon-based action links
+   Used for Build your BMW, New Car Locator, Test Drive, Offers buttons */
+
+.cta-bar {
+  padding: 24px 0;
+}
+
+.cta-bar .cta-bar-items {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cta-bar .cta-bar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.cta-bar .cta-bar-item:hover {
+  opacity: 0.8;
+}
+
+.cta-bar .cta-bar-item img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+/* Responsive */
+@media (width <= 767px) {
+  .cta-bar .cta-bar-items {
+    gap: 8px;
+  }
+
+  .cta-bar .cta-bar-item img {
+    height: 36px;
+  }
+}

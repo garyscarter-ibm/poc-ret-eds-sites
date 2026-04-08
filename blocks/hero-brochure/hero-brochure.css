@@ -1,0 +1,68 @@
+/* Hero Brochure block
+   Full-viewport background image hero for BMW brochure pages
+   Matching Foleon original: full-bleed image, no text overlay, fade-in */
+
+/* Section wrapper: full-bleed, no max-width constraint */
+.hero-brochure-container {
+  max-width: 100%;
+  padding: 0;
+}
+
+.hero-brochure-wrapper {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Block: full viewport height */
+.hero-brochure {
+  position: relative;
+  min-height: 100vh;
+  overflow: visible;
+  padding: 0;
+}
+
+/* Background image container: fills the entire block */
+.hero-brochure .hero-brochure-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-brochure .hero-brochure-bg picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-brochure .hero-brochure-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+/* Fade in when loaded / in viewport */
+.hero-brochure.is-loaded .hero-brochure-bg img {
+  opacity: 1;
+}
+
+/* ===== Responsive: Tablet ===== */
+@media (width <= 1023px) {
+  .hero-brochure {
+    min-height: 100vh;
+  }
+
+  .hero-brochure .hero-brochure-bg img {
+    object-position: 50% 50%;
+  }
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (width <= 767px) {
+  .hero-brochure {
+    min-height: 85vh;
+  }
+}

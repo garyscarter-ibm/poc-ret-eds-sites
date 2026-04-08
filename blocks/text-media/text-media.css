@@ -1,0 +1,89 @@
+/* Text-Media block
+   Image paired with heading + descriptive text
+   Used for feature descriptions in brochure pages */
+
+.text-media {
+  padding: 40px 0;
+  color: var(--color-white, #fff);
+}
+
+.text-media > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.text-media .text-media-image {
+  overflow: hidden;
+}
+
+.text-media .text-media-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.text-media .text-media-content {
+  padding: 0 24px;
+}
+
+.text-media .text-media-content h3,
+.text-media .text-media-content h4,
+.text-media .text-media-content h5 {
+  font-family: var(--heading-font-family);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+  color: var(--color-white, #fff);
+}
+
+.text-media .text-media-content p {
+  font-family: var(--body-font-family);
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 80%);
+  margin: 0;
+}
+
+/* Tablet: side-by-side layout with smaller gap */
+@media (width >= 600px) and (width <= 899px) {
+  .text-media > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .text-media .text-media-image {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .text-media .text-media-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0 24px;
+  }
+}
+
+/* Desktop: side-by-side layout */
+@media (width >= 900px) {
+  .text-media > div {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .text-media .text-media-image {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .text-media .text-media-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0 40px;
+  }
+}

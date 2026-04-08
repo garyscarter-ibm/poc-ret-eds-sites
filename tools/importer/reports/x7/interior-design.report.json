@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://luxury-brochures.bmw.co.uk/x7/interior-design",
+  "path": "x7/interior-design",
+  "timestamp": "2026-04-08T11:09:41.588Z",
+  "title": "Interior Design - X7",
+  "template": "bmw-x7-brochure",
+  "blocks": [
+    "hero-brochure",
+    "text-media",
+    "text-media",
+    "text-media",
+    "stats",
+    "feature-grid",
+    "hero-brochure",
+    "columns-feature",
+    "cta-bar"
+  ]
+}

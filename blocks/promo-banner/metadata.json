@@ -1,0 +1,13 @@
+{
+  "name": "promo-banner",
+  "description": "Full-width background image with text overlay on the left side. Features dark gradient for text readability, heading, body paragraph with bold support, and chevron CTA link. Used for promotional sections like BMW for Business.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/",
+    "selector": "section:has(.im-column[style*='background-image']):has(h4)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7"
+    ]
+  }
+}

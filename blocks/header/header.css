@@ -830,3 +830,220 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     padding: 0;
   }
 }
+
+/* ============================================================
+   X7 Brochure Nav Variant
+   White horizontal scrollable menu bar matching Foleon brochure nav
+   Triggered by: <meta name="theme" content="x7-brochure">
+   ============================================================ */
+
+/* Override header height for brochure nav */
+header:has(.header.x7-brochure) {
+  height: 57px;
+}
+
+/* White fixed bar */
+header .header.x7-brochure .nav-wrapper {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+/* Nav bar layout */
+header .header.x7-brochure nav {
+  height: 57px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  color: rgb(77, 77, 77);
+}
+
+/* Remove bottom underline from default BMW style */
+header .header.x7-brochure nav::after {
+  display: none;
+}
+
+/* All links: grey text, 13px bold */
+header .header.x7-brochure nav a:any-link {
+  color: rgb(77, 77, 77);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-decoration: none;
+}
+
+/* Brand: BMW logo on left, divider after */
+header .header.x7-brochure .nav-brand {
+  order: 1;
+  margin-left: 0;
+  margin-right: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 57px;
+  padding: 0 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .header.x7-brochure .nav-brand > div {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Hide dealer name text, show only logo */
+header .header.x7-brochure .nav-brand p:first-child {
+  display: none;
+}
+
+header .header.x7-brochure nav .nav-brand img {
+  width: 41px;
+  height: 51px;
+}
+
+header .header.x7-brochure .nav-brand a:any-link {
+  display: flex;
+  align-items: center;
+}
+
+/* Hamburger: between logo and menu with divider */
+header .header.x7-brochure .nav-hamburger {
+  order: 2;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+header .header.x7-brochure nav .nav-hamburger button {
+  color: rgb(77, 77, 77);
+}
+
+header .header.x7-brochure nav .nav-hamburger-icon,
+header .header.x7-brochure nav .nav-hamburger-icon::before,
+header .header.x7-brochure nav .nav-hamburger-icon::after {
+  background: rgb(77, 77, 77);
+}
+
+/* Sections: horizontal scrollable menu, always visible */
+header .header.x7-brochure nav .nav-sections {
+  order: 3;
+  display: flex !important;
+  visibility: visible !important;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+header .header.x7-brochure nav .nav-sections::-webkit-scrollbar {
+  display: none;
+}
+
+header .header.x7-brochure nav .nav-sections .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  height: 57px;
+}
+
+header .header.x7-brochure nav .nav-sections ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 57px;
+  align-items: center;
+}
+
+header .header.x7-brochure nav .nav-sections ul > li {
+  margin: 0;
+  padding: 0;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+header .header.x7-brochure nav .nav-sections ul > li > a:any-link {
+  color: rgb(77, 77, 77);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 25px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+}
+
+header .header.x7-brochure nav .nav-sections ul > li > a:hover {
+  text-decoration: underline;
+}
+
+/* Active page indicator: bottom border */
+header .header.x7-brochure nav .nav-sections ul > li > a.active,
+header .header.x7-brochure nav .nav-sections ul > li:first-child > a {
+  border-bottom: 2px solid rgb(77, 77, 77);
+}
+
+/* Remove chevron arrows from menu items */
+header .header.x7-brochure nav .nav-sections ul > li > a::after {
+  content: none;
+  display: none;
+}
+
+/* Tools section (if present): hidden for brochure nav */
+header .header.x7-brochure .nav-tools {
+  display: none;
+}
+
+/* ===== X7 Brochure Expanded (hamburger open) ===== */
+header .header.x7-brochure nav[aria-expanded='true'] {
+  background-color: #fff;
+  color: rgb(77, 77, 77);
+}
+
+header .header.x7-brochure nav[aria-expanded='true'] .nav-sections {
+  flex-basis: 100%;
+  overflow: visible;
+  padding: 20px 0;
+}
+
+header .header.x7-brochure nav[aria-expanded='true'] .nav-sections ul {
+  flex-direction: column;
+  height: auto;
+  align-items: stretch;
+}
+
+header .header.x7-brochure nav[aria-expanded='true'] .nav-sections ul > li {
+  height: auto;
+  border-right: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+header .header.x7-brochure nav[aria-expanded='true'] .nav-sections ul > li > a:any-link {
+  padding: 16px 25px;
+  font-size: 16px;
+  color: rgb(38, 38, 38);
+}
+
+/* ===== X7 Brochure Mobile ===== */
+@media (max-width: 767px) {
+  header .header.x7-brochure nav .nav-sections ul > li > a:any-link {
+    font-size: 11px;
+    padding: 0 14px;
+  }
+}
+
+/* ===== X7 Brochure Desktop ===== */
+@media (min-width: 1024px) {
+  header .header.x7-brochure .nav-brand {
+    padding: 0 16px;
+  }
+}
