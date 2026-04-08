@@ -1,0 +1,14 @@
+{
+  "name": "cta-bar",
+  "description": "Horizontal row of icon-based action links (Build your BMW, New Car Locator, Test Drive, Offers & Finance). Each link contains an SVG icon image. Used as a page footer CTA strip.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/exterior-design",
+    "selector": "section:has(a > img)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/exterior-design",
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

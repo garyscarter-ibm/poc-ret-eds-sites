@@ -1,0 +1,13 @@
+{
+  "name": "embed",
+  "description": "Responsive iframe container for third-party widgets. Auto-blocked from standalone URLs matching known embed domains (BMW Range Comparator, YouTube, Vimeo). Renders with 75% aspect ratio padding.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/interior-design",
+    "selector": "auto-blocked from URL pattern"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

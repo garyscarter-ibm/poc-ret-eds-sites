@@ -1,0 +1,244 @@
+/* Section Heading block
+   Eyebrow + separator + large split heading + optional body
+   Matching BMW X7 brochure "THIS IS FORWARDISM" section */
+
+.section-heading {
+  text-align: left;
+  padding: 78px 50px 60px;
+  color: rgb(38 38 38);
+  background-color: #fff;
+  max-width: 50%;
+}
+
+/* ===== Eyebrow subtitle ===== */
+.section-heading .section-heading-eyebrow {
+  font-family: var(--heading-font-family);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: rgb(38 38 38);
+  margin: 0 0 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+/* ===== Separator line ===== */
+.section-heading .section-heading-separator {
+  width: 104px;
+  height: 0;
+  border: none;
+  border-bottom: 1px solid rgb(38 38 38);
+  margin: 0 0 16px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: opacity 0.5s ease-in-out 0.2s, transform 0.5s ease-in-out 0.2s;
+}
+
+/* ===== Heading line 1 (large) ===== */
+.section-heading .section-heading-line1 {
+  font-family: var(--heading-font-family);
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 84px;
+  color: rgb(38 38 38);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-in-out 0.3s, transform 0.6s ease-in-out 0.3s;
+}
+
+/* ===== Heading line 2 (smaller) ===== */
+.section-heading .section-heading-line2 {
+  font-family: var(--heading-font-family);
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 52.5px;
+  color: rgb(38 38 38);
+  margin: 0 0 70px;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-in-out 0.45s, transform 0.6s ease-in-out 0.45s;
+}
+
+/* ===== Body paragraph ===== */
+.section-heading .section-heading-body {
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgb(38 38 38 / 70%);
+  max-width: 600px;
+  margin: -40px 0 70px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-in-out 0.6s, transform 0.6s ease-in-out 0.6s;
+}
+
+/* ===== Scroll-triggered animation: fade-in-up ===== */
+.section-heading.in-viewport .section-heading-eyebrow,
+.section-heading.in-viewport .section-heading-separator,
+.section-heading.in-viewport .section-heading-line1,
+.section-heading.in-viewport .section-heading-line2,
+.section-heading.in-viewport .section-heading-body {
+  opacity: 1;
+  transform: translateY(0) scaleX(1);
+}
+
+/* ===== Compact variant =====
+   Used for "INTRODUCING THE X7. / LUXURY WITHOUT LIMITS." style sections
+   where both headings are smaller and there's a body paragraph.
+   Original: line1=50px, line2=25px, separator=77px, body=15px */
+
+/* Compact: full width with padding, not half-width like default */
+.section-heading.compact {
+  max-width: 100%;
+  padding: 31px 50px 100px;
+}
+
+.section-heading.compact .section-heading-eyebrow {
+  display: none;
+}
+
+.section-heading.compact .section-heading-separator {
+  width: 77px;
+}
+
+.section-heading.compact .section-heading-line1 {
+  font-size: 50px;
+  line-height: 52.5px;
+  margin: 0 0 10px;
+}
+
+.section-heading.compact .section-heading-line2 {
+  font-size: 25px;
+  line-height: 26.25px;
+  margin: 0 0 20px;
+}
+
+.section-heading.compact .section-heading-body {
+  font-size: 15px;
+  line-height: 21px;
+  margin: 0 0 16px;
+  max-width: none;
+  color: rgb(38 38 38);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-in-out 0.5s, transform 0.6s ease-in-out 0.5s;
+}
+
+.section-heading.compact.in-viewport .section-heading-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Info tooltip — the "i" circle matching original Foleon brochure */
+.section-heading .section-heading-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgb(100 100 100);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: Georgia, serif;
+  font-style: italic;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out 0.7s;
+}
+
+.section-heading.in-viewport .section-heading-info {
+  opacity: 1;
+}
+
+.section-heading .section-heading-info:hover {
+  background: rgb(60 60 60);
+}
+
+/* ===== Dark section variant ===== */
+.section.dark .section-heading {
+  color: #fff;
+  background-color: transparent;
+}
+
+.section.dark .section-heading .section-heading-eyebrow {
+  color: rgb(255 255 255 / 60%);
+}
+
+.section.dark .section-heading .section-heading-separator {
+  border-bottom-color: rgb(255 255 255 / 40%);
+}
+
+.section.dark .section-heading .section-heading-line1,
+.section.dark .section-heading .section-heading-line2 {
+  color: #fff;
+}
+
+.section.dark .section-heading .section-heading-body {
+  color: rgb(255 255 255 / 70%);
+}
+
+/* ===== Responsive: Tablet ===== */
+@media (width <= 1023px) {
+  .section-heading {
+    max-width: 70%;
+    padding: 60px 40px 48px;
+  }
+
+  .section-heading .section-heading-line1 {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  .section-heading .section-heading-line2 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (width <= 767px) {
+  .section-heading {
+    max-width: 100%;
+    padding: 48px 24px 36px;
+  }
+
+  .section-heading .section-heading-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+  }
+
+  .section-heading .section-heading-separator {
+    width: 80px;
+  }
+
+  .section-heading .section-heading-line1 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .section-heading .section-heading-line2 {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 40px;
+  }
+
+  .section-heading .section-heading-body {
+    margin-top: -20px;
+    margin-bottom: 40px;
+  }
+}

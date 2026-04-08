@@ -1,0 +1,13 @@
+{
+  "name": "hotspot-image",
+  "description": "Full-width car image with CSS-positioned interactive hotspot markers. Each marker has a pulsing dot animation, tooltip label on hover, and links to an overlay page. Used for KEY HIGHLIGHTS sections.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/exterior-design",
+    "selector": "section:has(.viewer-background):has(a[href*='overlay'])"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/exterior-design"
+    ]
+  }
+}

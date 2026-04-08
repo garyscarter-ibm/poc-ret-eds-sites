@@ -1,0 +1,13 @@
+{
+  "name": "feature-grid",
+  "description": "Grid of feature cards with background images, numbered labels, titles, and Learn more links. Renders as 4-column grid on desktop, 2-column on tablet, single column on mobile. Used for KEY FEATURES sections.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/interior-design",
+    "selector": "section:has(.im-column):has(h4):has(.im-button)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

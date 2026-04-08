@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://luxury-brochures.bmw.co.uk/x7/exterior-design",
+  "path": "x7/exterior-design",
+  "timestamp": "2026-04-08T11:09:34.388Z",
+  "title": "Exterior Design - X7",
+  "template": "bmw-x7-brochure",
+  "blocks": [
+    "hero-brochure",
+    "text-media",
+    "hotspot-image",
+    "text-media",
+    "text-media",
+    "cta-bar"
+  ]
+}

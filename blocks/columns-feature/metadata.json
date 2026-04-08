@@ -1,13 +1,16 @@
 {
   "name": "columns-feature",
-  "description": "Image+text split teaser with alternating layout. Common block shared between BMW (Split Banner Teaser) and MINI (Teaser Model) sites. Supports multiple rows with automatic alternating image/text positions.",
+  "description": "Image+text split teaser with alternating layout. Shared between dealership (BMW/MINI) and brochure sites. Supports heading, description, CTA link, and optional image.",
   "sourceContext": {
     "bmwSelector": ".splitBannerTeaserCMS",
     "miniSelector": ".teaserModel",
-    "bmwInstances": 6,
-    "miniInstances": 2
+    "brochureSelector": "section:has(.im-column):has(h3):has(a)"
   },
   "usage": {
-    "pagesUsing": []
+    "pagesUsing": [
+      "/content/dealership/index-bmw",
+      "/content/dealership/index-mini",
+      "/content/brochures/x7/interior-design"
+    ]
   }
 }

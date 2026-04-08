@@ -1,0 +1,14 @@
+{
+  "name": "text-media",
+  "description": "Image paired with heading and descriptive text in a side-by-side layout. No CTA required. Used for vehicle feature descriptions like Opulent Upholstery, Pure Charisma, etc.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/exterior-design",
+    "selector": "section:has(h3):has(p):has(figure)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/exterior-design",
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

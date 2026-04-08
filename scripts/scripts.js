@@ -61,11 +61,48 @@ function decorateButtons(main) {
 }
 
 /**
+ * Auto-blocks: detect standalone links to known embed domains and wrap in embed block.
+ * @param {Element} main The main element
+ */
+function buildAutoBlocks(main) {
+  const embedDomains = [
+    'range-comparator.bmwlaunchpad.co.uk',
+    'youtube.com',
+    'youtu.be',
+    'vimeo.com',
+  ];
+
+  main.querySelectorAll('a[href]').forEach((a) => {
+    const p = a.closest('p');
+    if (!p || p.textContent.trim() !== a.textContent.trim()) return;
+
+    try {
+      const url = new URL(a.href);
+      const isEmbed = embedDomains.some((d) => url.hostname.includes(d));
+      if (!isEmbed) return;
+
+      // Wrap in an embed block table
+      const table = document.createElement('div');
+      const row = document.createElement('div');
+      const cell = document.createElement('div');
+      cell.append(a.cloneNode(true));
+      row.append(cell);
+      table.append(row);
+      table.classList.add('embed');
+      p.replaceWith(table);
+    } catch {
+      // invalid URL, skip
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -124,6 +161,19 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // Brochure pages: observe sections for scroll-triggered visibility
+  if (document.body.classList.contains('x7-brochure')) {
+    const sections = main.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    sections.forEach((section) => observer.observe(section));
+  }
 }
 
 /**

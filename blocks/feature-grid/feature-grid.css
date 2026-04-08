@@ -1,0 +1,81 @@
+/* Feature Grid block
+   Grid of feature cards with background image, number, title, and link
+   Used for KEY FEATURES in brochure pages */
+
+.feature-grid {
+  padding: 0;
+  color: var(--color-white, #fff);
+}
+
+.feature-grid .feature-grid-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.feature-grid .feature-grid-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-color: #1a1a1a;
+  padding: 32px 24px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.feature-grid .feature-grid-number {
+  font-family: var(--heading-font-family);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: rgb(255 255 255 / 60%);
+}
+
+.feature-grid .feature-grid-title {
+  font-family: var(--heading-font-family);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-white, #fff);
+  margin: 0;
+}
+
+.feature-grid .feature-grid-link {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: rgb(255 255 255 / 80%);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: 4px;
+}
+
+.feature-grid .feature-grid-link:hover {
+  color: var(--color-white, #fff);
+}
+
+/* Desktop: 4 columns */
+@media (width >= 900px) {
+  .feature-grid .feature-grid-items {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .feature-grid .feature-grid-card {
+    min-height: 320px;
+    padding: 40px 28px;
+  }
+}
+
+/* Mobile: single column */
+@media (width <= 599px) {
+  .feature-grid .feature-grid-items {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid .feature-grid-card {
+    min-height: 200px;
+  }
+}

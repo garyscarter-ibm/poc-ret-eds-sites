@@ -1,0 +1,13 @@
+{
+  "name": "stats",
+  "description": "Horizontal row of key metric pairs (large value + small label) with vertical dividers. Supports optional footnote row. Used for vehicle specifications like legroom, luggage capacity, seats.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/interior-design",
+    "selector": "section:has(h2):has(h4)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7/interior-design"
+    ]
+  }
+}

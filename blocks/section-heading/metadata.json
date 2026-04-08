@@ -1,0 +1,13 @@
+{
+  "name": "section-heading",
+  "description": "Eyebrow subtitle + separator line + large split heading + optional body paragraph. Features staggered scroll-triggered fade-in animations. Used for dramatic section introductions in brochure pages.",
+  "sourceContext": {
+    "originUrl": "https://luxury-brochures.bmw.co.uk/x7/",
+    "selector": "section:has(h2):has(p)"
+  },
+  "usage": {
+    "pagesUsing": [
+      "/content/brochures/x7"
+    ]
+  }
+}
