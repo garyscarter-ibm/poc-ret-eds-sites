@@ -2,15 +2,16 @@
 
 /* Banner Terms - Disclaimer/terms text banner */
 .banner-terms {
-  max-width: 1024px;
+  max-width: 1152px;
   margin: 0 auto;
-  padding: 64px 16px;
+  padding: 32px 16px;
 }
 
 .banner-terms p {
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 300;
   line-height: 1.375;
-  color: var(--color-text);
+  color: rgb(102 102 102);
   margin: 0 0 7px;
 }
 

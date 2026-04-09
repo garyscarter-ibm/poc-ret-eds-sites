@@ -1,5 +1,15 @@
 /* stylelint-disable */
 
+/* Section - full width */
+main > .section.cards-car-locator-container {
+  width: 100vw;
+  max-width: none;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding: 0;
+}
+
 /* Section wrapper - light grey background like original */
 .cards-car-locator-wrapper {
   max-width: 100%;

@@ -115,12 +115,31 @@
   .columns-feature-text {
     padding: 48px 56px;
   }
+
+  /* BMW: wider images (~54%) to match reference overlap layout */
+  .columns-feature:not(.mini):not(.welcome) .columns-feature-image {
+    flex: 0 0 54%;
+  }
+
+  .columns-feature:not(.mini):not(.welcome) {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  .columns-feature:not(.mini):not(.welcome) > div {
+    margin-bottom: 75px;
+    overflow: visible;
+  }
+
+  .columns-feature:not(.mini):not(.welcome) > div:last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* === Welcome Variant (replaces columns-welcome) === */
 main > .section.columns-feature-container:has(.columns-feature.welcome) {
   width: 100vw;
-  max-width: none;
+  max-width: 1440px;
   position: relative;
   left: 50%;
   margin-left: -50vw;
@@ -156,16 +175,26 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   text-transform: uppercase;
 }
 
+/* BMW welcome: match reference typography exactly */
+.columns-feature.welcome:not(.mini) h3,
+.columns-feature.welcome:not(.mini) h5 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 36px;
+  text-transform: none;
+}
+
 .columns-feature.welcome p {
   font-size: 0.875rem;
   line-height: 24px;
   padding: 0 0 28px;
 }
 
-/* BMW welcome CTA: black text, blue chevron (inherits from cta-chevron--blue), tighter line-height */
+/* BMW welcome CTA: black text, blue chevron, bold to match reference */
 .columns-feature.welcome:not(.mini) .cta-chevron {
   color: #000;
   line-height: 15px;
+  font-weight: 700;
 }
 
 .columns-feature.welcome:not(.mini) .cta-chevron:hover {
@@ -214,19 +243,21 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   .columns-feature.welcome > div {
     flex-direction: row;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     min-height: 605px;
+    margin-top: 115px;
   }
 
   .columns-feature.welcome .columns-feature-image {
     flex: 0 0 55.5%;
     height: 605px;
     order: 2;
+    margin-top: -115px;
   }
 
   .columns-feature.welcome .columns-feature-text {
     flex: 0 0 55.5%;
-    padding: 133px 115px 133px 216px;
+    padding: 133px 102px 133px 192px;
     margin-right: -11%;
     position: relative;
     z-index: 2;

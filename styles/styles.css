@@ -428,20 +428,21 @@ main > .section.cards-car-locator-container {
 main > .section.cards-news-container {
   background-color: var(--color-white);
   padding-top: 0;
-  padding-bottom: 75px;
+  padding-bottom: 24px;
+  max-width: 1440px;
 }
 
 /* Grey background for NEWS heading - stretches full width */
 main > .section.cards-news-container > .default-content-wrapper:first-child {
   background-color: var(--color-background-grey);
-  padding: 64px 24px 0;
+  padding: 64px 48px 0;
   overflow: hidden;
 }
 
 /* Grey background for news cards */
 main > .section.cards-news-container > .cards-news-wrapper {
   background-color: var(--color-background-grey);
-  padding: 0 24px;
+  padding: 0 48px 48px;
 }
 
 /* Mobile/tablet: stretch backgrounds beyond section padding */
@@ -453,13 +454,18 @@ main > .section.cards-news-container > .cards-news-wrapper {
   }
 }
 
+main > .section.columns-feature-container {
+  max-width: 1440px;
+}
+
 main > .section.cards-about-container {
-  padding-bottom: 88px;
+  padding: 64px 48px 88px;
+  max-width: 1440px;
 }
 
 main > .section.tabs-dealer-locator-container {
   background-color: var(--color-white);
-  padding-top: 0;
+  padding-top: 64px;
 }
 
 /* Dealer locator heading wrapper - add spacing above */
@@ -468,13 +474,13 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper:nth-chi
 }
 
 /* Terms disclaimer text - grey background stretching full width (matches original #f9f9f9) */
-main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child {
+main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child:not(:has(h2)) {
   background-color: var(--color-background-light-grey);
   padding: 32px 24px;
 }
 
 @media (max-width: 1023px) {
-  main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child {
+  main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child:not(:has(h2)) {
     margin-left: -24px;
     margin-right: -24px;
   }
@@ -488,6 +494,11 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-c
 
 .section.cards-news-container .columns-wrapper {
   margin-bottom: 75px;
+}
+
+/* Banner terms disclaimer - lighter grey than other sections (#f9f9f9 vs #f5f5f5) */
+main > .section.light-grey.banner-terms-container {
+  background-color: var(--color-background-light-grey);
 }
 
 /* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US) */
