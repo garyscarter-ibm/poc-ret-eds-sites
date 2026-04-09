@@ -1,5 +1,3 @@
-/* stylelint-disable */
-
 /* Banner Terms - Disclaimer/terms text banner */
 .banner-terms {
   max-width: 1152px;
@@ -11,7 +9,7 @@
   font-size: 0.875rem;
   font-weight: 300;
   line-height: 1.375;
-  color: rgb(102 102 102);
+  color: var(--color-text-light);
   margin: 0 0 7px;
 }
 

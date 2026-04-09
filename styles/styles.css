@@ -49,18 +49,15 @@
   --color-background-light-grey: #f9f9f9;
   --color-bmw-blue: #1c69d4;
   --color-bmw-blue-hover: #1557b0;
-  --color-border: #262626;
-  --color-border-light: #d4d4d4;
 
   /* --- Typography --- */
   --body-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
   --heading-font-family: BMWTypeNextLatin, bmw-fallback, sans-serif;
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
 
   /* Body */
-  --body-font-size: 16px;
-  --body-font-size-s: 14px;
-  --body-font-size-xs: 12px;
+  --body-font-size: 1rem;
+  --body-font-size-s: 0.875rem;
+  --body-font-size-xs: 0.75rem;
   --body-font-weight: 400;
   --body-line-height: 1.5;
   --body-color: var(--color-text);
@@ -71,15 +68,15 @@
   --heading-line-height: 1.2;
   --heading-color: var(--color-text);
 
-  --heading-font-size-xxl: 40px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 24px;
-  --heading-font-size-m: 20px;
-  --heading-font-size-s: 18px;
-  --heading-font-size-xs: 14px;
+  --heading-font-size-xxl: 2.5rem;
+  --heading-font-size-xl: 2rem;
+  --heading-font-size-l: 1.5rem;
+  --heading-font-size-m: 1.25rem;
+  --heading-font-size-s: 1.125rem;
+  --heading-font-size-xs: 0.875rem;
 
   /* Labels (small uppercase text) */
-  --label-font-size: 10px;
+  --label-font-size: 0.625rem;
   --label-font-weight: 700;
   --label-letter-spacing: 0.8px;
 
@@ -100,7 +97,7 @@
 
   /* --- Buttons --- */
   --button-font-family: var(--body-font-family);
-  --button-font-size: 13px;
+  --button-font-size: 0.8125rem;
   --button-font-weight: 700;
   --button-letter-spacing: 0.39px;
   --button-padding: 12px 24px;
@@ -134,10 +131,6 @@
   /* --- Focus --- */
   --focus-outline: 2px solid var(--color-bmw-blue);
   --focus-outline-offset: 2px;
-
-  /* --- Shadows --- */
-  --shadow-sm: 0 1px 3px rgb(0 0 0 / 8%);
-  --shadow-md: 0 4px 12px rgb(0 0 0 / 10%);
 }
 
 /* ===== Base Reset ===== */
@@ -401,17 +394,17 @@ main > .section.light-grey > div {
 /* ===== Responsive ===== */
 @media (min-width: 768px) {
   :root {
-    --heading-font-size-xxl: 48px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 24px;
+    --heading-font-size-xxl: 3rem;
+    --heading-font-size-xl: 2.25rem;
+    --heading-font-size-l: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --heading-font-size-xxl: 56px;
-    --heading-font-size-xl: 40px;
-    --heading-font-size-l: 24px;
+    --heading-font-size-xxl: 3.5rem;
+    --heading-font-size-xl: 2.5rem;
+    --heading-font-size-l: 1.5rem;
     --section-padding: 64px 0;
   }
 }
@@ -503,7 +496,7 @@ main > .section.light-grey.banner-terms-container {
 
 /* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US) */
 main > .section > .default-content-wrapper > h2 {
-  font-size: 36px;
+  font-size: 2.25rem;
   text-align: center;
   line-height: 1.2;
   margin-bottom: 64px;
@@ -511,7 +504,7 @@ main > .section > .default-content-wrapper > h2 {
 
 /* Dealer locator H2 - smaller, left-aligned, uppercase */
 main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
-  font-size: 24px;
+  font-size: var(--heading-font-size-l);
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 24px;
@@ -521,41 +514,41 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
 /* MINI brand overrides for body text, section headings, and global colors */
 .section:has(.mini) {
   font-family: MINISansSerif-Regular, sans-serif;
-  color: #000;
+  color: var(--color-black);
 }
 
 .section:has(.mini) p {
   font-family: MINISansSerif-Regular, sans-serif;
-  color: #000;
+  color: var(--color-black);
 }
 
 .section:has(.mini) h2,
 .section:has(.mini) h3,
 .section:has(.mini) h4,
 .section:has(.mini) h5 {
-  color: #000;
+  color: var(--color-black);
 }
 
 /* MINI section-level H2 headings: 32px centered uppercase (matching original) */
 main > .section:has(.mini) > .default-content-wrapper > h2 {
   font-family: MINISerif-Bold, sans-serif;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 32px;
+  line-height: 2rem;
   letter-spacing: normal;
-  color: #000;
+  color: var(--color-black);
 }
 
 /* MINI section-level H3 headings: same style as H2 for consistency */
 main > .section:has(.mini) > .default-content-wrapper > h3 {
   font-family: MINISerif-Bold, sans-serif;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 32px;
+  line-height: 2rem;
   letter-spacing: normal;
-  color: #000;
+  color: var(--color-black);
   margin-bottom: 64px;
 }
 
@@ -573,8 +566,8 @@ main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrap
 
 /* MINI dealer locator H2: smaller than main section headings (28px matching original) */
 main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrapper > h2 {
-  font-size: 28px;
-  line-height: 21px;
+  font-size: 1.75rem;
+  line-height: 1.3125rem;
   padding-bottom: 24px;
 }
 
@@ -604,10 +597,10 @@ main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrap
 
 @media (max-width: 767px) {
   h1 {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   h2 {
-    font-size: 20px;
+    font-size: var(--heading-font-size-m);
   }
 }

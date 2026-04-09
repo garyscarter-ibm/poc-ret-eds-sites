@@ -1,5 +1,3 @@
-/* stylelint-disable */
-
 /* Columns Feature - Image+text split teasers with alternating layout
    Common block: BMW (Split Banner Teaser) + MINI (Teaser Model) */
 .columns-feature > div {
@@ -192,13 +190,13 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
 
 /* BMW welcome CTA: black text, blue chevron, bold to match reference */
 .columns-feature.welcome:not(.mini) .cta-chevron {
-  color: #000;
+  color: var(--color-black);
   line-height: 15px;
   font-weight: 700;
 }
 
 .columns-feature.welcome:not(.mini) .cta-chevron:hover {
-  color: #000;
+  color: var(--color-black);
 }
 
 .columns-feature.welcome p:last-child {
@@ -235,7 +233,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   }
 
   .columns-feature.welcome.mini .columns-feature-text {
-    padding: 31px 17px 25px 17px;
+    padding: 31px 17px 25px;
   }
 }
 
@@ -304,7 +302,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   }
 
   .columns-feature.welcome.mini .columns-feature-text {
-    padding: 41px 34px 25px 34px;
+    padding: 41px 34px 25px;
     flex: 1;
   }
 }
@@ -353,7 +351,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   font-family: MINISansSerif-Regular, sans-serif;
   font-size: 1.625rem;
   font-weight: 400;
-  color: #000;
+  color: var(--color-black);
   margin-left: 6px;
 }
 
@@ -401,7 +399,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini:not(.welcome
   left: 0;
   width: 50%;
   height: 100%;
-  background-color: #000;
+  background-color: var(--color-black);
   z-index: 0;
 }
 
@@ -457,7 +455,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini:not(.welcome
   flex-direction: column;
   justify-content: flex-start;
   min-height: 640px;
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 
 .teaser-overlap-alt .teaser-overlap-text {
@@ -528,7 +526,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
     width: 87.5%;
     margin: -60px auto 0;
     padding: 41px 34px 25px;
-    background-color: #fff;
+    background-color: var(--color-white);
     min-height: auto;
   }
 
@@ -602,14 +600,14 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   font-family: MINISansSerif-Regular, sans-serif;
   font-size: 1.125rem;
   line-height: 24px;
-  color: #000;
+  color: var(--color-black);
   padding: 0 0 12.6px;
 }
 
 /* MINI CTA: all links in non-welcome = pill buttons */
 .columns-feature.mini:not(.welcome) .cta-chevron {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-black);
+  color: var(--color-white);
   border: none;
   border-radius: 28px;
   padding: 17px 20px;
@@ -629,20 +627,20 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
 .columns-feature.mini:not(.welcome) .cta-chevron:hover {
   background-color: #333;
   border-color: #333;
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
 }
 
 /* MINI CTA: secondary pill button (outline style) */
 .columns-feature.mini:not(.welcome) p:has(.cta-chevron) + p .cta-chevron {
   background-color: transparent;
-  color: #000;
-  border: 2px solid rgb(0 0 0);
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
 }
 
 .columns-feature.mini:not(.welcome) p:has(.cta-chevron) + p .cta-chevron:hover {
   background-color: rgb(230 230 230);
-  color: #000;
+  color: var(--color-black);
 }
 
 /* MINI CTA: welcome variant — uses shared cta-chevron--black, only override size */
@@ -654,7 +652,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
 }
 
 .columns-feature.welcome.mini .cta-chevron:hover {
-  color: #000;
+  color: var(--color-black);
 }
 
 /* === MINI Welcome Responsive (must come after base MINI rules to win cascade) === */

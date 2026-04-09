@@ -1,5 +1,3 @@
-/* stylelint-disable */
-
 /* Cards About - Dark overlay cards with white text (3 columns on desktop) */
 .cards-about {
   display: grid;
@@ -93,7 +91,7 @@
   font-size: 1.75rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #fff;
+  color: var(--color-white);
   padding: 0 0 12px;
 }
 
@@ -101,7 +99,7 @@
   font-family: MINISansSerif-Regular, sans-serif;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: #fff;
+  color: var(--color-white);
   margin: 0;
 }
 

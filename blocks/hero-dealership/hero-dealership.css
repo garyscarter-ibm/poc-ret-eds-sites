@@ -1,5 +1,3 @@
-/* stylelint-disable */
-
 /* =============================================
    Hero Dealership — shared block for BMW & MINI
    Brand theming via CSS custom properties
@@ -55,7 +53,7 @@
 .hero-dealership.mini {
   --hd-font-heading: MINISerif-Regular, serif;
   --hd-font-body: MINISansSerif-Regular, sans-serif;
-  --hd-title-size: 64px;
+  --hd-title-size: 4rem;
   --hd-title-weight: 700;
   --hd-title-line-height: 1;
   --hd-title-letter-spacing: 1px;
@@ -63,7 +61,7 @@
   --hd-subtitle-weight: 400;
   --hd-subtitle-line-height: 1.35;
   --hd-subtitle-max-width: 460px;
-  --hd-welcome-size: 44px;
+  --hd-welcome-size: 2.75rem;
   --hd-welcome-line-height: 44px;
   --hd-welcome-display: block;
   --hd-container-min-height: 100vh;
@@ -317,10 +315,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: auto;
-  margin-left: -56px;
-  margin-right: -56px;
-  margin-bottom: -56px;
+  margin: auto -56px -56px;
   width: calc(100% + 112px);
 }
 
@@ -358,7 +353,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 .hero-dealership.mini .hero-dealership-rating-score {
   display: inline;
   font-family: var(--hd-font-heading);
-  font-size: 26px;
+  font-size: 1.625rem;
   font-weight: 400;
   margin-left: 5px;
   line-height: 17px;
@@ -503,11 +498,11 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   }
 
   .hero-dealership .hero-dealership-title {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   .hero-dealership .hero-dealership-subtitle {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .hero-dealership-btn {
@@ -601,7 +596,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 /* === Responsive: Tablet === */
 @media (min-width: 768px) and (max-width: 1023px) {
   .hero-dealership .hero-dealership-welcome {
-    font-size: 36px;
+    font-size: 2.25rem;
     line-height: 36px;
   }
 

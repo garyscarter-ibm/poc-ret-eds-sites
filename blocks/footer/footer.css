@@ -1,9 +1,7 @@
-/* stylelint-disable */
-
 /* Footer container */
 footer {
-  background-color: #262626;
-  color: #fff;
+  background-color: var(--color-text);
+  color: var(--color-white);
   font-family: var(--body-font-family);
 }
 
@@ -51,7 +49,7 @@ footer h2 {
   font-size: 1.125rem;
   font-weight: 300;
   font-family: var(--body-font-family);
-  color: #fff;
+  color: var(--color-white);
   margin: 0;
   padding-bottom: 18px;
 }
@@ -71,7 +69,7 @@ footer li {
 
 /* Links */
 footer a:any-link {
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 400;
@@ -143,7 +141,7 @@ footer .footer-copyright {
   margin: 66px 0 0;
   font-size: 0.875rem;
   line-height: 1.2rem;
-  color: #fff;
+  color: var(--color-white);
 }
 
 /* Tablet: stack vertically, keep Legal 2-column grid */
@@ -194,11 +192,11 @@ footer .footer-copyright {
    ============================================================ */
 
 footer:has(.footer.mini) {
-  background-color: #000;
+  background-color: var(--color-black);
 }
 
 footer .footer.mini {
-  background-color: #000;
+  background-color: var(--color-black);
   font-family: MINISansSerif-Regular, sans-serif;
 }
 
