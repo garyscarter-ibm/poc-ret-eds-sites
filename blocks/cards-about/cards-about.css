@@ -59,12 +59,18 @@
 }
 
 /* === MINI Brand Variant === */
+.cards-about.mini {
+  max-width: 1024px;
+  gap: 20px;
+  margin: 0 auto;
+}
+
 .cards-about.mini > div:not(:has(img)) {
   background-color: #01693e;
 }
 
 .cards-about.mini > div {
-  min-height: 400px;
+  min-height: 408px;
 }
 
 /* MINI: gradient tint — dark at top for text readability, clear at bottom */

@@ -82,6 +82,10 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // Auto-detect MINI theme from block classes when no theme metadata is set
+    if (!document.body.classList.contains('mini') && main.querySelector('.mini')) {
+      document.body.classList.add('mini');
+    }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
     await loadSection(main.querySelector('.section'), waitForFirstImage);

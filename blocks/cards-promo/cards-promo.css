@@ -12,6 +12,14 @@
   gap: 24px;
 }
 
+/* MINI: constrain content to 1280px, keep section background full width */
+.section.cards-promo-container:has(.cards-promo.mini) > .default-content-wrapper,
+.section.cards-promo-container:has(.cards-promo.mini) > .cards-promo-wrapper {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Image cards use shared .overlay-card + .overlay-card--tinted */
 .cards-promo > div {
   min-height: 400px;

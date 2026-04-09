@@ -1,31 +1,42 @@
 /* stylelint-disable */
 
-/* Tiles CTA - "Find Your MINI" two-card CTA section */
+/* Tiles CTA - "FIND YOUR MINI" card tiles (Browse available MINIs, Approved used)
+   Reference: sytnerlutonmini.co.uk .findYourMiniCMS
+   White rectangular cards with bold title, description, and chevron arrow */
+
 .tiles-cta {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 0 86px;
+  gap: 16px;
+  padding: 0 0 60px;
 }
 
+/* Individual tile — white card with border */
 .tiles-cta > div {
   background-color: var(--color-white);
   border: 1px solid rgb(204 204 204);
   border-radius: 8px;
-  padding: 32px 16px;
-  min-height: 170px;
+  padding: 32px 50px 32px 24px;
   box-sizing: border-box;
   position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tiles-cta > div:hover {
+  border-color: rgb(150 150 150);
 }
 
 /* Arrow chevron in top-right of each tile */
 .tiles-cta > div::after {
   content: '';
   position: absolute;
-  top: 32px;
-  right: 16px;
+  top: 36px;
+  right: 24px;
   width: 10px;
   height: 10px;
   border-top: 2px solid #000;
@@ -33,38 +44,41 @@
   transform: rotate(45deg);
 }
 
-/* Title - target p directly so global p rules don't override */
+/* Title */
 .tiles-cta > div > div:first-child p {
   font-family: MINISerif-Bold, serif;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: #000;
-  line-height: 20px;
-  margin: 0 0 12px;
+  line-height: 1.3;
+  margin: 0 0 16px;
 }
 
 /* Description paragraphs */
 .tiles-cta > div > div:last-child p {
   margin: 0;
   font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1rem;
-  color: #000;
-  line-height: 1.5rem;
+  font-size: 0.875rem;
+  color: rgb(36 36 36);
+  line-height: 1.5;
 }
 
-/* First paragraph in content area (description text) gets top padding */
-.tiles-cta > div > div:last-child p:first-child {
-  padding-top: 24px;
-}
-
-/* Hide link paragraphs — original tiles are fully clickable cards with no visible link text */
+/* Hide link paragraphs — tiles are fully clickable cards */
 .tiles-cta > div > div:last-child p:has(.tiles-cta-link) {
   display: none;
 }
 
-/* Desktop: 2 columns */
+/* Tablet+: 2 columns side by side */
 @media (min-width: 768px) {
+  .tiles-cta > div {
+    width: calc(50% - 8px);
+  }
+}
+
+/* Mobile: stacked */
+@media (max-width: 767px) {
   .tiles-cta {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    padding: 0 0 40px;
   }
 }

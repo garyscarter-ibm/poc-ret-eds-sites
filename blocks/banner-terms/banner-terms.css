@@ -22,3 +22,9 @@
 .banner-terms.mini p {
   font-family: MINISansSerif-Regular, sans-serif;
 }
+
+.section.banner-terms-container:has(.banner-terms.mini) {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}

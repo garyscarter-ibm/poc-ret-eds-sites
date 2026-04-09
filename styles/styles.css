@@ -316,6 +316,11 @@ main {
   margin: 0 auto;
 }
 
+/* MINI pages: full-width main — individual blocks handle their own max-width */
+body.mini main {
+  max-width: 100%;
+}
+
 main > .section {
   padding: var(--section-padding);
 }
@@ -570,8 +575,10 @@ main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrap
 
 /* MINI page section padding adjustments */
 .section.tiles-cta-container:has(.mini) {
-  padding-top: 86px;
+  padding-top: 80px;
   padding-bottom: 0;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 /* tiles-CTA section heading: extra bottom margin */

@@ -15,24 +15,72 @@ function createStarRating(rating = 5.0) {
   return container;
 }
 
+/**
+ * Build the MINI teaser-overlap layout:
+ * - Black backdrop div (50% width, full height)
+ * - Image positioned absolutely, overlapping past the backdrop
+ * - Text on the opposite side with z-index above
+ *
+ * @param {Element} row - The row element containing image and text columns
+ * @param {boolean} imageRight - If true, image goes on right (mirrored layout)
+ */
+function buildOverlapLayout(row, imageRight = false) {
+  const cols = [...row.children];
+  const imgCol = cols.find((c) => c.querySelector('img'));
+  const textCol = cols.find((c) => !c.querySelector('img'));
+  if (!imgCol || !textCol) return;
+
+  // Clear row and rebuild
+  row.innerHTML = '';
+  row.classList.add('teaser-overlap');
+  if (imageRight) row.classList.add('teaser-overlap-alt');
+
+  // Black backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'teaser-overlap-backdrop';
+  row.append(backdrop);
+
+  // Image container — holds the picture/img
+  const imageWrap = document.createElement('div');
+  imageWrap.className = 'teaser-overlap-image';
+  const picture = imgCol.querySelector('picture');
+  if (picture) imageWrap.append(picture);
+  row.append(imageWrap);
+
+  // Text container
+  textCol.classList.add('teaser-overlap-text');
+  textCol.classList.remove('columns-feature-text');
+  row.append(textCol);
+}
+
 export default function decorate(block) {
+  const isMini = block.classList.contains('mini');
+  const isWelcome = block.classList.contains('welcome');
+
   const rows = [...block.children];
   rows.forEach((row, i) => {
     const cols = [...row.children];
     const imgCol = cols.find((c) => c.querySelector('img'));
     const textCol = cols.find((c) => !c.querySelector('img'));
 
-    if (imgCol) imgCol.classList.add('columns-feature-image');
-    if (textCol) textCol.classList.add('columns-feature-text');
-
-    // Alternate layout: even rows get image on right
-    if (i % 2 !== 0) {
-      row.classList.add('columns-feature-alt');
+    // MINI variants: use overlap layout
+    if (isMini) {
+      // Welcome variant: text left, image right (mirrored)
+      // Non-welcome: image left, text right (default)
+      // Odd rows alternate
+      const imageRight = isWelcome ? !!(i % 2 === 0) : !!(i % 2 !== 0);
+      buildOverlapLayout(row, imageRight);
+    } else {
+      // BMW: standard side-by-side layout
+      if (imgCol) imgCol.classList.add('columns-feature-image');
+      if (textCol) textCol.classList.add('columns-feature-text');
+      if (i % 2 !== 0) row.classList.add('columns-feature-alt');
     }
   });
 
+  const chevronVariant = isMini ? 'cta-chevron--black' : 'cta-chevron--blue';
   block.querySelectorAll('a').forEach((a) => {
-    a.classList.add('cta-chevron', 'cta-chevron--blue');
+    a.classList.add('cta-chevron', chevronVariant);
   });
 
   // Inject star rating for SERVICE RATING / SALES RATING sections

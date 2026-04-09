@@ -47,6 +47,19 @@
   color: var(--color-bmw-blue-hover);
 }
 
+/* Black chevron — MINI brand light backgrounds */
+.cta-chevron.cta-chevron--black {
+  color: #000;
+  font-weight: 400;
+  letter-spacing: normal;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M20.243 26.243l4.263-4.228-4.243-4.243' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  background-position: 100% center;
+}
+
+.cta-chevron.cta-chevron--black:hover {
+  color: #333;
+}
+
 /* Blue chevron large — model showcase (larger SVG viewBox) */
 .cta-chevron.cta-chevron--blue-lg {
   color: var(--color-bmw-blue);

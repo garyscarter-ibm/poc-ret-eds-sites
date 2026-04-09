@@ -5,10 +5,21 @@
   padding: 0;
 }
 
+/* MINI: add space above heading and make full width */
+body.mini .section.carousel-models-container > .default-content-wrapper {
+  max-width: 1280px;
+  padding-top: 64px;
+}
+
 /* Carousel Models - Tabbed model showcase with thumbnail strip */
 .carousel-models {
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* MINI: full-width carousel */
+.carousel-models.mini {
+  max-width: 100%;
 }
 
 /* === Showcase Panel === */
@@ -147,8 +158,10 @@
 .carousel-models-strip {
   display: flex;
   align-items: center;
-  padding: 24px 0;
+  padding: 24px 7.5%;
   gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Uses shared .scroll-hidden from shared-components.css */

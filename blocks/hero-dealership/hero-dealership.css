@@ -168,9 +168,10 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 }
 
 /* === Welcome Text (MINI only, hidden for BMW) === */
-.hero-dealership .hero-dealership-welcome {
+.hero-dealership .hero-dealership-welcome,
+.hero-dealership.mini .hero-dealership-welcome {
   display: var(--hd-welcome-display);
-  font-family: var(--hd-font-heading);
+  font-family: MINISerif-Regular, serif;
   font-size: var(--hd-welcome-size);
   font-weight: 400;
   font-style: italic;
@@ -599,6 +600,11 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
 /* === Responsive: Tablet === */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .hero-dealership .hero-dealership-welcome {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
   .hero-dealership.mini > div:nth-child(2) {
     padding: calc(64px + var(--spacing-m)) var(--spacing-m) var(--spacing-m);
   }

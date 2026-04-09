@@ -90,7 +90,9 @@
 /* Desktop: 4 columns in a single row (matches original) */
 @media (min-width: 1024px) {
   .tiles-contact {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1200px;
+    grid-template-columns: repeat(4, 236px);
+    max-width: 1280px;
+    justify-content: center;
+    gap: 20px;
   }
 }

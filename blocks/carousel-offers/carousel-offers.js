@@ -29,9 +29,9 @@ export default function decorate(block) {
       textWrap.className = 'carousel-offers-card-text';
       textWrap.innerHTML = textCol.innerHTML;
 
-      // Style CTA links
+      // Style CTA links — use shared chevron component
       textWrap.querySelectorAll('a').forEach((a) => {
-        a.classList.add('carousel-offers-link');
+        a.classList.add('carousel-offers-link', 'cta-chevron', 'cta-chevron--black');
       });
 
       card.append(textWrap);
