@@ -149,6 +149,13 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   margin: 0;
 }
 
+/* MINI welcome: main is full-width so no breakout needed — just center */
+main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
+  left: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .columns-feature.welcome > div {
   min-height: auto;
 }

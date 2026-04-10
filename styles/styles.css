@@ -314,6 +314,13 @@ body.mini main {
   max-width: 100%;
 }
 
+/* MINI pages: center all sections that have a constrained max-width */
+/* Exclude columns-feature sections which use left:50%/margin-left:-50vw breakout */
+body.mini main > .section:not(.columns-feature-container) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 main > .section {
   padding: var(--section-padding);
 }
