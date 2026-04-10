@@ -436,14 +436,12 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   pointer-events: none;
 }
 
-/* MINI: align frame with content area, stop above ratings bar */
+/* MINI: frame sits between nav (64px) and ratings bar (76px), with 56px gap from each */
 .hero-dealership.mini .hero-dealership-frame {
-  top: 124px; /* 4px below "Welcome To" text top, matching original offset */
-  bottom: 142px; /* matches original 56px gap from viewport bottom */
-}
-
-.hero-dealership.mini .hero-dealership-frame .frame-left {
-  top: 275px; /* fixed 30px below CTAs, independent of hero height */
+  top: calc(64px + 56px);
+  bottom: calc(76px + 56px);
+  left: 56px;
+  right: 56px;
 }
 
 .hero-dealership-frame .frame-top,
@@ -457,7 +455,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 /* Top: starts after "Welcome To" text, extends to right edge */
 .hero-dealership-frame .frame-top {
   top: 0;
-  left: 25%;
+  left: 21.5%;
   right: 0;
   height: 12px;
 }
@@ -482,7 +480,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 .hero-dealership-frame .frame-left {
   bottom: 0;
   left: 0;
-  top: 47%;
+  top: 40%;
   width: 12px;
 }
 
@@ -543,17 +541,20 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
     inset: 16px;
   }
 
+  /* Mobile MINI nav: 65px bar + 40px tools strip = 105px; ratings stack ~112px */
   .hero-dealership.mini .hero-dealership-frame {
-    top: calc(68px + var(--spacing-s)); /* 4px below Welcome To text top */
-    bottom: 128px; /* 16px inset + 112px stacked ratings bar */
+    top: calc(105px + 16px);
+    bottom: calc(112px + 16px);
+    left: 16px;
+    right: 16px;
   }
 
   .hero-dealership.mini .hero-dealership-frame .frame-top {
-    left: 35%; /* wider offset to clear Welcome To text at mobile width */
+    left: 35%;
   }
 
   .hero-dealership.mini .hero-dealership-frame .frame-left {
-    top: 42%; /* tighter gap below CTAs at mobile */
+    top: 40%;
   }
 
   /* Fix ratings margins to match mobile padding (16px not 56px) */
@@ -608,17 +609,20 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
     inset: 32px;
   }
 
+  /* Tablet MINI nav: ~100px; ratings ~76px */
   .hero-dealership.mini .hero-dealership-frame {
-    top: calc(68px + var(--spacing-m)); /* 4px below Welcome To text top */
-    bottom: 108px; /* 32px inset + 76px ratings bar */
+    top: calc(100px + 32px);
+    bottom: calc(76px + 32px);
+    left: 32px;
+    right: 32px;
   }
 
   .hero-dealership.mini .hero-dealership-frame .frame-top {
-    left: 32%; /* wider offset to clear Welcome To text at tablet width */
+    left: 30%;
   }
 
   .hero-dealership.mini .hero-dealership-frame .frame-left {
-    top: 42%; /* tighter gap below CTAs at tablet */
+    top: 40%;
   }
 
   /* Fix ratings margins to match tablet padding (24px not 56px) */

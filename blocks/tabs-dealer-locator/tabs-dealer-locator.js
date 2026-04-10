@@ -1,11 +1,43 @@
+const DEFAULT_ZOOM = 17;
+
+/**
+ * Parse map config from a block row.
+ * Expects: col0 = coordinates ("lat, lng" or "lat, lng, zoom"), col1 = areas served text
+ */
+function parseMapRow(row) {
+  const cols = [...row.children];
+  const coordText = cols[0]?.textContent?.trim() || '';
+  const areasText = cols[1]?.textContent?.trim() || '';
+
+  const parts = coordText.split(',').map((s) => s.trim());
+  const lat = parseFloat(parts[0]);
+  const lng = parseFloat(parts[1]);
+  const zoom = parts[2] ? parseInt(parts[2], 10) : DEFAULT_ZOOM;
+
+  if (Number.isNaN(lat) || Number.isNaN(lng)) return null;
+  return {
+    lat, lng, zoom, areas: areasText,
+  };
+}
+
+/**
+ * Check if a row looks like map config (first cell contains coordinates).
+ */
+function isMapRow(row) {
+  const text = row.children[0]?.textContent?.trim() || '';
+  return /^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)/.test(text);
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
 
-  // Dealer location coordinates (Grassicks BMW, Perth)
-  const DEALER_LAT = 56.417873;
-  const DEALER_LNG = -3.462354;
-  const DEALER_ZOOM = 17;
-  const AREAS_SERVED = 'Perth as well as surrounding areas including Blairgowrie, Cupar, Crieff and Auchterarder';
+  // Check if the last row contains map coordinates
+  let mapConfig = null;
+  const lastRow = rows[rows.length - 1];
+  if (lastRow && isMapRow(lastRow)) {
+    mapConfig = parseMapRow(lastRow);
+    rows.pop(); // Remove map row from tab rows
+  }
 
   // Create tab navigation
   const tabNav = document.createElement('div');
@@ -51,50 +83,53 @@ export default function decorate(block) {
       panel.appendChild(columns);
     }
 
-    // Add map section (hidden by default)
-    const mapSection = document.createElement('div');
-    mapSection.className = 'tabs-dealer-locator-map-section';
+    // Add map section if coordinates were provided
+    if (mapConfig) {
+      const mapSection = document.createElement('div');
+      mapSection.className = 'tabs-dealer-locator-map-section';
 
-    const mapHeading = document.createElement('h5');
-    mapHeading.textContent = 'Map';
-    mapSection.appendChild(mapHeading);
+      const mapHeading = document.createElement('h5');
+      mapHeading.textContent = 'Map';
+      mapSection.appendChild(mapHeading);
 
-    const mapIframe = document.createElement('iframe');
-    mapIframe.title = 'Grassicks BMW location map';
-    mapIframe.loading = 'lazy';
-    mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
-    mapIframe.src = `https://maps.google.com/maps?q=${DEALER_LAT},${DEALER_LNG}&z=${DEALER_ZOOM}&output=embed`;
-    mapSection.appendChild(mapIframe);
+      const mapIframe = document.createElement('iframe');
+      mapIframe.title = 'Dealer location map';
+      mapIframe.loading = 'lazy';
+      mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
+      mapIframe.src = `https://maps.google.com/maps?q=${mapConfig.lat},${mapConfig.lng}&z=${mapConfig.zoom}&output=embed`;
+      mapSection.appendChild(mapIframe);
 
-    const areasDiv = document.createElement('div');
-    areasDiv.className = 'tabs-dealer-locator-areas';
-    const areasHeading = document.createElement('h5');
-    areasHeading.textContent = 'Areas served';
-    areasDiv.appendChild(areasHeading);
-    const areasText = document.createElement('p');
-    areasText.textContent = AREAS_SERVED;
-    areasDiv.appendChild(areasText);
-    mapSection.appendChild(areasDiv);
-
-    panel.appendChild(mapSection);
-
-    // Add "View map" toggle link (after map section, matching original layout)
-    const mapToggle = document.createElement('button');
-    mapToggle.className = 'tabs-dealer-locator-map-toggle';
-    mapToggle.textContent = 'View map';
-    panel.appendChild(mapToggle);
-
-    // Toggle map on click
-    mapToggle.addEventListener('click', () => {
-      const isOpen = mapSection.classList.contains('active');
-      if (isOpen) {
-        mapSection.classList.remove('active');
-        mapToggle.textContent = 'View map';
-      } else {
-        mapSection.classList.add('active');
-        mapToggle.textContent = 'Close map';
+      if (mapConfig.areas) {
+        const areasDiv = document.createElement('div');
+        areasDiv.className = 'tabs-dealer-locator-areas';
+        const areasHeading = document.createElement('h5');
+        areasHeading.textContent = 'Areas served';
+        areasDiv.appendChild(areasHeading);
+        const areasText = document.createElement('p');
+        areasText.textContent = mapConfig.areas;
+        areasDiv.appendChild(areasText);
+        mapSection.appendChild(areasDiv);
       }
-    });
+
+      panel.appendChild(mapSection);
+
+      // Add "View map" toggle
+      const mapToggle = document.createElement('button');
+      mapToggle.className = 'tabs-dealer-locator-map-toggle';
+      mapToggle.textContent = 'View map';
+      panel.appendChild(mapToggle);
+
+      mapToggle.addEventListener('click', () => {
+        const isOpen = mapSection.classList.contains('active');
+        if (isOpen) {
+          mapSection.classList.remove('active');
+          mapToggle.textContent = 'View map';
+        } else {
+          mapSection.classList.add('active');
+          mapToggle.textContent = 'Close map';
+        }
+      });
+    }
 
     contentBox.appendChild(panel);
   });

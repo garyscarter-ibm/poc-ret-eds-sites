@@ -1,20 +1,19 @@
 import { createCarouselButton, wireCarouselScroll } from '../../scripts/block-utils.js';
 
-// Model-specific showcase background colors (matched from original site)
-const MODEL_COLORS = {
-  'mini cooper electric': { bg: '#2D46DF', light: false },
-  'mini countryman electric': { bg: '#1B6B4A', light: false },
-  'mini aceman': { bg: '#F06A00', light: true },
-  'mini john cooper works': { bg: '#B71C2A', light: false },
-  'mini cooper convertible': { bg: '#7DD4E8', light: true },
-  'mini cooper 5-door': { bg: '#3648DF', light: false },
-  'mini cooper': { bg: '#2DD4A8', light: true },
-  'mini countryman': { bg: '#1B6B4A', light: false },
-};
+const DEFAULT_BG = '#2D46DF';
 
-function getModelColor(name) {
-  const key = name.toLowerCase().trim();
-  return MODEL_COLORS[key] || { bg: '#2D46DF', light: false };
+/**
+ * Parse a color column value into bg color and light/dark mode.
+ * Accepts: "#2D46DF", "#2D46DF light", "light #7DD4E8", or just "light" (uses default).
+ */
+function parseColorValue(text) {
+  const value = (text || '').trim().toLowerCase();
+  if (!value) return { bg: DEFAULT_BG, light: false };
+
+  const isLight = value.includes('light');
+  const colorMatch = value.match(/#[0-9a-f]{3,8}/i);
+  const bg = colorMatch ? colorMatch[0] : DEFAULT_BG;
+  return { bg, light: isLight };
 }
 
 export default function decorate(block) {
@@ -22,10 +21,12 @@ export default function decorate(block) {
   if (rows.length === 0) return;
 
   // Parse model data from rows
+  // Row structure: [name | content (image, tagline, links) | optional: bg color]
   const models = rows.map((row) => {
     const cols = [...row.children];
     const nameCol = cols[0];
     const contentCol = cols[1];
+    const colorCol = cols[2];
     const name = nameCol?.textContent?.trim() || '';
     const img = contentCol?.querySelector('img');
     const tagline = contentCol?.querySelector('h3')?.textContent?.trim() || '';
@@ -33,8 +34,9 @@ export default function decorate(block) {
       text: a.textContent.trim(),
       href: a.getAttribute('href') || '#',
     }));
+    const color = parseColorValue(colorCol?.textContent);
     return {
-      name, img, tagline, links,
+      name, img, tagline, links, color,
     };
   });
 
@@ -129,9 +131,8 @@ export default function decorate(block) {
     const model = models[idx];
     if (!model) return;
 
-    const color = getModelColor(model.name);
-    showcase.style.backgroundColor = color.bg;
-    showcase.classList.toggle('light-bg', color.light);
+    showcase.style.backgroundColor = model.color.bg;
+    showcase.classList.toggle('light-bg', model.color.light);
 
     const prevIndex = activeIndex;
     activeIndex = idx;
