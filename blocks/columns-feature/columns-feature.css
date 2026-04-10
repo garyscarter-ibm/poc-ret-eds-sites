@@ -140,7 +140,9 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) {
   max-width: 1440px;
   position: relative;
   left: 50%;
-  margin-left: -50vw;
+  transform: translateX(-50%);
+  margin-left: 0;
+  margin-right: 0;
   padding: 0;
 }
 
@@ -152,6 +154,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
 /* MINI welcome: main is full-width so no breakout needed — just center */
 main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
   left: auto;
+  transform: none;
   margin-left: auto;
   margin-right: auto;
 }
