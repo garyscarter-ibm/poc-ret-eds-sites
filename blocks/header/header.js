@@ -94,11 +94,13 @@ openOnKeydown = (e) => {
 };
 
 export default async function decorate(block) {
-  const theme = getMetadata('theme');
+  const theme = getMetadata('theme') || (document.body.classList.contains('mini') ? 'mini' : '');
   if (theme) block.classList.add(theme);
 
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  const isMini = theme === 'mini';
+  const defaultNav = isMini ? '/nav-mini' : '/nav';
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (!resp.ok) return;
