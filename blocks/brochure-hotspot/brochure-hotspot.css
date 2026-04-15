@@ -1,0 +1,122 @@
+/* stylelint-disable */
+
+.brochure-hotspot {
+    padding: 40px 20px;
+}
+
+.brochure-hotspot-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brochure-hotspot-title {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.brochure-hotspot-title h3 {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.brochure-hotspot-title p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+}
+
+/* Image container */
+.brochure-hotspot-image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.brochure-hotspot-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Hotspot buttons */
+.brochure-hotspot-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.brochure-hotspot-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(28, 105, 212, 0.8);
+    border: 2px solid #fff;
+    display: block;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.brochure-hotspot-dot::after {
+    content: '+';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.brochure-hotspot-btn:hover .brochure-hotspot-dot {
+    transform: scale(1.2);
+    background: rgba(28, 105, 212, 1);
+}
+
+.brochure-hotspot-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.brochure-hotspot-btn:hover .brochure-hotspot-label {
+    opacity: 1;
+}
+
+@media (min-width: 600px) {
+    .brochure-hotspot {
+        padding: 60px 40px;
+    }
+
+    .brochure-hotspot-dot {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brochure-hotspot-dot::after {
+        font-size: 18px;
+    }
+
+    .brochure-hotspot-label {
+        font-size: 0.6875rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-hotspot {
+        padding: 80px 60px;
+    }
+}

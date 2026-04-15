@@ -1,0 +1,160 @@
+/* stylelint-disable */
+
+/* ===== Brochure Navigation ===== */
+.brochure-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.brochure-navbar {
+    display: flex;
+    align-items: center;
+    height: var(--brochure-nav-height, 48px);
+    padding: 0 16px;
+    position: relative;
+}
+
+.brochure-nav-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.brochure-nav-logo img {
+    width: 32px;
+    height: 32px;
+}
+
+.brochure-nav-index-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-family: var(--brochure-font, BMWTypeNextLatin, sans-serif);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.brochure-nav-index-btn:hover {
+    border-color: #fff;
+}
+
+/* ===== Dropdown ===== */
+.brochure-nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.97);
+    backdrop-filter: blur(10px);
+    padding: 16px 0;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.brochure-nav-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.brochure-nav-dropdown li {
+    margin: 0;
+    padding: 0;
+}
+
+.brochure-nav-dropdown li a {
+    display: block;
+    padding: 10px 24px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.brochure-nav-dropdown li a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.brochure-nav-dropdown li.active a {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ===== Page Navigation (Prev/Next) ===== */
+.brochure-page-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--brochure-page-nav-height, 40px);
+    padding: 0 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brochure-page-nav-prev,
+.brochure-page-nav-next {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    transition: color 0.2s ease;
+}
+
+.brochure-page-nav-prev:hover,
+.brochure-page-nav-next:hover {
+    color: #fff;
+}
+
+.brochure-page-nav-prev.disabled,
+.brochure-page-nav-next.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.brochure-page-nav-prev svg,
+.brochure-page-nav-next svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.brochure-page-nav-label {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .brochure-page-nav-label {
+        display: inline;
+    }
+
+    .brochure-nav-logo img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-navbar {
+        height: var(--brochure-nav-height, 56px);
+        padding: 0 24px;
+    }
+
+    .brochure-nav-dropdown li a {
+        padding: 12px 32px;
+    }
+}

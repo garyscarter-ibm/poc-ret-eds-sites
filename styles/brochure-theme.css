@@ -1,0 +1,208 @@
+/* stylelint-disable */
+
+/*
+ * BMW X7 Brochure Theme
+ * Dark luxury brochure styling for scroll-driven digital experience
+ */
+
+/* ===== Brochure CSS Custom Properties ===== */
+:root {
+    --brochure-bg: #000;
+    --brochure-bg-dark: #0a0a0a;
+    --brochure-text: #fff;
+    --brochure-text-secondary: #999;
+    --brochure-text-muted: #666;
+    --brochure-accent: #1c69d4;
+    --brochure-accent-hover: #1557b0;
+    --brochure-separator: #fff;
+    --brochure-overlay-bg: rgba(0, 0, 0, 0.85);
+    --brochure-nav-height: 48px;
+    --brochure-page-nav-height: 40px;
+    --brochure-content-width: 1200px;
+    --brochure-content-narrow: 800px;
+    --brochure-section-padding: 60px 20px;
+    --brochure-transition-duration: 0.8s;
+    --brochure-transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --brochure-font: BMWTypeNextLatin, bmw-fallback, sans-serif;
+}
+
+/* ===== Brochure Body Theme ===== */
+body.brochure {
+    background-color: var(--brochure-bg);
+    color: var(--brochure-text);
+    font-family: var(--brochure-font);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body.brochure header,
+body.brochure footer {
+    display: none;
+}
+
+/* ===== Brochure Main ===== */
+body.brochure main {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Brochure Sections ===== */
+body.brochure .section {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background-color: var(--brochure-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+body.brochure .section > .section-container,
+body.brochure .section > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Scroll Animation States ===== */
+body.brochure .section.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity var(--brochure-transition-duration) var(--brochure-transition-easing),
+        transform var(--brochure-transition-duration) var(--brochure-transition-easing);
+}
+
+body.brochure .section.animate.in-viewport {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered child animations */
+body.brochure .section.animate .animate-child {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.6s var(--brochure-transition-easing),
+        transform 0.6s var(--brochure-transition-easing);
+}
+
+body.brochure .section.animate.in-viewport .animate-child {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.brochure .section.animate.in-viewport .animate-child:nth-child(1) { transition-delay: 0.1s; }
+body.brochure .section.animate.in-viewport .animate-child:nth-child(2) { transition-delay: 0.25s; }
+body.brochure .section.animate.in-viewport .animate-child:nth-child(3) { transition-delay: 0.4s; }
+body.brochure .section.animate.in-viewport .animate-child:nth-child(4) { transition-delay: 0.55s; }
+
+/* ===== Brochure Typography ===== */
+body.brochure h1,
+body.brochure h2,
+body.brochure h3,
+body.brochure h4,
+body.brochure h5,
+body.brochure h6 {
+    color: var(--brochure-text);
+    font-family: var(--brochure-font);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+}
+
+body.brochure h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+body.brochure h3 {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+body.brochure h4 {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+body.brochure p {
+    color: var(--brochure-text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 300;
+    margin: 0;
+}
+
+body.brochure a {
+    color: var(--brochure-accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+body.brochure a:hover {
+    color: var(--brochure-accent-hover);
+}
+
+/* ===== Brochure Separator ===== */
+body.brochure hr {
+    border: none;
+    width: 40px;
+    height: 2px;
+    background-color: var(--brochure-separator);
+    margin: 16px 0;
+}
+
+/* ===== Brochure Subtitle (small uppercase label) ===== */
+body.brochure .brochure-subtitle {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brochure-text);
+    margin-bottom: 8px;
+}
+
+/* ===== Content Container ===== */
+body.brochure .brochure-content {
+    max-width: var(--brochure-content-width);
+    margin: 0 auto;
+    padding: var(--brochure-section-padding);
+}
+
+body.brochure .brochure-content-narrow {
+    max-width: var(--brochure-content-narrow);
+    margin: 0 auto;
+    padding: var(--brochure-section-padding);
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 600px) {
+    :root {
+        --brochure-section-padding: 80px 40px;
+    }
+}
+
+@media (min-width: 900px) {
+    :root {
+        --brochure-section-padding: 100px 60px;
+        --brochure-nav-height: 56px;
+    }
+
+    body.brochure h2 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    :root {
+        --brochure-section-padding: 120px 80px;
+    }
+}

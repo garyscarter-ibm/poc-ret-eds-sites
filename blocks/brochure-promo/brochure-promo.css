@@ -1,0 +1,82 @@
+/* stylelint-disable */
+
+.brochure-promo {
+    padding: 0;
+    background: #111;
+}
+
+.brochure-promo-inner {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brochure-promo-text {
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brochure-promo-text h4 {
+    color: #fff;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.brochure-promo-text p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.brochure-promo-text a {
+    color: var(--brochure-accent, #1c69d4);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.brochure-promo-text a:hover {
+    text-decoration: underline;
+}
+
+.brochure-promo-image {
+    flex-shrink: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.brochure-promo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (min-width: 900px) {
+    .brochure-promo-inner {
+        flex-direction: row;
+        min-height: 400px;
+    }
+
+    .brochure-promo-text {
+        flex: 1;
+        padding: 60px 48px;
+    }
+
+    .brochure-promo-image {
+        flex: 1;
+        aspect-ratio: auto;
+    }
+}

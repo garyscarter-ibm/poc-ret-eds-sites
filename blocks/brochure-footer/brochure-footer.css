@@ -1,0 +1,118 @@
+/* stylelint-disable */
+
+.brochure-footer {
+    background: #1a1a1a;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brochure-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px 32px;
+}
+
+/* Social Section */
+.brochure-footer-social {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.brochure-footer-social h3 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.brochure-footer-social-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.brochure-footer-social-links a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s ease;
+    display: flex;
+}
+
+.brochure-footer-social-links a:hover {
+    color: #fff;
+}
+
+.brochure-footer-social-links svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Links Section */
+.brochure-footer-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.brochure-footer-column h3 {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.brochure-footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.brochure-footer-column li {
+    margin-bottom: 8px;
+}
+
+.brochure-footer-column a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8125rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.brochure-footer-column a:hover {
+    color: #fff;
+}
+
+/* Legal */
+.brochure-footer-legal {
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brochure-footer-legal p {
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.6;
+    margin: 0 0 8px;
+}
+
+@media (min-width: 600px) {
+    .brochure-footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brochure-footer-inner {
+        padding: 48px 40px 32px;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-footer-links {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

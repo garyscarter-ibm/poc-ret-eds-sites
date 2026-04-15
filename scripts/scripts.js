@@ -90,6 +90,11 @@ async function loadEager(doc) {
     if (!document.body.classList.contains('motorrad') && main.querySelector('.motorrad')) {
       document.body.classList.add('motorrad');
     }
+    // Auto-detect Brochure theme
+    if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || getMetadata('theme') === 'brochure') {
+      document.body.classList.add('brochure');
+      await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
+    }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
     await loadSection(main.querySelector('.section'), waitForFirstImage);
@@ -132,6 +137,13 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // Brochure: scroll-triggered section animations
+  if (document.body.classList.contains('brochure')) {
+    const { prepareBrochureAnimations, initBrochureAnimations } = await import('./brochure-animations.js');
+    prepareBrochureAnimations(main);
+    initBrochureAnimations(main);
+  }
 
   // Motorrad: animate section dividers on scroll
   if (document.body.classList.contains('motorrad')) {

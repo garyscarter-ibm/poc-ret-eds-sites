@@ -1,0 +1,59 @@
+/* stylelint-disable */
+
+.brochure-hero {
+    padding: 0;
+}
+
+.brochure-hero-inner {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.brochure-hero-inner.has-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.brochure-hero-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 24px 80px;
+    max-width: 800px;
+}
+
+.brochure-hero-overlay h2 {
+    color: #fff;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.brochure-hero-overlay p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+    .brochure-hero-inner {
+        min-height: 100vh;
+    }
+
+    .brochure-hero-overlay {
+        padding: 80px 60px 120px;
+    }
+}

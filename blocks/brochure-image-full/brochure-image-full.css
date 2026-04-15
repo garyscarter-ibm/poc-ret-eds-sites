@@ -1,0 +1,18 @@
+/* stylelint-disable */
+
+.brochure-image-full {
+    padding: 0;
+    line-height: 0;
+}
+
+.brochure-image-full-inner {
+    width: 100%;
+    overflow: hidden;
+}
+
+.brochure-image-full-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
