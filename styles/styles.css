@@ -388,6 +388,25 @@ body.motorrad main > .section > .default-content-wrapper {
   max-width: var(--content-width);
 }
 
+/* Motorrad: spacing between block wrappers within sections */
+body.motorrad main > .section > .columns-feature-wrapper {
+  margin-bottom: 32px;
+}
+
+body.motorrad main > .section > .columns-feature-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+body.motorrad main > .section > .default-content-wrapper + .columns-feature-wrapper,
+body.motorrad main > .section.columns-feature-container:has(.columns-feature.welcome) > .default-content-wrapper + .columns-feature-wrapper {
+  margin-top: 0;
+}
+
+/* Motorrad: padding on heading wrapper prevents margin collapse with block below */
+body.motorrad main > .section > .default-content-wrapper:has(h2) {
+  padding-bottom: 48px;
+}
+
 /* Motorrad section headings: centered uppercase with divider */
 body.motorrad main > .section > .default-content-wrapper > h2 {
   font-family: var(--heading-font-family);
@@ -396,7 +415,7 @@ body.motorrad main > .section > .default-content-wrapper > h2 {
   text-transform: uppercase;
   text-align: center;
   color: rgb(22 23 26);
-  margin: 0 0 var(--spacing-xl);
+  margin: 0;
   padding-top: 0;
   position: relative;
   overflow: hidden;
