@@ -67,3 +67,13 @@ main > .section.cards-car-locator-container {
     flex: 1;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.cards-car-locator.motorrad h3 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.cards-car-locator.motorrad p {
+  font-family: var(--heading-font-family);
+}

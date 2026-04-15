@@ -252,3 +252,16 @@ footer .footer.mini .footer-legal ul {
     grid-template-columns: 1fr;
   }
 }
+
+/* === Motorrad Brand Variant === */
+footer .footer.motorrad {
+  font-family: var(--heading-font-family);
+}
+
+footer .footer.motorrad h2 {
+  font-family: var(--heading-font-family);
+}
+
+footer .footer.motorrad a {
+  font-family: var(--heading-font-family);
+}

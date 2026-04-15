@@ -832,3 +832,128 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     padding: 0;
   }
 }
+
+/* ============================================================
+   Motorrad Brand Variant
+   White background, relative position, dark text, logo on right
+   Layout: [Hamburger + MENU | tools] ........... [BMW Motorrad logo]
+   ============================================================ */
+
+/* Override global header height for Motorrad's relative positioning */
+header:has(.header.motorrad) {
+  height: auto;
+}
+
+/* Nav wrapper: white background, relative position (takes up space) */
+header .header.motorrad .nav-wrapper {
+  background-color: var(--color-white);
+  position: relative;
+}
+
+/* Nav bar: 85px tall, dark text */
+header .header.motorrad nav {
+  height: 85px;
+  color: var(--color-black);
+}
+
+/* Bottom border */
+header .header.motorrad nav::after {
+  background-color: #e6e6e6;
+  left: 0;
+  right: 0;
+}
+
+/* All nav links: dark text */
+header .header.motorrad nav a:any-link {
+  color: var(--color-black);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* Hamburger: dark color, show MENU label */
+header .header.motorrad nav .nav-hamburger button {
+  color: var(--color-black);
+}
+
+/* Brand: right side with Motorrad logo */
+header .header.motorrad .nav-brand {
+  order: 3;
+  margin-left: auto;
+}
+
+/* Motorrad logo: 170px wide to match original */
+header .header.motorrad nav .nav-brand img {
+  width: 170px;
+  height: auto;
+}
+
+/* Hide dealer name text — Motorrad uses logo only on right */
+header .header.motorrad .nav-brand p:first-child {
+  display: none;
+}
+
+/* Tools: left side after hamburger */
+header .header.motorrad .nav-tools {
+  order: 2;
+  margin-left: 48px;
+}
+
+/* Tool links: dark text */
+header .header.motorrad nav .nav-tools a:any-link {
+  color: var(--color-black);
+  font-size: var(--body-font-size-s);
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+/* Phone link: no icon, just text */
+header .header.motorrad nav .nav-tools a[href^="tel:"] {
+  padding-left: 0;
+  background-image: none;
+}
+
+/* Expanded menu: keep white background */
+header .header.motorrad nav[aria-expanded='true'] {
+  background-color: var(--color-white);
+}
+
+header .header.motorrad nav[aria-expanded='true'] .nav-brand p:first-child {
+  display: none;
+}
+
+/* Expanded: brand logo stays visible */
+header .header.motorrad nav[aria-expanded='true'] .nav-brand img {
+  visibility: visible;
+}
+
+header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child::after {
+  content: none;
+}
+
+/* === Motorrad Responsive === */
+@media (max-width: 767px) {
+  header .header.motorrad nav .nav-brand img {
+    width: 120px;
+  }
+
+  /* Hide tool links on mobile — just hamburger + logo */
+  header .header.motorrad .nav-tools {
+    display: none;
+  }
+
+  header .header.motorrad nav[aria-expanded='true'] .nav-tools {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+  }
+}

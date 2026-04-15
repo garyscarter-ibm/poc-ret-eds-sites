@@ -94,3 +94,12 @@
     gap: 20px;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.tiles-contact.motorrad h3 {
+  font-family: var(--heading-font-family);
+}
+
+.tiles-contact.motorrad p {
+  font-family: var(--heading-font-family);
+}

@@ -205,3 +205,16 @@
   color: #0085ac;
   font-family: MINISansSerif-Regular, sans-serif;
 }
+
+/* === Motorrad Brand Variant === */
+.tabs-dealer-locator.motorrad .tabs-dealer-locator-tab {
+  font-family: var(--heading-font-family);
+}
+
+.tabs-dealer-locator.motorrad h4 {
+  font-family: var(--heading-font-family);
+}
+
+.tabs-dealer-locator.motorrad p {
+  font-family: var(--heading-font-family);
+}

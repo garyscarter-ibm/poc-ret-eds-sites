@@ -1,0 +1,23 @@
+{
+  "templates": [
+    {
+      "name": "motorrad-homepage",
+      "urls": ["https://www.bmw-motorrad.co.uk/cotswold-cheltenham/en/home.html"],
+      "description": "BMW Motorrad dealer homepage with hero, model range, offers, services, and dealer locator",
+      "blocks": [
+        {
+          "name": "hero-dealership",
+          "instances": ["section.dealerheader"]
+        },
+        {
+          "name": "columns-feature",
+          "instances": ["section.mediacopy"]
+        },
+        {
+          "name": "banner-terms",
+          "instances": [".shortnote"]
+        }
+      ]
+    }
+  ]
+}

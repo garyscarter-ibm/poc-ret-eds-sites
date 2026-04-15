@@ -654,3 +654,92 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
     padding: 120px 56px 56px;
   }
 }
+
+/* ============================================================
+   Motorrad Brand Variant
+   Dark near-black buttons, no ratings, uppercase CTAs
+   ============================================================ */
+.hero-dealership.motorrad {
+  font-family: var(--heading-font-family);
+}
+
+/* Motorrad heading: BMW font, bold */
+.hero-dealership.motorrad .hero-dealership-title {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.hero-dealership.motorrad .hero-dealership-subtitle {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+}
+
+/* Motorrad CTA buttons: dark near-black, square, uppercase */
+.hero-dealership.motorrad .hero-dealership-btn {
+  margin-right: 12px;
+  margin-bottom: 0;
+}
+
+.hero-dealership.motorrad .hero-dealership-btn:last-child {
+  margin-right: 0;
+}
+
+.hero-dealership.motorrad .hero-dealership-btn-primary {
+  background-color: rgb(22 23 26);
+  border: 2px solid rgb(255 255 255);
+  color: var(--color-white);
+  border-radius: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.hero-dealership.motorrad .hero-dealership-btn-primary:hover {
+  background-color: rgb(255 255 255);
+  color: rgb(22 23 26);
+  border-color: rgb(22 23 26);
+}
+
+.hero-dealership.motorrad a.hero-dealership-btn-secondary,
+.hero-dealership.motorrad a.hero-dealership-btn-secondary:any-link,
+.section.dark .hero-dealership.motorrad a.hero-dealership-btn-secondary:any-link {
+  background-color: rgb(255 255 255 / 90%);
+  border: 2px solid rgb(22 23 26);
+  color: rgb(22 23 26);
+  border-radius: 0;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+.hero-dealership.motorrad a.hero-dealership-btn-secondary:hover {
+  background-color: rgb(22 23 26);
+  color: var(--color-white);
+}
+
+/* Motorrad mobile: consistent vertical spacing when stacked */
+@media (max-width: 767px) {
+  .hero-dealership.motorrad .hero-dealership-btn {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  .hero-dealership.motorrad .hero-dealership-btn:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Motorrad: hide ratings section — Motorrad doesn't have reviews */
+.hero-dealership.motorrad .hero-dealership-ratings {
+  display: none;
+}

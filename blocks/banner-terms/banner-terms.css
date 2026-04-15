@@ -27,3 +27,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* === Motorrad Brand Variant === */
+.banner-terms.motorrad p {
+  font-family: var(--heading-font-family);
+}

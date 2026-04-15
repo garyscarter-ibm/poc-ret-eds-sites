@@ -183,3 +183,14 @@
     min-height: 240px;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.cards-promo.motorrad h3,
+.cards-promo.motorrad h5 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.cards-promo.motorrad p {
+  font-family: var(--heading-font-family);
+}

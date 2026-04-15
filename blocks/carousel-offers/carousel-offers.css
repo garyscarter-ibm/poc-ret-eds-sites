@@ -134,3 +134,19 @@ main > .section.carousel-offers-container:has(.carousel-offers.mini) > .carousel
     flex: 0 0 326px;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.carousel-offers.motorrad h5 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.carousel-offers.motorrad p {
+  font-family: var(--heading-font-family);
+}
+
+.carousel-offers.motorrad a {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  text-transform: uppercase;
+}

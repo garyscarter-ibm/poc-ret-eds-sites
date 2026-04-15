@@ -1,0 +1,26 @@
+{
+  "status": "success",
+  "url": "https://www.bmw-motorrad.co.uk/cotswold-cheltenham/en/home.html",
+  "path": "cotswold-cheltenham/en/home",
+  "timestamp": "2026-04-14T10:48:12.467Z",
+  "title": "Home | BMW Motorrad UK",
+  "template": "motorrad-homepage",
+  "blocks": [
+    "hero-dealership",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature",
+    "columns-feature"
+  ]
+}

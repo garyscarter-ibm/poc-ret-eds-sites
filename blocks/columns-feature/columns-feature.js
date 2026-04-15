@@ -56,6 +56,28 @@ function buildOverlapLayout(row, imageRight = false) {
 export default function decorate(block) {
   const isMini = block.classList.contains('mini');
   const isWelcome = block.classList.contains('welcome');
+  const isMotorrad = block.classList.contains('motorrad');
+
+  // Motorrad content has image and text as separate rows (1 col each)
+  // instead of 2 columns in a single row. Merge them into proper
+  // 2-column rows: [image-col, text-col].
+  if (isMotorrad) {
+    const rows = [...block.children];
+    for (let i = 0; i < rows.length - 1; i += 1) {
+      const row = rows[i];
+      const nextRow = rows[i + 1];
+      const rowHasImg = row.querySelector('img') && !row.querySelector('h3, h5');
+      const nextHasText = nextRow.querySelector('h3, h5') && !nextRow.querySelector('img');
+      if (rowHasImg && nextHasText) {
+        // Wrap all text children in a single column div
+        const textCol = document.createElement('div');
+        while (nextRow.firstChild) textCol.appendChild(nextRow.firstChild);
+        row.appendChild(textCol);
+        nextRow.remove();
+        rows.splice(i + 1, 1);
+      }
+    }
+  }
 
   const rows = [...block.children];
   rows.forEach((row, i) => {
@@ -71,10 +93,22 @@ export default function decorate(block) {
       const imageRight = isWelcome ? !!(i % 2 === 0) : !!(i % 2 !== 0);
       buildOverlapLayout(row, imageRight);
     } else {
-      // BMW: standard side-by-side layout
+      // BMW / Motorrad: standard side-by-side layout
       if (imgCol) imgCol.classList.add('columns-feature-image');
       if (textCol) textCol.classList.add('columns-feature-text');
-      if (i % 2 !== 0) row.classList.add('columns-feature-alt');
+
+      // For motorrad, each block is a separate element so i is always 0.
+      // Determine alternation from sibling block index within the section.
+      let altIndex = i;
+      if (isMotorrad && rows.length === 1) {
+        const wrapper = block.closest('.columns-feature-wrapper');
+        const section = wrapper?.parentElement;
+        if (section) {
+          const siblingBlocks = [...section.querySelectorAll('.columns-feature.motorrad:not(.welcome)')];
+          altIndex = siblingBlocks.indexOf(block);
+        }
+      }
+      if (altIndex % 2 !== 0) row.classList.add('columns-feature-alt');
     }
   });
 

@@ -276,3 +276,18 @@ main > .section > .columns-model-showcase-wrapper {
     align-self: flex-end;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.columns-model-showcase.motorrad h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}
+
+.columns-model-showcase.motorrad p {
+  font-family: var(--heading-font-family);
+}
+
+.columns-model-showcase.motorrad a {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}

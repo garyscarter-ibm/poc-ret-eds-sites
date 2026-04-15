@@ -94,12 +94,15 @@ openOnKeydown = (e) => {
 };
 
 export default async function decorate(block) {
-  const theme = getMetadata('theme') || (document.body.classList.contains('mini') ? 'mini' : '');
+  const theme = getMetadata('theme')
+    || (document.body.classList.contains('mini') ? 'mini' : '')
+    || (document.body.classList.contains('motorrad') ? 'motorrad' : '');
   if (theme) block.classList.add(theme);
 
   const navMeta = getMetadata('nav');
-  const isMini = theme === 'mini';
-  const defaultNav = isMini ? '/nav-mini' : '/nav';
+  let defaultNav = '/nav';
+  if (theme === 'mini') defaultNav = '/nav-mini';
+  else if (theme === 'motorrad') defaultNav = '/nav-motorrad';
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : defaultNav;
   const resp = await fetch(`${navPath}.plain.html`);
 

@@ -80,3 +80,9 @@
     padding: 0 0 40px;
   }
 }
+
+/* === Motorrad Brand Variant === */
+.tiles-cta.motorrad a {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+}

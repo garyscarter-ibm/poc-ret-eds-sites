@@ -1,12 +1,15 @@
 import { getMetadata } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
-  const theme = getMetadata('theme') || (document.body.classList.contains('mini') ? 'mini' : '');
+  const theme = getMetadata('theme')
+    || (document.body.classList.contains('mini') ? 'mini' : '')
+    || (document.body.classList.contains('motorrad') ? 'motorrad' : '');
   if (theme) block.classList.add(theme);
 
   const footerMeta = getMetadata('footer');
-  const isMini = theme === 'mini';
-  const defaultFooter = isMini ? '/footer-mini' : '/footer';
+  let defaultFooter = '/footer';
+  if (theme === 'mini') defaultFooter = '/footer-mini';
+  else if (theme === 'motorrad') defaultFooter = '/footer-motorrad';
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : defaultFooter;
   const resp = await fetch(`${footerPath}.plain.html`);
 

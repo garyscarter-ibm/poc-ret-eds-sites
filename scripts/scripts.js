@@ -86,6 +86,10 @@ async function loadEager(doc) {
     if (!document.body.classList.contains('mini') && main.querySelector('.mini')) {
       document.body.classList.add('mini');
     }
+    // Auto-detect Motorrad theme from block classes
+    if (!document.body.classList.contains('motorrad') && main.querySelector('.motorrad')) {
+      document.body.classList.add('motorrad');
+    }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
     await loadSection(main.querySelector('.section'), waitForFirstImage);
@@ -128,6 +132,19 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // Motorrad: animate section dividers on scroll
+  if (document.body.classList.contains('motorrad')) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    main.querySelectorAll('.default-content-wrapper > h2').forEach((h2) => observer.observe(h2));
+  }
 }
 
 /**
