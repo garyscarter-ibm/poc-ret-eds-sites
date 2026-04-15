@@ -1,49 +1,99 @@
+/* stylelint-disable */
 
 .brochure-text-reveal {
-    padding: 80px 24px;
-    text-align: center;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 40vh;
-    background: var(--brochure-bg);
+    background: var(--brochure-bg, #fff);
 }
 
 .brochure-text-reveal-inner {
-    max-width: 800px;
+    max-width: 1024px;
+    width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
 }
 
+/* Two-column layout: 37.5% empty left, 62.5% text right */
+.brochure-text-reveal-inner::before {
+    content: '';
+    flex: 0 0 37.5%;
+}
+
+/* Text content fills the right column */
+.brochure-text-reveal-content {
+    flex: 0 0 62.5%;
+    max-width: 62.5%;
+}
+
+/* Subtitle: left-aligned, light weight, wide letter-spacing */
 .brochure-text-reveal-inner p {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--brochure-text);
-    margin-bottom: 12px;
+    color: #262626;
+    margin-bottom: 30px;
+    text-align: left;
 }
 
+/* Separator: left-aligned, 104px wide, 1px height */
 .brochure-text-reveal-inner hr {
     border: none;
-    width: 40px;
-    height: 2px;
-    background: var(--brochure-separator);
-    margin: 0 auto 20px;
+    width: 104px;
+    height: 1px;
+    background: #262626;
+    margin: 0 0 16px;
 }
 
-.brochure-text-reveal-inner h2 {
-    color: var(--brochure-text);
-    font-size: clamp(2.5rem, 6vw, 5rem);
+/* First heading (THIS IS / ELEGANCE): 80px light — high specificity to override theme */
+.brochure-text-reveal .brochure-text-reveal-inner h2 {
+    color: #262626;
+    font-size: 80px;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.03em;
-    line-height: 1.1;
-    margin-bottom: 4px;
+    letter-spacing: normal;
+    line-height: 84px;
+    margin: 0 0 8px;
+    text-align: left;
 }
 
-@media (min-width: 900px) {
-    .brochure-text-reveal {
-        padding: 120px 60px;
-        min-height: 50vh;
+/* Second heading (FORWARDISM. / IN EVERY DETAIL.): 50px light */
+.brochure-text-reveal .brochure-text-reveal-inner h2 + h2 {
+    font-size: 50px;
+    line-height: 52.5px;
+    margin: 0 0 40px;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 899px) {
+    .brochure-text-reveal-inner {
+        flex-direction: column;
+        padding: 60px 24px;
+    }
+
+    .brochure-text-reveal-inner::before {
+        display: none;
+    }
+
+    .brochure-text-reveal-content {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .brochure-text-reveal .brochure-text-reveal-inner h2 {
+        font-size: clamp(2.5rem, 10vw, 80px);
+        line-height: 1.05;
+    }
+
+    .brochure-text-reveal .brochure-text-reveal-inner h2 + h2 {
+        font-size: clamp(1.75rem, 7vw, 50px);
+        line-height: 1.05;
+    }
+
+    .brochure-text-reveal-inner hr {
+        width: 60px;
     }
 }
