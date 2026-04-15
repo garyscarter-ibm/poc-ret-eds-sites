@@ -29,7 +29,7 @@
 }
 
 /* Subtitle: left-aligned, light weight, wide letter-spacing */
-.brochure-text-reveal-inner p {
+.brochure-text-reveal .brochure-text-reveal-inner p {
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 6px;
