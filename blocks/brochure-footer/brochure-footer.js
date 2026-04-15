@@ -24,6 +24,7 @@ export default async function decorate(block) {
         <li><a href="https://stock.bmw.co.uk/marketing_search?model=G07" target="_blank" rel="noopener noreferrer">New Car Locator</a></li>
         <li><a href="https://www.bmw.co.uk/en/all-models.html" target="_blank" rel="noopener noreferrer">Build your BMW</a></li>
         <li><a href="https://range-comparator.bmwlaunchpad.co.uk" target="_blank" rel="noopener noreferrer">Compare Dimensions</a></li>
+        <li><a href="https://its-juice-2.foleon.com/explore-bmw/discover-the-my-bmw-app/your-world-my-bmw/" target="_blank" rel="noopener noreferrer">My BMW App</a></li>
       </ul>
     </div>
     <div class="brochure-footer-column">

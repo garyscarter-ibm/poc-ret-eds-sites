@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     min-height: 40vh;
+    background: #fff;
 }
 
 .brochure-text-reveal-inner {
@@ -19,7 +20,7 @@
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #fff;
+    color: #262626;
     margin-bottom: 12px;
 }
 
@@ -27,13 +28,13 @@
     border: none;
     width: 40px;
     height: 2px;
-    background: #fff;
+    background: #262626;
     margin: 0 auto 20px;
 }
 
 .brochure-text-reveal-inner h2 {
-    color: #fff;
-    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    color: #262626;
+    font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.03em;

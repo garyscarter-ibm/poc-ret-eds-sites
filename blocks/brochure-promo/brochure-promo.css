@@ -2,7 +2,7 @@
 
 .brochure-promo {
     padding: 0;
-    background: #111;
+    background: #f5f5f5;
 }
 
 .brochure-promo-inner {
@@ -20,7 +20,7 @@
 }
 
 .brochure-promo-text h4 {
-    color: #fff;
+    color: #262626;
     font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     font-weight: 700;
     text-transform: uppercase;
@@ -30,7 +30,7 @@
 }
 
 .brochure-promo-text p {
-    color: rgba(255, 255, 255, 0.7);
+    color: #4d4d4d;
     font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 20px;

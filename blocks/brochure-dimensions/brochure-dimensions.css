@@ -2,7 +2,7 @@
 
 .brochure-dimensions {
     padding: 48px 24px;
-    background: #0a0a0a;
+    background: #fff;
 }
 
 .brochure-dimensions-inner {
@@ -12,26 +12,26 @@
 }
 
 .brochure-dimensions-inner h4 {
-    color: #fff;
+    color: #262626;
     font-size: 1.25rem;
     margin-bottom: 16px;
 }
 
 .brochure-dimensions-inner p {
-    color: rgba(255, 255, 255, 0.7);
+    color: #4d4d4d;
     font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 20px;
 }
 
 .brochure-dimensions-inner a {
-    color: var(--brochure-accent, #1c69d4);
+    color: #262626;
     font-weight: 700;
     font-size: 0.875rem;
 }
 
 .brochure-dimensions-inner a:hover {
-    text-decoration: underline;
+    color: var(--brochure-accent, #1c69d4);
 }
 
 @media (min-width: 900px) {

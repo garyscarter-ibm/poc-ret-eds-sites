@@ -1,8 +1,7 @@
 /* stylelint-disable */
 
 .brochure-footer {
-    background: #1a1a1a;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: #262626;
 }
 
 .brochure-footer-inner {
@@ -11,18 +10,21 @@
     padding: 48px 20px 32px;
 }
 
-/* Social Section */
+/* Social Section — right-aligned */
 .brochure-footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     margin-bottom: 32px;
     padding-bottom: 32px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .brochure-footer-social h3 {
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
     color: #fff;
     margin-bottom: 16px;
 }
@@ -32,11 +34,11 @@
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 20px;
+    gap: 16px;
 }
 
 .brochure-footer-social-links a {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     transition: color 0.2s ease;
     display: flex;
 }
@@ -46,11 +48,11 @@
 }
 
 .brochure-footer-social-links svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
-/* Links Section */
+/* Links Section — 3-column grid, left-aligned */
 .brochure-footer-links {
     display: grid;
     grid-template-columns: 1fr;
@@ -59,12 +61,12 @@
 }
 
 .brochure-footer-column h3 {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .brochure-footer-column ul {
@@ -74,12 +76,13 @@
 }
 
 .brochure-footer-column li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .brochure-footer-column a {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    font-weight: 400;
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -90,29 +93,29 @@
 
 /* Legal */
 .brochure-footer-legal {
-    padding-top: 24px;
+    padding-top: 32px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .brochure-footer-legal p {
-    font-size: 0.6875rem;
-    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.6;
     margin: 0 0 8px;
 }
 
 @media (min-width: 600px) {
     .brochure-footer-links {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .brochure-footer-inner {
-        padding: 48px 40px 32px;
+        padding: 60px 40px 40px;
     }
 }
 
 @media (min-width: 900px) {
-    .brochure-footer-links {
-        grid-template-columns: repeat(3, 1fr);
+    .brochure-footer-inner {
+        padding: 80px 60px 48px;
     }
 }

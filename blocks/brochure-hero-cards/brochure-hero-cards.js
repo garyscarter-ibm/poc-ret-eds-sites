@@ -3,46 +3,59 @@ export default async function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-hero-cards-inner';
 
-  // Rows are card items: image + link
-  // Last row may be the hero heading + CTA links section
-  const cards = document.createElement('div');
-  cards.className = 'brochure-hero-cards-grid';
+  const ctaBar = document.createElement('div');
+  ctaBar.className = 'brochure-hero-cards-ctas';
 
-  const heroContent = document.createElement('div');
-  heroContent.className = 'brochure-hero-cards-content';
+  let heading = null;
+  let bgImage = null;
 
   rows.forEach((row) => {
-    const cols = [...row.children];
-    const hasImage = row.querySelector('img');
     const hasHeading = row.querySelector('h2');
+    const img = row.querySelector('img');
+    const link = row.querySelector('a');
 
     if (hasHeading) {
-      // This is the hero content row
-      const content = cols[0] || row;
-      heroContent.append(...content.childNodes);
-    } else if (hasImage) {
-      // This is a card
-      const card = document.createElement('a');
-      card.className = 'brochure-hero-card';
-      card.target = '_blank';
-      card.rel = 'noopener noreferrer';
+      // Hero heading row
+      heading = hasHeading;
+    } else if (img && link) {
+      // CTA item: icon + link
+      const cta = document.createElement('a');
+      cta.href = link.href;
+      cta.target = '_blank';
+      cta.rel = 'noopener noreferrer';
+      cta.className = 'brochure-hero-cards-cta';
 
-      const img = row.querySelector('img');
-      if (img) {
-        img.loading = 'lazy';
-        card.append(img);
-      }
+      const icon = document.createElement('span');
+      icon.className = 'brochure-hero-cards-icon';
+      img.loading = 'lazy';
+      icon.append(img);
 
-      const link = row.querySelector('a');
-      if (link) {
-        card.href = link.href;
-      }
+      const label = document.createElement('span');
+      label.className = 'brochure-hero-cards-label';
+      label.textContent = link.textContent.trim();
 
-      cards.append(card);
+      cta.append(icon, label);
+      ctaBar.append(cta);
+    } else if (img && !link) {
+      // Background image
+      bgImage = img.src;
     }
   });
 
-  wrapper.append(cards, heroContent);
+  // If no explicit bg image found, use the first section bg from original
+  if (!bgImage) {
+    bgImage = 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/di21_000047711.555f12e379fc.jpg?ext=webp&width=4000';
+  }
+  wrapper.style.backgroundImage = `url('${bgImage}')`;
+
+  if (heading) {
+    const headingWrap = document.createElement('div');
+    headingWrap.className = 'brochure-hero-cards-heading';
+    headingWrap.append(heading);
+    wrapper.append(headingWrap);
+  }
+
+  wrapper.append(ctaBar);
   block.textContent = '';
   block.append(wrapper);
 }
