@@ -40,7 +40,7 @@
 }
 
 /* Separator: left-aligned, 104px wide, 1px height */
-.brochure-text-reveal-inner hr {
+.brochure-text-reveal .brochure-text-reveal-inner hr {
     border: none;
     width: 104px;
     height: 1px;
@@ -93,7 +93,7 @@
         line-height: 1.05;
     }
 
-    .brochure-text-reveal-inner hr {
+    .brochure-text-reveal .brochure-text-reveal-inner hr {
         width: 60px;
     }
 }
