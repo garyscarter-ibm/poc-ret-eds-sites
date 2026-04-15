@@ -42,11 +42,9 @@ export default async function decorate(block) {
     }
   });
 
-  // If no explicit bg image found, use the first section bg from original
-  if (!bgImage) {
-    bgImage = 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/di21_000047711.555f12e379fc.jpg?ext=webp&width=4000';
+  if (bgImage) {
+    wrapper.style.backgroundImage = `url('${bgImage}')`;
   }
-  wrapper.style.backgroundImage = `url('${bgImage}')`;
 
   if (heading) {
     const headingWrap = document.createElement('div');

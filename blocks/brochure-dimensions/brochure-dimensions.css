@@ -1,8 +1,7 @@
-/* stylelint-disable */
 
 .brochure-dimensions {
     padding: 48px 24px;
-    background: #fff;
+    background: var(--brochure-bg);
 }
 
 .brochure-dimensions-inner {
@@ -12,20 +11,20 @@
 }
 
 .brochure-dimensions-inner h4 {
-    color: #262626;
+    color: var(--brochure-text);
     font-size: 1.25rem;
     margin-bottom: 16px;
 }
 
 .brochure-dimensions-inner p {
-    color: #4d4d4d;
+    color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 20px;
 }
 
 .brochure-dimensions-inner a {
-    color: #262626;
+    color: var(--brochure-text);
     font-weight: 700;
     font-size: 0.875rem;
 }

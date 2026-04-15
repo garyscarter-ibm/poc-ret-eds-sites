@@ -1,14 +1,22 @@
 export default async function decorate(block) {
   const rows = [...block.children];
+  if (!rows.length) return;
+
   const isReversed = block.classList.contains('reversed');
 
   const wrapper = document.createElement('div');
   wrapper.className = `brochure-image-text-layout${isReversed ? ' reversed' : ''}`;
 
-  // Row 0: image
-  // Row 1: text content (hr, heading, paragraph)
-  const imageRow = rows[0];
-  const textRow = rows[1];
+  // Detect which row has the image vs text content
+  let imageRow = null;
+  let textRow = null;
+  rows.forEach((row) => {
+    if (!imageRow && row.querySelector('img')) {
+      imageRow = row;
+    } else if (!textRow) {
+      textRow = row;
+    }
+  });
 
   const imageCol = document.createElement('div');
   imageCol.className = 'brochure-image-text-image animate-child';

@@ -1,14 +1,29 @@
 export default async function decorate(block) {
   const rows = [...block.children];
+  if (!rows.length) return;
+
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-hotspot-inner';
 
-  // Row 0: Title content (heading + instructions)
-  // Row 1: Main image
-  // Row 2+: Hotspot items (label | x-position | y-position | overlay-id)
-  const titleRow = rows[0];
-  const imageRow = rows[1];
-  const hotspotRows = rows.slice(2);
+  // Detect rows by content: the image row contains an <img>, title row has headings/text,
+  // hotspot rows have 3-4 columns with coordinate data.
+  let titleRow = null;
+  let imageRow = null;
+  const hotspotRows = [];
+
+  rows.forEach((row) => {
+    const cols = [...row.children];
+    const hasImg = row.querySelector('img');
+    const colCount = cols.length;
+
+    if (!imageRow && hasImg && colCount <= 2) {
+      imageRow = row;
+    } else if (!titleRow && !hasImg && colCount <= 2 && row.querySelector('h2, h3, h4, h5, h6, p')) {
+      titleRow = row;
+    } else if (colCount >= 3) {
+      hotspotRows.push(row);
+    }
+  });
 
   // Title
   if (titleRow) {

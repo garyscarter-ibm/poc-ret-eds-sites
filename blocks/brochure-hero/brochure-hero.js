@@ -3,15 +3,22 @@ export default async function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-hero-inner';
 
-  // Row 0: Background image (as img or picture)
+  // Row 0: Background image (as img or picture — preserved for AEM responsive optimizations)
   // Row 1 (optional): overlay content (heading, subtitle, CTA links)
   const bgRow = rows[0];
   const contentRow = rows[1];
 
+  const picture = bgRow?.querySelector('picture') || bgRow?.querySelector('img')?.closest('picture');
   const img = bgRow?.querySelector('img');
-  if (img) {
+  if (picture) {
+    picture.classList.add('brochure-hero-bg');
+    if (img) img.loading = 'eager';
+    wrapper.append(picture);
+    wrapper.classList.add('has-bg');
+  } else if (img) {
     img.loading = 'eager';
-    wrapper.style.backgroundImage = `url('${img.src}')`;
+    img.classList.add('brochure-hero-bg');
+    wrapper.append(img);
     wrapper.classList.add('has-bg');
   }
 

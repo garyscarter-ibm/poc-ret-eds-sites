@@ -1,8 +1,7 @@
-/* stylelint-disable */
 
 .brochure-stats {
     padding: 60px 24px;
-    background: #fff;
+    background: var(--brochure-bg);
 }
 
 .brochure-stats-grid {
@@ -22,7 +21,7 @@
     font-family: var(--brochure-font, BMWTypeNextLatin, sans-serif);
     font-size: clamp(1.75rem, 4vw, 3rem);
     font-weight: 300;
-    color: #262626;
+    color: var(--brochure-text);
     line-height: 1.1;
     margin-bottom: 8px;
 }
@@ -32,7 +31,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: #666;
+    color: var(--brochure-text-muted);
 }
 
 @media (min-width: 900px) {

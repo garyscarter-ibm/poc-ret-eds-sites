@@ -1,8 +1,7 @@
-/* stylelint-disable */
 
 .brochure-image-text {
     padding: 0;
-    background: #fff;
+    background: var(--brochure-bg);
 }
 
 .brochure-image-text-layout {
@@ -29,19 +28,19 @@
     flex-direction: column;
     justify-content: center;
     padding: 48px 24px;
-    background: #fff;
+    background: var(--brochure-bg);
 }
 
 .brochure-image-text-content hr {
     border: none;
     width: 40px;
     height: 2px;
-    background: #262626;
+    background: var(--brochure-separator);
     margin: 0 0 20px;
 }
 
 .brochure-image-text-content h3 {
-    color: #262626;
+    color: var(--brochure-text);
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 700;
     text-transform: uppercase;
@@ -51,7 +50,7 @@
 }
 
 .brochure-image-text-content p {
-    color: #4d4d4d;
+    color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.7;
     font-weight: 300;

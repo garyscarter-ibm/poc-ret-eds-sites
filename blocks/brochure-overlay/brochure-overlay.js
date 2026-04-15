@@ -37,9 +37,28 @@ export default async function decorate(block) {
   container.append(closeBtn, contentEl);
   modal.append(backdrop, container);
 
+  const FOCUSABLE = 'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
+  let previousFocus = null;
+
+  function trapFocus(e) {
+    if (modal.hidden) return;
+    const focusable = [...container.querySelectorAll(FOCUSABLE)];
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
   function openOverlay(id) {
     const html = overlays[id];
     if (!html) return;
+    previousFocus = document.activeElement;
     contentEl.innerHTML = html;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
@@ -53,12 +72,17 @@ export default async function decorate(block) {
     if (window.location.hash) {
       window.history.replaceState(null, '', window.location.pathname);
     }
+    if (previousFocus) {
+      previousFocus.focus();
+      previousFocus = null;
+    }
   }
 
   closeBtn.addEventListener('click', closeOverlay);
   backdrop.addEventListener('click', closeOverlay);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !modal.hidden) closeOverlay();
+    if (e.key === 'Tab' && !modal.hidden) trapFocus(e);
   });
 
   // Listen for hash changes to open overlays

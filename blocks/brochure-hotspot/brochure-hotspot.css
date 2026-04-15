@@ -1,8 +1,7 @@
-/* stylelint-disable */
 
 .brochure-hotspot {
     padding: 40px 20px;
-    background: #fff;
+    background: var(--brochure-bg);
 }
 
 .brochure-hotspot-inner {
@@ -16,12 +15,12 @@
 }
 
 .brochure-hotspot-title h3 {
-    color: #262626;
+    color: var(--brochure-text);
     margin-bottom: 8px;
 }
 
 .brochure-hotspot-title p {
-    color: #666;
+    color: var(--brochure-text-muted);
     font-size: 0.875rem;
 }
 

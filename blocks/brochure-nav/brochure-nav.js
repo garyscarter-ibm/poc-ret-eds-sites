@@ -56,21 +56,15 @@ function createMobileOverlay(pages, current) {
   const tileGrid = document.createElement('div');
   tileGrid.className = 'brochure-nav-mobile-tiles';
 
-  // Thumbnail images for each page
-  const thumbs = {
-    1: 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/x7_iconised_header_tablet.e979b10415aa.jpg?ext=webp',
-    2: 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/di22_000063163.8d94c870b3a1.jpg?ext=webp',
-    3: 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/di21_000047711.555f12e379fc.jpg?ext=webp',
-  };
-
   pages.forEach((page) => {
     const tile = document.createElement('a');
     tile.href = page.url;
     tile.className = 'brochure-nav-mobile-tile';
     if (current && current.id === page.id) tile.classList.add('active');
 
-    const bg = thumbs[page.id] || thumbs[1];
-    tile.style.backgroundImage = `url('${bg}')`;
+    if (page.thumbnail) {
+      tile.style.backgroundImage = `url('${page.thumbnail}')`;
+    }
     tile.innerHTML = `<span class="brochure-nav-tile-label">${String(page.id).padStart(2, '0')} ${page.title}</span>`;
     tileGrid.append(tile);
   });

@@ -1,12 +1,20 @@
 export default async function decorate(block) {
   const rows = [...block.children];
+  if (!rows.length) return;
+
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-promo-inner';
 
-  // Row 0: text content (heading, paragraph, link)
-  // Row 1: image
-  const textRow = rows[0];
-  const imageRow = rows[1];
+  // Detect which row has the image vs text content
+  let textRow = null;
+  let imageRow = null;
+  rows.forEach((row) => {
+    if (!imageRow && row.querySelector('img')) {
+      imageRow = row;
+    } else if (!textRow) {
+      textRow = row;
+    }
+  });
 
   const textCol = document.createElement('div');
   textCol.className = 'brochure-promo-text animate-child';

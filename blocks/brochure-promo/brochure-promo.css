@@ -1,8 +1,7 @@
-/* stylelint-disable */
 
 .brochure-promo {
     padding: 0;
-    background: #f5f5f5;
+    background: var(--brochure-bg-alt);
 }
 
 .brochure-promo-inner {
@@ -20,7 +19,7 @@
 }
 
 .brochure-promo-text h4 {
-    color: #262626;
+    color: var(--brochure-text);
     font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     font-weight: 700;
     text-transform: uppercase;
@@ -30,7 +29,7 @@
 }
 
 .brochure-promo-text p {
-    color: #4d4d4d;
+    color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.6;
     margin-bottom: 20px;
