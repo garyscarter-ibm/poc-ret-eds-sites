@@ -1,7 +1,6 @@
-
 .brochure-body {
     padding: 60px 24px;
-    text-align: center;
+    text-align: left;
     background: var(--brochure-bg);
 }
 
@@ -11,30 +10,44 @@
 }
 
 .brochure-body .brochure-body-inner hr {
-    border: none;
     width: 77px;
-    height: 1px;
-    background: var(--brochure-separator);
-    margin: 0 auto 16px;
+    max-width: 100%;
+    height: 0;
+    border: 0;
+    border-bottom: 1px solid #262626;
+    background: none;
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 16px;
+    box-sizing: border-box;
 }
 
-.brochure-body-inner h2 {
-    color: var(--brochure-text);
-    margin-bottom: 8px;
+.brochure-body .brochure-body-inner h2 {
+    color: #262626;
+    font-size: 3.125rem;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin: 0 0 0.2em;
 }
 
-.brochure-body-inner h3 {
+.brochure-body .brochure-body-inner h2 + h2 {
+    font-size: 1.5625rem;
+    margin: 0 0 0.8em;
+}
+
+.brochure-body .brochure-body-inner h3 {
     color: var(--brochure-text);
     margin-bottom: 24px;
 }
 
-.brochure-body-inner p {
+.brochure-body .brochure-body-inner p {
     color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
     line-height: 1.7;
     font-weight: 300;
     max-width: 640px;
-    margin: 0 auto;
 }
 
 @media (min-width: 900px) {

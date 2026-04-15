@@ -18,7 +18,7 @@
 
 /* Two-column layout: 37.5% empty left, 62.5% text right */
 .brochure-text-reveal-inner::before {
-    content: '';
+    content: "";
     flex: 0 0 37.5%;
 }
 
@@ -35,17 +35,22 @@
     letter-spacing: 6px;
     text-transform: uppercase;
     color: #262626;
-    margin-bottom: 30px;
+    margin: 0 0 2.5em;
     text-align: left;
 }
 
-/* Separator: left-aligned, 104px wide, 1px height */
+/* Separator: left-aligned, 104px wide, 1px border-bottom */
 .brochure-text-reveal .brochure-text-reveal-inner hr {
-    border: none;
     width: 104px;
-    height: 1px;
-    background: #262626;
-    margin: 0 0 16px;
+    max-width: 100%;
+    height: 0;
+    border: 0;
+    border-bottom: 1px solid #262626;
+    background: none;
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 24px;
+    box-sizing: border-box;
 }
 
 /* First heading (THIS IS / ELEGANCE): 80px light — high specificity to override theme */
