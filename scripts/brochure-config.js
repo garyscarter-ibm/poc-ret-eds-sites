@@ -22,6 +22,48 @@ const BROCHURE_PAGES = [
     url: '/brochures/x7/interior-design',
     thumbnail: '/brochures/x7/media_hero-interior.jpg',
   },
+  {
+    id: 4,
+    title: 'Discover Your Model',
+    url: '/brochures/x7/discover-your-model',
+    thumbnail: '/brochures/x7/media_hero-discover.jpg',
+  },
+  {
+    id: 5,
+    title: 'Performance',
+    url: '/brochures/x7/performance',
+    thumbnail: '/brochures/x7/media_hero-performance.jpg',
+  },
+  {
+    id: 6,
+    title: 'My BMW App',
+    url: '/brochures/x7/my-bmw-app',
+    thumbnail: '/brochures/x7/media_hero-app.jpg',
+  },
+  {
+    id: 7,
+    title: 'Technology - Multimedia',
+    url: '/brochures/x7/technology-multimedia',
+    thumbnail: '/brochures/x7/media_hero-multimedia.jpg',
+  },
+  {
+    id: 8,
+    title: 'Technology - Driving Assistance',
+    url: '/brochures/x7/technology-driving-assistance',
+    thumbnail: '/brochures/x7/media_hero-driving.jpg',
+  },
+  {
+    id: 9,
+    title: 'BMW Ownership',
+    url: '/brochures/x7/bmw-ownership',
+    thumbnail: '/brochures/x7/media_hero-ownership.jpg',
+  },
+  {
+    id: 10,
+    title: 'Next Steps',
+    url: '/brochures/x7/next-steps',
+    thumbnail: '/brochures/x7/media_hero-next.jpg',
+  },
 ];
 
 /**

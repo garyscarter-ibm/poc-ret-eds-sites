@@ -94,6 +94,12 @@ async function loadEager(doc) {
     if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || getMetadata('theme') === 'brochure') {
       document.body.classList.add('brochure');
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
+      // Set page title from brochure config
+      try {
+        const { getCurrentPage } = await import('./brochure-config.js');
+        const page = getCurrentPage();
+        if (page) document.title = `${page.title} - X7`;
+      } catch { /* brochure config not available */ }
     }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
@@ -138,8 +144,18 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  // Brochure: scroll-triggered section animations
+  // Brochure: scroll-triggered section animations and metadata cleanup
   if (document.body.classList.contains('brochure')) {
+    // Hide metadata section (last section with plain-text key/value pairs)
+    const sections = main.querySelectorAll('.section');
+    const lastSection = sections[sections.length - 1];
+    if (lastSection && !lastSection.querySelector('[class*="brochure-"]')) {
+      const text = lastSection.textContent.trim();
+      if (text.includes('header') && text.includes('footer') && text.includes('brochure')) {
+        lastSection.remove();
+      }
+    }
+
     const { prepareBrochureAnimations, initBrochureAnimations } = await import('./brochure-animations.js');
     prepareBrochureAnimations(main);
     initBrochureAnimations(main);
