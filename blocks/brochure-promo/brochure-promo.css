@@ -8,7 +8,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    max-width: 1340px;
     margin: 0 auto;
     min-height: 350px;
     overflow: hidden;
@@ -82,7 +81,7 @@
 /* Desktop: side-by-side with image on right */
 @media (min-width: 900px) {
     .brochure-promo {
-        padding: 60px 50px;
+        padding: 60px 30px;
     }
 
     .brochure-promo .brochure-promo-inner {
