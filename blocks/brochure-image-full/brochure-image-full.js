@@ -9,8 +9,8 @@ export default async function decorate(block) {
   // Determine alignment by counting preceding brochure-image-full blocks
   const allImageBlocks = [...document.querySelectorAll('.brochure-image-full')];
   const index = allImageBlocks.indexOf(block);
-  // Alternate: first=right, second=left, etc.
-  wrapper.classList.add(index % 2 === 0 ? 'align-right' : 'align-left');
+  // Alternate: first=left (slides from right), second=right (slides from left), etc.
+  wrapper.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
 
   wrapper.append(img);
   block.textContent = '';
