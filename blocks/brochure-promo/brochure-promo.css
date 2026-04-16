@@ -1,81 +1,102 @@
 
 .brochure-promo {
-    padding: 0;
-    background: var(--brochure-bg-alt);
+    padding: 40px 24px;
+    background: #f5f5f5;
 }
 
-.brochure-promo-inner {
+.brochure-promo .brochure-promo-inner {
+    position: relative;
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 1340px;
     margin: 0 auto;
+    min-height: 350px;
+    overflow: hidden;
+    background: #1a1a1a;
 }
 
-.brochure-promo-text {
+/* Text column */
+.brochure-promo .brochure-promo-text {
+    position: relative;
+    z-index: 1;
     padding: 48px 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.brochure-promo-text h4 {
-    color: var(--brochure-text);
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+.brochure-promo .brochure-promo-text h4 {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 300;
+    letter-spacing: normal;
+    text-transform: none;
+    line-height: 35px;
     margin-bottom: 16px;
-    line-height: 1.2;
 }
 
-.brochure-promo-text p {
-    color: var(--brochure-text-secondary);
-    font-size: 0.9375rem;
-    line-height: 1.6;
+.brochure-promo .brochure-promo-text p {
+    color: #fff;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 300;
     margin-bottom: 20px;
-    max-width: 500px;
+    max-width: 520px;
 }
 
-.brochure-promo-text a {
-    color: var(--brochure-accent, #1c69d4);
-    font-size: 0.875rem;
+.brochure-promo .brochure-promo-text a {
+    color: #fff;
+    font-size: 15px;
     font-weight: 700;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
-.brochure-promo-text a:hover {
+.brochure-promo .brochure-promo-text a::before {
+    content: '›';
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.brochure-promo .brochure-promo-text a:hover {
     text-decoration: underline;
 }
 
-.brochure-promo-image {
+/* Image column */
+.brochure-promo .brochure-promo-image {
     flex-shrink: 0;
     aspect-ratio: 16 / 9;
     overflow: hidden;
 }
 
-.brochure-promo-image img {
+.brochure-promo .brochure-promo-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
+/* Desktop: side-by-side with image on right */
 @media (min-width: 900px) {
-    .brochure-promo-inner {
+    .brochure-promo {
+        padding: 60px 50px;
+    }
+
+    .brochure-promo .brochure-promo-inner {
         flex-direction: row;
-        min-height: 400px;
+        min-height: 398px;
     }
 
-    .brochure-promo-text {
-        flex: 1;
-        padding: 60px 48px;
+    .brochure-promo .brochure-promo-text {
+        flex: 0 0 50%;
+        padding: 60px;
     }
 
-    .brochure-promo-image {
-        flex: 1;
+    .brochure-promo .brochure-promo-image {
+        flex: 0 0 50%;
         aspect-ratio: auto;
     }
 }
