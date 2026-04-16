@@ -1,7 +1,8 @@
 /* Full-width hero image above brochure body */
 .brochure-body-hero {
     width: 100%;
-    max-height: 62.5vw;
+    height: 75vh;
+    max-height: 600px;
     line-height: 0;
     overflow: hidden;
     opacity: 0;
