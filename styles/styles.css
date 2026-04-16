@@ -553,6 +553,8 @@ main > .section.light-grey > div {
 
 /* Motorrad light-grey CTA banner (e.g. "Considering selling your motorcycle?") */
 body.motorrad main > .section.light-grey {
+  max-width: 100%;
+  width: 100%;
   padding: 80px 24px;
   text-align: center;
 }
