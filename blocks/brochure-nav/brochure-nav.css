@@ -16,7 +16,7 @@ body.brochure .section.brochure-nav-container {
 .brochure-navbar {
     display: flex;
     align-items: center;
-    height: 48px;
+    height: 57px;
     padding: 0 12px;
     background: #fff;
     position: relative;
@@ -65,7 +65,7 @@ body.brochure .section.brochure-nav-container {
     display: none;
 }
 
-.brochure-nav-tab {
+.brochure-nav .brochure-nav-tab {
     display: flex;
     align-items: center;
     padding: 0 25px;

@@ -17,7 +17,7 @@
     --brochure-border: #e0e0e0;
     --brochure-overlay-bg: rgba(0, 0, 0, 0.85);
     --brochure-footer-bg: #262626;
-    --brochure-nav-height: 48px;
+    --brochure-nav-height: 57px;
     --brochure-content-width: 1200px;
     --brochure-content-narrow: 800px;
     --brochure-section-padding: 60px 20px;
@@ -121,8 +121,8 @@ body.brochure h2 {
 }
 
 body.brochure h3 {
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-    font-weight: 700;
+    font-size: clamp(1.5rem, 3.5vw, 2.1875rem);
+    font-weight: 300;
     letter-spacing: 0.02em;
     text-transform: uppercase;
 }
@@ -134,8 +134,8 @@ body.brochure h4 {
 }
 
 body.brochure p {
-    color: var(--brochure-text-secondary);
-    font-size: 1rem;
+    color: var(--brochure-text);
+    font-size: 0.9375rem;
     line-height: 1.6;
     font-weight: 300;
     margin: 0;
