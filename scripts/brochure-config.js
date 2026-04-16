@@ -7,20 +7,20 @@ const BROCHURE_PAGES = [
   {
     id: 1,
     title: 'Introduction',
-    url: '/content/brochures/x7/',
-    thumbnail: '/content/brochures/x7/media_hero-intro.jpg',
+    url: '/brochures/x7/',
+    thumbnail: '/brochures/x7/media_hero-intro.jpg',
   },
   {
     id: 2,
     title: 'Exterior Design',
-    url: '/content/brochures/x7/exterior-design',
-    thumbnail: '/content/brochures/x7/media_hero-exterior.jpg',
+    url: '/brochures/x7/exterior-design',
+    thumbnail: '/brochures/x7/media_hero-exterior.jpg',
   },
   {
     id: 3,
     title: 'Interior Design',
-    url: '/content/brochures/x7/interior-design',
-    thumbnail: '/content/brochures/x7/media_hero-interior.jpg',
+    url: '/brochures/x7/interior-design',
+    thumbnail: '/brochures/x7/media_hero-interior.jpg',
   },
 ];
 
@@ -37,9 +37,9 @@ export function getBrochurePages() {
  * @returns {object|null} Current page object or null
  */
 export function getCurrentPage() {
-  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  const path = window.location.pathname.replace(/\/$/, '');
   return BROCHURE_PAGES.find((p) => {
-    const pagePath = p.url.replace(/\/$/, '') || '/';
+    const pagePath = p.url.replace(/\/$/, '');
     return path === pagePath || path.endsWith(pagePath);
   }) || null;
 }

@@ -111,6 +111,9 @@ export default async function decorate(block) {
   tabStrip.setAttribute('role', 'menubar');
 
   pages.forEach((page) => {
+    const divider = document.createElement('span');
+    divider.className = 'brochure-nav-divider';
+    tabStrip.append(divider);
     const tab = document.createElement('a');
     tab.href = page.url;
     tab.className = 'brochure-nav-tab';
@@ -122,6 +125,11 @@ export default async function decorate(block) {
     }
     tabStrip.append(tab);
   });
+
+  // Trailing divider after last tab
+  const trailingDivider = document.createElement('span');
+  trailingDivider.className = 'brochure-nav-divider';
+  tabStrip.append(trailingDivider);
 
   // Right section: search icon
   const rightSection = document.createElement('div');
