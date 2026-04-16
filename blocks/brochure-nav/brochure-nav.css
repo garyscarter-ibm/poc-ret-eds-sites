@@ -83,7 +83,6 @@ body.brochure .section.brochure-nav-container {
 .brochure-nav-tab::after {
     content: '';
     position: absolute;
-    z-index: -1;
     left: 50%;
     bottom: 0;
     width: 0;
