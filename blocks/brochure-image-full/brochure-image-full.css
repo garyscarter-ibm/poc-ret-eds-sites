@@ -11,6 +11,13 @@
     transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
+/* Full-width centered variant (no animation) */
+.brochure-image-full-inner.full-width {
+    width: 100%;
+    opacity: 1;
+    transform: none;
+}
+
 /* Odd images: align right, slide in from right */
 .brochure-image-full-inner.align-right {
     margin-left: auto;

@@ -6,27 +6,32 @@ export default async function decorate(block) {
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-image-full-inner';
 
-  // Determine alignment by counting preceding brochure-image-full blocks
+  // Count preceding brochure-image-full blocks to determine position
   const allImageBlocks = [...document.querySelectorAll('.brochure-image-full')];
   const index = allImageBlocks.indexOf(block);
-  // Alternate: first=left (slides from right), second=right (slides from left), etc.
-  wrapper.classList.add(index % 2 === 0 ? 'align-left' : 'align-right');
+
+  // First image (silhouette banner) is full-width centered, no animation
+  if (index === 0) {
+    wrapper.classList.add('full-width');
+  } else {
+    // Animated images alternate: odd index = slides from right, even = slides from left
+    wrapper.classList.add(index % 2 !== 0 ? 'align-right' : 'align-left');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            wrapper.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(wrapper);
+  }
 
   wrapper.append(img);
   block.textContent = '';
   block.append(wrapper);
-
-  // Animate in when scrolled into view
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          wrapper.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 },
-  );
-  observer.observe(wrapper);
 }

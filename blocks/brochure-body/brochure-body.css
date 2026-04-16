@@ -1,3 +1,23 @@
+/* Full-width hero image above brochure body */
+.brochure-body-hero {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.brochure-body-hero.in-view {
+    opacity: 1;
+}
+
+.brochure-body-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
 .brochure-body {
     padding: 60px 24px;
     text-align: left;
