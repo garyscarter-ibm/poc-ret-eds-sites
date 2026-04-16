@@ -453,8 +453,8 @@ body.motorrad main > .section > .default-content-wrapper > h2::after {
   display: block;
   position: absolute;
   top: 23px;
-  left: 0;
-  right: 0;
+  left: 15%;
+  right: 15%;
   height: 2px;
   background: rgb(22 23 26);
   /* Mask out center where icon sits */
@@ -549,6 +549,38 @@ main > .section.light-grey {
 main > .section.light-grey > div {
   max-width: var(--content-width);
   margin: 0 auto;
+}
+
+/* Motorrad light-grey CTA banner (e.g. "Considering selling your motorcycle?") */
+body.motorrad main > .section.light-grey {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+body.motorrad main > .section.light-grey p {
+  font-family: var(--heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(22 23 26);
+  margin: 0;
+}
+
+body.motorrad main > .section.light-grey p:has(a) {
+  margin-top: 16px;
+  font-weight: 400;
+}
+
+body.motorrad main > .section.light-grey a:any-link {
+  font-family: var(--heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(22 23 26);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.motorrad main > .section.light-grey a:hover {
+  text-decoration-thickness: 2px;
 }
 
 /* ===== Section Metadata (hidden) ===== */
