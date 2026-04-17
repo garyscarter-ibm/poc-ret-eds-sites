@@ -76,60 +76,54 @@
   margin: -20px 0 10px;
 }
 
-/* === Quote Panel variant (quote text left, person details + circular image right) === */
-/* On this page the columns-feature for Paul Neale renders as:
-   col1 = image (circular photo), col2 = text (name, title, quote)
-   CSS reverses this so quote appears left, person right */
-
-.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]),
-.columns-feature > div:has(.columns-feature-quote) {
+/* === Quote Panel variant (.quote-panel added by JS) === */
+/* Layout: quote text LEFT, person details + circular photo RIGHT */
+.columns-feature > div.quote-panel {
   flex-direction: row-reverse;
-  padding: 39px;
+  padding: 40px;
   min-height: auto;
   align-items: center;
+  gap: 48px;
 }
 
-/* The image column in quote variant: narrow right side with person details */
-.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]) .columns-feature-image {
+/* Image column becomes the person cluster (photo + name + title) on the RIGHT */
+/* DOM order after JS: img, h3, h4. Visual: [name/title] [photo] */
+.columns-feature > div.quote-panel .columns-feature-image {
   flex: 0 0 auto;
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.columns-feature .columns-feature-image img[style*="border-radius"] {
-  width: 98px;
-  height: 98px;
-  border-radius: 49px;
-  object-fit: cover;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 2px;
   min-height: auto;
 }
 
-/* Quote text column: wider left side */
-.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]) .columns-feature-text {
-  flex: 1;
-  padding: 0 40px 0 0;
+.columns-feature > div.quote-panel .columns-feature-image img {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  object-fit: cover;
+  min-height: auto;
+  grid-column: 2;
+  grid-row: 1 / 3;
 }
 
-.columns-feature .columns-feature-text p {
+.columns-feature > div.quote-panel .columns-feature-image h3 {
   font-size: 0.9375rem;
-  line-height: 1.6;
-  max-width: 600px;
-}
-
-/* Name and title next to circular image */
-.columns-feature .columns-feature-image h3 {
-  font-size: 1rem;
   font-weight: 700;
-  padding: 12px 0 2px;
+  padding: 0;
   margin: 0;
   text-transform: none;
   text-align: right;
+  line-height: 1.3;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
 }
 
-.columns-feature .columns-feature-image h4 {
-  font-size: 0.875rem;
+.columns-feature > div.quote-panel .columns-feature-image h4 {
+  font-size: 0.8125rem;
   font-weight: 400;
   color: var(--color-text-light, #666);
   padding: 0;
@@ -137,6 +131,23 @@
   text-transform: none;
   letter-spacing: normal;
   text-align: right;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+}
+
+/* Quote text column: wider left side */
+.columns-feature > div.quote-panel .columns-feature-text {
+  flex: 1;
+  padding: 0;
+}
+
+.columns-feature > div.quote-panel .columns-feature-text p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 500px;
+  color: var(--color-text, #262626);
+  margin: 0;
 }
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */

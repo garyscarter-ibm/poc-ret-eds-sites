@@ -97,6 +97,17 @@ export default function decorate(block) {
       if (imgCol) imgCol.classList.add('columns-feature-image');
       if (textCol) textCol.classList.add('columns-feature-text');
 
+      // Detect quote panel: small circular image + name/title in text col
+      const img = imgCol?.querySelector('img');
+      if (img && textCol?.querySelector('h3') && textCol?.querySelector('p')) {
+        row.classList.add('quote-panel');
+        // Move name + title from text col to image col (next to photo)
+        const h3 = textCol.querySelector('h3');
+        const h4 = textCol.querySelector('h4');
+        if (h3) imgCol.append(h3);
+        if (h4) imgCol.append(h4);
+      }
+
       // For motorrad, each block is a separate element so i is always 0.
       // Determine alternation from sibling block index within the section.
       let altIndex = i;

@@ -76,6 +76,42 @@ main > .section.cards-about-container {
   color: var(--color-bmw-blue, #1c69d4);
   text-decoration: none;
   font-weight: 400;
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline;
+}
+
+/* Social links card (JS adds .social-card class) */
+.cards-about > div.social-card {
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+/* Hide the individual wrapper divs and make links flow inline */
+.cards-about > div.social-card > div:not(:first-child) {
+  display: contents;
+}
+
+/* Icons row: inline, BMW blue, spaced out */
+.cards-about > div.social-card a:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-bmw-blue, #1c69d4);
+  margin: 0 8px;
+  transition: color 0.2s ease;
+}
+
+.cards-about > div.social-card a:hover {
+  color: var(--color-bmw-blue-hover, #1557b0);
+}
+
+.cards-about > div.social-card a svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* White text in image overlay and blue cards */
