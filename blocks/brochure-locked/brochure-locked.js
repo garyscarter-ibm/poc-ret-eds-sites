@@ -11,7 +11,10 @@ const UNLOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="
 </svg>`;
 
 export default async function decorate(block) {
-  const isUnlocked = new URLSearchParams(window.location.search).get('unlock') === 'true';
+  // Read authored content from the first cell — if it contains "unlocked", reveal content
+  const firstCell = block.querySelector(':scope > div > div');
+  const cellText = (firstCell || block).textContent.trim().toLowerCase();
+  const isUnlocked = cellText.includes('unlocked');
 
   const inner = document.createElement('div');
   inner.className = 'brochure-locked-inner';
@@ -35,17 +38,17 @@ export default async function decorate(block) {
 
   body.append(frost, p);
 
-  // Lock/unlock badge
+  // Badge
   const badge = document.createElement('div');
   badge.className = 'brochure-locked-badge';
 
   const icon = document.createElement('div');
   icon.className = 'brochure-locked-icon';
-  icon.innerHTML = LOCK_ICON;
+  icon.innerHTML = isUnlocked ? UNLOCK_ICON : LOCK_ICON;
 
   const label = document.createElement('span');
   label.className = 'brochure-locked-label';
-  label.textContent = 'Coming Soon';
+  label.textContent = isUnlocked ? 'Unlocked' : 'Coming Soon';
 
   badge.append(icon, label);
 
@@ -53,10 +56,7 @@ export default async function decorate(block) {
   block.textContent = '';
   block.append(inner);
 
-  // Apply unlocked state if ?unlock=true
   if (isUnlocked) {
     block.classList.add('unlocked');
-    icon.innerHTML = UNLOCK_ICON;
-    label.textContent = 'Unlocked';
   }
 }
