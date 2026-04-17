@@ -254,14 +254,65 @@ footer .footer.mini .footer-legal ul {
 }
 
 /* === Motorrad Brand Variant === */
+/* Light grey background with dark text, matching original BMW Motorrad footer */
+footer:has(.footer.motorrad) {
+  background-color: rgb(242 242 242);
+}
+
+footer:has(.footer.motorrad),
+footer:has(.footer.motorrad) .footer.motorrad,
+footer:has(.footer.motorrad) .footer.motorrad .footer-content {
+  color: rgb(22 23 26);
+}
+
 footer .footer.motorrad {
     font-family: var(--heading-font-family);
+    background-color: rgb(242 242 242);
 }
 
 footer .footer.motorrad h2 {
     font-family: var(--heading-font-family);
+    color: rgb(22 23 26);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-footer .footer.motorrad a {
+footer .footer.motorrad a:any-link {
     font-family: var(--heading-font-family);
+    color: rgb(22 23 26);
+    font-size: 1rem;
+    line-height: 1.375;
+}
+
+footer .footer.motorrad a:hover {
+    text-decoration: underline;
+}
+
+footer .footer.motorrad li {
+    padding: 0 0 8px;
+    line-height: 1.375;
+}
+
+footer .footer.motorrad .footer-copyright {
+    color: rgb(102 102 102);
+    background-color: rgb(255 255 255);
+    border-top: none;
+    margin: 44px -144px 0;
+    padding: 16px 144px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+footer .footer.motorrad .footer-social a:any-link {
+    /* Dark icons for light background */
+    filter: invert(1);
+}
+
+@media (max-width: 899px) {
+    footer .footer.motorrad .footer-copyright {
+        margin: 44px -20px 0;
+        padding: 22px 20px;
+    }
 }

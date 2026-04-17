@@ -482,8 +482,8 @@ body.motorrad main > .section > .default-content-wrapper > h2::after {
   display: block;
   position: absolute;
   top: 23px;
-  left: 0;
-  right: 0;
+  left: 15%;
+  right: 15%;
   height: 2px;
   background: rgb(22 23 26);
   /* Mask out center where icon sits */
