@@ -1,81 +1,274 @@
+/* Block container */
 .hotspot-image {
     padding: 0;
     background: var(--brochure-bg, #fff);
+    position: relative;
+    overflow: visible;
 }
 
-.hotspot-image-inner {
-    max-width: 100%;
-}
-
+.hotspot-image-wrapper,
 .hotspot-image-container {
+    overflow: visible;
+}
+
+.section.hotspot-image-container {
+    overflow: visible;
+}
+
+/* Image container with hotspot dots */
+.hotspot-image .hotspot-image-container {
     position: relative;
     line-height: 0;
+    overflow: visible;
 }
 
-.hotspot-image-container img {
+.hotspot-image .hotspot-image-container > img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.hotspot-dot {
+/* ── Hotspot dots ── */
+.hotspot-image .hotspot-dot {
     position: absolute;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    background: rgba(255, 255, 255, 0.3);
-    cursor: pointer;
+    width: 36px;
+    height: 36px;
     transform: translate(-50%, -50%);
-    transition: background 0.2s ease, transform 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
     padding: 0;
     z-index: 1;
-}
-
-.hotspot-dot::after {
-    content: '+';
-    position: absolute;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1;
 }
 
-.hotspot-dot:hover,
-.hotspot-dot.active {
-    background: rgba(255, 255, 255, 0.6);
-    transform: translate(-50%, -50%) scale(1.15);
+.hotspot-image .hotspot-dot-ring {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
 
-.hotspot-tooltip {
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 6px 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
+.hotspot-image .hotspot-dot-ring::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
 }
 
-.hotspot-dot:hover .hotspot-tooltip,
-.hotspot-dot.active .hotspot-tooltip {
+.hotspot-image .hotspot-dot:hover .hotspot-dot-ring,
+.hotspot-image .hotspot-dot.active .hotspot-dot-ring {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Subtle pulse — uses opacity on the ring border to avoid overflow clipping */
+@keyframes hotspot-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.hotspot-image .hotspot-dot-ring {
+    animation: hotspot-pulse 2.5s ease-in-out infinite;
+}
+
+.hotspot-image .hotspot-dot:hover .hotspot-dot-ring,
+.hotspot-image .hotspot-dot.active .hotspot-dot-ring {
+    animation: none;
     opacity: 1;
 }
 
+/* ── Modal overlay ── */
+.hotspot-image .hotspot-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hotspot-image .hotspot-modal[hidden] {
+    display: none;
+}
+
+.hotspot-image .hotspot-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Close button */
+.hotspot-image .hotspot-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+}
+
+.hotspot-image .hotspot-modal-close:hover {
+    opacity: 1;
+}
+
+/* Navigation arrows */
+.hotspot-image .hotspot-modal-prev,
+.hotspot-image .hotspot-modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.hotspot-image .hotspot-modal-prev {
+    left: 8px;
+}
+
+.hotspot-image .hotspot-modal-next {
+    right: 8px;
+}
+
+/* Card */
+.hotspot-image .hotspot-modal-card {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    width: calc(100% - 32px);
+    max-width: 420px;
+    max-height: 85vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotspot-image .hotspot-modal-text {
+    padding: 32px 24px;
+}
+
+.hotspot-image .hotspot-modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+}
+
+.hotspot-image .hotspot-modal-description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    margin: 0;
+}
+
+.hotspot-image .hotspot-modal-image {
+    line-height: 0;
+}
+
+.hotspot-image .hotspot-modal-image[hidden] {
+    display: none;
+}
+
+.hotspot-image .hotspot-modal-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ── Tablet (≥600px) ── */
+@media (min-width: 600px) {
+    .hotspot-image .hotspot-dot {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hotspot-image .hotspot-dot-ring {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hotspot-image .hotspot-modal-card {
+        max-width: 540px;
+    }
+
+    .hotspot-image .hotspot-modal-text {
+        padding: 40px 32px;
+    }
+
+    .hotspot-image .hotspot-modal-prev {
+        left: 16px;
+    }
+
+    .hotspot-image .hotspot-modal-next {
+        right: 16px;
+    }
+}
+
+/* ── Desktop (≥900px) ── */
 @media (min-width: 900px) {
-    .hotspot-dot {
-        width: 32px;
-        height: 32px;
+    .hotspot-image .hotspot-dot {
+        width: 44px;
+        height: 44px;
+    }
+
+    .hotspot-image .hotspot-dot-ring {
+        width: 44px;
+        height: 44px;
+    }
+
+    .hotspot-image .hotspot-modal-card {
+        max-width: 900px;
+        flex-direction: row;
+        overflow: hidden;
+    }
+
+    .hotspot-image .hotspot-modal-text {
+        flex: 0 0 40%;
+        padding: 48px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hotspot-image .hotspot-modal-title {
+        font-size: 1.5rem;
+    }
+
+    .hotspot-image .hotspot-modal-image {
+        flex: 1;
+    }
+
+    .hotspot-image .hotspot-modal-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hotspot-image .hotspot-modal-prev {
+        left: 24px;
+    }
+
+    .hotspot-image .hotspot-modal-next {
+        right: 24px;
     }
 }
