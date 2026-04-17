@@ -93,7 +93,7 @@
   /* --- Layout --- */
   --content-width: 1200px;
   --content-width-narrow: 900px;
-  --section-padding: 48px 24px;
+  --section-padding: 64px 24px;
 
   /* --- Buttons --- */
   --button-font-family: var(--body-font-family);
@@ -556,7 +556,7 @@ main > .section.light-grey > div {
     --heading-font-size-xxl: 3.5rem;
     --heading-font-size-xl: 2.5rem;
     --heading-font-size-l: 1.5rem;
-    --section-padding: 64px 0;
+    --section-padding: 80px 0;
   }
 }
 
@@ -605,6 +605,7 @@ main > .section.columns-feature-container {
 main > .section.cards-about-container {
   padding: 64px 48px 88px;
   max-width: 1440px;
+  background-color: var(--color-background-grey);
 }
 
 main > .section.tabs-dealer-locator-container {
@@ -645,12 +646,13 @@ main > .section.light-grey.banner-terms-container {
   background-color: var(--color-background-light-grey);
 }
 
-/* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US) */
+/* Section heading H2s - large centered (NEWS & OFFERS, ABOUT US, MEET TEAM STRATA) */
 main > .section > .default-content-wrapper > h2 {
   font-size: 2.25rem;
   text-align: center;
-  line-height: 1.2;
-  margin-bottom: 64px;
+  line-height: 1.33;
+  padding: 15px 0 36px;
+  margin-bottom: 48px;
 }
 
 /* Dealer locator H2 - smaller, left-aligned, uppercase */

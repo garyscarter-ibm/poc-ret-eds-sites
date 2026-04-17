@@ -76,46 +76,67 @@
   margin: -20px 0 10px;
 }
 
-/* === Quote Panel variant (circular image, name/title/quote) === */
-.columns-feature .columns-feature-quote {
+/* === Quote Panel variant (quote text left, person details + circular image right) === */
+/* On this page the columns-feature for Paul Neale renders as:
+   col1 = image (circular photo), col2 = text (name, title, quote)
+   CSS reverses this so quote appears left, person right */
+
+.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]),
+.columns-feature > div:has(.columns-feature-quote) {
+  flex-direction: row-reverse;
   padding: 39px;
-  display: flex;
-  flex-direction: column;
+  min-height: auto;
   align-items: center;
-  text-align: center;
 }
 
-.columns-feature .columns-feature-quote img {
+/* The image column in quote variant: narrow right side with person details */
+.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]) .columns-feature-image {
+  flex: 0 0 auto;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.columns-feature .columns-feature-image img[style*="border-radius"] {
   width: 98px;
   height: 98px;
   border-radius: 49px;
   object-fit: cover;
   min-height: auto;
-  margin-bottom: 20px;
 }
 
-.columns-feature .columns-feature-quote h3 {
-  font-size: 1.25rem;
-  font-weight: var(--heading-font-weight-light, 300);
-  padding: 0 0 8px;
+/* Quote text column: wider left side */
+.columns-feature > div:has(.columns-feature-image img[style*="border-radius"]) .columns-feature-text {
+  flex: 1;
+  padding: 0 40px 0 0;
+}
+
+.columns-feature .columns-feature-text p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* Name and title next to circular image */
+.columns-feature .columns-feature-image h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 0 2px;
+  margin: 0;
   text-transform: none;
+  text-align: right;
 }
 
-.columns-feature .columns-feature-quote h4 {
+.columns-feature .columns-feature-image h4 {
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--color-text-light, #666);
-  padding: 0 0 16px;
+  padding: 0;
   margin: 0;
   text-transform: none;
   letter-spacing: normal;
-}
-
-.columns-feature .columns-feature-quote p {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  font-style: italic;
-  max-width: 600px;
+  text-align: right;
 }
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
