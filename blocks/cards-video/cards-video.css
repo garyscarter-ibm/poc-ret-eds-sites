@@ -1,5 +1,6 @@
-/* Cards Video - Portrait selfie video grid for team introductions */
-/* BMW theme: clean, minimal, dark accents */
+/* Cards Video - Portrait selfie video grid for team introductions
+   BMW theme: clean, minimal, dark accents
+   Team grid: 3 columns, cards ~333x392px, image ~331x182px (roughly 16:9) */
 
 .cards-video > ul {
   list-style: none;
@@ -90,7 +91,7 @@
 
 .cards-video .cards-video-body h3 {
   font-size: 0.875rem;
-  font-weight: 300;
+  font-weight: var(--heading-font-weight-light, 300);
   color: var(--color-text-light, #666);
   margin: 0;
   padding: 0;
@@ -107,14 +108,19 @@
   font-style: italic;
 }
 
-/* Tablet: 2 columns */
+/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+.cards-video > ul > li {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* === Responsive: Tablet (600px+) === */
 @media (min-width: 600px) {
   .cards-video > ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Desktop: 3 columns */
+/* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
   .cards-video > ul {
     grid-template-columns: repeat(3, 1fr);
@@ -122,7 +128,7 @@
   }
 }
 
-/* Large desktop: 4 columns */
+/* === Responsive: Large desktop (1200px+) === */
 @media (min-width: 1200px) {
   .cards-video > ul {
     grid-template-columns: repeat(4, 1fr);

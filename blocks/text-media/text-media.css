@@ -1,98 +1,138 @@
+/* Text Media - Side-by-side image+text (splitBannerTeaserCMS)
+   Image ~38% width, text ~62% width, alternating order
+   Image ~265x320px on left, text with 56px left padding on right */
+
 .text-media {
-    padding: 0;
-    background: var(--brochure-bg, #fff);
+  padding: 0;
+  background: var(--brochure-bg, #fff);
 }
 
 /* Text-only centered layout */
 .text-media-text-center {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 60px 24px;
-    text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  text-align: left;
 }
 
 .text-media-text-only h3 {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .text-media-text-only p {
-    max-width: 640px;
+  max-width: 640px;
 }
 
 /* Image + Text side-by-side layout */
 .text-media-layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
 }
 
 .text-media-image {
-    flex: 1;
-    min-height: 300px;
+  flex: 1;
+  min-height: 265px;
 }
 
 .text-media-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .text-media-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 48px 24px;
-    background: var(--brochure-bg, #fff);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 24px;
+  background: var(--brochure-bg, #fff);
 }
 
 body.brochure .text-media-content hr {
-    border: none;
-    width: 77px;
-    height: 1px;
-    background: var(--brochure-separator, #262626);
-    margin: 0 0 20px;
+  border: none;
+  width: 77px;
+  height: 1px;
+  background: var(--brochure-separator, #262626);
+  margin: 0 0 20px;
 }
 
 .text-media-content h3 {
-    font-size: 1.5625rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: normal;
-    margin-bottom: 20px;
-    line-height: 1.15;
+  font-size: 1.5625rem;
+  font-weight: var(--heading-font-weight-light, 300);
+  text-transform: uppercase;
+  letter-spacing: normal;
+  margin-bottom: 20px;
+  line-height: 1.15;
 }
 
 .text-media-content p {
-    color: var(--brochure-text-secondary, #4d4d4d);
-    font-size: 0.9375rem;
-    line-height: 1.4;
-    font-weight: 300;
-    max-width: 520px;
+  color: var(--brochure-text-secondary, #4d4d4d);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  font-weight: 300;
+  max-width: 520px;
 }
 
+/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+.text-media .animate-child {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* === Responsive: Tablet (600px+) === */
+@media (min-width: 600px) {
+  .text-media-layout {
+    flex-direction: row;
+    min-height: 320px;
+  }
+
+  .text-media-layout.reversed {
+    flex-direction: row-reverse;
+  }
+
+  .text-media-image {
+    flex: 0 0 38%;
+    min-height: auto;
+  }
+
+  .text-media-content {
+    flex: 0 0 62%;
+    padding: 40px 40px 40px 56px;
+  }
+}
+
+/* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
-    .text-media-layout {
-        flex-direction: row;
-        min-height: 70vh;
-    }
+  .text-media-layout {
+    flex-direction: row;
+    min-height: 392px;
+  }
 
-    .text-media-layout.reversed {
-        flex-direction: row-reverse;
-    }
+  .text-media-layout.reversed {
+    flex-direction: row-reverse;
+  }
 
-    .text-media-image {
-        flex: 1.2;
-        min-height: auto;
-    }
+  .text-media-image {
+    flex: 0 0 38%;
+    min-height: auto;
+  }
 
-    .text-media-content {
-        flex: 0.8;
-        padding: 60px 48px;
-    }
+  .text-media-content {
+    flex: 0 0 62%;
+    padding: 60px 48px 60px 56px;
+  }
 
-    .text-media-text-center {
-        padding: 100px 60px;
-    }
+  .text-media-text-center {
+    padding: 100px 60px;
+  }
+}
+
+/* === Responsive: Large desktop (1200px+) === */
+@media (min-width: 1200px) {
+  .text-media-layout {
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
+  }
 }

@@ -18,7 +18,7 @@
   --hd-welcome-size: 0;
   --hd-welcome-line-height: 0;
   --hd-welcome-display: none;
-  --hd-container-min-height: 100vh;
+  --hd-container-min-height: 558px;
   --hd-content-padding: calc(64px + var(--spacing-xl)) var(--spacing-m) var(--spacing-xl) 86px;
   --hd-cta-font-size: 0.8125rem;
   --hd-cta-font-weight: 700;
@@ -40,12 +40,10 @@
   --hd-reviews-bg: transparent;
   --hd-reviews-padding: 0;
   --hd-frame-display: none;
-  --hd-gradient: linear-gradient(
-    to right,
-    rgb(0 0 0 / 55%) 0%,
-    rgb(0 0 0 / 35%) 40%,
-    rgb(0 0 0 / 10%) 70%,
-    transparent 100%
+  --hd-gradient: radial-gradient(
+    at 66% 50%,
+    transparent 0%,
+    rgb(0 0 0 / 100%) 100%
   );
 }
 
@@ -142,7 +140,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   display: block;
 }
 
-/* Gradient overlay */
+/* Gradient overlay — radial from transparent to black */
 .hero-dealership > div:first-child::after {
   content: '';
   position: absolute;
@@ -484,14 +482,19 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   width: 12px;
 }
 
-/* === Responsive: Mobile === */
-@media (max-width: 767px) {
+/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+.hero-dealership .animate-child {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* === Responsive: Mobile (below 600px) === */
+@media (max-width: 599px) {
   .hero-dealership {
-    min-height: 85vh;
+    min-height: 400px;
   }
 
   .hero-dealership > div:nth-child(2) {
-    min-height: 85vh;
+    min-height: 400px;
     padding: calc(64px + var(--spacing-m)) var(--spacing-s) var(--spacing-m);
   }
 
@@ -594,8 +597,20 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   }
 }
 
-/* === Responsive: Tablet === */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* === Responsive: Tablet (600px-899px) === */
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero-dealership {
+    min-height: 450px;
+  }
+
+  .hero-dealership > div:nth-child(2) {
+    min-height: 450px;
+  }
+
+  .hero-dealership .hero-dealership-title {
+    font-size: 2rem;
+  }
+
   .hero-dealership .hero-dealership-welcome {
     font-size: 2.25rem;
     line-height: 36px;
@@ -644,9 +659,14 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   }
 }
 
-/* === Responsive: Desktop === */
-@media (min-width: 1024px) {
+/* === Responsive: Desktop (900px+) === */
+@media (min-width: 900px) {
+  .hero-dealership {
+    min-height: 558px;
+  }
+
   .hero-dealership > div:nth-child(2) {
+    min-height: 558px;
     padding: calc(64px + var(--spacing-xxl)) var(--spacing-l) var(--spacing-xl) 86px;
   }
 
@@ -728,7 +748,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 }
 
 /* Motorrad mobile: consistent vertical spacing when stacked */
-@media (max-width: 767px) {
+@media (max-width: 599px) {
   .hero-dealership.motorrad .hero-dealership-btn {
     margin-right: 0;
     margin-bottom: 12px;

@@ -175,11 +175,35 @@
   color: var(--color-text-light);
 }
 
-/* Mobile: stack columns */
-@media (max-width: 1023px) {
+/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+.tabs-dealer-locator {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* === Responsive: Mobile — stack columns (below 600px) === */
+@media (max-width: 599px) {
   .tabs-dealer-locator-columns {
     flex-direction: column;
     gap: 24px;
+  }
+}
+
+/* === Responsive: Tablet — stack columns (600px-899px) === */
+@media (min-width: 600px) and (max-width: 899px) {
+  .tabs-dealer-locator-columns {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* === Responsive: Desktop (900px+) === */
+@media (min-width: 900px) {
+  .tabs-dealer-locator {
+    padding: 16px 0;
+  }
+
+  .tabs-dealer-locator-content {
+    padding: 32px;
   }
 }
 

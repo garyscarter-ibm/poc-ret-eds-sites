@@ -1,5 +1,7 @@
 /* Columns Feature - Image+text split teasers with alternating layout
-   Common block: BMW (Split Banner Teaser) + MINI (Teaser Model) */
+   Common block: BMW (Split Banner Teaser / Quote Panel) + MINI (Teaser Model)
+   BMW Quote Panel: 39px padding, 98x98 circular image, name H3 + title H4 + quote */
+
 .columns-feature > div {
   display: flex;
   flex-direction: column;
@@ -45,7 +47,7 @@
 .columns-feature h3,
 .columns-feature h5 {
   font-size: 1.75rem;
-  font-weight: 300;
+  font-weight: var(--heading-font-weight-light, 300);
   line-height: 1.3;
   padding: 0 0 20px;
   margin: 0;
@@ -56,7 +58,7 @@
 .columns-feature p {
   font-size: 0.875rem;
   line-height: 1.57;
-  color: var(--color-text);
+  color: var(--color-text, #262626);
   padding: 0 0 28px;
   margin: 0;
 }
@@ -74,11 +76,58 @@
   margin: -20px 0 10px;
 }
 
-/* Tablet+ : side by side */
-@media (min-width: 768px) {
+/* === Quote Panel variant (circular image, name/title/quote) === */
+.columns-feature .columns-feature-quote {
+  padding: 39px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.columns-feature .columns-feature-quote img {
+  width: 98px;
+  height: 98px;
+  border-radius: 49px;
+  object-fit: cover;
+  min-height: auto;
+  margin-bottom: 20px;
+}
+
+.columns-feature .columns-feature-quote h3 {
+  font-size: 1.25rem;
+  font-weight: var(--heading-font-weight-light, 300);
+  padding: 0 0 8px;
+  text-transform: none;
+}
+
+.columns-feature .columns-feature-quote h4 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-text-light, #666);
+  padding: 0 0 16px;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.columns-feature .columns-feature-quote p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-style: italic;
+  max-width: 600px;
+}
+
+/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+.columns-feature > div {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* === Responsive: Tablet (600px+) — side by side === */
+@media (min-width: 600px) {
   .columns-feature > div {
     flex-direction: row;
-    min-height: 386px;
+    min-height: 320px;
   }
 
   .columns-feature-image {
@@ -96,9 +145,11 @@
   }
 }
 
-/* Desktop: larger text padding */
-@media (min-width: 1024px) {
+/* === Responsive: Desktop (900px+) === */
+@media (min-width: 900px) {
   .columns-feature > div {
+    flex-direction: row;
+    min-height: 386px;
     margin-bottom: 75px;
   }
 
@@ -131,6 +182,13 @@
 
   .columns-feature:not(.mini):not(.welcome) > div:last-child {
     margin-bottom: 0;
+  }
+}
+
+/* === Responsive: Large desktop (1200px+) === */
+@media (min-width: 1200px) {
+  .columns-feature:not(.mini):not(.welcome) {
+    max-width: var(--content-width, 1200px);
   }
 }
 
@@ -187,7 +245,7 @@ main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
 .columns-feature.welcome:not(.mini) h3,
 .columns-feature.welcome:not(.mini) h5 {
   font-size: 1.75rem;
-  font-weight: 300;
+  font-weight: var(--heading-font-weight-light, 300);
   line-height: 36px;
   text-transform: none;
 }
@@ -213,8 +271,8 @@ main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
   padding-bottom: 0;
 }
 
-/* === Welcome Mobile (below 768px) === */
-@media (max-width: 767px) {
+/* === Welcome Mobile (below 600px) === */
+@media (max-width: 599px) {
   /* BMW mobile: shorter image, smaller centered heading */
   .columns-feature.welcome:not(.mini) .columns-feature-image {
     height: 220px;
@@ -247,7 +305,8 @@ main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
   }
 }
 
-@media (min-width: 1024px) {
+/* === Welcome Desktop (900px+) === */
+@media (min-width: 900px) {
   .columns-feature.welcome > div {
     flex-direction: row;
     position: relative;
@@ -283,8 +342,8 @@ main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
   }
 }
 
-/* === Welcome Tablet (768px–1023px) === */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* === Welcome Tablet (600px–899px) === */
+@media (min-width: 600px) and (max-width: 899px) {
   /* Override generic tablet row layout for welcome variant */
   .columns-feature.welcome > div {
     flex-direction: column;
@@ -484,8 +543,8 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   padding-top: 0;
 }
 
-/* === Tablet (768px–1023px): stacked with image bleeding behind card === */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* === MINI Tablet (600px–899px): stacked with image bleeding behind card === */
+@media (min-width: 600px) and (max-width: 899px) {
   .columns-feature.mini > .teaser-overlap {
     min-height: auto;
     display: flex;
@@ -546,8 +605,8 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   }
 }
 
-/* === Mobile (below 768px): simple stack === */
-@media (max-width: 767px) {
+/* === MINI Mobile (below 600px): simple stack === */
+@media (max-width: 599px) {
   .columns-feature.mini > .teaser-overlap {
     min-height: auto;
     display: flex;
@@ -666,7 +725,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
 }
 
 /* === MINI Welcome Responsive (must come after base MINI rules to win cascade) === */
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 600px) and (max-width: 899px) {
   .columns-feature.welcome.mini h3,
   .columns-feature.welcome.mini h5 {
     line-height: 24px;
@@ -682,7 +741,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 599px) {
   .columns-feature.welcome.mini h3,
   .columns-feature.welcome.mini h5 {
     font-size: 1.5rem;
@@ -707,7 +766,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
    ============================================================ */
 
 /* Motorrad: wider content to match original site (~1200px) */
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   .columns-feature.motorrad:not(.welcome) {
     max-width: 1200px;
   }
