@@ -4,16 +4,24 @@ const LOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24
   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
 </svg>`;
 
+const UNLOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+  fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+  <path d="M7 11V7a5 5 0 0 1 5-5 5 5 0 0 1 5 5"/>
+</svg>`;
+
 export default async function decorate(block) {
+  const isUnlocked = new URLSearchParams(window.location.search).get('unlock') === 'true';
+
   const inner = document.createElement('div');
   inner.className = 'brochure-locked-inner';
 
-  // Heading with partially redacted text
+  // Heading
   const heading = document.createElement('h3');
   heading.className = 'brochure-locked-heading';
   heading.innerHTML = '<span class="redacted">A NEW DIMENSION OF INNOVATION AWAITS.</span>';
 
-  // Blurred body text with frost overlay
+  // Body text with frost overlay
   const body = document.createElement('div');
   body.className = 'brochure-locked-body';
 
@@ -27,7 +35,7 @@ export default async function decorate(block) {
 
   body.append(frost, p);
 
-  // Lock badge
+  // Lock/unlock badge
   const badge = document.createElement('div');
   badge.className = 'brochure-locked-badge';
 
@@ -44,4 +52,11 @@ export default async function decorate(block) {
   inner.append(heading, body, badge);
   block.textContent = '';
   block.append(inner);
+
+  // Apply unlocked state if ?unlock=true
+  if (isUnlocked) {
+    block.classList.add('unlocked');
+    icon.innerHTML = UNLOCK_ICON;
+    label.textContent = 'Unlocked';
+  }
 }

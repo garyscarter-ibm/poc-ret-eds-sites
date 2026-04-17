@@ -61,11 +61,42 @@ function decorateButtons(main) {
 }
 
 /**
+ * Auto-block: inject brochure-locked section on brochure pages
+ * if not already present, before the CTA cards section.
+ * @param {Element} main The main element
+ */
+function buildAutoBlocks(main) {
+  const isBrochure = main.querySelector('.brochure-nav')
+    || main.querySelector('.brochure-hero')
+    || main.querySelector('.hero-brochure');
+  if (!isBrochure) return;
+
+  // Skip if brochure-locked already exists
+  if (main.querySelector('.brochure-locked')) return;
+
+  // Find the CTA cards section to insert before
+  const ctaCards = main.querySelector('.brochure-cta-cards');
+  if (!ctaCards) return;
+
+  // Walk up to the top-level div (direct child of main) that wraps the CTA cards
+  let ctaTopLevel = ctaCards;
+  while (ctaTopLevel.parentElement && ctaTopLevel.parentElement !== main) {
+    ctaTopLevel = ctaTopLevel.parentElement;
+  }
+
+  // Build the locked section as a top-level div (becomes its own section)
+  const lockedSection = document.createElement('div');
+  lockedSection.innerHTML = '<div class="brochure-locked"><div><div></div></div></div>';
+  main.insertBefore(lockedSection, ctaTopLevel);
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
   decorateBlocks(main);
