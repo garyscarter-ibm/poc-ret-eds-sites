@@ -1,4 +1,3 @@
-
 .brochure-stats {
     padding: 60px 24px;
     background: #e6e6e6;
@@ -41,5 +40,126 @@
 
     .brochure-stats-grid {
         gap: 48px;
+    }
+}
+
+/* Per-stat lock badge */
+.brochure-stats-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.brochure-stats-icon {
+    width: 36px;
+    height: 36px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.brochure-stats-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(0, 0, 0, 0.5);
+}
+
+.brochure-stats-badge-label {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* Locked stat — blur value and label */
+.brochure-stat.locked .brochure-stat-value,
+.brochure-stat.locked .brochure-stat-label {
+    filter: blur(6px);
+    user-select: none;
+}
+
+/* All-locked: full-block brochure-locked style */
+.brochure-stats.all-locked {
+    padding: 0;
+    background: #1a1a1a;
+}
+
+.brochure-stats-locked-inner {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.brochure-stats.all-locked .brochure-stat-value {
+    color: #fff;
+    filter: blur(6px);
+    user-select: none;
+}
+
+.brochure-stats.all-locked .brochure-stat-label {
+    color: rgba(255, 255, 255, 0.5);
+    filter: blur(5px);
+    user-select: none;
+}
+
+.brochure-stats-frost {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    z-index: 1;
+}
+
+.brochure-stats.all-locked .brochure-stats-badge {
+    position: relative;
+    z-index: 2;
+    margin-top: 24px;
+}
+
+.brochure-stats.all-locked .brochure-stats-icon {
+    width: 48px;
+    height: 48px;
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.brochure-stats.all-locked .brochure-stats-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: rgba(255, 255, 255, 0.7);
+}
+
+.brochure-stats.all-locked .brochure-stats-badge-label {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+}
+
+/* Decorative lines for all-locked */
+.brochure-stats-locked-inner::before,
+.brochure-stats-locked-inner::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 auto 40px;
+}
+
+.brochure-stats-locked-inner::after {
+    margin: 40px auto 0;
+}
+
+@media (min-width: 600px) {
+    .brochure-stats-locked-inner {
+        padding: 100px 40px;
     }
 }
