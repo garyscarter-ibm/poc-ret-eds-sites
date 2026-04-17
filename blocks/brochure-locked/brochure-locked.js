@@ -11,9 +11,10 @@ const UNLOCK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="
 </svg>`;
 
 export default async function decorate(block) {
-  // Read authored content — if cell contains "unlocked", reveal content
-  const cellText = block.textContent.trim().toLowerCase();
-  const isUnlocked = cellText === 'unlocked';
+  // Read authored content from the first cell — if it contains "unlocked", reveal content
+  const firstCell = block.querySelector(':scope > div > div');
+  const cellText = (firstCell || block).textContent.trim().toLowerCase();
+  const isUnlocked = cellText.includes('unlocked');
 
   const inner = document.createElement('div');
   inner.className = 'brochure-locked-inner';
