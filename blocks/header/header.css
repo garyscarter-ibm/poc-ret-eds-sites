@@ -244,7 +244,7 @@ header nav[aria-expanded='true'] {
   min-height: 100dvh;
   background-color: var(--color-white);
   color: var(--color-text);
-  padding-top: 0;
+  padding-top: 8px;
 }
 
 header nav[aria-expanded='true']::after {
@@ -290,11 +290,9 @@ header nav[aria-expanded='true'] .nav-brand a:any-link {
   color: var(--color-text);
 }
 
-/* Expanded: swap to dark-background BMW logo (grey outlines + blue quadrants) */
+/* Expanded: swap to dark BMW logo */
 header nav[aria-expanded='true'] .nav-brand p:last-child {
   position: relative;
-  width: 56px;
-  height: 56px;
 }
 
 header nav[aria-expanded='true'] .nav-brand img {
@@ -306,8 +304,8 @@ header nav[aria-expanded='true'] .nav-brand p:last-child::after {
   position: absolute;
   top: 0;
   left: 0;
-  width: 56px;
-  height: 56px;
+  width: 100%;
+  height: 100%;
   background: url('/icons/bmw-logo-dark.svg') no-repeat center / contain;
 }
 
@@ -353,8 +351,8 @@ header nav[aria-expanded='true'] .nav-tools p {
 
 header nav[aria-expanded='true'] .nav-tools a:any-link {
   color: var(--color-text);
-  font-size: var(--button-font-size);
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 400;
   letter-spacing: 0.39px;
   text-decoration: none;
 }
@@ -438,9 +436,55 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
     border-left: 1px solid rgb(255 255 255 / 40%);
   }
 
-  /* Hide phone number in blue bar */
-  header .header:not(.mini):not(.motorrad) nav .nav-tools p:has(a[href^="tel:"]) {
+  /* Hide phone number in collapsed tool bar */
+  header .header:not(.mini):not(.motorrad) nav:not([aria-expanded='true']) .nav-tools p:has(a[href^="tel:"]) {
     display: none;
+  }
+
+  /* BMW expanded: override grey bar — fix to bottom of viewport */
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    background-color: rgb(245 245 245);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 16px 16px;
+    gap: 0;
+    z-index: 1;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p {
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(0 0 0 / 5%);
+    margin: 0;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p:last-child {
+    border-bottom: none;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p + p {
+    border-left: none;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools a:any-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: 0.39px;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p:has(a[href^="tel:"]) {
+    display: block;
   }
 
   header .header:not(.mini):not(.motorrad) nav .nav-tools a:any-link {
