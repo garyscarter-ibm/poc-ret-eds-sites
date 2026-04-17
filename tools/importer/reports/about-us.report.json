@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.cotswoldcheltenhambmw.co.uk/about-us/",
+  "path": "about-us",
+  "timestamp": "2026-04-17T10:21:07.434Z",
+  "title": "About Your Local BMW Retailer | Cotswold Cheltenham BMW",
+  "template": "about-us-page",
+  "blocks": [
+    "hero-dealership",
+    "cards-about",
+    "columns-feature",
+    "columns-feature",
+    "text-media",
+    "text-media",
+    "text-media",
+    "cards-team",
+    "tabs-dealer-locator"
+  ]
+}

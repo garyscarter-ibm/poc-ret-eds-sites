@@ -1,0 +1,145 @@
+.brochure-footer {
+    background: var(--color-footer-bg);
+}
+
+.brochure-footer .brochure-footer-inner {
+    padding: 60px 60px 0;
+}
+
+/* ===== Social Section — right-aligned ===== */
+.brochure-footer .brochure-footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 40px;
+}
+
+.brochure-footer .brochure-footer-social h3 {
+    font-size: 1.125rem;
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--color-white);
+    margin-bottom: 16px;
+    text-align: right;
+    line-height: 1.3;
+}
+
+.brochure-footer .brochure-footer-social-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 12px;
+}
+
+.brochure-footer .brochure-footer-social-links a {
+    color: var(--color-white);
+    display: flex;
+}
+
+.brochure-footer .brochure-footer-social-links a:hover {
+    opacity: 0.8;
+    color: var(--color-white);
+}
+
+.brochure-footer .brochure-footer-social-links svg {
+    width: 36px;
+    height: 36px;
+}
+
+/* ===== Separator ===== */
+.brochure-footer .brochure-footer-separator {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 0 0 40px;
+    width: 100%;
+    height: 0;
+    background: none;
+}
+
+/* ===== Links Section — 3-column flex ===== */
+.brochure-footer .brochure-footer-links {
+    display: flex;
+    gap: 0;
+    padding-bottom: 60px;
+}
+
+.brochure-footer .brochure-footer-column {
+    flex: 1;
+}
+
+.brochure-footer .brochure-footer-column h3 {
+    font-size: 1.125rem;
+    font-weight: 100;
+    text-transform: none;
+    letter-spacing: normal;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.brochure-footer .brochure-footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.brochure-footer .brochure-footer-column li {
+    margin-bottom: 4px;
+}
+
+.brochure-footer .brochure-footer-column a {
+    color: var(--color-white);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.brochure-footer .brochure-footer-column a:hover {
+    opacity: 0.8;
+    color: var(--color-white);
+}
+
+/* ===== Disclaimer — light background, full width ===== */
+.brochure-footer .brochure-footer-legal {
+    background: #f0f0f0;
+    padding: 30px 60px;
+    margin: 0 -60px;
+}
+
+.brochure-footer .brochure-footer-legal p {
+    font-size: 0.6875rem;
+    color: #444;
+    line-height: 1.6;
+    margin: 0 0 4px;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 599px) {
+    .brochure-footer .brochure-footer-inner {
+        padding: 40px 20px 0;
+    }
+
+    .brochure-footer .brochure-footer-links {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .brochure-footer .brochure-footer-legal {
+        margin: 0 -20px;
+        padding: 24px 20px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .brochure-footer .brochure-footer-inner {
+        padding: 48px 40px 0;
+    }
+
+    .brochure-footer .brochure-footer-legal {
+        margin: 0 -40px;
+        padding: 30px 40px;
+    }
+}

@@ -1,0 +1,276 @@
+
+/* ===== Brochure Nav Container ===== */
+/* Override AEM's overflow:hidden on the section so sticky nav works */
+body.brochure .section.brochure-nav-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: visible;
+}
+
+.brochure-nav {
+    position: relative;
+}
+
+/* ===== Top Navbar ===== */
+.brochure-navbar {
+    display: flex;
+    align-items: center;
+    height: 57px;
+    padding: 0 12px;
+    background: var(--color-white);
+    position: relative;
+}
+
+.brochure-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.brochure-nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.brochure-nav-logo img {
+    width: 28px;
+    height: 28px;
+}
+
+.brochure-nav-hamburger {
+    background: none;
+    border: none;
+    color: var(--brochure-text);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== Tab Strip ===== */
+.brochure-nav-tabs {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+    height: 100%;
+    padding-left: 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
+
+.brochure-nav-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.brochure-nav .brochure-nav-tab {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--brochure-text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+    transition: 0.3s;
+    height: 100%;
+    flex: 0 0 auto;
+}
+
+.brochure-nav-tab::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: 300ms;
+}
+
+.brochure-nav-tab:hover::after {
+    left: 0;
+    width: 100%;
+    background-color: var(--brochure-separator);
+}
+
+.brochure-nav-tab:active::after {
+    background-color: var(--brochure-separator);
+}
+
+.brochure-nav-tab.active::after {
+    left: 0;
+    width: 100%;
+    background-color: var(--brochure-separator);
+}
+
+/* Dividers between tabs */
+.brochure-nav-divider {
+    width: 1px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+/* Right section */
+.brochure-nav-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.brochure-nav-search {
+    background: none;
+    border: none;
+    color: var(--brochure-text);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== Fixed Page Arrows (bottom-right) ===== */
+.brochure-page-arrows {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+}
+
+.brochure-arrow-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brochure-text);
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.brochure-arrow-btn:hover {
+    background: var(--color-white);
+    border-color: rgba(0, 0, 0, 0.4);
+    color: var(--brochure-text);
+}
+
+.brochure-arrow-btn.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ===== Focus States ===== */
+.brochure-nav .brochure-nav-tab:focus-visible,
+.brochure-nav-hamburger:focus-visible,
+.brochure-nav-search:focus-visible,
+.brochure-arrow-btn:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+}
+
+/* ===== Mobile Overlay ===== */
+.brochure-nav-mobile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: var(--color-white);
+    overflow-y: auto;
+}
+
+.brochure-nav-mobile-overlay[hidden] {
+    display: none;
+}
+
+.brochure-nav-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    position: relative;
+    border-bottom: 1px solid var(--brochure-border);
+}
+
+.brochure-nav-mobile-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--brochure-text);
+}
+
+.brochure-nav-mobile-close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--brochure-text);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+}
+
+/* Mobile tile grid */
+.brochure-nav-mobile-tiles {
+    padding: 0;
+}
+
+.brochure-nav-mobile-tile {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.brochure-nav-mobile-tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
+}
+
+.brochure-nav-tile-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    color: var(--color-white);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    z-index: 1;
+}
+
+/* ===== Desktop Responsive ===== */
+@media (min-width: 900px) {
+    .brochure-navbar {
+        height: 57px;
+        padding: 0 16px;
+    }
+
+.brochure-nav-logo img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .brochure-page-arrows {
+        bottom: 32px;
+        right: 32px;
+    }
+
+    .brochure-arrow-btn {
+        width: 44px;
+        height: 44px;
+    }
+}

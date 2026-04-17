@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-team",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-04-17T10:03:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cotswoldcheltenhambmw.co.uk/about-us/",
+    "originPage": "About Us / Meet the Team page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "team-members",
+    "imagePattern": "portrait",
+    "structure": "image + h4 name + h3 title per card, multi-column grid"
+  },
+  "contentPattern": {
+    "structure": "image + heading name + heading title",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "team member directories",
+      "staff profile grids",
+      "people listings with photos"
+    ],
+    "notSuitableFor": [
+      "product cards with descriptions",
+      "promotional cards with CTAs",
+      "news article cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["content/about-us/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-17T10:03:00.000Z"
+  }
+}

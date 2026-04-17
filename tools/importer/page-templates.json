@@ -18,6 +18,119 @@
           "instances": [".shortnote"]
         }
       ]
+    },
+    {
+      "name": "about-us-page",
+      "urls": ["https://www.cotswoldcheltenhambmw.co.uk/about-us/"],
+      "description": "About us / meet the team page with staff profiles and dealership information",
+      "blocks": [
+        {
+          "name": "hero-dealership",
+          "instances": [".heroPageHead.aboutUsHero"]
+        },
+        {
+          "name": "cards-about",
+          "instances": [".linkBoxHolder"]
+        },
+        {
+          "name": "columns-feature",
+          "instances": [".fullQuotePanel", ".singleTeaserCMS"]
+        },
+        {
+          "name": "text-media",
+          "instances": [".splitFrameTeaserCMS.imageCarousel", ".splitBannerTeaserCMS"]
+        },
+        {
+          "name": "cards-team",
+          "instances": [".tripleColumnCMS"]
+        },
+        {
+          "name": "tabs-dealer-locator",
+          "instances": [".contact-us-module"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "hero",
+          "name": "Hero / Page Header",
+          "selector": ".heroPageHead.aboutUsHero",
+          "style": "dark",
+          "blocks": ["hero-dealership"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-navigation",
+          "name": "Section Navigation Cards",
+          "selector": ".linkBoxHolder",
+          "style": "dark",
+          "blocks": ["cards-about"],
+          "defaultContent": []
+        },
+        {
+          "id": "about-intro",
+          "name": "About Us Introduction",
+          "selector": ".fullQuotePanelAltBg",
+          "style": "light",
+          "blocks": ["columns-feature"],
+          "defaultContent": []
+        },
+        {
+          "id": "company-intro",
+          "name": "Company Introduction",
+          "selector": ".splitFrameTeaserCMS.imageCarousel",
+          "style": null,
+          "blocks": ["text-media"],
+          "defaultContent": []
+        },
+        {
+          "id": "our-culture",
+          "name": "Our Culture",
+          "selector": ".splitBannerTeaserCMS:not(.alt)",
+          "style": null,
+          "blocks": ["text-media"],
+          "defaultContent": []
+        },
+        {
+          "id": "values",
+          "name": "Values - Five Star Service",
+          "selector": ".splitBannerTeaserCMS.alt",
+          "style": null,
+          "blocks": ["text-media"],
+          "defaultContent": []
+        },
+        {
+          "id": "faqs",
+          "name": "FAQs",
+          "selector": ".richText.mainText.btnPrimary-ch",
+          "style": null,
+          "blocks": [],
+          "defaultContent": ["h2", "p strong", "p"]
+        },
+        {
+          "id": "meet-the-team",
+          "name": "Meet The Team Grid",
+          "selector": ".tripleColumnCMS",
+          "style": null,
+          "blocks": ["cards-team"],
+          "defaultContent": []
+        },
+        {
+          "id": "get-in-touch",
+          "name": "Get In Touch CTA",
+          "selector": ".singleTeaserCMS",
+          "style": "dark",
+          "blocks": ["columns-feature"],
+          "defaultContent": []
+        },
+        {
+          "id": "find-us",
+          "name": "Find Us / Dealer Locator",
+          "selector": ".contact-us-module",
+          "style": null,
+          "blocks": ["tabs-dealer-locator"],
+          "defaultContent": []
+        }
+      ]
     }
   ]
 }

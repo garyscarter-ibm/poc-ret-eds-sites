@@ -1,0 +1,79 @@
+
+.brochure-image-text {
+    padding: 0;
+    background: var(--brochure-bg);
+}
+
+.brochure-image-text-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 60vh;
+}
+
+.brochure-image-text-image {
+    flex: 1;
+    min-height: 300px;
+}
+
+.brochure-image-text-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.brochure-image-text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 24px;
+    background: var(--brochure-bg);
+}
+
+body.brochure .brochure-image-text-content hr {
+    border: none;
+    width: 77px;
+    height: 1px;
+    background: var(--brochure-separator);
+    margin: 0 0 20px;
+}
+
+.brochure-image-text-content h3 {
+    color: var(--brochure-text);
+    font-size: 1.5625rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    margin-bottom: 20px;
+    line-height: 1.15;
+}
+
+.brochure-image-text-content p {
+    color: var(--brochure-text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    font-weight: 300;
+    max-width: 520px;
+}
+
+@media (min-width: 900px) {
+    .brochure-image-text-layout {
+        flex-direction: row;
+        min-height: 70vh;
+    }
+
+    .brochure-image-text-layout.reversed {
+        flex-direction: row-reverse;
+    }
+
+    .brochure-image-text-image {
+        flex: 1.2;
+        min-height: auto;
+    }
+
+    .brochure-image-text-content {
+        flex: 0.8;
+        padding: 60px 48px;
+    }
+}
