@@ -18,7 +18,7 @@
     padding: 80px 32px 0;
 }
 
-.brochure-hero-cards-heading h2 {
+.brochure-hero-cards .brochure-hero-cards-heading h2 {
     color: var(--color-white);
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 300;
