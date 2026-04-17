@@ -6,13 +6,13 @@
 }
 
 .brochure-dimensions-inner {
-    max-width: 700px;
+    max-width: var(--content-width-xs);
     margin: 0 auto;
     text-align: center;
 }
 
 body.brochure .brochure-dimensions-inner h4 {
-    color: #fff;
+    color: var(--color-white);
     font-size: 1.5625rem;
     font-weight: 300;
     text-transform: uppercase;
@@ -27,7 +27,7 @@ body.brochure .brochure-dimensions-inner p {
 }
 
 body.brochure .brochure-dimensions-inner a {
-    color: #fff;
+    color: var(--color-white);
     font-weight: 700;
     font-size: 0.875rem;
     text-decoration: underline;

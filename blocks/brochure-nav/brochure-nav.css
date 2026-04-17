@@ -18,7 +18,7 @@ body.brochure .section.brochure-nav-container {
     align-items: center;
     height: 57px;
     padding: 0 12px;
-    background: #fff;
+    background: var(--color-white);
     position: relative;
 }
 
@@ -42,7 +42,7 @@ body.brochure .section.brochure-nav-container {
 .brochure-nav-hamburger {
     background: none;
     border: none;
-    color: #262626;
+    color: var(--brochure-text);
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -69,9 +69,9 @@ body.brochure .section.brochure-nav-container {
     display: flex;
     align-items: center;
     padding: 0 25px;
-    font-size: 13px;
+    font-size: 0.8125rem;
     font-weight: 700;
-    color: #4d4d4d;
+    color: var(--brochure-text-secondary);
     text-decoration: none;
     white-space: nowrap;
     position: relative;
@@ -94,17 +94,17 @@ body.brochure .section.brochure-nav-container {
 .brochure-nav-tab:hover::after {
     left: 0;
     width: 100%;
-    background-color: #262626;
+    background-color: var(--brochure-separator);
 }
 
 .brochure-nav-tab:active::after {
-    background-color: #262626;
+    background-color: var(--brochure-separator);
 }
 
 .brochure-nav-tab.active::after {
     left: 0;
     width: 100%;
-    background-color: #262626;
+    background-color: var(--brochure-separator);
 }
 
 /* Dividers between tabs */
@@ -126,7 +126,7 @@ body.brochure .section.brochure-nav-container {
 .brochure-nav-search {
     background: none;
     border: none;
-    color: #262626;
+    color: var(--brochure-text);
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -152,16 +152,16 @@ body.brochure .section.brochure-nav-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #262626;
+    color: var(--brochure-text);
     text-decoration: none;
     transition: background 0.2s ease, border-color 0.2s ease;
     backdrop-filter: blur(4px);
 }
 
 .brochure-arrow-btn:hover {
-    background: #fff;
+    background: var(--color-white);
     border-color: rgba(0, 0, 0, 0.4);
-    color: #262626;
+    color: var(--brochure-text);
 }
 
 .brochure-arrow-btn.disabled {
@@ -169,12 +169,21 @@ body.brochure .section.brochure-nav-container {
     pointer-events: none;
 }
 
+/* ===== Focus States ===== */
+.brochure-nav .brochure-nav-tab:focus-visible,
+.brochure-nav-hamburger:focus-visible,
+.brochure-nav-search:focus-visible,
+.brochure-arrow-btn:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: var(--focus-outline-offset);
+}
+
 /* ===== Mobile Overlay ===== */
 .brochure-nav-mobile-overlay {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: #fff;
+    background: var(--color-white);
     overflow-y: auto;
 }
 
@@ -188,13 +197,13 @@ body.brochure .section.brochure-nav-container {
     justify-content: center;
     height: 48px;
     position: relative;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--brochure-border);
 }
 
 .brochure-nav-mobile-title {
     font-size: 0.9375rem;
     font-weight: 700;
-    color: #262626;
+    color: var(--brochure-text);
 }
 
 .brochure-nav-mobile-close {
@@ -204,7 +213,7 @@ body.brochure .section.brochure-nav-container {
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #262626;
+    color: var(--brochure-text);
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -237,7 +246,7 @@ body.brochure .section.brochure-nav-container {
     position: absolute;
     bottom: 16px;
     left: 16px;
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.9375rem;
     font-weight: 700;
     z-index: 1;

@@ -1,7 +1,5 @@
-/* stylelint-disable */
-
 .brochure-footer {
-    background: #333;
+    background: var(--color-footer-bg);
 }
 
 .brochure-footer .brochure-footer-inner {
@@ -17,11 +15,11 @@
 }
 
 .brochure-footer .brochure-footer-social h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 100;
     text-transform: none;
     letter-spacing: normal;
-    color: #fff;
+    color: var(--color-white);
     margin-bottom: 16px;
     text-align: right;
     line-height: 1.3;
@@ -36,13 +34,13 @@
 }
 
 .brochure-footer .brochure-footer-social-links a {
-    color: #fff;
+    color: var(--color-white);
     display: flex;
 }
 
 .brochure-footer .brochure-footer-social-links a:hover {
     opacity: 0.8;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .brochure-footer .brochure-footer-social-links svg {
@@ -72,7 +70,7 @@
 }
 
 .brochure-footer .brochure-footer-column h3 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 100;
     text-transform: none;
     letter-spacing: normal;
@@ -92,8 +90,8 @@
 }
 
 .brochure-footer .brochure-footer-column a {
-    color: #fff;
-    font-size: 14px;
+    color: var(--color-white);
+    font-size: 0.875rem;
     font-weight: 700;
     text-decoration: none;
     line-height: 1.8;
@@ -101,7 +99,7 @@
 
 .brochure-footer .brochure-footer-column a:hover {
     opacity: 0.8;
-    color: #fff;
+    color: var(--color-white);
 }
 
 /* ===== Disclaimer — light background, full width ===== */
@@ -112,7 +110,7 @@
 }
 
 .brochure-footer .brochure-footer-legal p {
-    font-size: 11px;
+    font-size: 0.6875rem;
     color: #444;
     line-height: 1.6;
     margin: 0 0 4px;

@@ -1,297 +1,297 @@
 /* Columns Feature - Image+text split teasers with alternating layout
-   Common block: BMW (Split Banner Teaser / Quote Panel) + MINI (Teaser Model)
-   BMW Quote Panel: 39px padding, 98x98 circular image, name H3 + title H4 + quote */
+     Common block: BMW (Split Banner Teaser / Quote Panel) + MINI (Teaser Model)
+     BMW Quote Panel: 39px padding, 98x98 circular image, name H3 + title H4 + quote */
 
 .columns-feature > div {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  min-height: auto;
-  margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: auto;
+    margin-bottom: 32px;
 }
 
 .columns-feature > div:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* Image column */
 .columns-feature-image {
-  flex: none;
-  min-height: 200px;
-  max-height: 280px;
-  overflow: hidden;
+    flex: none;
+    min-height: 200px;
+    max-height: 280px;
+    overflow: hidden;
 }
 
 .columns-feature-image p {
-  margin: 0;
-  height: 100%;
+    margin: 0;
+    height: 100%;
 }
 
 .columns-feature-image img {
-  width: 100%;
-  height: 100%;
-  min-height: 200px;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    object-fit: cover;
+    display: block;
 }
 
 /* Text column */
 .columns-feature-text {
-  flex: none;
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    flex: none;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* Heading */
 .columns-feature h3,
 .columns-feature h5 {
-  font-size: 1.25rem;
-  font-weight: var(--heading-font-weight-light, 300);
-  line-height: 1.3;
-  padding: 0 0 16px;
-  margin: 0;
-  text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: var(--heading-font-weight-light, 300);
+    line-height: 1.3;
+    padding: 0 0 16px;
+    margin: 0;
+    text-transform: uppercase;
 }
 
 /* Description */
 .columns-feature p {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--color-text, #262626);
-  padding: 0 0 20px;
-  margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text, #262626);
+    padding: 0 0 20px;
+    margin: 0;
 }
 
 /* CTA link — extends .link-reset from shared-components.css */
 .columns-feature a.button:any-link {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: var(--cta-font-size);
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--cta-font-size);
 }
 
 /* BMW CTA chevron link: pull up closer to text */
 .columns-feature:not(.mini) .cta-chevron {
-  margin: -20px 0 10px;
+    margin: -20px 0 10px;
 }
 
 /* === Quote Panel variant (.quote-panel added by JS) === */
 /* Mobile: stack vertically, center everything */
 .columns-feature > div.quote-panel {
-  flex-direction: column;
-  padding: 32px 16px;
-  min-height: auto;
-  align-items: center;
-  gap: 24px;
-  text-align: center;
+    flex-direction: column;
+    padding: 32px 16px;
+    min-height: auto;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
 }
 
 /* Image column becomes the person cluster (photo + name + title) */
 .columns-feature > div.quote-panel .columns-feature-image {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  min-height: auto;
-  order: -1;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-height: auto;
+    order: -1;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  min-height: auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    min-height: auto;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image h3 {
-  font-size: 0.9375rem;
-  font-weight: 700;
-  padding: 0;
-  margin: 0;
-  text-transform: none;
-  text-align: center;
-  line-height: 1.3;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.3;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image h4 {
-  font-size: 0.8125rem;
-  font-weight: 400;
-  color: var(--color-text-light, #666);
-  padding: 0;
-  margin: 0;
-  text-transform: none;
-  letter-spacing: normal;
-  text-align: center;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-text-light, #666);
+    padding: 0;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: center;
 }
 
 /* Quote text column */
 .columns-feature > div.quote-panel .columns-feature-text {
-  flex: 1;
-  padding: 0;
+    flex: 1;
+    padding: 0;
 }
 
 .columns-feature > div.quote-panel .columns-feature-text p {
-  font-size: 0.875rem;
-  line-height: 1.6;
-  max-width: 500px;
-  color: var(--color-text, #262626);
-  margin: 0;
-  text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 500px;
+    color: var(--color-text, #262626);
+    margin: 0;
+    text-align: center;
 }
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
 .columns-feature > div {
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 /* === Responsive: Tablet (600px+) — side by side === */
 @media (min-width: 600px) {
-  .columns-feature > div {
-    flex-direction: row;
-    min-height: 320px;
-  }
+    .columns-feature > div {
+        flex-direction: row;
+        min-height: 320px;
+    }
 
-  .columns-feature-image {
-    flex: 0 0 40%;
-  }
+    .columns-feature-image {
+        flex: 0 0 40%;
+    }
 
-  .columns-feature-text {
-    flex: 1;
-    padding: 32px 28px;
-  }
+    .columns-feature-text {
+        flex: 1;
+        padding: 32px 28px;
+    }
 
-  /* Alternate rows: image on right */
-  .columns-feature > div.columns-feature-alt {
-    flex-direction: row-reverse;
-  }
+    /* Alternate rows: image on right */
+    .columns-feature > div.columns-feature-alt {
+        flex-direction: row-reverse;
+    }
 
-  /* Quote panel tablet: row layout with grid for person cluster */
-  .columns-feature > div.quote-panel {
-    flex-direction: row-reverse;
-    padding: 40px;
-    gap: 32px;
-    text-align: left;
-  }
+    /* Quote panel tablet: row layout with grid for person cluster */
+    .columns-feature > div.quote-panel {
+        flex-direction: row-reverse;
+        padding: 40px;
+        gap: 32px;
+        text-align: left;
+    }
 
-  .columns-feature > div.quote-panel .columns-feature-image {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    align-items: center;
-    column-gap: 16px;
-    row-gap: 2px;
-    flex-direction: row;
-    order: 0;
-  }
+    .columns-feature > div.quote-panel .columns-feature-image {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        column-gap: 16px;
+        row-gap: 2px;
+        flex-direction: row;
+        order: 0;
+    }
 
-  .columns-feature > div.quote-panel .columns-feature-image img {
-    width: 98px;
-    height: 98px;
-    grid-column: 2;
-    grid-row: 1 / 3;
-  }
+    .columns-feature > div.quote-panel .columns-feature-image img {
+        width: 98px;
+        height: 98px;
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
 
-  .columns-feature > div.quote-panel .columns-feature-image h3 {
-    text-align: right;
-    grid-column: 1;
-    grid-row: 1;
-    align-self: end;
-  }
+    .columns-feature > div.quote-panel .columns-feature-image h3 {
+        text-align: right;
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+    }
 
-  .columns-feature > div.quote-panel .columns-feature-image h4 {
-    text-align: right;
-    grid-column: 1;
-    grid-row: 2;
-    align-self: start;
-  }
+    .columns-feature > div.quote-panel .columns-feature-image h4 {
+        text-align: right;
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+    }
 
-  .columns-feature > div.quote-panel .columns-feature-text p {
-    font-size: 0.9375rem;
-    text-align: left;
-  }
+    .columns-feature > div.quote-panel .columns-feature-text p {
+        font-size: 0.9375rem;
+        text-align: left;
+    }
 }
 
 /* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
-  .columns-feature > div {
-    flex-direction: row;
-    min-height: 386px;
-    margin-bottom: 75px;
-  }
+    .columns-feature > div {
+        flex-direction: row;
+        min-height: 386px;
+        margin-bottom: 75px;
+    }
 
-  .columns-feature > div:last-child {
-    margin-bottom: 0;
-  }
+    .columns-feature > div:last-child {
+        margin-bottom: 0;
+    }
 
-  .columns-feature-image {
-    flex: 0 0 42%;
-    max-height: none;
-  }
+    .columns-feature-image {
+        flex: 0 0 42%;
+        max-height: none;
+    }
 
-  .columns-feature-text {
-    padding: 48px 56px;
-  }
+    .columns-feature-text {
+        padding: 48px 56px;
+    }
 
-  .columns-feature h3,
-  .columns-feature h5 {
-    font-size: 1.75rem;
-    padding: 0 0 20px;
-  }
+    .columns-feature h3,
+    .columns-feature h5 {
+        font-size: 1.75rem;
+        padding: 0 0 20px;
+    }
 
-  .columns-feature p {
-    padding: 0 0 28px;
-  }
+    .columns-feature p {
+        padding: 0 0 28px;
+    }
 
-  .columns-feature-image img {
-    min-height: 250px;
-  }
+    .columns-feature-image img {
+        min-height: 250px;
+    }
 
-  /* BMW: wider images (~54%) to match reference overlap layout */
-  .columns-feature:not(.mini):not(.welcome) .columns-feature-image {
-    flex: 0 0 54%;
-  }
+    /* BMW: wider images (~54%) to match reference overlap layout */
+    .columns-feature:not(.mini):not(.welcome) .columns-feature-image {
+        flex: 0 0 54%;
+    }
 
-  .columns-feature:not(.mini):not(.welcome) {
-    max-width: 1024px;
-    margin: 0 auto;
-  }
+    .columns-feature:not(.mini):not(.welcome) {
+        max-width: 1024px;
+        margin: 0 auto;
+    }
 
-  .columns-feature:not(.mini):not(.welcome) > div {
-    margin-bottom: 75px;
-    overflow: visible;
-  }
+    .columns-feature:not(.mini):not(.welcome) > div {
+        margin-bottom: 75px;
+        overflow: visible;
+    }
 
-  .columns-feature:not(.mini):not(.welcome) > div:last-child {
-    margin-bottom: 0;
-  }
+    .columns-feature:not(.mini):not(.welcome) > div:last-child {
+        margin-bottom: 0;
+    }
 }
 
 /* === Responsive: Large desktop (1200px+) === */
 @media (min-width: 1200px) {
-  .columns-feature:not(.mini):not(.welcome) {
-    max-width: var(--content-width, 1200px);
-  }
+    .columns-feature:not(.mini):not(.welcome) {
+        max-width: var(--content-width, 1200px);
+    }
 }
 
 /* === Welcome Variant (replaces columns-welcome) === */
 main > .section.columns-feature-container:has(.columns-feature.welcome) {
-  width: 100vw;
-  max-width: 1440px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
+    width: 100vw;
+    max-width: var(--content-width-xl);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
 }
 
 main > .section.columns-feature-container:has(.columns-feature.welcome) > .columns-feature-wrapper {
-  max-width: none;
-  margin: 0;
+    max-width: none;
+    margin: 0;
 }
 
 /* Motorrad: restore spacing between section heading and welcome block */
@@ -301,583 +301,583 @@ body.motorrad main > .section.columns-feature-container:has(.columns-feature.wel
 
 /* MINI welcome: main is full-width so no breakout needed — just center */
 main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
-  left: auto;
-  transform: none;
-  margin-left: auto;
-  margin-right: auto;
+    left: auto;
+    transform: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .columns-feature.welcome > div {
-  min-height: auto;
+    min-height: auto;
 }
 
 .columns-feature.welcome .columns-feature-image {
-  min-height: 250px;
-  flex: none;
-  height: 300px;
+    min-height: 250px;
+    flex: none;
+    height: 300px;
 }
 
 .columns-feature.welcome .columns-feature-text {
-  padding: 40px 24px 80px;
-  background-color: var(--color-white);
+    padding: 40px 24px 80px;
+    background-color: var(--color-white);
 }
 
 .columns-feature.welcome h3,
 .columns-feature.welcome h5 {
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 38px;
-  padding: 0 0 28px;
-  text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.19;
+    padding: 0 0 28px;
+    text-transform: uppercase;
 }
 
 /* BMW welcome: match reference typography exactly */
 .columns-feature.welcome:not(.mini) h3,
 .columns-feature.welcome:not(.mini) h5 {
-  font-size: 1.75rem;
-  font-weight: var(--heading-font-weight-light, 300);
-  line-height: 36px;
-  text-transform: none;
+    font-size: 1.75rem;
+    font-weight: var(--heading-font-weight-light, 300);
+    line-height: 1.29;
+    text-transform: none;
 }
 
 .columns-feature.welcome p {
-  font-size: 0.875rem;
-  line-height: 24px;
-  padding: 0 0 28px;
+    font-size: 0.875rem;
+    line-height: 1.71;
+    padding: 0 0 28px;
 }
 
 /* BMW welcome CTA: black text, blue chevron, bold to match reference */
 .columns-feature.welcome:not(.mini) .cta-chevron {
-  color: var(--color-black);
-  line-height: 15px;
-  font-weight: 700;
+    color: var(--color-black);
+    line-height: 1.15;
+    font-weight: 700;
 }
 
 .columns-feature.welcome:not(.mini) .cta-chevron:hover {
-  color: var(--color-black);
+    color: var(--color-black);
 }
 
 .columns-feature.welcome p:last-child {
-  padding-bottom: 0;
+    padding-bottom: 0;
 }
 
 /* === Welcome Mobile (below 600px) === */
 @media (max-width: 599px) {
-  /* BMW mobile: shorter image, smaller centered heading */
-  .columns-feature.welcome:not(.mini) .columns-feature-image {
-    height: 220px;
-    min-height: 220px;
-  }
+    /* BMW mobile: shorter image, smaller centered heading */
+    .columns-feature.welcome:not(.mini) .columns-feature-image {
+        height: 220px;
+        min-height: 220px;
+    }
 
-  .columns-feature.welcome:not(.mini) .columns-feature-text {
-    padding: 41px 19px;
-  }
+    .columns-feature.welcome:not(.mini) .columns-feature-text {
+        padding: 41px 19px;
+    }
 
-  .columns-feature.welcome:not(.mini) h3,
-  .columns-feature.welcome:not(.mini) h5 {
-    font-size: 1.5rem;
-    line-height: 32px;
-    text-align: center;
-    padding-bottom: 24px;
-  }
+    .columns-feature.welcome:not(.mini) h3,
+    .columns-feature.welcome:not(.mini) h5 {
+        font-size: 1.5rem;
+        line-height: 1.33;
+        text-align: center;
+        padding-bottom: 24px;
+    }
 
-  .columns-feature.welcome:not(.mini) p {
-    line-height: 22px;
-  }
+    .columns-feature.welcome:not(.mini) p {
+        line-height: 1.57;
+    }
 
-  /* MINI mobile: hide image (typography overrides at end of file) */
-  .columns-feature.welcome.mini .columns-feature-image {
-    display: none;
-  }
+    /* MINI mobile: hide image (typography overrides at end of file) */
+    .columns-feature.welcome.mini .columns-feature-image {
+        display: none;
+    }
 
-  .columns-feature.welcome.mini .columns-feature-text {
-    padding: 31px 17px 25px;
-  }
+    .columns-feature.welcome.mini .columns-feature-text {
+        padding: 31px 17px 25px;
+    }
 }
 
 /* === Welcome Desktop (900px+) === */
 @media (min-width: 900px) {
-  .columns-feature.welcome > div {
-    flex-direction: row;
-    position: relative;
-    overflow: visible;
-    min-height: 605px;
-    margin-top: 115px;
-  }
+    .columns-feature.welcome > div {
+        flex-direction: row;
+        position: relative;
+        overflow: visible;
+        min-height: 605px;
+        margin-top: 115px;
+    }
 
-  .columns-feature.welcome .columns-feature-image {
-    flex: 0 0 55.5%;
-    height: 605px;
-    order: 2;
-    margin-top: -115px;
-  }
+    .columns-feature.welcome .columns-feature-image {
+        flex: 0 0 55.5%;
+        height: 605px;
+        order: 2;
+        margin-top: -115px;
+    }
 
-  .columns-feature.welcome .columns-feature-text {
-    flex: 0 0 55.5%;
-    padding: 133px 102px 133px 192px;
-    margin-right: -11%;
-    position: relative;
-    z-index: 2;
-    order: 1;
-  }
+    .columns-feature.welcome .columns-feature-text {
+        flex: 0 0 55.5%;
+        padding: 133px 102px 133px 192px;
+        margin-right: -11%;
+        position: relative;
+        z-index: 2;
+        order: 1;
+    }
 
-  /* MINI welcome desktop: tighter heading and CTA spacing */
-  .columns-feature.welcome.mini h3,
-  .columns-feature.welcome.mini h5 {
-    padding-bottom: 16px;
-  }
+    /* MINI welcome desktop: tighter heading and CTA spacing */
+    .columns-feature.welcome.mini h3,
+    .columns-feature.welcome.mini h5 {
+        padding-bottom: 16px;
+    }
 
-  .columns-feature.welcome.mini .cta-chevron {
-    margin-top: 7px;
-  }
+    .columns-feature.welcome.mini .cta-chevron {
+        margin-top: 7px;
+    }
 }
 
 /* === Welcome Tablet (600px–899px) === */
 @media (min-width: 600px) and (max-width: 899px) {
-  /* Override generic tablet row layout for welcome variant */
-  .columns-feature.welcome > div {
-    flex-direction: column;
-  }
+    /* Override generic tablet row layout for welcome variant */
+    .columns-feature.welcome > div {
+        flex-direction: column;
+    }
 
-  /* BMW: stacked with image top-right, text overlapping below */
-  .columns-feature.welcome:not(.mini) .columns-feature-image {
-    flex: none;
-    width: 79%;
-    height: 550px;
-    margin-left: auto;
-  }
+    /* BMW: stacked with image top-right, text overlapping below */
+    .columns-feature.welcome:not(.mini) .columns-feature-image {
+        flex: none;
+        width: 79%;
+        height: 550px;
+        margin-left: auto;
+    }
 
-  .columns-feature.welcome:not(.mini) .columns-feature-text {
-    width: 79%;
-    margin-top: -100px;
-    padding: 100px 100px 77px 77px;
-    position: relative;
-    z-index: 2;
-  }
+    .columns-feature.welcome:not(.mini) .columns-feature-text {
+        width: 79%;
+        margin-top: -100px;
+        padding: 100px 100px 77px 77px;
+        position: relative;
+        z-index: 2;
+    }
 
-  /* MINI: hide image, full-width text (typography overrides at end of file) */
-  .columns-feature.welcome.mini .columns-feature-image {
-    display: none;
-  }
+    /* MINI: hide image, full-width text (typography overrides at end of file) */
+    .columns-feature.welcome.mini .columns-feature-image {
+        display: none;
+    }
 
-  .columns-feature.welcome.mini .columns-feature-text {
-    padding: 41px 34px 25px;
-    flex: 1;
-  }
+    .columns-feature.welcome.mini .columns-feature-text {
+        padding: 41px 34px 25px;
+        flex: 1;
+    }
 }
 
 /* MINI welcome variant overrides */
 .columns-feature.welcome.mini h3,
 .columns-feature.welcome.mini h5 {
-  font-family: MINISerif-Bold, sans-serif;
-  font-weight: 400;
-  font-size: 2rem;
-  text-transform: none;
-  letter-spacing: normal;
-  line-height: 36px;
-  padding-bottom: 16px;
+    font-family: var(--mini-font-serif-bold);
+    font-weight: 400;
+    font-size: 2rem;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 36px;
+    padding-bottom: 16px;
 }
 
 .columns-feature.welcome.mini p {
-  font-size: 1.125rem;
-  line-height: 24px;
-  padding: 0 0 12.6px;
+    font-size: 1.125rem;
+    line-height: 24px;
+    padding: 0 0 12.6px;
 }
 
 /* === Star Rating === */
 .columns-feature-star-rating {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 0 20px;
 }
 
 .columns-feature-star {
-  display: inline-flex;
-  color: #ccc;
+    display: inline-flex;
+    color: #ccc;
 }
 
 .columns-feature-star.active {
-  color: #d4a843;
+    color: var(--mini-gold-star);
 }
 
 .columns-feature-star svg {
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
 }
 
 .columns-feature-rating-number {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1.625rem;
-  font-weight: 400;
-  color: var(--color-black);
-  margin-left: 6px;
+    font-family: var(--mini-font-sans);
+    font-size: 1.625rem;
+    font-weight: 400;
+    color: var(--color-black);
+    margin-left: 6px;
 }
 
 /* ==========================================================================
-   MINI Teaser Overlap Layout (JS-built DOM structure)
-   Reference: sytnerlutonmini.co.uk SERVICE RATING + WELCOME TO SYTNER
-   ==========================================================================
-   DOM structure created by JS:
-   .teaser-overlap
-     .teaser-overlap-backdrop   (black box, 50% width)
-     .teaser-overlap-image      (image, absolutely positioned, overlaps)
-     .teaser-overlap-text        (text content)
-   .teaser-overlap-alt = mirrored (image right, text left)
-   ========================================================================== */
+     MINI Teaser Overlap Layout (JS-built DOM structure)
+     Reference: sytnerlutonmini.co.uk SERVICE RATING + WELCOME TO SYTNER
+     ==========================================================================
+     DOM structure created by JS:
+     .teaser-overlap
+         .teaser-overlap-backdrop   (black box, 50% width)
+         .teaser-overlap-image      (image, absolutely positioned, overlaps)
+         .teaser-overlap-text        (text content)
+     .teaser-overlap-alt = mirrored (image right, text left)
+     ========================================================================== */
 
 /* Full-bleed section container for MINI teaser-overlap blocks */
 main > .section.columns-feature-container:has(.columns-feature.mini:not(.welcome)) {
-  width: 100vw;
-  max-width: none;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
-  padding: 0;
+    width: 100vw;
+    max-width: none;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    padding: 0;
 }
 
 main > .section.columns-feature-container:has(.columns-feature.mini:not(.welcome)) > .columns-feature-wrapper {
-  max-width: none;
-  margin: 0;
+    max-width: none;
+    margin: 0;
 }
 
 .columns-feature.mini > .teaser-overlap {
-  position: relative;
-  min-height: 640px;
-  margin-bottom: 0;
-  display: block;
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+    position: relative;
+    min-height: 640px;
+    margin-bottom: 0;
+    display: block;
+    max-width: var(--content-width-l);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Black backdrop — 50% width, full height */
 .teaser-overlap-backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: var(--color-black);
-  z-index: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--color-black);
+    z-index: 0;
 }
 
 .teaser-overlap-alt .teaser-overlap-backdrop {
-  left: auto;
-  right: 0;
+    left: auto;
+    right: 0;
 }
 
 /* Image — absolutely positioned, overlaps ~10% past the backdrop */
 .teaser-overlap-image {
-  position: absolute;
-  top: 12%;
-  left: 0;
-  width: 50%;
-  height: 73%;
-  z-index: 1;
+    position: absolute;
+    top: 12%;
+    left: 0;
+    width: 50%;
+    height: 73%;
+    z-index: 1;
 }
 
 .teaser-overlap-image picture {
-  display: block;
-  width: 110%;
-  height: 100%;
+    display: block;
+    width: 110%;
+    height: 100%;
 }
 
 .teaser-overlap-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Alt: image on right side, overlapping to the left */
 .teaser-overlap-alt .teaser-overlap-image {
-  left: auto;
-  right: 0;
+    left: auto;
+    right: 0;
 }
 
 .teaser-overlap-alt .teaser-overlap-image picture {
-  margin-left: -10%;
+    margin-left: -10%;
 }
 
 /* Text — positioned on the opposite side, inset from edge
-   Reference: richText is 357px wide at 1280px viewport = ~28%
-   Text container starts at ~16% from section top (105px of 640px) */
+     Reference: richText is 357px wide at 1280px viewport = ~28%
+     Text container starts at ~16% from section top (105px of 640px) */
 .teaser-overlap-text {
-  position: relative;
-  z-index: 5;
-  width: 28%;
-  margin-left: 62%;
-  padding: 150px 0 25px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 640px;
-  background-color: var(--color-white);
+    position: relative;
+    z-index: 5;
+    width: 28%;
+    margin-left: 62%;
+    padding: 150px 0 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 640px;
+    background-color: var(--color-white);
 }
 
 .teaser-overlap-alt .teaser-overlap-text {
-  margin-left: 10%;
-  margin-right: 58%;
+    margin-left: 10%;
+    margin-right: 58%;
 }
 
 /* Buttons fill the text column width */
 .teaser-overlap-text p:has(.cta-chevron) {
-  margin: 0;
+    margin: 0;
 }
 
 /* Remove gap between adjacent MINI teaser sections */
 main > .section.columns-feature-container:has(.columns-feature.mini) + .section.columns-feature-container:has(.columns-feature.mini) {
-  margin-top: 0;
-  padding-top: 0;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 /* === MINI Tablet (600px–899px): stacked with image bleeding behind card === */
 @media (min-width: 600px) and (max-width: 899px) {
-  .columns-feature.mini > .teaser-overlap {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-  }
+    .columns-feature.mini > .teaser-overlap {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+    }
 
-  .teaser-overlap-backdrop {
-    position: absolute;
-    width: 100%;
-    height: 50%;
-    top: 0;
-    left: 0;
-  }
+    .teaser-overlap-backdrop {
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        top: 0;
+        left: 0;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-backdrop {
-    right: auto;
-    left: 0;
-  }
+    .teaser-overlap-alt .teaser-overlap-backdrop {
+        right: auto;
+        left: 0;
+    }
 
-  .teaser-overlap-image {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    width: 100%;
-    height: 400px;
-    z-index: 1;
-  }
+    .teaser-overlap-image {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        height: 400px;
+        z-index: 1;
+    }
 
-  .teaser-overlap-image picture {
-    width: 100%;
-    height: 100%;
-    margin-left: 0;
-  }
+    .teaser-overlap-image picture {
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-image {
-    left: auto;
-    right: auto;
-  }
+    .teaser-overlap-alt .teaser-overlap-image {
+        left: auto;
+        right: auto;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-image picture {
-    margin-left: 0;
-  }
+    .teaser-overlap-alt .teaser-overlap-image picture {
+        margin-left: 0;
+    }
 
-  .teaser-overlap-text {
-    position: relative;
-    z-index: 5;
-    width: 87.5%;
-    margin: -60px auto 0;
-    padding: 41px 34px 25px;
-    background-color: var(--color-white);
-    min-height: auto;
-  }
+    .teaser-overlap-text {
+        position: relative;
+        z-index: 5;
+        width: 87.5%;
+        margin: -60px auto 0;
+        padding: 41px 34px 25px;
+        background-color: var(--color-white);
+        min-height: auto;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-text {
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .teaser-overlap-alt .teaser-overlap-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* === MINI Mobile (below 600px): simple stack === */
 @media (max-width: 599px) {
-  .columns-feature.mini > .teaser-overlap {
-    min-height: auto;
-    display: flex;
-    flex-direction: column;
-  }
+    .columns-feature.mini > .teaser-overlap {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+    }
 
-  .teaser-overlap-backdrop {
-    display: none;
-  }
+    .teaser-overlap-backdrop {
+        display: none;
+    }
 
-  .teaser-overlap-image {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    width: 100%;
-    height: 280px;
-  }
+    .teaser-overlap-image {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
+        height: 280px;
+    }
 
-  .teaser-overlap-image picture {
-    width: 100%;
-    height: 100%;
-    margin-left: 0;
-  }
+    .teaser-overlap-image picture {
+        width: 100%;
+        height: 100%;
+        margin-left: 0;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-image {
-    left: auto;
-    right: auto;
-  }
+    .teaser-overlap-alt .teaser-overlap-image {
+        left: auto;
+        right: auto;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-image picture {
-    margin-left: 0;
-  }
+    .teaser-overlap-alt .teaser-overlap-image picture {
+        margin-left: 0;
+    }
 
-  .teaser-overlap-text {
-    width: 100%;
-    margin: 0;
-    padding: 31px 17px 25px;
-    min-height: auto;
-  }
+    .teaser-overlap-text {
+        width: 100%;
+        margin: 0;
+        padding: 31px 17px 25px;
+        min-height: auto;
+    }
 
-  .teaser-overlap-alt .teaser-overlap-text {
-    margin-left: 0;
-    margin-right: 0;
-  }
+    .teaser-overlap-alt .teaser-overlap-text {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 .columns-feature.mini h3,
 .columns-feature.mini h5 {
-  font-family: MINISerif-Bold, sans-serif;
-  font-weight: 400;
-  font-size: 2rem;
-  text-transform: none;
-  letter-spacing: normal;
-  line-height: 36px;
-  padding-bottom: 16px;
+    font-family: var(--mini-font-serif-bold);
+    font-weight: 400;
+    font-size: 2rem;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 36px;
+    padding-bottom: 16px;
 }
 
 .columns-feature.mini p {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1.125rem;
-  line-height: 24px;
-  color: var(--color-black);
-  padding: 0 0 12.6px;
+    font-family: var(--mini-font-sans);
+    font-size: 1.125rem;
+    line-height: 24px;
+    color: var(--color-black);
+    padding: 0 0 12.6px;
 }
 
 /* MINI CTA: all links in non-welcome = pill buttons */
 .columns-feature.mini:not(.welcome) .cta-chevron {
-  background-color: var(--color-black);
-  color: var(--color-white);
-  border: none;
-  border-radius: 28px;
-  padding: 17px 20px;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 18px;
-  background-image: none;
-  text-decoration: none;
-  display: block;
-  text-align: center;
-  letter-spacing: normal;
-  margin-bottom: 10px;
-  min-width: 200px;
-  box-sizing: border-box;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    border: none;
+    border-radius: 28px;
+    padding: 17px 20px;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 18px;
+    background-image: none;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    letter-spacing: normal;
+    margin-bottom: 10px;
+    min-width: 200px;
+    box-sizing: border-box;
 }
 
 .columns-feature.mini:not(.welcome) .cta-chevron:hover {
-  background-color: #333;
-  border-color: #333;
-  color: var(--color-white);
-  text-decoration: none;
+    background-color: #333;
+    border-color: #333;
+    color: var(--color-white);
+    text-decoration: none;
 }
 
 /* MINI CTA: secondary pill button (outline style) */
 .columns-feature.mini:not(.welcome) p:has(.cta-chevron) + p .cta-chevron {
-  background-color: transparent;
-  color: var(--color-black);
-  border: 2px solid var(--color-black);
+    background-color: transparent;
+    color: var(--color-black);
+    border: 2px solid var(--color-black);
 }
 
 .columns-feature.mini:not(.welcome) p:has(.cta-chevron) + p .cta-chevron:hover {
-  background-color: rgb(230 230 230);
-  color: var(--color-black);
+    background-color: rgb(230 230 230);
+    color: var(--color-black);
 }
 
 /* MINI CTA: welcome variant — uses shared cta-chevron--black, only override size */
 .columns-feature.welcome.mini .cta-chevron {
-  font-size: 1.125rem;
-  line-height: 16px;
-  padding: 15px 34px 15px 0;
-  width: fit-content;
+    font-size: 1.125rem;
+    line-height: 16px;
+    padding: 15px 34px 15px 0;
+    width: fit-content;
 }
 
 .columns-feature.welcome.mini .cta-chevron:hover {
-  color: var(--color-black);
+    color: var(--color-black);
 }
 
 /* === MINI Welcome Responsive (must come after base MINI rules to win cascade) === */
 @media (min-width: 600px) and (max-width: 899px) {
-  .columns-feature.welcome.mini h3,
-  .columns-feature.welcome.mini h5 {
-    line-height: 24px;
-    padding-bottom: 16px;
-  }
+    .columns-feature.welcome.mini h3,
+    .columns-feature.welcome.mini h5 {
+        line-height: 24px;
+        padding-bottom: 16px;
+    }
 
-  .columns-feature.welcome.mini p {
-    padding: 0 0 16px;
-  }
+    .columns-feature.welcome.mini p {
+        padding: 0 0 16px;
+    }
 
-  .columns-feature.welcome.mini .cta-chevron {
-    font-size: 1rem;
-  }
+    .columns-feature.welcome.mini .cta-chevron {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 599px) {
-  .columns-feature.welcome.mini h3,
-  .columns-feature.welcome.mini h5 {
-    font-size: 1.5rem;
-    line-height: 18px;
-    padding-bottom: 16px;
-  }
+    .columns-feature.welcome.mini h3,
+    .columns-feature.welcome.mini h5 {
+        font-size: 1.5rem;
+        line-height: 18px;
+        padding-bottom: 16px;
+    }
 
-  .columns-feature.welcome.mini p {
-    font-size: 1rem;
-    line-height: 22px;
-    padding: 0 0 16px;
-  }
+    .columns-feature.welcome.mini p {
+        font-size: 1rem;
+        line-height: 22px;
+        padding: 0 0 16px;
+    }
 
-  .columns-feature.welcome.mini .cta-chevron {
-    font-size: 1rem;
-  }
+    .columns-feature.welcome.mini .cta-chevron {
+        font-size: 1rem;
+    }
 }
 
 /* ============================================================
-   Motorrad Brand Variant
-   BMW font throughout, dark text, clean typography
-   ============================================================ */
+     Motorrad Brand Variant
+     BMW font throughout, dark text, clean typography
+     ============================================================ */
 
 /* Motorrad: wider content to match original site (~1200px) */
 @media (min-width: 900px) {
-  .columns-feature.motorrad:not(.welcome) {
-    max-width: 1200px;
-  }
+    .columns-feature.motorrad:not(.welcome) {
+        max-width: 1200px;
+    }
 }
 
 .columns-feature.motorrad h3,
 .columns-feature.motorrad h5 {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  font-size: 2rem;
-  line-height: 1.2;
-  text-transform: none;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.2;
+    text-transform: none;
 }
 
 .columns-feature.motorrad p,
 .columns-feature.motorrad .columns-feature-text > div {
-  font-family: var(--heading-font-family);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgb(22 23 26);
-  padding: 0;
+    font-family: var(--heading-font-family);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgb(22 23 26);
+    padding: 0;
 }
 
 /* Motorrad welcome: bolder heading, uppercase, tighter */
@@ -907,68 +907,68 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
 
 /* Motorrad CTA: gap from text to button via the p wrapper */
 .columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 /* Motorrad CTA: less space between consecutive buttons */
 .columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p:has(.cta-chevron),
 .columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 /* Reset inner p margin inside consecutive CTA divs */
 .columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) p {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 /* Motorrad CTA: reset negative margin from BMW chevron style */
 .columns-feature.motorrad .cta-chevron {
-  margin: 0;
+    margin: 0;
 }
 
 /* Motorrad CTA: dark filled button with white border (welcome override too) */
 .columns-feature.motorrad a.cta-chevron,
 .columns-feature.motorrad.welcome a.cta-chevron {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 16px;
-  text-transform: uppercase;
-  background-color: rgb(22 23 26);
-  color: rgb(255 255 255);
-  border: 2px solid rgb(22 23 26);
-  padding: 10px 30px;
-  min-height: 40px;
-  box-sizing: border-box;
-  text-decoration: none;
-  background-image: none;
-  display: inline-flex;
-  align-items: center;
-  letter-spacing: normal;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+    text-transform: uppercase;
+    background-color: rgb(22 23 26);
+    color: rgb(255 255 255);
+    border: 2px solid rgb(22 23 26);
+    padding: 10px 30px;
+    min-height: 40px;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-image: none;
+    display: inline-flex;
+    align-items: center;
+    letter-spacing: normal;
 }
 
 .columns-feature.motorrad a.cta-chevron::after {
-  display: none;
+    display: none;
 }
 
 .columns-feature.motorrad a.cta-chevron:hover,
 .columns-feature.motorrad.welcome a.cta-chevron:hover {
-  background-color: rgb(255 255 255);
-  color: rgb(22 23 26);
-  border-color: rgb(22 23 26);
-  text-decoration: none;
+    background-color: rgb(255 255 255);
+    color: rgb(22 23 26);
+    border-color: rgb(22 23 26);
+    text-decoration: none;
 }
 
 /* Motorrad secondary CTA: white background, dark border/text */
 .columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron,
 .columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) .cta-chevron {
-  background-color: rgb(255 255 255);
-  color: rgb(22 23 26);
-  border: 2px solid rgb(22 23 26);
+    background-color: rgb(255 255 255);
+    color: rgb(22 23 26);
+    border: 2px solid rgb(22 23 26);
 }
 
 .columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron:hover,
 .columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) .cta-chevron:hover {
-  background-color: rgb(22 23 26);
-  color: rgb(255 255 255);
+    background-color: rgb(22 23 26);
+    color: rgb(255 255 255);
 }

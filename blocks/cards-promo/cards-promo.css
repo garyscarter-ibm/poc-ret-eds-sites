@@ -1,196 +1,196 @@
 /* Cards Promo - Promotional offer/feature cards with image backgrounds
-   Common block: BMW (News & Offers Triple Panel) + MINI (Promo Cards, Triple Column) */
+     Common block: BMW (News & Offers Triple Panel) + MINI (Promo Cards, Triple Column) */
 .cards-promo-wrapper {
-  background-color: var(--color-background-grey);
+    background-color: var(--color-background-grey);
 }
 
 .cards-promo {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
 }
 
 /* MINI: constrain content to 1280px, keep section background full width */
 .section.cards-promo-container:has(.cards-promo.mini) > .default-content-wrapper,
 .section.cards-promo-container:has(.cards-promo.mini) > .cards-promo-wrapper {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: var(--content-width-l);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Image cards use shared .overlay-card + .overlay-card--tinted */
 .cards-promo > div {
-  min-height: 400px;
-  border-radius: 0;
+    min-height: 400px;
+    border-radius: 0;
 }
 
 /* Text cell padding */
 .cards-promo > div > div:last-child:not(:first-child) {
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 /* Category label (h4) */
 .cards-promo h4 {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--color-white);
-  background: rgb(255 255 255 / 20%);
-  display: inline-block;
-  width: fit-content;
-  padding: 4px 12px;
-  margin: 0 0 16px;
-  border-radius: 2px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-white);
+    background: rgb(255 255 255 / 20%);
+    display: inline-block;
+    width: fit-content;
+    padding: 4px 12px;
+    margin: 0 0 16px;
+    border-radius: 2px;
 }
 
 /* Heading */
 .cards-promo h3,
 .cards-promo h5 {
-  font-size: 1.5rem;
-  font-weight: 300;
-  line-height: 1.3;
-  color: var(--color-white);
-  padding: 0 0 16px;
-  margin: 0;
-  text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--color-white);
+    padding: 0 0 16px;
+    margin: 0;
+    text-transform: uppercase;
 }
 
 /* Description */
 .cards-promo p {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--color-white);
-  margin: 0;
-  padding: 0 0 8px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-white);
+    margin: 0;
+    padding: 0 0 8px;
 }
 
 /* CTA link — extends .link-reset from shared-components.css */
 .cards-promo a.button:any-link {
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--color-white);
-  font-size: var(--cta-font-size);
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-white);
+    font-size: var(--cta-font-size);
 }
 
 /* Tablet+: 2 columns */
-@media (min-width: 768px) {
-  .cards-promo {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (min-width: 600px) {
+    .cards-promo {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-  .cards-promo > div {
-    min-height: 488px;
-  }
+    .cards-promo > div {
+        min-height: 488px;
+    }
 }
 
 /* Desktop: 3 columns (if 3+ cards) */
-@media (min-width: 1024px) {
-  .cards-promo {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
+@media (min-width: 900px) {
+    .cards-promo {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
 }
 
 /* === MINI Brand Variant === */
 
 /* Grey background on full section (including heading) + tighter spacing */
 .cards-promo-container:has(.mini) {
-  background-color: var(--color-background-grey, #f5f5f5);
+    background-color: var(--color-background-grey, #f5f5f5);
 }
 
 .cards-promo.mini {
-  gap: 20px;
+    gap: 20px;
 }
 
 .cards-promo.mini > div {
-  border-radius: 2px;
-  min-height: 220px;
-  background: var(--color-black);
+    border-radius: 2px;
+    min-height: 220px;
+    background: var(--color-black);
 }
 
 /* MINI: gradient tint (transparent top → dark bottom) instead of solid overlay */
 .cards-promo.mini > div.overlay-card--tinted > div:first-child::after {
-  background: linear-gradient(rgba(0 0 0 / 0%) 0%, rgba(0 0 0 / 60%) 95%);
+    background: linear-gradient(rgba(0 0 0 / 0%) 0%, rgba(0 0 0 / 60%) 95%);
 }
 
 /* MINI: heading at top, description at bottom */
 .cards-promo.mini > div > div:last-child:not(:first-child) {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  padding: 21px 22px;
-  justify-content: flex-start;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 21px 22px;
+    justify-content: flex-start;
 }
 
 .cards-promo.mini h4 {
-  font-family: MINISansSerif-Regular, sans-serif;
-  background: #01693e;
-  border-radius: 14px;
+    font-family: var(--mini-font-sans);
+    background: var(--mini-green);
+    border-radius: 14px;
 }
 
 .cards-promo.mini h3,
 .cards-promo.mini h5 {
-  font-family: MINISerif-Bold, serif;
-  font-size: 1.75rem;
-  font-weight: 400;
-  line-height: 32px;
-  text-transform: none;
-  letter-spacing: normal;
-  padding: 0 0 14px;
-  margin: 0;
-  color: var(--color-white);
-  border-bottom: none;
+    font-family: var(--mini-font-serif-bold);
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 32px;
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 0 0 14px;
+    margin: 0;
+    color: var(--color-white);
+    border-bottom: none;
 }
 
 /* MINI: short accent bar under heading */
 .cards-promo.mini h3::after,
 .cards-promo.mini h5::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--color-white);
-  margin-top: 6px;
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--color-white);
+    margin-top: 6px;
 }
 
 /* MINI: description pushed to bottom */
 .cards-promo.mini p {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1rem;
-  line-height: 22px;
-  color: var(--color-white);
-  margin-top: auto;
+    font-family: var(--mini-font-sans);
+    font-size: 1rem;
+    line-height: 22px;
+    color: var(--color-white);
+    margin-top: auto;
 }
 
 .cards-promo.mini a.button:any-link {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+    font-family: var(--mini-font-sans);
+    font-size: 1rem;
+    font-weight: 400;
 }
 
 .cards-promo.mini .cta-chevron {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+    font-family: var(--mini-font-sans);
+    font-size: 1rem;
+    font-weight: 400;
 }
 
-@media (min-width: 768px) {
-  .cards-promo.mini > div {
-    min-height: 240px;
-  }
+@media (min-width: 600px) {
+    .cards-promo.mini > div {
+        min-height: 240px;
+    }
 }
 
 /* === Motorrad Brand Variant === */
 .cards-promo.motorrad h3,
 .cards-promo.motorrad h5 {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
 }
 
 .cards-promo.motorrad p {
-  font-family: var(--heading-font-family);
+    font-family: var(--heading-font-family);
 }
