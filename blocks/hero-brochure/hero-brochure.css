@@ -1,0 +1,33 @@
+.hero-brochure {
+    padding: 0;
+}
+
+.hero-brochure-inner {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hero-brochure-heading {
+    padding: 80px 32px 0;
+}
+
+body.brochure .hero-brochure-heading h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 900px) {
+    .hero-brochure-heading {
+        padding: 100px 60px 0;
+    }
+}

@@ -1,0 +1,81 @@
+.hotspot-image {
+    padding: 0;
+    background: var(--brochure-bg, #fff);
+}
+
+.hotspot-image-inner {
+    max-width: 100%;
+}
+
+.hotspot-image-container {
+    position: relative;
+    line-height: 0;
+}
+
+.hotspot-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hotspot-dot {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0;
+    z-index: 1;
+}
+
+.hotspot-dot::after {
+    content: '+';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.hotspot-dot:hover,
+.hotspot-dot.active {
+    background: rgba(255, 255, 255, 0.6);
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.hotspot-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.hotspot-dot:hover .hotspot-tooltip,
+.hotspot-dot.active .hotspot-tooltip {
+    opacity: 1;
+}
+
+@media (min-width: 900px) {
+    .hotspot-dot {
+        width: 32px;
+        height: 32px;
+    }
+}
