@@ -499,16 +499,22 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
   }
 
   .hero-dealership .hero-dealership-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    padding-bottom: 12px;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
   .hero-dealership .hero-dealership-subtitle {
     font-size: 0.875rem;
+    line-height: 1.5;
   }
 
   .hero-dealership-btn {
     float: none;
     width: 100%;
+    max-width: 300px;
     margin-bottom: 8px;
   }
 
