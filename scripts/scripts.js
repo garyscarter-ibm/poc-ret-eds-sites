@@ -91,11 +91,65 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Rebrand: replace legacy retailer names with Strata across all visible text.
+ * @param {Element} root The root element to process
+ */
+function rebrandContent(root) {
+  const replacements = [
+    [/Cotswold Cheltenham BMW/g, 'Strata BMW'],
+    [/AN INTRODUCTION TO COTSWOLD MOTOR GROUP/g, 'AN INTRODUCTION TO STRATA'],
+    [/Cotswold Motor Group/g, 'Strata'],
+    [/BMW Cotswold/g, 'Strata BMW'],
+    [/What does BMW Strata BMW/g, 'What does Strata BMW'],
+    [/visiting Strata BMW with Strata/g, 'visiting Strata BMW'],
+    [/Cotswold/g, 'Strata'],
+    [/Cheltenham and Hereford, BMW Motorrad in Cheltenham, plus/g, 'plus'],
+    [/in Cheltenham/g, 'with Strata'],
+    [/Cheltenham as well as surrounding areas including Gloucester, Winchcombe, Stroud and Stonehouse\. Our/g, 'Our'],
+    [/Cheltenham/g, 'Strata'],
+    [/Grassicks MINI/g, 'Strata MINI'],
+    [/Grassicks Perth/g, 'Strata'],
+    [/Grassicks/g, 'Strata'],
+    [/Perth/g, ''],
+    [/Tewkesbury/g, 'our facilities'],
+  ];
+
+  const walk = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      let text = node.textContent;
+      replacements.forEach(([pattern, replacement]) => {
+        text = text.replace(pattern, replacement);
+      });
+      if (text !== node.textContent) node.textContent = text;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      node.childNodes.forEach(walk);
+    }
+  };
+
+  walk(root);
+
+  // Also fix link URLs
+  root.querySelectorAll('a[href*="cotswold"], a[href*="Cotswold"], a[href*="grassick"], a[href*="Grassick"]').forEach((a) => {
+    a.href = a.href
+      .replace('cotswoldgroup.com', 'strata.com')
+      .replace('CotswoldCheltenhamBMW', 'StrataBMW')
+      .replace('CotswoldBMW', 'StrataBMW')
+      .replace('cotswoldbmw', 'stratabmw')
+      .replace('cotswold-bmw', 'strata-bmw')
+      .replace('GrassicksBMW', 'StrataBMW')
+      .replace('grassicksbmw', 'stratabmw')
+      .replace('grassicksmini', 'stratamini')
+      .replace(/grassick's-garage-limited/i, 'strata-bmw');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  rebrandContent(main);
   buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
@@ -113,6 +167,13 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // Rebrand page title and meta tags
+    if (document.title.includes('Cotswold') || document.title.includes('Cheltenham')) {
+      document.title = document.title.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
+    }
+    document.querySelectorAll('meta[content*="Cotswold"], meta[content*="Cheltenham"]').forEach((meta) => {
+      meta.content = meta.content.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
+    });
     // Auto-detect MINI theme from block classes when no theme metadata is set
     if (!document.body.classList.contains('mini') && main.querySelector('.mini')) {
       document.body.classList.add('mini');
@@ -170,6 +231,21 @@ async function loadLazy(doc) {
     loadFooter(footer);
   } else {
     footer.remove();
+  }
+
+  // Rebrand header and footer after they load
+  const headerEl = doc.querySelector('header');
+  const footerEl = doc.querySelector('footer');
+  if (headerEl) {
+    if (headerEl.children.length > 0) {
+      rebrandContent(headerEl);
+    }
+    new MutationObserver(() => rebrandContent(headerEl))
+      .observe(headerEl, { childList: true, subtree: true });
+  }
+  if (footerEl) {
+    new MutationObserver(() => rebrandContent(footerEl))
+      .observe(footerEl, { childList: true, subtree: true });
   }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
