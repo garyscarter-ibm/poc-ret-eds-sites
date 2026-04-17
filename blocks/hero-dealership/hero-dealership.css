@@ -692,6 +692,11 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 .hero-dealership.motorrad .hero-dealership-subtitle {
   font-family: var(--heading-font-family);
   font-weight: 400;
+  padding-bottom: 0;
+}
+
+.hero-dealership.motorrad .hero-dealership-ctas {
+  margin-top: 30px;
 }
 
 /* Motorrad CTA buttons: dark near-black, square, uppercase */
@@ -706,7 +711,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
 .hero-dealership.motorrad .hero-dealership-btn-primary {
   background-color: rgb(22 23 26);
-  border: 2px solid rgb(255 255 255);
+  border: 1px solid rgb(255 255 255);
   color: var(--color-white);
   border-radius: 0;
   font-family: var(--heading-font-family);

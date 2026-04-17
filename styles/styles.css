@@ -388,6 +388,25 @@ body.motorrad main > .section > .default-content-wrapper {
   max-width: var(--content-width);
 }
 
+/* Motorrad: spacing between block wrappers within sections */
+body.motorrad main > .section > .columns-feature-wrapper {
+  margin-bottom: 32px;
+}
+
+body.motorrad main > .section > .columns-feature-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+body.motorrad main > .section > .default-content-wrapper + .columns-feature-wrapper,
+body.motorrad main > .section.columns-feature-container:has(.columns-feature.welcome) > .default-content-wrapper + .columns-feature-wrapper {
+  margin-top: 0;
+}
+
+/* Motorrad: padding on heading wrapper prevents margin collapse with block below */
+body.motorrad main > .section > .default-content-wrapper:has(h2) {
+  padding-bottom: 48px;
+}
+
 /* Motorrad section headings: centered uppercase with divider */
 body.motorrad main > .section > .default-content-wrapper > h2 {
   font-family: var(--heading-font-family);
@@ -396,7 +415,7 @@ body.motorrad main > .section > .default-content-wrapper > h2 {
   text-transform: uppercase;
   text-align: center;
   color: rgb(22 23 26);
-  margin: 0 0 var(--spacing-xl);
+  margin: 0;
   padding-top: 0;
   position: relative;
   overflow: hidden;
@@ -434,8 +453,8 @@ body.motorrad main > .section > .default-content-wrapper > h2::after {
   display: block;
   position: absolute;
   top: 23px;
-  left: 0;
-  right: 0;
+  left: 15%;
+  right: 15%;
   height: 2px;
   background: rgb(22 23 26);
   /* Mask out center where icon sits */
@@ -530,6 +549,40 @@ main > .section.light-grey {
 main > .section.light-grey > div {
   max-width: var(--content-width);
   margin: 0 auto;
+}
+
+/* Motorrad light-grey CTA banner (e.g. "Considering selling your motorcycle?") */
+body.motorrad main > .section.light-grey {
+  max-width: 100%;
+  width: 100%;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+body.motorrad main > .section.light-grey p {
+  font-family: var(--heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgb(22 23 26);
+  margin: 0;
+}
+
+body.motorrad main > .section.light-grey p:has(a) {
+  margin-top: 16px;
+  font-weight: 400;
+}
+
+body.motorrad main > .section.light-grey a:any-link {
+  font-family: var(--heading-font-family);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgb(22 23 26);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body.motorrad main > .section.light-grey a:hover {
+  text-decoration-thickness: 2px;
 }
 
 /* ===== Section Metadata (hidden) ===== */

@@ -241,6 +241,11 @@ main > .section.columns-feature-container:has(.columns-feature.welcome) > .colum
   margin: 0;
 }
 
+/* Motorrad: restore spacing between section heading and welcome block */
+body.motorrad main > .section.columns-feature-container:has(.columns-feature.welcome) > .default-content-wrapper + .columns-feature-wrapper {
+  margin-top: 48px;
+}
+
 /* MINI welcome: main is full-width so no breakout needed — just center */
 main > .section.columns-feature-container:has(.columns-feature.welcome.mini) {
   left: auto;
@@ -813,25 +818,64 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   text-transform: none;
 }
 
-.columns-feature.motorrad p {
+.columns-feature.motorrad p,
+.columns-feature.motorrad .columns-feature-text > div {
   font-family: var(--heading-font-family);
   font-size: 1rem;
   line-height: 1.5;
   color: rgb(22 23 26);
+  padding: 0;
 }
 
-/* Motorrad CTA: space above first button to separate from body text */
+/* Motorrad welcome: bolder heading, uppercase, tighter */
+.columns-feature.motorrad.welcome h3,
+.columns-feature.motorrad.welcome h5 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgb(22 23 26);
+  margin-bottom: 12px;
+}
+
+.columns-feature.motorrad.welcome p,
+.columns-feature.motorrad.welcome div:not(.columns-feature-image):not(.columns-feature-text) {
+  font-family: var(--heading-font-family);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgb(60 60 60);
+}
+
+/* Motorrad: top-align text so spacing is consistent regardless of row height */
+.columns-feature.motorrad .columns-feature-text {
+  justify-content: flex-start;
+}
+
+/* Motorrad CTA: gap from text to button via the p wrapper */
 .columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) {
-  margin-top: 16px;
+  margin-top: 30px;
 }
 
 /* Motorrad CTA: less space between consecutive buttons */
-.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p:has(.cta-chevron) {
-  margin-top: 6px;
+.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p:has(.cta-chevron),
+.columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) {
+  margin-top: 8px;
 }
 
-/* Motorrad CTA: dark filled button with white border */
-.columns-feature.motorrad a.cta-chevron {
+/* Reset inner p margin inside consecutive CTA divs */
+.columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) p {
+  margin-top: 0;
+}
+
+/* Motorrad CTA: reset negative margin from BMW chevron style */
+.columns-feature.motorrad .cta-chevron {
+  margin: 0;
+}
+
+/* Motorrad CTA: dark filled button with white border (welcome override too) */
+.columns-feature.motorrad a.cta-chevron,
+.columns-feature.motorrad.welcome a.cta-chevron {
   font-family: var(--heading-font-family);
   font-weight: 700;
   font-size: 16px;
@@ -839,7 +883,7 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   text-transform: uppercase;
   background-color: rgb(22 23 26);
   color: rgb(255 255 255);
-  border: 2px solid rgb(255 255 255);
+  border: 2px solid rgb(22 23 26);
   padding: 10px 30px;
   min-height: 40px;
   box-sizing: border-box;
@@ -854,21 +898,24 @@ main > .section.columns-feature-container:has(.columns-feature.mini) + .section.
   display: none;
 }
 
-.columns-feature.motorrad a.cta-chevron:hover {
+.columns-feature.motorrad a.cta-chevron:hover,
+.columns-feature.motorrad.welcome a.cta-chevron:hover {
   background-color: rgb(255 255 255);
   color: rgb(22 23 26);
   border-color: rgb(22 23 26);
   text-decoration: none;
 }
 
-/* Motorrad secondary CTA: translucent white background, dark border/text */
-.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron {
-  background-color: rgb(255 255 255 / 90%);
+/* Motorrad secondary CTA: white background, dark border/text */
+.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron,
+.columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) .cta-chevron {
+  background-color: rgb(255 255 255);
   color: rgb(22 23 26);
   border: 2px solid rgb(22 23 26);
 }
 
-.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron:hover {
+.columns-feature.motorrad .columns-feature-text p:has(.cta-chevron) + p .cta-chevron:hover,
+.columns-feature.motorrad .columns-feature-text div:has(.cta-chevron) + div:has(.cta-chevron) .cta-chevron:hover {
   background-color: rgb(22 23 26);
   color: rgb(255 255 255);
 }
