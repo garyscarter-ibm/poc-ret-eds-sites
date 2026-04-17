@@ -1,0 +1,84 @@
+/* Cards Team - Team member grid (photo + name + title) */
+/* Matches: cotswoldcheltenhambmw.co.uk/about-us/ team section */
+
+.cards-team > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.cards-team > ul > li {
+  background-color: var(--color-white, #fff);
+  overflow: hidden;
+}
+
+.cards-team .cards-team-card-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.cards-team > ul > li img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.cards-team .cards-team-card-body {
+  padding: 20px;
+  background-color: var(--color-white, #fff);
+  text-align: left;
+}
+
+.cards-team .cards-team-card-body h4 {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-text, #262626);
+  margin: 0 0 4px;
+  padding: 0;
+}
+
+.cards-team .cards-team-card-body h3 {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--color-text-light, #666);
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.cards-team .cards-team-card-body h5 {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--color-text-light, #666);
+  margin: 4px 0 0;
+  padding: 0;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 600px) {
+  .cards-team > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 900px) {
+  .cards-team > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large desktop: match original 3 columns with wider cards */
+@media (min-width: 1200px) {
+  .cards-team > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+}
