@@ -128,6 +128,35 @@
   --link-text-decoration-hover: underline;
   --link-transition: color 0.2s ease;
 
+  /* --- Extended Colours --- */
+  --color-dark-bg: #1a1a1a;
+  --color-dark-bg-alt: #262626;
+  --color-medium-grey: #666;
+  --color-light-grey-bg: #e6e6e6;
+  --color-footer-bg: #333;
+  --color-border: #e0e0e0;
+
+  /* --- MINI Brand --- */
+  --mini-green: #01693e;
+  --mini-teal: #0085ac;
+  --mini-blue: #1b3fb7;
+  --mini-gold-star: #d4af37;
+  --mini-font-serif: MINISerif-Regular, serif;
+  --mini-font-serif-bold: MINISerif-Bold, serif;
+  --mini-font-sans: MINISansSerif-Regular, sans-serif;
+
+  /* --- Extended Spacing --- */
+  --spacing-2xl: 80px;
+  --spacing-3xl: 100px;
+  --spacing-4xl: 120px;
+
+  /* --- Content Widths --- */
+  --content-width-xs: 700px;
+  --content-width-s: 900px;
+  --content-width-m: 1200px;
+  --content-width-l: 1280px;
+  --content-width-xl: 1440px;
+
   /* --- Focus --- */
   --focus-outline: 2px solid var(--color-bmw-blue);
   --focus-outline-offset: 2px;
@@ -327,7 +356,7 @@ body.motorrad main {
 body.motorrad main > .section {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1280px;
+  max-width: var(--content-width-l);
 }
 
 body.motorrad main > .section.hero-dealership-container {
@@ -574,7 +603,7 @@ main > .section.cards-news-container {
   background-color: var(--color-white);
   padding-top: 0;
   padding-bottom: 24px;
-  max-width: 1440px;
+  max-width: var(--content-width-xl);
 }
 
 /* Grey background for NEWS heading - stretches full width */
@@ -591,7 +620,7 @@ main > .section.cards-news-container > .cards-news-wrapper {
 }
 
 /* Mobile/tablet: stretch backgrounds beyond section padding */
-@media (max-width: 1023px) {
+@media (max-width: 899px) {
   main > .section.cards-news-container > .default-content-wrapper:first-child,
   main > .section.cards-news-container > .cards-news-wrapper {
     margin-left: -24px;
@@ -600,12 +629,12 @@ main > .section.cards-news-container > .cards-news-wrapper {
 }
 
 main > .section.columns-feature-container {
-  max-width: 1440px;
+  max-width: var(--content-width-xl);
 }
 
 main > .section.cards-about-container {
   padding: 40px 16px 48px;
-  max-width: 1440px;
+  max-width: var(--content-width-xl);
   background-color: var(--color-background-grey);
 }
 
@@ -637,7 +666,7 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-c
   padding: 32px 24px;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 899px) {
   main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-child:not(:has(h2)) {
     margin-left: -24px;
     margin-right: -24px;
@@ -679,12 +708,12 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
 
 /* MINI brand overrides for body text, section headings, and global colors */
 .section:has(.mini) {
-  font-family: MINISansSerif-Regular, sans-serif;
+  font-family: var(--mini-font-sans);
   color: var(--color-black);
 }
 
 .section:has(.mini) p {
-  font-family: MINISansSerif-Regular, sans-serif;
+  font-family: var(--mini-font-sans);
   color: var(--color-black);
 }
 
@@ -697,7 +726,7 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper > h2 {
 
 /* MINI section-level H2 headings: 32px centered uppercase (matching original) */
 main > .section:has(.mini) > .default-content-wrapper > h2 {
-  font-family: MINISerif-Bold, sans-serif;
+  font-family: var(--mini-font-serif-bold);
   font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -708,7 +737,7 @@ main > .section:has(.mini) > .default-content-wrapper > h2 {
 
 /* MINI section-level H3 headings: same style as H2 for consistency */
 main > .section:has(.mini) > .default-content-wrapper > h3 {
-  font-family: MINISerif-Bold, sans-serif;
+  font-family: var(--mini-font-serif-bold);
   font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -747,7 +776,7 @@ main > .section.tabs-dealer-locator-container:has(.mini) > .default-content-wrap
 .section.tiles-cta-container:has(.mini) {
   padding-top: 80px;
   padding-bottom: 0;
-  max-width: 1280px;
+  max-width: var(--content-width-l);
   margin: 0 auto;
 }
 

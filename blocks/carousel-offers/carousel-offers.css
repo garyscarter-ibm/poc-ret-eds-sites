@@ -1,152 +1,152 @@
 /* Carousel Offers - Horizontal scrolling offer/service cards */
 .carousel-offers {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
 }
 
 /* MINI variant: wider max-width, add side padding so content doesn't touch edges */
 .carousel-offers.mini {
-  max-width: 1280px;
-  padding: 16px 40px;
+    max-width: var(--content-width-l);
+    padding: 16px 40px;
 }
 
 main > .section.carousel-offers-container:has(.carousel-offers.mini) {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: var(--content-width-l);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 main > .section.carousel-offers-container:has(.carousel-offers.mini) > .default-content-wrapper {
-  max-width: 1280px;
-  text-align: center;
+    max-width: var(--content-width-l);
+    text-align: center;
 }
 
 main > .section.carousel-offers-container:has(.carousel-offers.mini) > .carousel-offers-wrapper {
-  max-width: 1280px;
+    max-width: var(--content-width-l);
 }
 
 /* Scroll track — uses shared .scroll-hidden from shared-components.css */
 .carousel-offers-track {
-  display: flex;
-  gap: 20px;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
+    display: flex;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
 }
 
 /* Cards */
 .carousel-offers-card {
-  flex: 0 0 280px;
-  scroll-snap-align: start;
-  border: 1px solid rgb(230 230 230);
-  border-radius: 0;
-  overflow: hidden;
-  background: var(--color-white);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    border: 1px solid rgb(230 230 230);
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--color-white);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .carousel-offers-card-image {
-  height: 180px;
-  overflow: hidden;
+    height: 180px;
+    overflow: hidden;
 }
 
 .carousel-offers-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .carousel-offers-card-text {
-  padding: 22px 0 0;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+    padding: 22px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .carousel-offers-card-text h4,
 .carousel-offers-card-text h5 {
-  font-family: MINISerif-Bold, serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--color-text);
-  margin: 0;
-  padding-bottom: 19px;
-  text-transform: none;
-  letter-spacing: normal;
+    font-family: var(--mini-font-serif-bold);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-text);
+    margin: 0;
+    padding-bottom: 19px;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 .carousel-offers-card-text p {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: 1rem;
-  line-height: 22px;
-  color: var(--color-text);
-  margin: 0 0 12px;
+    font-family: var(--mini-font-sans);
+    font-size: 1rem;
+    line-height: 1.375;
+    color: var(--color-text);
+    margin: 0 0 12px;
 }
 
 /* Learn more link — uses shared cta-chevron--black, pushed to bottom of card */
 .carousel-offers .carousel-offers-card-text p:has(.carousel-offers-link) {
-  margin: auto 0 0;
+    margin: auto 0 0;
 }
 
 .carousel-offers .carousel-offers-link.cta-chevron {
-  font-size: 1.125rem;
-  line-height: 16px;
-  padding: 15px 34px 15px 0;
+    font-size: 1.125rem;
+    line-height: 0.89;
+    padding: 15px 34px 15px 0;
 }
 
 .carousel-offers .carousel-offers-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Nav buttons — extends shared .carousel-nav-btn from shared-components.css */
 .carousel-offers .carousel-offers-prev,
 .carousel-offers .carousel-offers-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  font-size: 1.5rem;
-  font-family: inherit;
-  transition: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    font-size: 1.5rem;
+    font-family: inherit;
+    transition: none;
 }
 
 .carousel-offers .carousel-offers-prev {
-  left: 16px;
+    left: 16px;
 }
 
 .carousel-offers .carousel-offers-next {
-  right: 16px;
+    right: 16px;
 }
 
-@media (min-width: 768px) {
-  .carousel-offers-card {
-    flex: 0 0 calc(50% - 8px);
-  }
+@media (min-width: 600px) {
+    .carousel-offers-card {
+        flex: 0 0 calc(50% - 8px);
+    }
 }
 
-@media (min-width: 1024px) {
-  .carousel-offers-card {
-    flex: 0 0 326px;
-  }
+@media (min-width: 900px) {
+    .carousel-offers-card {
+        flex: 0 0 326px;
+    }
 }
 
 /* === Motorrad Brand Variant === */
 .carousel-offers.motorrad h5 {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
 }
 
 .carousel-offers.motorrad p {
-  font-family: var(--heading-font-family);
+    font-family: var(--heading-font-family);
 }
 
 .carousel-offers.motorrad a {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  text-transform: uppercase;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    text-transform: uppercase;
 }

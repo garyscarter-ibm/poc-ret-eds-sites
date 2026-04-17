@@ -1,7 +1,7 @@
 
 .brochure-locked {
     padding: 0;
-    background: #1a1a1a;
+    background: var(--color-dark-bg);
     overflow: hidden;
 }
 
@@ -15,7 +15,7 @@
 
 /* Teaser heading */
 .brochure-locked .brochure-locked-heading {
-    color: #fff;
+    color: var(--color-white);
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 700;
     text-transform: uppercase;

@@ -42,7 +42,7 @@
 }
 
 .brochure-hero .brochure-hero-overlay h2 {
-    color: #fff;
+    color: var(--color-white);
     font-size: clamp(2.5rem, 6.5vw, 3.125rem);
     font-weight: 300;
     text-transform: uppercase;
@@ -84,7 +84,7 @@
     justify-content: center;
     gap: 6px;
     padding: 14px 12px;
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.65rem;
     font-weight: 400;
     text-decoration: none;

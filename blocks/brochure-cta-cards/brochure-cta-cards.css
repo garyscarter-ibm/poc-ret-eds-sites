@@ -1,7 +1,7 @@
 
 .brochure-cta-cards {
     padding: 0;
-    background: #666;
+    background: var(--color-medium-grey);
 }
 
 .brochure-cta-cards-grid {
@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #666;
+    background: var(--color-medium-grey);
     border-radius: 0;
     padding: 24px 16px 16px;
     text-decoration: none;
@@ -38,7 +38,7 @@
 }
 
 .brochure-cta-card-label {
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.6875rem;
     font-weight: 700;
     text-transform: none;

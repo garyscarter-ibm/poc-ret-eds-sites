@@ -2,6 +2,12 @@
 /*
  * BMW X7 Brochure Theme
  * Light-mode luxury brochure styling matching the Foleon original
+ *
+ * INTENTIONAL DIVERGENCE from main theme (styles.css):
+ * - --brochure-section-padding: 60px 20px (vs --section-padding: 64px 24px)
+ * - --brochure-nav-height: 57px (no equivalent in main theme)
+ * - --brochure-content-narrow: 800px (vs --content-width-narrow: 900px)
+ * These differences are deliberate to match the original Foleon brochure design.
  */
 
 /* ===== Brochure CSS Custom Properties ===== */

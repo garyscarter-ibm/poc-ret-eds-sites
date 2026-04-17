@@ -91,7 +91,7 @@ async function loadEager(doc) {
       document.body.classList.add('motorrad');
     }
     // Auto-detect Brochure theme
-    if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || main.querySelector('.hero-brochure') || getMetadata('theme') === 'brochure') {
+    if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || main.querySelector('.brochure-hero-cards') || getMetadata('theme') === 'brochure') {
       document.body.classList.add('brochure');
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
       // Set page title from brochure config

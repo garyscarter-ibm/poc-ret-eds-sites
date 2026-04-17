@@ -76,7 +76,7 @@
 }
 
 .brochure-hotspot-btn:hover .brochure-hotspot-dot {
-    border-color: #fff;
+    border-color: var(--color-white);
     background: rgba(255, 255, 255, 0.15);
 }
 

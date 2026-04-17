@@ -30,7 +30,7 @@
 }
 
 .brochure-blockquote-text blockquote {
-    font-family: var(--brochure-font, BMWTypeNextLatin, sans-serif);
+    font-family: var(--brochure-font);
     font-size: clamp(1.125rem, 2.5vw, 1.375rem);
     font-weight: 300;
     font-style: normal;

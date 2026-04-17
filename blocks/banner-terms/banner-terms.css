@@ -1,34 +1,34 @@
 /* Banner Terms - Disclaimer/terms text banner */
 .banner-terms {
-  max-width: 1152px;
-  margin: 0 auto;
-  padding: 32px 16px;
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 32px 16px;
 }
 
 .banner-terms p {
-  font-size: 0.875rem;
-  font-weight: 300;
-  line-height: 1.375;
-  color: var(--color-text-light);
-  margin: 0 0 7px;
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.375;
+    color: var(--color-text-light);
+    margin: 0 0 7px;
 }
 
 .banner-terms p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 /* === MINI Brand Variant === */
 .banner-terms.mini p {
-  font-family: MINISansSerif-Regular, sans-serif;
+    font-family: var(--mini-font-sans);
 }
 
 .section.banner-terms-container:has(.banner-terms.mini) {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+    max-width: var(--content-width-l);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* === Motorrad Brand Variant === */
 .banner-terms.motorrad p {
-  font-family: var(--heading-font-family);
+    font-family: var(--heading-font-family);
 }

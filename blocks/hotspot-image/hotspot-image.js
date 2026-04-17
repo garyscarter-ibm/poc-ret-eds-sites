@@ -180,5 +180,6 @@ export default async function decorate(block) {
 
   // Assemble
   block.textContent = '';
-  block.append(imageContainer, parts.modal);
+  block.append(imageContainer);
+  document.body.append(parts.modal);
 }
