@@ -1,7 +1,7 @@
 
 .brochure-stats {
     padding: 60px 24px;
-    background: var(--brochure-bg);
+    background: #e6e6e6;
 }
 
 .brochure-stats-grid {
@@ -19,7 +19,7 @@
 
 .brochure-stat-value {
     font-family: var(--brochure-font, BMWTypeNextLatin, sans-serif);
-    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-size: clamp(2rem, 5vw, 3.125rem);
     font-weight: 300;
     color: var(--brochure-text);
     line-height: 1.1;
@@ -27,11 +27,11 @@
 }
 
 .brochure-stat-label {
-    font-size: 0.6875rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--brochure-text-muted);
+    letter-spacing: normal;
+    color: var(--brochure-text);
 }
 
 @media (min-width: 900px) {

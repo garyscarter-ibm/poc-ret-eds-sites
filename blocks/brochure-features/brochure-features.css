@@ -1,44 +1,49 @@
 
 .brochure-features {
-    padding: 40px 24px;
-    background: var(--brochure-bg);
+    padding: 0;
+    background: #1a1a1a;
 }
 
 .brochure-features-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    max-width: 900px;
+    gap: 1px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 .brochure-feature-card {
-    padding: 24px 0;
+    padding: 40px 24px;
     border: none;
-    border-bottom: 1px solid var(--brochure-border);
+    background: #262626;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 200px;
 }
 
 .brochure-feature-num {
     font-family: var(--brochure-font, BMWTypeNextLatin, sans-serif);
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--brochure-text-muted);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 12px;
+    line-height: 1;
 }
 
-.brochure-feature-title {
-    font-size: clamp(0.875rem, 2vw, 1.125rem);
-    font-weight: 700;
+body.brochure .brochure-feature-title {
+    font-size: 1.5625rem;
+    font-weight: 300;
     text-transform: uppercase;
-    color: var(--brochure-text);
+    color: #fff;
     margin-bottom: 16px;
     line-height: 1.2;
 }
 
-.brochure-feature-link {
-    font-size: 0.8125rem;
-    font-weight: 700;
-    color: var(--brochure-text);
+body.brochure .brochure-feature-link {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #fff;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -46,29 +51,32 @@
 }
 
 .brochure-feature-link::after {
-    content: '\2192';
+    content: '\203A';
+    font-size: 1.2em;
 }
 
-.brochure-feature-link:hover {
-    color: var(--brochure-accent, #1c69d4);
+body.brochure .brochure-feature-link:hover {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 @media (min-width: 600px) {
-    .brochure-features {
-        padding: 60px 40px;
-    }
-
     .brochure-features-grid {
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .brochure-feature-card {
+        min-height: 280px;
+        padding: 40px 30px;
     }
 }
 
 @media (min-width: 900px) {
-    .brochure-features {
-        padding: 80px 60px;
+    .brochure-feature-num {
+        font-size: 4rem;
     }
 
     .brochure-feature-card {
-        padding: 32px 0;
+        min-height: 320px;
+        padding: 48px 32px;
     }
 }

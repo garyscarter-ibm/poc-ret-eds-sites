@@ -156,25 +156,6 @@ async function loadLazy(doc) {
       }
     }
 
-    // Auto-inject brochure-locked teaser block before CTA cards
-    const ctaSection = main.querySelector('.brochure-cta-cards-container');
-    if (ctaSection) {
-      const lockedSection = document.createElement('div');
-      lockedSection.className = 'section brochure-locked-container';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'brochure-locked-wrapper';
-      const block = document.createElement('div');
-      block.className = 'brochure-locked block';
-      block.dataset.blockName = 'brochure-locked';
-      wrapper.append(block);
-      lockedSection.append(wrapper);
-      ctaSection.before(lockedSection);
-      const { default: decorateLocked } = await import('../blocks/brochure-locked/brochure-locked.js');
-      decorateLocked(block);
-      await loadCSS(`${window.hlx.codeBasePath}/blocks/brochure-locked/brochure-locked.css`);
-      lockedSection.dataset.sectionStatus = 'loaded';
-    }
-
     const { prepareBrochureAnimations, initBrochureAnimations } = await import('./brochure-animations.js');
     prepareBrochureAnimations(main);
     initBrochureAnimations(main);

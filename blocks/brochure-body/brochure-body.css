@@ -1,25 +1,3 @@
-/* Full-width hero image above brochure body */
-.brochure-body-hero {
-    width: 100%;
-    height: 75vh;
-    max-height: 600px;
-    line-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-}
-
-.brochure-body-hero.in-view {
-    opacity: 1;
-}
-
-.brochure-body-hero img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-}
-
 .brochure-body {
     padding: 60px 24px;
     text-align: left;
@@ -67,7 +45,7 @@
 .brochure-body .brochure-body-inner p {
     color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
-    line-height: 1.7;
+    line-height: 1.4;
     font-weight: 300;
     max-width: 640px;
 }

@@ -1,14 +1,14 @@
 
 .brochure-cta-cards {
-    padding: 40px 20px;
-    background: var(--brochure-bg, #fff);
+    padding: 0;
+    background: #666;
 }
 
 .brochure-cta-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    max-width: 1200px;
+    gap: 0;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -17,28 +17,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #e6e6e6;
+    background: #666;
     border-radius: 0;
     padding: 24px 16px 16px;
     text-decoration: none;
     transition: background 0.3s ease;
     gap: 8px;
+    aspect-ratio: 1;
 }
 
 .brochure-cta-card:hover {
-    background: #d9d9d9;
+    background: #555;
 }
 
 .brochure-cta-card-icon {
     width: auto;
     height: 48px;
     object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .brochure-cta-card-label {
-    color: #666;
-    font-size: 0.7rem;
-    font-weight: 400;
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
     text-transform: none;
     letter-spacing: 0.02em;
     text-align: center;
@@ -46,13 +48,8 @@
 }
 
 @media (min-width: 600px) {
-    .brochure-cta-cards {
-        padding: 60px 40px;
-    }
-
     .brochure-cta-cards-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
     }
 
     .brochure-cta-card {
@@ -65,10 +62,6 @@
 }
 
 @media (min-width: 900px) {
-    .brochure-cta-cards {
-        padding: 80px 60px;
-    }
-
     .brochure-cta-card-icon {
         height: 64px;
     }

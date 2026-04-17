@@ -121,9 +121,9 @@ body.brochure h2 {
 }
 
 body.brochure h3 {
-    font-size: clamp(1.5rem, 3.5vw, 2.1875rem);
+    font-size: 1.5625rem;
     font-weight: 300;
-    letter-spacing: 0.02em;
+    letter-spacing: normal;
     text-transform: uppercase;
 }
 
@@ -136,7 +136,7 @@ body.brochure h4 {
 body.brochure p {
     color: var(--brochure-text);
     font-size: 0.9375rem;
-    line-height: 1.6;
+    line-height: 1.4;
     font-weight: 300;
     margin: 0;
 }
@@ -171,6 +171,17 @@ body.brochure .brochure-content-narrow {
     max-width: var(--brochure-content-narrow);
     margin: 0 auto;
     padding: var(--brochure-section-padding);
+}
+
+/* ===== Comfort/Stats grey band ===== */
+/* Sections adjacent to brochure-stats share the #e6e6e6 background */
+body.brochure .section.brochure-stats-container + .section.brochure-body-container .brochure-body {
+    background: #e6e6e6;
+}
+
+/* The body section immediately before stats (Comfort heading) */
+body.brochure .section.brochure-body-container:has(+ .section.brochure-stats-container) .brochure-body {
+    background: #e6e6e6;
 }
 
 /* ===== Responsive ===== */

@@ -1,3 +1,16 @@
+const CTA_ICON_MAP = {
+  'build now': '/icons/cta-build.svg',
+  'build your bmw': '/icons/cta-build.svg',
+  'new car locator': '/icons/cta-locator.svg',
+  'book a test drive': '/icons/cta-test-drive.svg',
+  'offers and finance': '/icons/cta-offers.svg',
+};
+
+function resolveIcon(linkText) {
+  const key = (linkText || '').toLowerCase().trim();
+  return CTA_ICON_MAP[key] || null;
+}
+
 export default async function decorate(block) {
   const rows = [...block.children];
   const wrapper = document.createElement('div');
@@ -15,10 +28,8 @@ export default async function decorate(block) {
     const link = row.querySelector('a');
 
     if (hasHeading) {
-      // Hero heading row
       heading = hasHeading;
     } else if (img && link) {
-      // CTA item: icon + link
       const cta = document.createElement('a');
       cta.href = link.href;
       cta.target = '_blank';
@@ -27,8 +38,19 @@ export default async function decorate(block) {
 
       const icon = document.createElement('span');
       icon.className = 'brochure-hero-cards-icon';
-      img.loading = 'lazy';
-      icon.append(img);
+
+      // Use local SVG icons instead of banner-style source images
+      const iconSrc = resolveIcon(link.textContent);
+      if (iconSrc) {
+        const iconImg = document.createElement('img');
+        iconImg.src = iconSrc;
+        iconImg.alt = link.textContent.trim();
+        iconImg.loading = 'lazy';
+        icon.append(iconImg);
+      } else {
+        img.loading = 'lazy';
+        icon.append(img);
+      }
 
       const label = document.createElement('span');
       label.className = 'brochure-hero-cards-label';
@@ -37,7 +59,6 @@ export default async function decorate(block) {
       cta.append(icon, label);
       ctaBar.append(cta);
     } else if (img && !link) {
-      // Background image
       bgImage = img.src;
     }
   });

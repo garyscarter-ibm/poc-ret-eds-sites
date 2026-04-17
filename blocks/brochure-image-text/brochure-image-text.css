@@ -31,20 +31,20 @@
     background: var(--brochure-bg);
 }
 
-.brochure-image-text-content hr {
+body.brochure .brochure-image-text-content hr {
     border: none;
-    width: 40px;
-    height: 2px;
+    width: 77px;
+    height: 1px;
     background: var(--brochure-separator);
     margin: 0 0 20px;
 }
 
 .brochure-image-text-content h3 {
     color: var(--brochure-text);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
+    font-size: 1.5625rem;
+    font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: normal;
     margin-bottom: 20px;
     line-height: 1.15;
 }
@@ -52,7 +52,7 @@
 .brochure-image-text-content p {
     color: var(--brochure-text-secondary);
     font-size: 0.9375rem;
-    line-height: 1.7;
+    line-height: 1.4;
     font-weight: 300;
     max-width: 520px;
 }
