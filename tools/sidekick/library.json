@@ -14,7 +14,10 @@
       { "name": "Tabs Dealer Locator", "path": "/docs/library/tabs-dealer-locator" },
       { "name": "Tiles Contact", "path": "/docs/library/tiles-contact" },
       { "name": "Tiles CTA", "path": "/docs/library/tiles-cta" },
-      { "name": "Banner Terms", "path": "/docs/library/banner-terms" }
+      { "name": "Banner Terms", "path": "/docs/library/banner-terms" },
+      { "name": "Brochure Stats", "path": "/docs/library/brochure-stats" },
+      { "name": "Brochure Stats (Locked)", "path": "/docs/library/brochure-stats-locked" },
+      { "name": "Brochure Stats (Mixed)", "path": "/docs/library/brochure-stats-mixed" }
     ]
   },
   "templates": {
