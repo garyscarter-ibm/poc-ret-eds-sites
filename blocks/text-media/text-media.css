@@ -1,15 +1,14 @@
-/* Text Media - Side-by-side image+text (splitBannerTeaserCMS)
-   Image ~38% width, text ~62% width, alternating order
-   Image ~265x320px on left, text with 56px left padding on right */
+/* Text Media - Overlapping image+text layout
+   Matches cotswoldcheltenhambmw.co.uk/about-us/ splitBannerTeaserCMS style:
+   - Large image overlaps vertically beyond the text area
+   - Alternating image left/right
+   - Generous whitespace around text */
 
 .text-media {
   padding: 0;
-  margin-bottom: 48px;
-  background: var(--brochure-bg, #fff);
-}
-
-.text-media:last-child {
   margin-bottom: 0;
+  background: transparent;
+  overflow: visible;
 }
 
 /* Text-only centered layout */
@@ -28,11 +27,12 @@
   max-width: 640px;
 }
 
-/* Image + Text side-by-side layout */
+/* === Image + Text overlapping layout === */
 .text-media-layout {
   display: flex;
   flex-direction: column;
-  min-height: 340px;
+  position: relative;
+  min-height: 400px;
 }
 
 .text-media-image {
@@ -53,7 +53,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 48px 24px;
-  background: var(--brochure-bg, #fff);
+  background: transparent;
 }
 
 body.brochure .text-media-content hr {
@@ -74,14 +74,14 @@ body.brochure .text-media-content hr {
 }
 
 .text-media-content p {
-  color: var(--brochure-text-secondary, #4d4d4d);
+  color: var(--color-text, #262626);
   font-size: 0.9375rem;
-  line-height: 1.4;
-  font-weight: 300;
-  max-width: 520px;
+  line-height: 1.5;
+  font-weight: 400;
+  max-width: 480px;
 }
 
-/* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
+/* Scroll animation placeholder */
 .text-media .animate-child {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
@@ -90,7 +90,8 @@ body.brochure .text-media-content hr {
 @media (min-width: 600px) {
   .text-media-layout {
     flex-direction: row;
-    min-height: 320px;
+    align-items: stretch;
+    min-height: 450px;
   }
 
   .text-media-layout.reversed {
@@ -98,35 +99,68 @@ body.brochure .text-media-content hr {
   }
 
   .text-media-image {
-    flex: 0 0 55%;
+    flex: 0 0 50%;
     min-height: auto;
+    position: relative;
   }
 
   .text-media-content {
-    flex: 0 0 45%;
-    padding: 40px 40px 40px 48px;
+    flex: 0 0 50%;
+    padding: 60px 40px;
   }
 }
 
-/* === Responsive: Desktop (900px+) === */
+/* === Responsive: Desktop (900px+) — overlapping layout === */
 @media (min-width: 900px) {
+  .text-media {
+    margin-bottom: 40px;
+    overflow: visible;
+  }
+
+  .text-media:last-child {
+    margin-bottom: 0;
+  }
+
   .text-media-layout {
     flex-direction: row;
-    min-height: 400px;
+    align-items: flex-start;
+    min-height: 500px;
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
+    position: relative;
   }
 
   .text-media-layout.reversed {
     flex-direction: row-reverse;
   }
 
+  /* Image: 55% width, taller than text area — creates the overlap effect */
   .text-media-image {
-    flex: 0 0 58%;
+    flex: 0 0 55%;
     min-height: auto;
+    position: relative;
+    z-index: 1;
   }
 
+  .text-media-image img {
+    height: auto;
+    min-height: 400px;
+    max-height: 600px;
+  }
+
+  /* Text: 45% width, vertically centered with generous padding */
   .text-media-content {
-    flex: 0 0 42%;
-    padding: 64px 48px 64px 56px;
+    flex: 0 0 45%;
+    padding: 80px 48px 80px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 400px;
+  }
+
+  /* When reversed (text left, image right), adjust text padding */
+  .text-media-layout.reversed .text-media-content {
+    padding: 80px 56px 80px 48px;
   }
 
   .text-media-text-center {
@@ -139,5 +173,13 @@ body.brochure .text-media-content hr {
   .text-media-layout {
     max-width: var(--content-width, 1200px);
     margin: 0 auto;
+  }
+
+  .text-media-content {
+    padding: 100px 48px 100px 64px;
+  }
+
+  .text-media-layout.reversed .text-media-content {
+    padding: 100px 64px 100px 48px;
   }
 }

@@ -22,6 +22,9 @@ export default function decorate(block) {
     const linkDivs = [...row.children].filter((div) => div.querySelector('a') && !div.querySelector('h3, h4, h5'));
     if (linkDivs.length >= 3) {
       row.classList.add('social-card');
+      // Group all social links into one horizontal row container
+      const iconsRow = document.createElement('div');
+      iconsRow.className = 'social-icons-row';
       linkDivs.forEach((div) => {
         const a = div.querySelector('a');
         if (a) {
@@ -32,8 +35,11 @@ export default function decorate(block) {
           }
           a.title = text;
           a.setAttribute('aria-label', text);
+          iconsRow.append(a);
         }
+        div.remove();
       });
+      row.append(iconsRow);
     }
   });
 

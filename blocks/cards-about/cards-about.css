@@ -85,12 +85,15 @@ main > .section.cards-about-container {
 /* Social links card (JS adds .social-card class) */
 .cards-about > div.social-card {
   gap: 0;
-  flex-wrap: wrap;
 }
 
-/* Hide the individual wrapper divs and make links flow inline */
-.cards-about > div.social-card > div:not(:first-child) {
-  display: contents;
+/* Horizontal icon row */
+.cards-about .social-icons-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
 
 /* Icons row: inline, BMW blue, spaced out */
