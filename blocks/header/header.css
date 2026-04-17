@@ -391,15 +391,63 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
   }
 
   header .nav-brand a:any-link {
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
+    line-height: 1.2;
   }
 
   header nav .nav-brand img {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
   }
 
-  /* Small mobile: no extra overrides needed for vertical tools */
+  /* BMW mobile: increase header height to fit blue tool bar */
+  header:has(.header:not(.mini):not(.motorrad)) {
+    height: 100px;
+  }
+
+  /* BMW mobile: tools as blue bar below header */
+  header .header:not(.mini):not(.motorrad) nav .nav-tools {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    background-color: rgb(111 111 111);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 10px 16px;
+    z-index: 10;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav .nav-tools > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav .nav-tools p {
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  /* Vertical divider between tool links */
+  header .header:not(.mini):not(.motorrad) nav .nav-tools p + p {
+    border-left: 1px solid rgb(255 255 255 / 40%);
+  }
+
+  /* Hide phone number in blue bar */
+  header .header:not(.mini):not(.motorrad) nav .nav-tools p:has(a[href^="tel:"]) {
+    display: none;
+  }
+
+  header .header:not(.mini):not(.motorrad) nav .nav-tools a:any-link {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
 }
 
 /* ===== Desktop ===== */

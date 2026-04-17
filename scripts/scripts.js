@@ -139,7 +139,12 @@ async function loadLazy(doc) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          // After first full animation, mark as "seen" for simpler re-entry
+          if (!entry.target.classList.contains('seen')) {
+            setTimeout(() => entry.target.classList.add('seen'), 1200);
+          }
+        } else {
+          entry.target.classList.remove('visible');
         }
       });
     }, { threshold: 0.1 });

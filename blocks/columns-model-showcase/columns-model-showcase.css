@@ -18,6 +18,7 @@ main > .section > .columns-model-showcase-wrapper {
 
 .columns-model-showcase {
   background-color: var(--color-background-grey);
+  padding-bottom: 48px;
 }
 
 .columns-model-showcase > div {
@@ -66,7 +67,7 @@ main > .section > .columns-model-showcase-wrapper {
 
 .columns-model-showcase h2 {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 300;
   text-transform: uppercase;
   margin-bottom: 0;
   padding-bottom: 15px;
@@ -74,11 +75,11 @@ main > .section > .columns-model-showcase-wrapper {
 }
 
 .columns-model-showcase .showcase-fuel {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: normal;
-  text-transform: none;
-  color: var(--color-text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: rgb(102 102 102);
   margin-bottom: 16px;
 }
 
@@ -143,7 +144,7 @@ main > .section > .columns-model-showcase-wrapper {
 
 .columns-model-showcase .spec-num {
   font-size: 2.25rem;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--color-black);
   display: inline;
 }
@@ -167,7 +168,7 @@ main > .section > .columns-model-showcase-wrapper {
 /* CTA link styled via shared .cta-chevron--blue (shared-components.css) */
 .columns-model-showcase .showcase-link {
   white-space: nowrap;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 /* CTA link — extends .link-reset from shared-components.css */
@@ -177,6 +178,7 @@ main > .section > .columns-model-showcase-wrapper {
   padding: 0;
   color: var(--color-bmw-blue);
   font-size: var(--cta-font-size);
+  font-weight: 700;
   letter-spacing: 0.39px;
 }
 
@@ -184,10 +186,11 @@ main > .section > .columns-model-showcase-wrapper {
 @media (max-width: 767px) {
   .columns-model-showcase .showcase-content {
     margin-top: -40px;
-    width: calc(100% - 32px);
-    padding: 20px 16px;
+    width: calc(100% - 40px);
+    padding: 32px 28px 48px;
     flex-direction: column;
-    gap: 16px;
+    gap: 0;
+    border-radius: 10px;
   }
 
   .columns-model-showcase .showcase-desc {
@@ -195,26 +198,44 @@ main > .section > .columns-model-showcase-wrapper {
   }
 
   .columns-model-showcase .showcase-specs {
-    gap: 24px;
+    gap: 0;
+    margin: 0;
   }
 
   .columns-model-showcase .showcase-specs li {
-    margin-left: 20px;
-    padding-left: 20px;
+    margin-left: 24px;
+    padding-left: 24px;
+  }
+
+  .columns-model-showcase .showcase-specs li:first-child {
+    margin-left: 0;
+    padding-left: 0;
   }
 
   .columns-model-showcase .spec-value {
-    font-size: 1.5rem;
-    padding-left: 36px;
-    background-size: 28px;
+    font-size: 1.25rem;
+    padding-left: 32px;
+    background-size: 24px;
+    line-height: 28px;
+    background-position: 0 center;
   }
 
   .columns-model-showcase .spec-num {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .columns-model-showcase .spec-unit {
+    font-size: 0.75rem;
   }
 
   .columns-model-showcase .showcase-cta {
     justify-content: flex-start;
+    padding: 29px 0 8px;
+  }
+
+  .columns-model-showcase .showcase-link,
+  .columns-model-showcase a.button:any-link {
+    font-size: 0.8125rem;
   }
 
   .columns-model-showcase .showcase-media {
@@ -226,7 +247,18 @@ main > .section > .columns-model-showcase-wrapper {
   }
 
   .columns-model-showcase h2 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding-bottom: 5px;
+  }
+
+  /* Hide spec labels at mobile — only show icon + value */
+  .columns-model-showcase .spec-label {
+    display: none;
+  }
+
+  .columns-model-showcase .showcase-fuel {
+    margin-bottom: 19px;
   }
 }
 
@@ -254,18 +286,29 @@ main > .section > .columns-model-showcase-wrapper {
   }
 
   .columns-model-showcase .showcase-specs li {
-    margin-left: 20px;
+    margin-left: 24px;
     padding-left: 24px;
   }
 
+  .columns-model-showcase .showcase-specs li:first-child {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .columns-model-showcase .spec-label {
+    display: none;
+  }
+
   .columns-model-showcase .spec-value {
-    font-size: 1.75rem;
-    padding-left: 40px;
-    background-size: 30px;
+    font-size: 1.25rem;
+    padding-left: 32px;
+    background-size: 24px;
+    line-height: 28px;
+    background-position: 0 center;
   }
 
   .columns-model-showcase .spec-num {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
 
   .columns-model-showcase .showcase-desc {
@@ -274,6 +317,14 @@ main > .section > .columns-model-showcase-wrapper {
 
   .columns-model-showcase .showcase-cta {
     align-self: flex-end;
+  }
+}
+
+/* Mid-width: reduce padding so info+specs fit side by side */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .columns-model-showcase .showcase-content {
+    padding: 34px 40px 0;
+    width: calc(100% - 80px);
   }
 }
 

@@ -19,13 +19,13 @@ main > .section.cards-car-locator-container {
 .cards-car-locator {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px 0 0;
+  gap: 0;
+  padding: 0;
 }
 
 /* Each card uses shared .overlay-card (shared-components.css) */
 .cards-car-locator > div {
-  min-height: 420px;
+  min-height: 220px;
 }
 
 /* Text overlay - positioned bottom-right like original */
@@ -45,11 +45,23 @@ main > .section.cards-car-locator-container {
 /* Heading */
 .cards-car-locator h3 {
   color: var(--color-white);
-  font-size: 1.75rem;
-  font-weight: 300;
+  font-size: 1.125rem;
+  font-weight: 400;
   line-height: 1.2;
   padding: 0 0 4px;
   margin: 0;
+}
+
+/* Desktop: larger heading */
+@media (min-width: 768px) {
+  .cards-car-locator h3 {
+    font-size: 1.75rem;
+    font-weight: 300;
+  }
+
+  .cards-car-locator > div {
+    min-height: 420px;
+  }
 }
 
 /* CTA links — right-aligned within the overlay text container */
@@ -61,6 +73,7 @@ main > .section.cards-car-locator-container {
 @media (min-width: 768px) {
   .cards-car-locator {
     flex-direction: row;
+    gap: 24px;
   }
 
   .cards-car-locator > div {
