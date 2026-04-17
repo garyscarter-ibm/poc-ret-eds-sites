@@ -19,8 +19,8 @@ main > .section.cards-about-container {
   background-color: var(--color-white, #fff);
   border-top: 4px solid var(--color-bmw-blue, #1c69d4);
   box-shadow: 0 4px 20px rgb(245 245 245);
-  padding: 38px 24px;
-  min-height: 180px;
+  padding: 28px 20px;
+  min-height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +31,7 @@ main > .section.cards-about-container {
 
 /* Image card overrides for overlay variant */
 .cards-about > div:has(img) {
-  min-height: 488px;
+  min-height: 320px;
   padding: 0;
   border-top: none;
 }
@@ -152,11 +152,27 @@ main > .section.cards-about-container {
   }
 }
 
+/* === Responsive: Tablet (600px+): restore card sizing */
+@media (min-width: 600px) {
+  .cards-about > div {
+    padding: 38px 24px;
+    min-height: 180px;
+  }
+
+  .cards-about > div:has(img) {
+    min-height: 400px;
+  }
+}
+
 /* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
   .cards-about {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+  }
+
+  .cards-about > div:has(img) {
+    min-height: 488px;
   }
 }
 

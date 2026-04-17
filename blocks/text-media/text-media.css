@@ -15,7 +15,7 @@
 .text-media-text-center {
   max-width: 800px;
   margin: 0 auto;
-  padding: 60px 24px;
+  padding: 32px 16px;
   text-align: left;
 }
 
@@ -32,12 +32,14 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 400px;
+  min-height: auto;
 }
 
 .text-media-image {
-  flex: 1;
-  min-height: 300px;
+  flex: none;
+  min-height: 220px;
+  max-height: 320px;
+  overflow: hidden;
 }
 
 .text-media-image img {
@@ -48,11 +50,11 @@
 }
 
 .text-media-content {
-  flex: 1;
+  flex: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 24px;
+  padding: 32px 16px;
   background: transparent;
 }
 
@@ -65,20 +67,20 @@ body.brochure .text-media-content hr {
 }
 
 .text-media-content h3 {
-  font-size: 1.5625rem;
+  font-size: 1.25rem;
   font-weight: var(--heading-font-weight-light, 300);
   text-transform: uppercase;
   letter-spacing: normal;
-  margin-bottom: 20px;
-  line-height: 1.15;
+  margin-bottom: 16px;
+  line-height: 1.25;
 }
 
 .text-media-content p {
   color: var(--color-text, #262626);
-  font-size: 0.9375rem;
-  line-height: 1.5;
+  font-size: 0.875rem;
+  line-height: 1.6;
   font-weight: 400;
-  max-width: 480px;
+  max-width: none;
 }
 
 /* Scroll animation placeholder */
@@ -91,7 +93,7 @@ body.brochure .text-media-content hr {
   .text-media-layout {
     flex-direction: row;
     align-items: stretch;
-    min-height: 450px;
+    min-height: 380px;
   }
 
   .text-media-layout.reversed {
@@ -101,12 +103,29 @@ body.brochure .text-media-content hr {
   .text-media-image {
     flex: 0 0 50%;
     min-height: auto;
+    max-height: none;
     position: relative;
   }
 
   .text-media-content {
     flex: 0 0 50%;
-    padding: 60px 40px;
+    padding: 40px 28px;
+  }
+
+  .text-media-content h3 {
+    font-size: 1.5625rem;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .text-media-content p {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+
+  .text-media-text-center {
+    padding: 60px 24px;
   }
 }
 
@@ -121,46 +140,72 @@ body.brochure .text-media-content hr {
     margin-bottom: 0;
   }
 
+  /* Use CSS Grid for overlap: text and image share middle columns */
   .text-media-layout {
-    flex-direction: row;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
     min-height: 500px;
     max-width: var(--content-width, 1200px);
     margin: 0 auto;
     position: relative;
   }
 
-  .text-media-layout.reversed {
-    flex-direction: row-reverse;
-  }
-
-  /* Image: 55% width, taller than text area — creates the overlap effect */
+  /* Normal layout (OUR CULTURE): image left, text right — NO overlap, clean side by side */
   .text-media-image {
-    flex: 0 0 55%;
+    grid-column: 1 / 7;
+    grid-row: 1;
     min-height: auto;
+    max-height: none;
     position: relative;
     z-index: 1;
+  }
+
+  .text-media-content {
+    grid-column: 8 / 13;
+    grid-row: 1;
+    z-index: 2;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: auto;
+  }
+
+  .text-media-content h3 {
+    font-size: 1.5625rem;
+  }
+
+  .text-media-content p {
+    max-width: 480px;
+  }
+
+  /* Reversed layout (DELIVERING A FIVE STAR SERVICE etc): text right, image left — same clean side by side */
+  .text-media-layout.reversed .text-media-content {
+    grid-column: 7 / 13;
+    padding: 40px 0;
+  }
+
+  .text-media-layout.reversed .text-media-image {
+    grid-column: 1 / 7;
+  }
+
+  /* FIRST text-media only (AN INTRODUCTION): overlapping layout with white bg */
+  .text-media:first-child .text-media-layout.reversed .text-media-content {
+    grid-column: 1 / 7;
+    padding: 80px 56px 80px 0;
+    background-color: var(--color-white, #fff);
+    min-height: 500px;
+  }
+
+  .text-media:first-child .text-media-layout.reversed .text-media-image {
+    grid-column: 5 / 13;
   }
 
   .text-media-image img {
     height: auto;
     min-height: 400px;
     max-height: 600px;
-  }
-
-  /* Text: 45% width, vertically centered with generous padding */
-  .text-media-content {
-    flex: 0 0 45%;
-    padding: 80px 48px 80px 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 400px;
-  }
-
-  /* When reversed (text left, image right), adjust text padding */
-  .text-media-layout.reversed .text-media-content {
-    padding: 80px 56px 80px 48px;
   }
 
   .text-media-text-center {

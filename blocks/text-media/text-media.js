@@ -71,12 +71,24 @@ export default async function decorate(block) {
     wrapper.append(textCol);
   }
 
-  // Determine layout order — if text appears before image in source, reverse
-  const firstRow = rows[0];
-  const firstCol = firstRow?.children[0];
-  const isReversed = firstCol && (firstCol.querySelector('h3') || firstCol.querySelector('p')) && !firstCol.querySelector('img');
-  if (isReversed) {
-    wrapper.classList.add('reversed');
+  // Determine layout order — alternate sides across sibling text-media blocks
+  const blockWrapper = block.closest('.text-media-wrapper');
+  const section = blockWrapper?.parentElement;
+  if (section) {
+    const siblingBlocks = [...section.querySelectorAll('.text-media')];
+    const blockIndex = siblingBlocks.indexOf(block);
+    // Even-indexed blocks get reversed (text left, image right) matching original site
+    if (blockIndex % 2 === 0) {
+      wrapper.classList.add('reversed');
+    }
+  } else {
+    // Fallback: check source order
+    const firstRow = rows[0];
+    const firstCol = firstRow?.children[0];
+    const isReversed = firstCol && (firstCol.querySelector('h3') || firstCol.querySelector('p')) && !firstCol.querySelector('img');
+    if (isReversed) {
+      wrapper.classList.add('reversed');
+    }
   }
 
   block.textContent = '';

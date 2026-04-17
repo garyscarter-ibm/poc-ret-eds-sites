@@ -117,6 +117,46 @@
     }
 }
 
+/* Unlocked state — blur lifts, content revealed */
+.brochure-locked.unlocked .brochure-locked-heading .redacted {
+    filter: blur(0);
+    user-select: auto;
+}
+
+.brochure-locked.unlocked .brochure-locked-body p {
+    filter: blur(0);
+    color: rgba(255, 255, 255, 0.8);
+    user-select: auto;
+}
+
+.brochure-locked.unlocked .brochure-locked-frost {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.brochure-locked.unlocked .brochure-locked-icon {
+    border-color: rgba(28, 105, 212, 0.6);
+    background: rgba(28, 105, 212, 0.1);
+}
+
+.brochure-locked.unlocked .brochure-locked-icon svg {
+    stroke: rgba(28, 105, 212, 0.9);
+}
+
+.brochure-locked.unlocked .brochure-locked-label {
+    color: rgba(28, 105, 212, 0.8);
+}
+
+/* Transitions for smooth lock/unlock */
+.brochure-locked-heading .redacted,
+.brochure-locked-body p,
+.brochure-locked-frost,
+.brochure-locked-icon,
+.brochure-locked-icon svg,
+.brochure-locked-label {
+    transition: all 0.6s ease;
+}
+
 @media (min-width: 900px) {
     .brochure-locked-inner {
         padding: 120px 60px;

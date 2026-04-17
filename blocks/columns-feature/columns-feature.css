@@ -6,8 +6,8 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  min-height: 300px;
-  margin-bottom: 50px;
+  min-height: auto;
+  margin-bottom: 32px;
 }
 
 .columns-feature > div:last-child {
@@ -16,8 +16,9 @@
 
 /* Image column */
 .columns-feature-image {
-  flex: 1 1 40%;
-  min-height: 250px;
+  flex: none;
+  min-height: 200px;
+  max-height: 280px;
   overflow: hidden;
 }
 
@@ -29,15 +30,15 @@
 .columns-feature-image img {
   width: 100%;
   height: 100%;
-  min-height: 250px;
+  min-height: 200px;
   object-fit: cover;
   display: block;
 }
 
 /* Text column */
 .columns-feature-text {
-  flex: 1 1 60%;
-  padding: 32px 16px;
+  flex: none;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,10 +47,10 @@
 /* Heading */
 .columns-feature h3,
 .columns-feature h5 {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   font-weight: var(--heading-font-weight-light, 300);
   line-height: 1.3;
-  padding: 0 0 20px;
+  padding: 0 0 16px;
   margin: 0;
   text-transform: uppercase;
 }
@@ -57,9 +58,9 @@
 /* Description */
 .columns-feature p {
   font-size: 0.875rem;
-  line-height: 1.57;
+  line-height: 1.6;
   color: var(--color-text, #262626);
-  padding: 0 0 28px;
+  padding: 0 0 20px;
   margin: 0;
 }
 
@@ -77,36 +78,33 @@
 }
 
 /* === Quote Panel variant (.quote-panel added by JS) === */
-/* Layout: quote text LEFT, person details + circular photo RIGHT */
+/* Mobile: stack vertically, center everything */
 .columns-feature > div.quote-panel {
-  flex-direction: row-reverse;
-  padding: 40px;
+  flex-direction: column;
+  padding: 32px 16px;
   min-height: auto;
   align-items: center;
-  gap: 48px;
+  gap: 24px;
+  text-align: center;
 }
 
-/* Image column becomes the person cluster (photo + name + title) on the RIGHT */
-/* DOM order after JS: img, h3, h4. Visual: [name/title] [photo] */
+/* Image column becomes the person cluster (photo + name + title) */
 .columns-feature > div.quote-panel .columns-feature-image {
   flex: 0 0 auto;
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  column-gap: 16px;
-  row-gap: 2px;
+  gap: 8px;
   min-height: auto;
+  order: -1;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image img {
-  width: 98px;
-  height: 98px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   min-height: auto;
-  grid-column: 2;
-  grid-row: 1 / 3;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image h3 {
@@ -115,11 +113,8 @@
   padding: 0;
   margin: 0;
   text-transform: none;
-  text-align: right;
+  text-align: center;
   line-height: 1.3;
-  grid-column: 1;
-  grid-row: 1;
-  align-self: end;
 }
 
 .columns-feature > div.quote-panel .columns-feature-image h4 {
@@ -130,24 +125,22 @@
   margin: 0;
   text-transform: none;
   letter-spacing: normal;
-  text-align: right;
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
+  text-align: center;
 }
 
-/* Quote text column: wider left side */
+/* Quote text column */
 .columns-feature > div.quote-panel .columns-feature-text {
   flex: 1;
   padding: 0;
 }
 
 .columns-feature > div.quote-panel .columns-feature-text p {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
   max-width: 500px;
   color: var(--color-text, #262626);
   margin: 0;
+  text-align: center;
 }
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
@@ -175,6 +168,51 @@
   .columns-feature > div.columns-feature-alt {
     flex-direction: row-reverse;
   }
+
+  /* Quote panel tablet: row layout with grid for person cluster */
+  .columns-feature > div.quote-panel {
+    flex-direction: row-reverse;
+    padding: 40px;
+    gap: 32px;
+    text-align: left;
+  }
+
+  .columns-feature > div.quote-panel .columns-feature-image {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 2px;
+    flex-direction: row;
+    order: 0;
+  }
+
+  .columns-feature > div.quote-panel .columns-feature-image img {
+    width: 98px;
+    height: 98px;
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .columns-feature > div.quote-panel .columns-feature-image h3 {
+    text-align: right;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+  }
+
+  .columns-feature > div.quote-panel .columns-feature-image h4 {
+    text-align: right;
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+  }
+
+  .columns-feature > div.quote-panel .columns-feature-text p {
+    font-size: 0.9375rem;
+    text-align: left;
+  }
 }
 
 /* === Responsive: Desktop (900px+) === */
@@ -191,10 +229,25 @@
 
   .columns-feature-image {
     flex: 0 0 42%;
+    max-height: none;
   }
 
   .columns-feature-text {
     padding: 48px 56px;
+  }
+
+  .columns-feature h3,
+  .columns-feature h5 {
+    font-size: 1.75rem;
+    padding: 0 0 20px;
+  }
+
+  .columns-feature p {
+    padding: 0 0 28px;
+  }
+
+  .columns-feature-image img {
+    min-height: 250px;
   }
 
   /* BMW: wider images (~54%) to match reference overlap layout */

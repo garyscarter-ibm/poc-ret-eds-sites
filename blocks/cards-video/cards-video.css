@@ -17,11 +17,11 @@
   border-radius: 0;
 }
 
-/* Portrait video container — 9:16 aspect ratio */
+/* Portrait video container — 9:16 aspect ratio, capped on mobile */
 .cards-video .cards-video-media {
   position: relative;
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background-color: var(--color-text, #262626);
 }
@@ -80,17 +80,17 @@
 }
 
 .cards-video .cards-video-body h4 {
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--color-text, #262626);
-  margin: 0 0 2px;
+  margin: 0 0 4px;
   padding: 0;
 }
 
 .cards-video .cards-video-body h3 {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: var(--heading-font-weight-light, 300);
   color: var(--color-text-light, #666);
   margin: 0;
@@ -117,6 +117,10 @@
 @media (min-width: 600px) {
   .cards-video > ul {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cards-video .cards-video-media {
+    aspect-ratio: 9 / 16;
   }
 }
 
