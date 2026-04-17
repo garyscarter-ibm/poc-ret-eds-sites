@@ -135,17 +135,16 @@
 .hotspot-image .hotspot-modal-prev,
 .hotspot-image .hotspot-modal-next {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     z-index: 2;
+    bottom: 16px;
 }
 
 .hotspot-image .hotspot-modal-prev {
-    left: 8px;
+    left: calc(50% - 52px);
 }
 
 .hotspot-image .hotspot-modal-next {
-    right: 8px;
+    right: calc(50% - 52px);
 }
 
 /* Card */
@@ -155,10 +154,11 @@
     background: #fff;
     width: calc(100% - 32px);
     max-width: 420px;
-    max-height: 85vh;
+    max-height: 70vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    margin-bottom: 72px;
 }
 
 .hotspot-image .hotspot-modal-text {
@@ -209,10 +209,18 @@
 
     .hotspot-image .hotspot-modal-card {
         max-width: 540px;
+        margin-bottom: 0;
     }
 
     .hotspot-image .hotspot-modal-text {
         padding: 40px 32px;
+    }
+
+    .hotspot-image .hotspot-modal-prev,
+    .hotspot-image .hotspot-modal-next {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
     }
 
     .hotspot-image .hotspot-modal-prev {
@@ -240,6 +248,7 @@
         max-width: 900px;
         flex-direction: row;
         overflow: hidden;
+        margin-bottom: 0;
     }
 
     .hotspot-image .hotspot-modal-text {
