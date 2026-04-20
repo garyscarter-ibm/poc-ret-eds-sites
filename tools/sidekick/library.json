@@ -58,6 +58,70 @@
         "path": "/docs/library/banner-terms"
       },
       {
+        "name": "Brochure Nav",
+        "path": "/docs/library/brochure-nav"
+      },
+      {
+        "name": "Brochure Hero",
+        "path": "/docs/library/brochure-hero"
+      },
+      {
+        "name": "Brochure Hero Cards",
+        "path": "/docs/library/brochure-hero-cards"
+      },
+      {
+        "name": "Brochure Text Reveal",
+        "path": "/docs/library/brochure-text-reveal"
+      },
+      {
+        "name": "Brochure Image Full",
+        "path": "/docs/library/brochure-image-full"
+      },
+      {
+        "name": "Brochure Body",
+        "path": "/docs/library/brochure-body"
+      },
+      {
+        "name": "Brochure Blockquote",
+        "path": "/docs/library/brochure-blockquote"
+      },
+      {
+        "name": "Brochure Image Text",
+        "path": "/docs/library/brochure-image-text"
+      },
+      {
+        "name": "Brochure Dual Image",
+        "path": "/docs/library/brochure-dual-image"
+      },
+      {
+        "name": "Brochure CTA Cards",
+        "path": "/docs/library/brochure-cta-cards"
+      },
+      {
+        "name": "Brochure Features",
+        "path": "/docs/library/brochure-features"
+      },
+      {
+        "name": "Brochure Dimensions",
+        "path": "/docs/library/brochure-dimensions"
+      },
+      {
+        "name": "Brochure Hotspot",
+        "path": "/docs/library/brochure-hotspot"
+      },
+      {
+        "name": "Brochure Overlay",
+        "path": "/docs/library/brochure-overlay"
+      },
+      {
+        "name": "Brochure Promo",
+        "path": "/docs/library/brochure-promo"
+      },
+      {
+        "name": "Brochure Footer",
+        "path": "/docs/library/brochure-footer"
+      },
+      {
         "name": "Brochure Stats",
         "path": "/docs/library/brochure-stats"
       },
@@ -80,6 +144,18 @@
       {
         "name": "MINI Dealer Homepage",
         "path": "/templates/mini-homepage"
+      },
+      {
+        "name": "Brochure Introduction",
+        "path": "/templates/brochure-introduction"
+      },
+      {
+        "name": "Brochure Exterior",
+        "path": "/templates/brochure-exterior"
+      },
+      {
+        "name": "Brochure Interior",
+        "path": "/templates/brochure-interior"
       }
     ]
   }
