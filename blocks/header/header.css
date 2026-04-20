@@ -1,1051 +1,1101 @@
 /* Header container - transparent overlay */
 header {
-  height: 64px;
+    height: 64px;
 }
 
 header .nav-wrapper {
-  background-color: transparent;
-  width: 100%;
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
+    background-color: transparent;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 header nav {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  height: 64px;
-  padding: 0 24px;
-  font-family: var(--body-font-family);
-  color: var(--color-white);
-  position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 64px;
+    padding: 0 24px;
+    font-family: var(--body-font-family);
+    color: var(--color-white);
+    position: relative;
 }
 
 header nav::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 24px;
-  right: 24px;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.15);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 header nav p {
-  margin: 0;
-  line-height: 1;
+    margin: 0;
+    line-height: 1;
 }
 
 header nav a:any-link {
-  color: var(--color-white);
-  text-decoration: none;
-  font-size: var(--button-font-size);
-  font-weight: 700;
-  letter-spacing: 0.39px;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--button-font-size);
+    font-weight: 700;
+    letter-spacing: 0.39px;
 }
 
 header nav a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* ===== Hamburger ===== */
 header nav .nav-hamburger {
-  order: 1;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+    order: 1;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background-color: transparent;
-  color: var(--color-white);
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
-  cursor: pointer;
+    height: 22px;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background-color: transparent;
+    color: var(--color-white);
+    overflow: initial;
+    text-overflow: initial;
+    white-space: initial;
+    cursor: pointer;
 }
 
 /* BMW-style asymmetric hamburger: short-long-short
-   These apply for BOTH aria-expanded states, then the X override below only
-   kicks in for the mobile expanded menu. */
+     These apply for BOTH aria-expanded states, then the X override below only
+     kicks in for the mobile expanded menu. */
 header nav .nav-hamburger-icon,
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
-  position: relative;
-  height: 1px;
-  background: currentcolor;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    height: 1px;
+    background: currentcolor;
 }
 
 header nav .nav-hamburger-icon {
-  width: 20px;
+    width: 20px;
 }
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  width: 15px;
+    content: "";
+    position: absolute;
+    width: 15px;
 }
 
 header nav .nav-hamburger-icon::before {
-  top: -7px;
+    top: -7px;
 }
 
 header nav .nav-hamburger-icon::after {
-  top: 7px;
+    top: 7px;
 }
 
 /* ===== Brand - right side: dealer name + BMW logo ===== */
 header .nav-brand {
-  order: 3;
-  margin-left: auto;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    order: 3;
+    margin-left: auto;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 header .nav-brand > div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 header .nav-brand p {
-  margin: 0;
-  line-height: 1;
+    margin: 0;
+    line-height: 1;
 }
 
 header .nav-brand p:first-child {
-  text-align: right;
-  line-height: 1.22;
+    text-align: right;
+    line-height: 1.22;
 }
 
 header .nav-brand a:any-link {
-  display: inline;
-  color: var(--color-white);
-  font-size: var(--button-font-size);
-  font-weight: 700;
-  letter-spacing: 0.39px;
-  text-decoration: none;
-  line-height: inherit;
+    display: inline;
+    color: var(--color-white);
+    font-size: var(--button-font-size);
+    font-weight: 700;
+    letter-spacing: 0.39px;
+    text-decoration: none;
+    line-height: inherit;
 }
 
 header nav .nav-brand img {
-  width: 56px;
-  height: 56px;
+    width: 56px;
+    height: 56px;
 }
 
 /* ===== Sections (hidden by default) ===== */
 header nav .nav-sections {
-  display: none;
-  visibility: hidden;
+    display: none;
+    visibility: hidden;
 }
 
 header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 0 30px;
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 30px;
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 300;
-  margin: 0 0 24px;
-  padding: 0;
+    font-weight: 300;
+    margin: 0 0 24px;
+    padding: 0;
 }
 
 header nav .nav-sections ul > li > a:any-link {
-  color: var(--color-text);
-  font-size: var(--body-font-size);
-  font-weight: 400;
-  font-family: var(--body-font-family);
-  letter-spacing: normal;
-  line-height: 1;
-  text-decoration: none;
-  display: block;
-  position: relative;
+    color: var(--color-text);
+    font-size: var(--body-font-size);
+    font-weight: 400;
+    font-family: var(--body-font-family);
+    letter-spacing: normal;
+    line-height: 1;
+    text-decoration: none;
+    display: block;
+    position: relative;
 }
 
 header nav .nav-sections ul > li > a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Chevron arrows for items with submenus (href="#") */
 header nav .nav-sections ul > li > a[href="#"]::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* ===== Tools - always visible action links ===== */
 header nav .nav-tools {
-  order: 2;
-  margin-left: 48px;
-  display: flex;
-  align-items: center;
-  gap: 40px;
+    order: 2;
+    margin-left: 48px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 header nav .nav-tools > div {
-  display: flex;
-  align-items: center;
-  gap: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 header nav .nav-tools p {
-  margin: 0;
+    margin: 0;
 }
 
 header nav .nav-tools a:any-link {
-  color: var(--color-white);
-  font-size: var(--button-font-size);
-  font-weight: 700;
-  letter-spacing: 0.39px;
-  text-decoration: none;
-  white-space: nowrap;
-  line-height: 24px;
+    color: var(--color-white);
+    font-size: var(--button-font-size);
+    font-weight: 700;
+    letter-spacing: 0.39px;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 24px;
 }
 
 /* Phone link with phone icon */
 header nav .nav-tools a[href^="tel:"] {
-  padding-left: 28px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='white'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 24px;
+    padding-left: 28px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='white'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 24px;
 }
 
 /* ===== Expanded menu (hamburger open) =====
-   header.js now starts with aria-expanded='false' at all viewports,
-   so these styles only activate when the user clicks the hamburger. */
+     header.js now starts with aria-expanded='false' at all viewports,
+     so these styles only activate when the user clicks the hamburger. */
 
-header nav[aria-expanded='true'] {
-  flex-wrap: wrap;
-  align-content: flex-start;
-  overflow-y: auto;
-  min-height: 100dvh;
-  background-color: var(--color-white);
-  color: var(--color-text);
-  padding-top: 8px;
+header nav[aria-expanded="true"] {
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-y: auto;
+    min-height: 100dvh;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    padding-top: 8px;
 }
 
-header nav[aria-expanded='true']::after {
-  display: none;
+header nav[aria-expanded="true"]::after {
+    display: none;
 }
 
 /* Expanded: all links dark */
-header nav[aria-expanded='true'] a:any-link {
-  color: var(--color-text);
+header nav[aria-expanded="true"] a:any-link {
+    color: var(--color-text);
 }
 
 /* Expanded: hamburger/close button is black */
-header nav[aria-expanded='true'] .nav-hamburger button {
-  color: var(--color-black);
+header nav[aria-expanded="true"] .nav-hamburger button {
+    color: var(--color-black);
 }
 
 /* Expanded: X close icon */
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  width: 20px;
-  height: 22px;
-  background: transparent;
+header nav[aria-expanded="true"] .nav-hamburger-icon {
+    width: 20px;
+    height: 22px;
+    background: transparent;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
+header nav[aria-expanded="true"] .nav-hamburger-icon::before,
+header nav[aria-expanded="true"] .nav-hamburger-icon::after {
+    top: 3px;
+    left: 1px;
+    transform: rotate(45deg);
+    transform-origin: 2px 1px;
+    width: 24px;
+    height: 2px;
+    border-radius: 2px;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
+header nav[aria-expanded="true"] .nav-hamburger-icon::after {
+    top: unset;
+    bottom: 3px;
+    transform: rotate(-45deg);
 }
 
 /* Expanded: brand dark */
-header nav[aria-expanded='true'] .nav-brand a:any-link {
-  color: var(--color-text);
+header nav[aria-expanded="true"] .nav-brand a:any-link {
+    color: var(--color-text);
 }
 
 /* Expanded: swap to dark BMW logo */
-header nav[aria-expanded='true'] .nav-brand p:last-child {
-  position: relative;
+header nav[aria-expanded="true"] .nav-brand p:last-child {
+    position: relative;
+    width: 56px;
+    height: 56px;
 }
 
-header nav[aria-expanded='true'] .nav-brand img {
-  visibility: hidden;
+header nav[aria-expanded="true"] .nav-brand img {
+    visibility: hidden;
 }
 
-header nav[aria-expanded='true'] .nav-brand p:last-child::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('/icons/bmw-logo-dark.svg') no-repeat center / contain;
+header nav[aria-expanded="true"] .nav-brand p:last-child::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/icons/bmw-logo-dark.svg") no-repeat center / contain;
 }
 
 /* Expanded: show sections */
-header nav[aria-expanded='true'] .nav-sections {
-  display: block;
-  visibility: visible;
-  align-self: start;
-  flex-basis: 100%;
-  order: 4;
-  padding: 68px 16px 140px;
+header nav[aria-expanded="true"] .nav-sections {
+    display: block;
+    visibility: visible;
+    align-self: start;
+    flex-basis: 100%;
+    order: 4;
+    padding: 68px 16px 140px;
 }
 
 /* Expanded: tools pinned to bottom of viewport */
-header nav[aria-expanded='true'] .nav-tools {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: 0;
-  padding: 0 16px 16px;
-  background-color: var(--color-white);
-  z-index: 1;
+header nav[aria-expanded="true"] .nav-tools {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    padding: 0 16px 16px;
+    background-color: var(--color-white);
+    z-index: 1;
 }
 
-header nav[aria-expanded='true'] .nav-tools {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
+header nav[aria-expanded="true"] .nav-tools {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools > div {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0;
+header nav[aria-expanded="true"] .nav-tools > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools p {
-  padding: 12px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 0;
+header nav[aria-expanded="true"] .nav-tools p {
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools a:any-link {
-  color: var(--color-text);
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.39px;
-  text-decoration: none;
+header nav[aria-expanded="true"] .nav-tools a:any-link {
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.39px;
+    text-decoration: none;
 }
 
 /* Expanded: "Book" links get chevron arrows */
-header nav[aria-expanded='true'] .nav-tools a[href*="booking"]::after,
-header nav[aria-expanded='true'] .nav-tools a[href*="service"]::after {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  margin-left: 8px;
-  vertical-align: middle;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
+header nav[aria-expanded="true"] .nav-tools a[href*="booking"]::after,
+header nav[aria-expanded="true"] .nav-tools a[href*="service"]::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
+    vertical-align: middle;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* Expanded: phone icon dark + underline */
-header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
-  padding-left: 28px;
-  text-decoration: underline;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='%23262626'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: left center;
-  background-size: 24px;
+header nav[aria-expanded="true"] .nav-tools a[href^="tel:"] {
+    padding-left: 28px;
+    text-decoration: underline;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='%23262626'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 24px;
 }
 
 /* ===== Small mobile ===== */
-@media (max-width: 767px) {
-  header nav .nav-tools {
-    gap: 24px;
-    margin-left: 32px;
-  }
+@media (max-width: 599px) {
+    header nav .nav-tools {
+        gap: 24px;
+        margin-left: 32px;
+    }
 
-  header .nav-brand a:any-link {
-    font-size: 0.8125rem;
-    line-height: 1.2;
-  }
+    header .nav-brand a:any-link {
+        font-size: 0.8125rem;
+        line-height: 1.2;
+    }
 
-  header nav .nav-brand img {
-    width: 48px;
-    height: 48px;
-  }
+    header nav .nav-brand img {
+        width: 48px;
+        height: 48px;
+    }
 
-  /* BMW mobile: increase header height to fit blue tool bar */
-  header:has(.header:not(.mini):not(.motorrad)) {
-    height: 100px;
-  }
+    /* BMW mobile: increase header height to fit blue tool bar */
+    header:has(.header:not(.mini):not(.motorrad)) {
+        height: 100px;
+    }
 
-  /* BMW mobile: tools as blue bar below header */
-  header .header:not(.mini):not(.motorrad) nav .nav-tools {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    margin: 0;
-    background-color: rgb(111 111 111);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    padding: 10px 16px;
-    z-index: 10;
-  }
+    /* BMW mobile: tools as blue bar below header */
+    header .header:not(.mini):not(.motorrad) nav .nav-tools {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        background-color: rgb(111 111 111);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 10px 16px;
+        z-index: 10;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav .nav-tools > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-  }
+    header .header:not(.mini):not(.motorrad) nav .nav-tools > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav .nav-tools p {
-    margin: 0;
-    padding: 0 20px;
-  }
+    header .header:not(.mini):not(.motorrad) nav .nav-tools p {
+        margin: 0;
+        padding: 0 20px;
+    }
 
-  /* Vertical divider between tool links */
-  header .header:not(.mini):not(.motorrad) nav .nav-tools p + p {
-    border-left: 1px solid rgb(255 255 255 / 40%);
-  }
+    /* Vertical divider between tool links */
+    header .header:not(.mini):not(.motorrad) nav .nav-tools p + p {
+        border-left: 1px solid rgb(255 255 255 / 40%);
+    }
 
-  /* Hide phone number in collapsed tool bar */
-  header .header:not(.mini):not(.motorrad) nav:not([aria-expanded='true']) .nav-tools p:has(a[href^="tel:"]) {
-    display: none;
-  }
+    /* Hide phone number in collapsed tool bar */
+    header
+        .header:not(.mini):not(.motorrad)
+        nav:not([aria-expanded="true"])
+        .nav-tools
+        p:has(a[href^="tel:"]) {
+        display: none;
+    }
 
-  /* BMW expanded: override grey bar — fix to bottom of viewport */
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools {
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    left: 0;
-    right: 0;
-    background-color: rgb(245 245 245);
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0 16px 16px;
-    gap: 0;
-    z-index: 1;
-  }
+    /* BMW expanded: override grey bar — fix to bottom of viewport */
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        background-color: rgb(245 245 245);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 16px 16px;
+        gap: 0;
+        z-index: 1;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools > div {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        > div {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p {
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(0 0 0 / 5%);
-    margin: 0;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p {
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(0 0 0 / 5%);
+        margin: 0;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p:last-child {
-    border-bottom: none;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p:last-child {
+        border-bottom: none;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p + p {
-    border-left: none;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p
+        + p {
+        border-left: none;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools a:any-link {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--color-text);
-    letter-spacing: 0.39px;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        a:any-link {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--color-text);
+        letter-spacing: 0.39px;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav[aria-expanded='true'] .nav-tools p:has(a[href^="tel:"]) {
-    display: block;
-  }
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p:has(a[href^="tel:"]) {
+        display: block;
+    }
 
-  header .header:not(.mini):not(.motorrad) nav .nav-tools a:any-link {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
+    header .header:not(.mini):not(.motorrad) nav .nav-tools a:any-link {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
 }
 
 /* ===== Desktop ===== */
-@media (min-width: 1024px) {
-  header nav {
-    padding: 0 32px;
-  }
+@media (min-width: 900px) {
+    header nav {
+        padding: 0 32px;
+    }
 
-  header nav::after {
-    left: 32px;
-    right: 32px;
-  }
+    header nav::after {
+        left: 32px;
+        right: 32px;
+    }
 
-  header nav .nav-hamburger {
-    display: flex;
-    visibility: visible;
-  }
+    header nav .nav-hamburger {
+        display: flex;
+        visibility: visible;
+    }
 
-  /* Desktop expanded: larger nav links matching original (24px / 35px) */
-  header nav .nav-sections ul > li {
-    margin: 0 0 35px;
-  }
+    /* Desktop expanded: larger nav links matching original (24px / 35px) */
+    header nav .nav-sections ul > li {
+        margin: 0 0 35px;
+    }
 
-  header nav .nav-sections ul > li > a:any-link {
-    font-size: var(--heading-font-size-l);
-  }
+    header nav .nav-sections ul > li > a:any-link {
+        font-size: var(--heading-font-size-l);
+    }
 
-  /* Desktop expanded: chevrons inline after text, not right-aligned */
-  header nav .nav-sections ul > li > a[href="#"]::after {
-    position: static;
-    display: inline-block;
-    margin-left: 24px;
-    vertical-align: middle;
-    transform: none;
-  }
+    /* Desktop expanded: chevrons inline after text, not right-aligned */
+    header nav .nav-sections ul > li > a[href="#"]::after {
+        position: static;
+        display: inline-block;
+        margin-left: 24px;
+        vertical-align: middle;
+        transform: none;
+    }
 
-  /* Desktop expanded: wider padding on sections */
-  header nav[aria-expanded='true'] .nav-sections {
-    padding: 100px 105px 140px;
-  }
+    /* Desktop expanded: wider padding on sections */
+    header nav[aria-expanded="true"] .nav-sections {
+        padding: 100px 105px 140px;
+    }
 
-  /* Desktop expanded: tools in horizontal row with grey bar */
-  header nav[aria-expanded='true'] .nav-tools {
-    padding: 10px 105px;
-    background-color: var(--color-background-grey);
-  }
+    /* Desktop expanded: tools in horizontal row with grey bar */
+    header nav[aria-expanded="true"] .nav-tools {
+        padding: 10px 105px;
+        background-color: var(--color-background-grey);
+    }
 
-  header nav[aria-expanded='true'] .nav-tools {
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-  }
+    header nav[aria-expanded="true"] .nav-tools {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+    }
 
-  header nav[aria-expanded='true'] .nav-tools > div {
-    flex-direction: row;
-    align-items: center;
-    gap: 40px;
-  }
+    header nav[aria-expanded="true"] .nav-tools > div {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+    }
 
-  header nav[aria-expanded='true'] .nav-tools p {
-    border-top: none;
-  }
+    header nav[aria-expanded="true"] .nav-tools p {
+        border-top: none;
+    }
 }
 
 /* ============================================================
-   MINI Brand Variant
-   White background, relative positioning, black text, MINI fonts
-   ============================================================ */
+     MINI Brand Variant
+     White background, relative positioning, black text, MINI fonts
+     ============================================================ */
 
 /* Override global header height for MINI's relative positioning */
 header:has(.header.mini) {
-  height: auto;
+    height: auto;
 }
 
 /* Nav wrapper: white background, relative position (takes up space) */
 header .header.mini .nav-wrapper {
-  background-color: var(--color-white);
-  position: relative;
+    background-color: var(--color-white);
+    position: relative;
 }
 
 /* Nav bar: taller height, black text, MINI font */
 header .header.mini nav {
-  height: 100px;
-  font-family: MINISansSerif-Regular, sans-serif;
-  color: var(--color-black);
+    height: 100px;
+    font-family: var(--mini-font-sans);
+    color: var(--color-black);
 }
 
 /* Bottom border separating header from content */
 header .header.mini nav::after {
-  background-color: #e6e6e6;
-  left: 0;
-  right: 0;
+    background-color: #e6e6e6;
+    left: 0;
+    right: 0;
 }
 
 header .header.mini nav a:any-link {
-  color: var(--color-black);
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-size: var(--body-font-size);
-  font-weight: 400;
-  letter-spacing: normal;
+    color: var(--color-black);
+    font-family: var(--mini-font-sans);
+    font-size: var(--body-font-size);
+    font-weight: 400;
+    letter-spacing: normal;
 }
 
 /* MINI layout: Brand LEFT, Tools MIDDLE, Hamburger RIGHT */
 header .header.mini .nav-brand {
-  order: 1;
-  margin-left: 0;
-  margin-right: auto;
+    order: 1;
+    margin-left: 0;
+    margin-right: auto;
 }
 
 header .header.mini .nav-tools {
-  order: 2;
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 40px;
+    order: 2;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 header .header.mini .nav-hamburger {
-  order: 3;
-  margin-left: 40px;
+    order: 3;
+    margin-left: 40px;
 }
 
 /* MINI hamburger: equal-width 3 bars */
 header .header.mini nav .nav-hamburger-icon {
-  width: 20px;
+    width: 20px;
 }
 
 header .header.mini nav .nav-hamburger-icon::before,
 header .header.mini nav .nav-hamburger-icon::after {
-  width: 20px;
+    width: 20px;
 }
 
 header .header.mini nav .nav-hamburger button {
-  color: var(--color-black);
+    color: var(--color-black);
 }
 
 /* MINI brand: MINI logo LEFT, dealer name RIGHT */
 header .header.mini .nav-brand {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 header .header.mini .nav-brand > div {
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
 }
 
 header .header.mini .nav-brand a:any-link {
-  color: var(--color-black);
-  font-size: 1.125rem;
-  font-weight: 400;
-  font-family: MINISansSerif-Regular, sans-serif;
-  letter-spacing: normal;
-  text-align: left;
+    color: var(--color-black);
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-family: var(--mini-font-sans);
+    letter-spacing: normal;
+    text-align: left;
 }
 
 header .header.mini nav .nav-brand img {
-  width: 83px;
-  height: auto;
-  filter: none;
+    width: 83px;
+    height: auto;
+    filter: none;
 }
 
 /* MINI tools links: black text, normal weight */
 header .header.mini nav .nav-tools a:any-link {
-  color: var(--color-black);
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-weight: 400;
-  font-size: var(--body-font-size);
-  letter-spacing: normal;
+    color: var(--color-black);
+    font-family: var(--mini-font-sans);
+    font-weight: 400;
+    font-size: var(--body-font-size);
+    letter-spacing: normal;
 }
 
 /* MINI phone icon: black fill */
 header .header.mini nav .nav-tools a[href^="tel:"] {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='%23000'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 /* MINI tools: never show BMW chevrons */
-header .header.mini nav[aria-expanded='true'] .nav-tools a::after {
-  content: none;
-  display: none;
+header .header.mini nav[aria-expanded="true"] .nav-tools a::after {
+    content: none;
+    display: none;
 }
 
 /* MINI expanded: maintain 100px header bar height */
-header .header.mini nav[aria-expanded='true'] .nav-brand {
-  height: 100px;
-  display: flex;
-  align-items: center;
+header .header.mini nav[aria-expanded="true"] .nav-brand {
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-hamburger {
-  height: 100px;
-  display: flex;
-  align-items: center;
+header .header.mini nav[aria-expanded="true"] .nav-hamburger {
+    height: 100px;
+    display: flex;
+    align-items: center;
 }
 
 /* MINI expanded: keep header bottom border visible (BMW hides it) */
-header .header.mini nav[aria-expanded='true']::after {
-  display: block;
-  background-color: #e6e6e6;
-  left: 0;
-  right: 0;
+header .header.mini nav[aria-expanded="true"]::after {
+    display: block;
+    background-color: #e6e6e6;
+    left: 0;
+    right: 0;
 }
 
 /* MINI expanded: tools stay in header bar (not fixed bottom like BMW) */
-header .header.mini nav[aria-expanded='true'] .nav-tools {
-  position: static;
-  padding: 0;
-  background-color: transparent;
-  margin-left: auto;
+header .header.mini nav[aria-expanded="true"] .nav-tools {
+    position: static;
+    padding: 0;
+    background-color: transparent;
+    margin-left: auto;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools {
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
+header .header.mini nav[aria-expanded="true"] .nav-tools {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools > div {
-  flex-direction: row;
-  align-items: center;
-  gap: 40px;
+header .header.mini nav[aria-expanded="true"] .nav-tools > div {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools p {
-  border-top: none;
-  padding: 0;
+header .header.mini nav[aria-expanded="true"] .nav-tools p {
+    border-top: none;
+    padding: 0;
 }
 
 /* MINI expanded menu: match original link styling */
-header .header.mini nav[aria-expanded='true'] .nav-sections ul {
-  padding: 15px 0 100px;
-  margin: 0;
+header .header.mini nav[aria-expanded="true"] .nav-sections ul {
+    padding: 15px 0 100px;
+    margin: 0;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
-  margin: 0;
-  padding: 0 0 0 60px;
-  border-bottom: none;
+header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
+    margin: 0;
+    padding: 0 0 0 60px;
+    border-bottom: none;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a:any-link {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-weight: 400;
-  font-size: 1.375rem;
-  color: rgb(36, 36, 36);
-  display: block;
-  height: 73px;
-  line-height: 73px;
-  border-bottom: 1px solid rgb(245, 245, 245);
+header
+    .header.mini
+    nav[aria-expanded="true"]
+    .nav-sections
+    ul
+    > li
+    > a:any-link {
+    font-family: var(--mini-font-sans);
+    font-weight: 400;
+    font-size: 1.375rem;
+    color: rgb(36, 36, 36);
+    display: block;
+    height: 73px;
+    line-height: 73px;
+    border-bottom: 1px solid rgb(245, 245, 245);
 }
 
 /* MINI expanded: sections container constrained width like original (~772px) */
-header .header.mini nav[aria-expanded='true'] .nav-sections {
-  padding: 0 16px;
-  max-width: 772px;
+header .header.mini nav[aria-expanded="true"] .nav-sections {
+    padding: 0 16px;
+    max-width: 772px;
 }
 
 /* MINI nav: chevrons on ALL section links (original shows chevrons on all items) */
 header .header.mini nav .nav-sections ul > li > a::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6l6 6-6 6' stroke='%23262626' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* MINI expanded: chevrons stay right-aligned (not inline like BMW desktop) */
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a::after {
-  position: absolute;
-  right: 0;
-  display: block;
-  margin-left: 0;
+header .header.mini nav[aria-expanded="true"] .nav-sections ul > li > a::after {
+    position: absolute;
+    right: 0;
+    display: block;
+    margin-left: 0;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools a:any-link {
-  font-family: MINISansSerif-Regular, sans-serif;
-  font-weight: 400;
-  color: var(--color-black);
+header .header.mini nav[aria-expanded="true"] .nav-tools a:any-link {
+    font-family: var(--mini-font-sans);
+    font-weight: 400;
+    color: var(--color-black);
 }
 
 /* MINI expanded: brand logo stays unfiltered */
-header .header.mini nav[aria-expanded='true'] .nav-brand img {
-  filter: none;
+header .header.mini nav[aria-expanded="true"] .nav-brand img {
+    filter: none;
 }
 
 /* MINI expanded: no BMW dark logo swap */
-header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child {
-  position: static;
-  width: auto;
-  height: auto;
+header .header.mini nav[aria-expanded="true"] .nav-brand p:last-child {
+    position: static;
+    width: auto;
+    height: auto;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-brand img {
-  visibility: visible;
+header .header.mini nav[aria-expanded="true"] .nav-brand img {
+    visibility: visible;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
-  content: none;
+header .header.mini nav[aria-expanded="true"] .nav-brand p:last-child::after {
+    content: none;
 }
 
 /* ============================================================
-   MINI Responsive Overrides
-   ============================================================ */
+     MINI Responsive Overrides
+     ============================================================ */
 
 /* --- Tablet and below (< 900px): hide phone, adjust brand/menu --- */
-@media (max-width: 1023px) {
-  /* Hide phone number on tablet and mobile */
-  header .header.mini .nav-tools p:has(a[href^="tel:"]) {
-    display: none;
-  }
+@media (max-width: 899px) {
+    /* Hide phone number on tablet and mobile */
+    header .header.mini .nav-tools p:has(a[href^="tel:"]) {
+        display: none;
+    }
 
-  /* Brand text: 16px at tablet/mobile (18px at desktop) */
-  header .header.mini .nav-brand a:any-link {
-    font-size: var(--body-font-size);
-  }
+    /* Brand text: 16px at tablet/mobile (18px at desktop) */
+    header .header.mini .nav-brand a:any-link {
+        font-size: var(--body-font-size);
+    }
 
-  /* Expanded: menu links 18px (not 22px desktop) */
-  header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a:any-link {
-    font-size: 1.125rem;
-    line-height: 22px;
-  }
+    /* Expanded: menu links 18px (not 22px desktop) */
+    header
+        .header.mini
+        nav[aria-expanded="true"]
+        .nav-sections
+        ul
+        > li
+        > a:any-link {
+        font-size: 1.125rem;
+        line-height: 22px;
+    }
 }
 
 /* --- Tablet (600–899px): expanded menu padding --- */
-@media (min-width: 768px) and (max-width: 1023px) {
-  header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
-    padding: 0 48px;
-  }
+@media (min-width: 600px) and (max-width: 899px) {
+    header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
+        padding: 0 48px;
+    }
 }
 
 /* --- Mobile (≤ 599px): black tool strip below header bar --- */
-@media (max-width: 767px) {
-  /* Allow nav to wrap so tools drop to second row */
-  header .header.mini nav {
-    height: auto;
-    flex-wrap: wrap;
-    padding: 0 24px;
-  }
+@media (max-width: 599px) {
+    /* Allow nav to wrap so tools drop to second row */
+    header .header.mini nav {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 0 24px;
+    }
 
-  /* Brand: 65px tall to match original main bar height */
-  header .header.mini .nav-brand {
-    height: 65px;
-    display: flex;
-    align-items: center;
-  }
+    /* Brand: 65px tall to match original main bar height */
+    header .header.mini .nav-brand {
+        height: 65px;
+        display: flex;
+        align-items: center;
+    }
 
-  /* Hamburger: right side of main bar */
-  header .header.mini .nav-hamburger {
-    order: 2;
-    margin-left: auto;
-    height: 65px;
-  }
+    /* Hamburger: right side of main bar */
+    header .header.mini .nav-hamburger {
+        order: 2;
+        margin-left: auto;
+        height: 65px;
+    }
 
-  /* Tools: full-width black strip */
-  header .header.mini .nav-tools {
-    order: 3;
-    flex-basis: 100%;
-    margin: 0 -24px;
-    background-color: var(--color-black);
-    padding: 0;
-    justify-content: center;
-    gap: 0;
-    height: 40px;
-  }
+    /* Tools: full-width black strip */
+    header .header.mini .nav-tools {
+        order: 3;
+        flex-basis: 100%;
+        margin: 0 -24px;
+        background-color: var(--color-black);
+        padding: 0;
+        justify-content: center;
+        gap: 0;
+        height: 40px;
+    }
 
-  header .header.mini .nav-tools > div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    height: 40px;
-  }
+    header .header.mini .nav-tools > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        height: 40px;
+    }
 
-  header .header.mini .nav-tools p {
-    margin: 0;
-    padding: 0 16px;
-  }
+    header .header.mini .nav-tools p {
+        margin: 0;
+        padding: 0 16px;
+    }
 
-  /* Pipe separator between visible tool links */
-  header .header.mini .nav-tools p + p {
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-  }
+    /* Pipe separator between visible tool links */
+    header .header.mini .nav-tools p + p {
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
 
-  /* Tool links: white text on black strip (match nav specificity) */
-  header .header.mini nav .nav-tools a:any-link {
-    color: var(--color-white);
-    font-size: var(--body-font-size-s);
-  }
+    /* Tool links: white text on black strip (match nav specificity) */
+    header .header.mini nav .nav-tools a:any-link {
+        color: var(--color-white);
+        font-size: var(--body-font-size-s);
+    }
 
-  /* Expanded: keep black strip visible and styled */
-  header .header.mini nav[aria-expanded='true'] .nav-tools {
-    position: static;
-    flex-basis: 100%;
-    margin: 0 -24px;
-    background-color: var(--color-black);
-    padding: 0;
-    margin-left: -24px;
-    flex-direction: row;
-    height: 40px;
-    gap: 0;
-  }
+    /* Expanded: keep black strip visible and styled */
+    header .header.mini nav[aria-expanded="true"] .nav-tools {
+        position: static;
+        flex-basis: 100%;
+        margin: 0 -24px;
+        background-color: var(--color-black);
+        padding: 0;
+        margin-left: -24px;
+        flex-direction: row;
+        height: 40px;
+        gap: 0;
+    }
 
-  header .header.mini nav[aria-expanded='true'] .nav-tools > div {
-    flex-direction: row;
-    height: 40px;
-    gap: 0;
-  }
+    header .header.mini nav[aria-expanded="true"] .nav-tools > div {
+        flex-direction: row;
+        height: 40px;
+        gap: 0;
+    }
 
-  header .header.mini nav[aria-expanded='true'] .nav-tools p {
-    border-top: none;
-    padding: 0 16px;
-  }
+    header .header.mini nav[aria-expanded="true"] .nav-tools p {
+        border-top: none;
+        padding: 0 16px;
+    }
 
-  header .header.mini nav[aria-expanded='true'] .nav-tools a:any-link {
-    color: var(--color-white);
-    font-size: var(--body-font-size-s);
-  }
+    header .header.mini nav[aria-expanded="true"] .nav-tools a:any-link {
+        color: var(--color-white);
+        font-size: var(--body-font-size-s);
+    }
 
-  /* Expanded: smaller padding on mobile menu items (~5% viewport) */
-  header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
-    padding: 0 20px;
-  }
+    /* Expanded: smaller padding on mobile menu items (~5% viewport) */
+    header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
+        padding: 0 20px;
+    }
 
-  /* Expanded: sections flush to black strip */
-  header .header.mini nav[aria-expanded='true'] .nav-sections {
-    padding: 0;
-  }
+    /* Expanded: sections flush to black strip */
+    header .header.mini nav[aria-expanded="true"] .nav-sections {
+        padding: 0;
+    }
 }
 
 /* ============================================================
-   Motorrad Brand Variant
-   White background, relative position, dark text, logo on right
-   Layout: [Hamburger + MENU | tools] ........... [BMW Motorrad logo]
-   ============================================================ */
+     Motorrad Brand Variant
+     White background, relative position, dark text, logo on right
+     Layout: [Hamburger + MENU | tools] ........... [BMW Motorrad logo]
+     ============================================================ */
 
 /* Override global header height for Motorrad's relative positioning */
 header:has(.header.motorrad) {
-  height: auto;
+    height: auto;
 }
 
 /* Nav wrapper: white background, relative position (takes up space) */
 header .header.motorrad .nav-wrapper {
-  background-color: var(--color-white);
-  position: relative;
+    background-color: var(--color-white);
+    position: relative;
 }
 
 /* Nav bar: 85px tall, dark text */
 header .header.motorrad nav {
-  height: 85px;
-  color: var(--color-black);
+    height: 85px;
+    color: var(--color-black);
 }
 
 /* Bottom border */
 header .header.motorrad nav::after {
-  background-color: #e6e6e6;
-  left: 0;
-  right: 0;
+    background-color: #e6e6e6;
+    left: 0;
+    right: 0;
 }
 
 /* All nav links: dark text */
 header .header.motorrad nav a:any-link {
-  color: var(--color-black);
-  font-size: var(--body-font-size-s);
-  font-weight: 400;
-  letter-spacing: normal;
+    color: var(--color-black);
+    font-size: var(--body-font-size-s);
+    font-weight: 400;
+    letter-spacing: normal;
 }
 
 /* Hamburger: dark color, show MENU label */
 header .header.motorrad nav .nav-hamburger button {
-  color: var(--color-black);
+    color: var(--color-black);
 }
 
 /* Brand: right side with Motorrad logo */
 header .header.motorrad .nav-brand {
-  order: 3;
-  margin-left: auto;
+    order: 3;
+    margin-left: auto;
 }
 
 /* Motorrad logo: 170px wide to match original */
 header .header.motorrad nav .nav-brand img {
-  width: 170px;
-  height: auto;
+    width: 170px;
+    height: auto;
 }
 
 /* Hide dealer name text — Motorrad uses logo only on right */
 header .header.motorrad .nav-brand p:first-child {
-  display: none;
+    display: none;
 }
 
 /* Tools: left side after hamburger */
 header .header.motorrad .nav-tools {
-  order: 2;
-  margin-left: 48px;
+    order: 2;
+    margin-left: 48px;
 }
 
 /* Tool links: dark text */
 header .header.motorrad nav .nav-tools a:any-link {
-  color: var(--color-black);
-  font-size: var(--body-font-size-s);
-  font-weight: 700;
-  letter-spacing: normal;
+    color: var(--color-black);
+    font-size: var(--body-font-size-s);
+    font-weight: 700;
+    letter-spacing: normal;
 }
 
 /* Phone link: no icon, just text */
 header .header.motorrad nav .nav-tools a[href^="tel:"] {
-  padding-left: 0;
-  background-image: none;
+    padding-left: 0;
+    background-image: none;
 }
 
 /* Expanded menu: keep white background */
-header .header.motorrad nav[aria-expanded='true'] {
-  background-color: var(--color-white);
+header .header.motorrad nav[aria-expanded="true"] {
+    background-color: var(--color-white);
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:first-child {
-  display: none;
+header .header.motorrad nav[aria-expanded="true"] .nav-brand p:first-child {
+    display: none;
 }
 
 /* Expanded: brand logo stays visible */
-header .header.motorrad nav[aria-expanded='true'] .nav-brand img {
-  visibility: visible;
+header .header.motorrad nav[aria-expanded="true"] .nav-brand img {
+    visibility: visible;
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child {
-  position: static;
-  width: auto;
-  height: auto;
+header .header.motorrad nav[aria-expanded="true"] .nav-brand p:last-child {
+    position: static;
+    width: auto;
+    height: auto;
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child::after {
-  content: none;
+header
+    .header.motorrad
+    nav[aria-expanded="true"]
+    .nav-brand
+    p:last-child::after {
+    content: none;
 }
 
 /* === Motorrad Responsive === */
-@media (max-width: 767px) {
-  header .header.motorrad nav .nav-brand img {
-    width: 120px;
-  }
+@media (max-width: 599px) {
+    header .header.motorrad nav .nav-brand img {
+        width: 120px;
+    }
 
-  /* Hide tool links on mobile — just hamburger + logo */
-  header .header.motorrad .nav-tools {
-    display: none;
-  }
+    /* Hide tool links on mobile — just hamburger + logo */
+    header .header.motorrad .nav-tools {
+        display: none;
+    }
 
-  header .header.motorrad nav[aria-expanded='true'] .nav-tools {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--color-white);
-  }
+    header .header.motorrad nav[aria-expanded="true"] .nav-tools {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-white);
+    }
 }

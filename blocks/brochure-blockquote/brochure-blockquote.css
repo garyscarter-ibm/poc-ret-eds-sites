@@ -1,0 +1,71 @@
+
+.brochure-blockquote {
+    padding: 0;
+    background: var(--brochure-bg);
+}
+
+.brochure-blockquote-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.brochure-blockquote-image {
+    min-height: 300px;
+    overflow: hidden;
+}
+
+.brochure-blockquote-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.brochure-blockquote-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    background: var(--brochure-bg);
+}
+
+.brochure-blockquote-text blockquote {
+    font-family: var(--brochure-font);
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 300;
+    font-style: normal;
+    color: var(--brochure-text);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
+}
+
+.brochure-blockquote-text blockquote::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 3rem;
+    color: rgba(0, 0, 0, 0.15);
+    font-style: normal;
+}
+
+@media (min-width: 900px) {
+    .brochure-blockquote-layout {
+        flex-direction: row;
+        min-height: 60vh;
+    }
+
+    .brochure-blockquote-image {
+        flex: 1.2;
+        min-height: auto;
+    }
+
+    .brochure-blockquote-text {
+        flex: 0.8;
+        padding: 60px 40px;
+    }
+}

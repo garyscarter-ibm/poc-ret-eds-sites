@@ -1,0 +1,102 @@
+.brochure-text-reveal {
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--brochure-bg, #fff);
+}
+
+.brochure-text-reveal-inner {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Two-column layout: 37.5% empty left, 62.5% text right */
+.brochure-text-reveal-inner::before {
+    content: "";
+    flex: 0 0 37.5%;
+}
+
+/* Text content fills the right column */
+.brochure-text-reveal-content {
+    flex: 0 0 62.5%;
+    max-width: 62.5%;
+}
+
+/* Subtitle: left-aligned, light weight, wide letter-spacing */
+.brochure-text-reveal .brochure-text-reveal-inner p {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--brochure-text);
+    margin: 0 0 2.5em;
+    text-align: left;
+}
+
+/* Separator: left-aligned, 104px wide, 1px border-bottom */
+.brochure-text-reveal .brochure-text-reveal-inner hr {
+    width: 104px;
+    max-width: 100%;
+    height: 0;
+    border: 0;
+    border-bottom: 1px solid var(--brochure-separator);
+    background: none;
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0 0 24px;
+    box-sizing: border-box;
+}
+
+/* First heading (THIS IS / ELEGANCE): 80px light — high specificity to override theme */
+.brochure-text-reveal .brochure-text-reveal-inner h2 {
+    color: var(--brochure-text);
+    font-size: 5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    text-align: left;
+}
+
+/* Second heading (FORWARDISM. / IN EVERY DETAIL.): 50px light */
+.brochure-text-reveal .brochure-text-reveal-inner h2 + h2 {
+    font-size: 3.125rem;
+    line-height: 1.05;
+    margin: 0 0 40px;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 899px) {
+    .brochure-text-reveal-inner {
+        flex-direction: column;
+        padding: 60px 24px;
+    }
+
+    .brochure-text-reveal-inner::before {
+        display: none;
+    }
+
+    .brochure-text-reveal-content {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .brochure-text-reveal .brochure-text-reveal-inner h2 {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+        line-height: 1.05;
+    }
+
+    .brochure-text-reveal .brochure-text-reveal-inner h2 + h2 {
+        font-size: clamp(1.75rem, 7vw, 3.125rem);
+        line-height: 1.05;
+    }
+
+    .brochure-text-reveal .brochure-text-reveal-inner hr {
+        width: 60px;
+    }
+}

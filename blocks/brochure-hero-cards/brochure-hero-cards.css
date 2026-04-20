@@ -1,0 +1,105 @@
+
+.brochure-hero-cards {
+    padding: 0;
+}
+
+.brochure-hero-cards-inner {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.brochure-hero-cards-heading {
+    padding: 80px 32px 0;
+}
+
+.brochure-hero-cards .brochure-hero-cards-heading h2 {
+    color: var(--color-white);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* CTA bar at bottom of hero */
+.brochure-hero-cards-ctas {
+    display: flex;
+    gap: 24px;
+    padding: 0 32px 48px;
+}
+
+body.brochure .brochure-hero-cards-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: opacity 0.2s ease;
+}
+
+body.brochure .brochure-hero-cards-cta:hover {
+    opacity: 0.8;
+    color: var(--color-white);
+}
+
+.brochure-hero-cards-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.brochure-hero-cards-icon img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+body.brochure .brochure-hero-cards-label {
+    font-family: var(--brochure-font);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--color-white);
+    text-transform: none;
+    white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 600px) {
+    .brochure-hero-cards-ctas {
+        gap: 40px;
+        padding: 0 40px 60px;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-hero-cards-heading {
+        padding: 100px 60px 0;
+    }
+
+    .brochure-hero-cards-ctas {
+        padding: 0 60px 80px;
+    }
+
+    .brochure-hero-cards-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brochure-hero-cards-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brochure-hero-cards-label {
+        font-size: 0.75rem;
+    }
+}

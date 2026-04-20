@@ -1,0 +1,49 @@
+
+.brochure-image-full {
+    padding: 0;
+    margin-bottom: 60px;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.brochure-image-full-inner {
+    width: 75%;
+    overflow: hidden;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Full-width centered variant (no animation) */
+.brochure-image-full-inner.full-width {
+    width: 100%;
+    opacity: 1;
+    transform: none;
+}
+
+/* Odd images: align right, slide in from right */
+.brochure-image-full-inner.align-right {
+    margin-left: auto;
+    margin-right: 0;
+    transform: translateX(40%);
+    opacity: 0;
+}
+
+/* Even images: align left, slide in from left */
+.brochure-image-full-inner.align-left {
+    margin-left: 0;
+    margin-right: auto;
+    transform: translateX(-40%);
+    opacity: 0;
+}
+
+/* Animated in state */
+.brochure-image-full-inner.in-view {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.brochure-image-full-inner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}

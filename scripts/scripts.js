@@ -61,11 +61,96 @@ function decorateButtons(main) {
 }
 
 /**
+ * Auto-block: inject brochure-locked section on brochure pages
+ * if not already present, before the CTA cards section.
+ * @param {Element} main The main element
+ */
+function buildAutoBlocks(main) {
+  const isBrochure = main.querySelector('.brochure-nav')
+    || main.querySelector('.brochure-hero')
+    || main.querySelector('.hero-brochure');
+  if (!isBrochure) return;
+
+  // Skip if brochure-locked already exists
+  if (main.querySelector('.brochure-locked')) return;
+
+  // Find the CTA cards section to insert before
+  const ctaCards = main.querySelector('.brochure-cta-cards');
+  if (!ctaCards) return;
+
+  // Walk up to the top-level div (direct child of main) that wraps the CTA cards
+  let ctaTopLevel = ctaCards;
+  while (ctaTopLevel.parentElement && ctaTopLevel.parentElement !== main) {
+    ctaTopLevel = ctaTopLevel.parentElement;
+  }
+
+  // Build the locked section as a top-level div (becomes its own section)
+  const lockedSection = document.createElement('div');
+  lockedSection.innerHTML = '<div class="brochure-locked"><div><div></div></div></div>';
+  main.insertBefore(lockedSection, ctaTopLevel);
+}
+
+/**
+ * Rebrand: replace legacy retailer names with Strata across all visible text.
+ * @param {Element} root The root element to process
+ */
+function rebrandContent(root) {
+  const replacements = [
+    [/Cotswold Cheltenham BMW/g, 'Strata BMW'],
+    [/AN INTRODUCTION TO COTSWOLD MOTOR GROUP/g, 'AN INTRODUCTION TO STRATA'],
+    [/Cotswold Motor Group/g, 'Strata'],
+    [/BMW Cotswold/g, 'Strata BMW'],
+    [/What does BMW Strata BMW/g, 'What does Strata BMW'],
+    [/visiting Strata BMW with Strata/g, 'visiting Strata BMW'],
+    [/Cotswold/g, 'Strata'],
+    [/Cheltenham and Hereford, BMW Motorrad in Cheltenham, plus/g, 'plus'],
+    [/in Cheltenham/g, 'with Strata'],
+    [/Cheltenham as well as surrounding areas including Gloucester, Winchcombe, Stroud and Stonehouse\. Our/g, 'Our'],
+    [/Cheltenham/g, 'Strata'],
+    [/Grassicks MINI/g, 'Strata MINI'],
+    [/Grassicks Perth/g, 'Strata'],
+    [/Grassicks/g, 'Strata'],
+    [/Perth/g, ''],
+    [/Tewkesbury/g, 'our facilities'],
+  ];
+
+  const walk = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      let text = node.textContent;
+      replacements.forEach(([pattern, replacement]) => {
+        text = text.replace(pattern, replacement);
+      });
+      if (text !== node.textContent) node.textContent = text;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      node.childNodes.forEach(walk);
+    }
+  };
+
+  walk(root);
+
+  // Also fix link URLs
+  root.querySelectorAll('a[href*="cotswold"], a[href*="Cotswold"], a[href*="grassick"], a[href*="Grassick"]').forEach((a) => {
+    a.href = a.href
+      .replace('cotswoldgroup.com', 'strata.com')
+      .replace('CotswoldCheltenhamBMW', 'StrataBMW')
+      .replace('CotswoldBMW', 'StrataBMW')
+      .replace('cotswoldbmw', 'stratabmw')
+      .replace('cotswold-bmw', 'strata-bmw')
+      .replace('GrassicksBMW', 'StrataBMW')
+      .replace('grassicksbmw', 'stratabmw')
+      .replace('grassicksmini', 'stratamini')
+      .replace(/grassick's-garage-limited/i, 'strata-bmw');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  rebrandContent(main);
+  buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
   decorateBlocks(main);
@@ -82,6 +167,13 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // Rebrand page title and meta tags
+    if (document.title.includes('Cotswold') || document.title.includes('Cheltenham')) {
+      document.title = document.title.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
+    }
+    document.querySelectorAll('meta[content*="Cotswold"], meta[content*="Cheltenham"]').forEach((meta) => {
+      meta.content = meta.content.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
+    });
     // Auto-detect MINI theme from block classes when no theme metadata is set
     if (!document.body.classList.contains('mini') && main.querySelector('.mini')) {
       document.body.classList.add('mini');
@@ -89,6 +181,17 @@ async function loadEager(doc) {
     // Auto-detect Motorrad theme from block classes
     if (!document.body.classList.contains('motorrad') && main.querySelector('.motorrad')) {
       document.body.classList.add('motorrad');
+    }
+    // Auto-detect Brochure theme
+    if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || main.querySelector('.hero-brochure') || main.querySelector('.brochure-hero-cards') || getMetadata('theme') === 'brochure') {
+      document.body.classList.add('brochure');
+      await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
+      // Set page title from brochure config
+      try {
+        const { getCurrentPage } = await import('./brochure-config.js');
+        const page = getCurrentPage();
+        if (page) document.title = `${page.title} - X7`;
+      } catch { /* brochure config not available */ }
     }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
@@ -130,8 +233,40 @@ async function loadLazy(doc) {
     footer.remove();
   }
 
+  // Rebrand header and footer after they load
+  const headerEl = doc.querySelector('header');
+  const footerEl = doc.querySelector('footer');
+  if (headerEl) {
+    if (headerEl.children.length > 0) {
+      rebrandContent(headerEl);
+    }
+    new MutationObserver(() => rebrandContent(headerEl))
+      .observe(headerEl, { childList: true, subtree: true });
+  }
+  if (footerEl) {
+    new MutationObserver(() => rebrandContent(footerEl))
+      .observe(footerEl, { childList: true, subtree: true });
+  }
+
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // Brochure: scroll-triggered section animations and metadata cleanup
+  if (document.body.classList.contains('brochure')) {
+    // Hide metadata section (last section with plain-text key/value pairs)
+    const sections = main.querySelectorAll('.section');
+    const lastSection = sections[sections.length - 1];
+    if (lastSection && !lastSection.querySelector('[class*="brochure-"]')) {
+      const text = lastSection.textContent.trim();
+      if (text.includes('header') && text.includes('footer') && text.includes('brochure')) {
+        lastSection.remove();
+      }
+    }
+
+    const { prepareBrochureAnimations, initBrochureAnimations } = await import('./brochure-animations.js');
+    prepareBrochureAnimations(main);
+    initBrochureAnimations(main);
+  }
 
   // Motorrad: animate section dividers on scroll
   if (document.body.classList.contains('motorrad')) {
