@@ -58,6 +58,26 @@
         "path": "/docs/library/banner-terms"
       },
       {
+        "name": "Cards Team",
+        "path": "/docs/library/cards-team"
+      },
+      {
+        "name": "Cards Video",
+        "path": "/docs/library/cards-video"
+      },
+      {
+        "name": "CTA Bar",
+        "path": "/docs/library/cta-bar"
+      },
+      {
+        "name": "Hotspot Image",
+        "path": "/docs/library/hotspot-image"
+      },
+      {
+        "name": "Text Media",
+        "path": "/docs/library/text-media"
+      },
+      {
         "name": "Brochure Nav",
         "path": "/docs/library/brochure-nav"
       },
@@ -156,6 +176,18 @@
       {
         "name": "Brochure Interior",
         "path": "/templates/brochure-interior"
+      },
+      {
+        "name": "BMW Dealer About",
+        "path": "/templates/bmw-about"
+      },
+      {
+        "name": "BMW Dealer Offers",
+        "path": "/templates/bmw-offers"
+      },
+      {
+        "name": "Motorrad Dealer Homepage",
+        "path": "/templates/motorrad-homepage"
       }
     ]
   }
