@@ -127,6 +127,12 @@ main > .section.cards-about-container {
     margin: 0;
 }
 
+@media (max-width: 767px) {
+    .cards-about > div {
+        min-height: 404px;
+    }
+}
+
 /* Chevron link styling */
 .cards-about a.cta-chevron {
     font-size: 0.8125rem;
@@ -142,7 +148,9 @@ main > .section.cards-about-container {
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
 .cards-about > div {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
 }
 
 /* === Responsive: Tablet (600px-899px) === */
@@ -204,7 +212,12 @@ main > .section.cards-about-container {
 
 /* MINI: gradient tint — dark at top for text readability, clear at bottom */
 .cards-about.mini > div.overlay-card--tinted > div:first-child::after {
-    background: linear-gradient(to bottom, rgb(0 0 0 / 65%) 0%, rgb(0 0 0 / 20%) 50%, rgb(0 0 0 / 0%) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgb(0 0 0 / 65%) 0%,
+        rgb(0 0 0 / 20%) 50%,
+        rgb(0 0 0 / 0%) 100%
+    );
 }
 
 /* MINI: text at top of card */

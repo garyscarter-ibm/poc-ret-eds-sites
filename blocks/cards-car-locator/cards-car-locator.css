@@ -52,6 +52,18 @@ main > .section.cards-car-locator-container {
     margin: 0;
 }
 
+/* Desktop: larger heading */
+@media (min-width: 768px) {
+    .cards-car-locator h3 {
+        font-size: 1.75rem;
+        font-weight: 300;
+    }
+
+    .cards-car-locator > div {
+        min-height: 420px;
+    }
+}
+
 /* CTA links — right-aligned within the overlay text container */
 .cards-car-locator a.cta-chevron {
     margin-left: auto;

@@ -23,6 +23,16 @@
     padding: 35px;
 }
 
+@media (max-width: 767px) {
+  .cards-news > div {
+    min-height: 404px;
+  }
+
+  .cards-news > div > div:last-child {
+    padding: 35px 18px;
+  }
+}
+
 /* Category label badge */
 .cards-news h4 {
     font-size: 0.625rem;

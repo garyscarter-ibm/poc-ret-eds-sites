@@ -24,7 +24,7 @@ header nav {
 }
 
 header nav::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 24px;
@@ -92,7 +92,7 @@ header nav .nav-hamburger-icon {
 
 header nav .nav-hamburger-icon::before,
 header nav .nav-hamburger-icon::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 15px;
 }
@@ -182,7 +182,7 @@ header nav .nav-sections ul > li > a:hover {
 
 /* Chevron arrows for items with submenus (href="#") */
 header nav .nav-sections ul > li > a[href="#"]::after {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 50%;
@@ -237,39 +237,39 @@ header nav .nav-tools a[href^="tel:"] {
      header.js now starts with aria-expanded='false' at all viewports,
      so these styles only activate when the user clicks the hamburger. */
 
-header nav[aria-expanded='true'] {
+header nav[aria-expanded="true"] {
     flex-wrap: wrap;
     align-content: flex-start;
     overflow-y: auto;
     min-height: 100dvh;
     background-color: var(--color-white);
     color: var(--color-text);
-    padding-top: 0;
+    padding-top: 8px;
 }
 
-header nav[aria-expanded='true']::after {
+header nav[aria-expanded="true"]::after {
     display: none;
 }
 
 /* Expanded: all links dark */
-header nav[aria-expanded='true'] a:any-link {
+header nav[aria-expanded="true"] a:any-link {
     color: var(--color-text);
 }
 
 /* Expanded: hamburger/close button is black */
-header nav[aria-expanded='true'] .nav-hamburger button {
+header nav[aria-expanded="true"] .nav-hamburger button {
     color: var(--color-black);
 }
 
 /* Expanded: X close icon */
-header nav[aria-expanded='true'] .nav-hamburger-icon {
+header nav[aria-expanded="true"] .nav-hamburger-icon {
     width: 20px;
     height: 22px;
     background: transparent;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
+header nav[aria-expanded="true"] .nav-hamburger-icon::before,
+header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     top: 3px;
     left: 1px;
     transform: rotate(45deg);
@@ -279,40 +279,40 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
     border-radius: 2px;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
+header nav[aria-expanded="true"] .nav-hamburger-icon::after {
     top: unset;
     bottom: 3px;
     transform: rotate(-45deg);
 }
 
 /* Expanded: brand dark */
-header nav[aria-expanded='true'] .nav-brand a:any-link {
+header nav[aria-expanded="true"] .nav-brand a:any-link {
     color: var(--color-text);
 }
 
-/* Expanded: swap to dark-background BMW logo (grey outlines + blue quadrants) */
-header nav[aria-expanded='true'] .nav-brand p:last-child {
+/* Expanded: swap to dark BMW logo */
+header nav[aria-expanded="true"] .nav-brand p:last-child {
     position: relative;
     width: 56px;
     height: 56px;
 }
 
-header nav[aria-expanded='true'] .nav-brand img {
+header nav[aria-expanded="true"] .nav-brand img {
     visibility: hidden;
 }
 
-header nav[aria-expanded='true'] .nav-brand p:last-child::after {
-    content: '';
+header nav[aria-expanded="true"] .nav-brand p:last-child::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 56px;
-    height: 56px;
-    background: url('/icons/bmw-logo-dark.svg') no-repeat center / contain;
+    width: 100%;
+    height: 100%;
+    background: url("/icons/bmw-logo-dark.svg") no-repeat center / contain;
 }
 
 /* Expanded: show sections */
-header nav[aria-expanded='true'] .nav-sections {
+header nav[aria-expanded="true"] .nav-sections {
     display: block;
     visibility: visible;
     align-self: start;
@@ -322,7 +322,7 @@ header nav[aria-expanded='true'] .nav-sections {
 }
 
 /* Expanded: tools pinned to bottom of viewport */
-header nav[aria-expanded='true'] .nav-tools {
+header nav[aria-expanded="true"] .nav-tools {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -333,36 +333,36 @@ header nav[aria-expanded='true'] .nav-tools {
     z-index: 1;
 }
 
-header nav[aria-expanded='true'] .nav-tools {
+header nav[aria-expanded="true"] .nav-tools {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools > div {
+header nav[aria-expanded="true"] .nav-tools > div {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools p {
+header nav[aria-expanded="true"] .nav-tools p {
     padding: 12px 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0;
 }
 
-header nav[aria-expanded='true'] .nav-tools a:any-link {
+header nav[aria-expanded="true"] .nav-tools a:any-link {
     color: var(--color-text);
-    font-size: var(--button-font-size);
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 400;
     letter-spacing: 0.39px;
     text-decoration: none;
 }
 
 /* Expanded: "Book" links get chevron arrows */
-header nav[aria-expanded='true'] .nav-tools a[href*="booking"]::after,
-header nav[aria-expanded='true'] .nav-tools a[href*="service"]::after {
-    content: '';
+header nav[aria-expanded="true"] .nav-tools a[href*="booking"]::after,
+header nav[aria-expanded="true"] .nav-tools a[href*="service"]::after {
+    content: "";
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -374,7 +374,7 @@ header nav[aria-expanded='true'] .nav-tools a[href*="service"]::after {
 }
 
 /* Expanded: phone icon dark + underline */
-header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
+header nav[aria-expanded="true"] .nav-tools a[href^="tel:"] {
     padding-left: 28px;
     text-decoration: underline;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.797 26.195c4.415 4.413 8.152 4.756 9.191 4.756.188 0 .303-.01.352-.015a5.5 5.5 0 0 0 1.185-.298c.425-.166.815-.388 1.164-.662l.151-.118c.013-.011.026-.022.037-.033l.623-.612a1.95 1.95 0 0 0-.034-2.331l-2.704-2.708a1.32 1.32 0 0 0-.93-.45c-.455 0-.893.179-1.203.489l-1.154 1.154c-.045.047-.119.056-.19.017-.843-.466-1.997-1.106-3.219-2.329-1.216-1.216-1.859-2.375-2.33-3.225l-.005-.009c-.032-.056-.024-.13.024-.163l1.153-1.153a1.95 1.95 0 0 0-.034-2.335l-2.704-2.703a1.32 1.32 0 0 0-.93-.453c-.455 0-.893.179-1.203.492l-.664.668a.39.39 0 0 0-.063.08l-.05.082a4.92 4.92 0 0 0-.649 1.153 5.01 5.01 0 0 0-.293 1.175c-.369 3.047.872 5.813 4.606 9.547z' fill='%23262626'/%3E%3C/svg%3E");
@@ -391,15 +391,141 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
     }
 
     header .nav-brand a:any-link {
-        font-size: 0.6875rem;
+        font-size: 0.8125rem;
+        line-height: 1.2;
     }
 
     header nav .nav-brand img {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
     }
 
-    /* Small mobile: no extra overrides needed for vertical tools */
+    /* BMW mobile: increase header height to fit blue tool bar */
+    header:has(.header:not(.mini):not(.motorrad)) {
+        height: 100px;
+    }
+
+    /* BMW mobile: tools as blue bar below header */
+    header .header:not(.mini):not(.motorrad) nav .nav-tools {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
+        background-color: rgb(111 111 111);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+        padding: 10px 16px;
+        z-index: 10;
+    }
+
+    header .header:not(.mini):not(.motorrad) nav .nav-tools > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
+
+    header .header:not(.mini):not(.motorrad) nav .nav-tools p {
+        margin: 0;
+        padding: 0 20px;
+    }
+
+    /* Vertical divider between tool links */
+    header .header:not(.mini):not(.motorrad) nav .nav-tools p + p {
+        border-left: 1px solid rgb(255 255 255 / 40%);
+    }
+
+    /* Hide phone number in collapsed tool bar */
+    header
+        .header:not(.mini):not(.motorrad)
+        nav:not([aria-expanded="true"])
+        .nav-tools
+        p:has(a[href^="tel:"]) {
+        display: none;
+    }
+
+    /* BMW expanded: override grey bar — fix to bottom of viewport */
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        background-color: rgb(245 245 245);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 16px 16px;
+        gap: 0;
+        z-index: 1;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        > div {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p {
+        padding: 24px 0;
+        border-bottom: 1px solid rgba(0 0 0 / 5%);
+        margin: 0;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p:last-child {
+        border-bottom: none;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p
+        + p {
+        border-left: none;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        a:any-link {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--color-text);
+        letter-spacing: 0.39px;
+    }
+
+    header
+        .header:not(.mini):not(.motorrad)
+        nav[aria-expanded="true"]
+        .nav-tools
+        p:has(a[href^="tel:"]) {
+        display: block;
+    }
+
+    header .header:not(.mini):not(.motorrad) nav .nav-tools a:any-link {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
 }
 
 /* ===== Desktop ===== */
@@ -437,29 +563,29 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
     }
 
     /* Desktop expanded: wider padding on sections */
-    header nav[aria-expanded='true'] .nav-sections {
+    header nav[aria-expanded="true"] .nav-sections {
         padding: 100px 105px 140px;
     }
 
     /* Desktop expanded: tools in horizontal row with grey bar */
-    header nav[aria-expanded='true'] .nav-tools {
+    header nav[aria-expanded="true"] .nav-tools {
         padding: 10px 105px;
         background-color: var(--color-background-grey);
     }
 
-    header nav[aria-expanded='true'] .nav-tools {
+    header nav[aria-expanded="true"] .nav-tools {
         flex-direction: row;
         align-items: center;
         gap: 40px;
     }
 
-    header nav[aria-expanded='true'] .nav-tools > div {
+    header nav[aria-expanded="true"] .nav-tools > div {
         flex-direction: row;
         align-items: center;
         gap: 40px;
     }
 
-    header nav[aria-expanded='true'] .nav-tools p {
+    header nav[aria-expanded="true"] .nav-tools p {
         border-top: none;
     }
 }
@@ -575,26 +701,26 @@ header .header.mini nav .nav-tools a[href^="tel:"] {
 }
 
 /* MINI tools: never show BMW chevrons */
-header .header.mini nav[aria-expanded='true'] .nav-tools a::after {
+header .header.mini nav[aria-expanded="true"] .nav-tools a::after {
     content: none;
     display: none;
 }
 
 /* MINI expanded: maintain 100px header bar height */
-header .header.mini nav[aria-expanded='true'] .nav-brand {
+header .header.mini nav[aria-expanded="true"] .nav-brand {
     height: 100px;
     display: flex;
     align-items: center;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-hamburger {
+header .header.mini nav[aria-expanded="true"] .nav-hamburger {
     height: 100px;
     display: flex;
     align-items: center;
 }
 
 /* MINI expanded: keep header bottom border visible (BMW hides it) */
-header .header.mini nav[aria-expanded='true']::after {
+header .header.mini nav[aria-expanded="true"]::after {
     display: block;
     background-color: #e6e6e6;
     left: 0;
@@ -602,43 +728,49 @@ header .header.mini nav[aria-expanded='true']::after {
 }
 
 /* MINI expanded: tools stay in header bar (not fixed bottom like BMW) */
-header .header.mini nav[aria-expanded='true'] .nav-tools {
+header .header.mini nav[aria-expanded="true"] .nav-tools {
     position: static;
     padding: 0;
     background-color: transparent;
     margin-left: auto;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools {
+header .header.mini nav[aria-expanded="true"] .nav-tools {
     flex-direction: row;
     align-items: center;
     gap: 40px;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools > div {
+header .header.mini nav[aria-expanded="true"] .nav-tools > div {
     flex-direction: row;
     align-items: center;
     gap: 40px;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools p {
+header .header.mini nav[aria-expanded="true"] .nav-tools p {
     border-top: none;
     padding: 0;
 }
 
 /* MINI expanded menu: match original link styling */
-header .header.mini nav[aria-expanded='true'] .nav-sections ul {
+header .header.mini nav[aria-expanded="true"] .nav-sections ul {
     padding: 15px 0 100px;
     margin: 0;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
+header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
     margin: 0;
     padding: 0 0 0 60px;
     border-bottom: none;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a:any-link {
+header
+    .header.mini
+    nav[aria-expanded="true"]
+    .nav-sections
+    ul
+    > li
+    > a:any-link {
     font-family: var(--mini-font-sans);
     font-weight: 400;
     font-size: 1.375rem;
@@ -650,14 +782,14 @@ header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a:any-link
 }
 
 /* MINI expanded: sections container constrained width like original (~772px) */
-header .header.mini nav[aria-expanded='true'] .nav-sections {
+header .header.mini nav[aria-expanded="true"] .nav-sections {
     padding: 0 16px;
     max-width: 772px;
 }
 
 /* MINI nav: chevrons on ALL section links (original shows chevrons on all items) */
 header .header.mini nav .nav-sections ul > li > a::after {
-    content: '';
+    content: "";
     position: absolute;
     right: 0;
     top: 50%;
@@ -671,36 +803,36 @@ header .header.mini nav .nav-sections ul > li > a::after {
 }
 
 /* MINI expanded: chevrons stay right-aligned (not inline like BMW desktop) */
-header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a::after {
+header .header.mini nav[aria-expanded="true"] .nav-sections ul > li > a::after {
     position: absolute;
     right: 0;
     display: block;
     margin-left: 0;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-tools a:any-link {
+header .header.mini nav[aria-expanded="true"] .nav-tools a:any-link {
     font-family: var(--mini-font-sans);
     font-weight: 400;
     color: var(--color-black);
 }
 
 /* MINI expanded: brand logo stays unfiltered */
-header .header.mini nav[aria-expanded='true'] .nav-brand img {
+header .header.mini nav[aria-expanded="true"] .nav-brand img {
     filter: none;
 }
 
 /* MINI expanded: no BMW dark logo swap */
-header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child {
+header .header.mini nav[aria-expanded="true"] .nav-brand p:last-child {
     position: static;
     width: auto;
     height: auto;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-brand img {
+header .header.mini nav[aria-expanded="true"] .nav-brand img {
     visibility: visible;
 }
 
-header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
+header .header.mini nav[aria-expanded="true"] .nav-brand p:last-child::after {
     content: none;
 }
 
@@ -721,7 +853,13 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     }
 
     /* Expanded: menu links 18px (not 22px desktop) */
-    header .header.mini nav[aria-expanded='true'] .nav-sections ul > li > a:any-link {
+    header
+        .header.mini
+        nav[aria-expanded="true"]
+        .nav-sections
+        ul
+        > li
+        > a:any-link {
         font-size: 1.125rem;
         line-height: 22px;
     }
@@ -729,7 +867,7 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
 
 /* --- Tablet (600–899px): expanded menu padding --- */
 @media (min-width: 600px) and (max-width: 899px) {
-    header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
+    header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
         padding: 0 48px;
     }
 }
@@ -794,7 +932,7 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     }
 
     /* Expanded: keep black strip visible and styled */
-    header .header.mini nav[aria-expanded='true'] .nav-tools {
+    header .header.mini nav[aria-expanded="true"] .nav-tools {
         position: static;
         flex-basis: 100%;
         margin: 0 -24px;
@@ -806,29 +944,29 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
         gap: 0;
     }
 
-    header .header.mini nav[aria-expanded='true'] .nav-tools > div {
+    header .header.mini nav[aria-expanded="true"] .nav-tools > div {
         flex-direction: row;
         height: 40px;
         gap: 0;
     }
 
-    header .header.mini nav[aria-expanded='true'] .nav-tools p {
+    header .header.mini nav[aria-expanded="true"] .nav-tools p {
         border-top: none;
         padding: 0 16px;
     }
 
-    header .header.mini nav[aria-expanded='true'] .nav-tools a:any-link {
+    header .header.mini nav[aria-expanded="true"] .nav-tools a:any-link {
         color: var(--color-white);
         font-size: var(--body-font-size-s);
     }
 
     /* Expanded: smaller padding on mobile menu items (~5% viewport) */
-    header .header.mini nav[aria-expanded='true'] .nav-sections ul > li {
+    header .header.mini nav[aria-expanded="true"] .nav-sections ul > li {
         padding: 0 20px;
     }
 
     /* Expanded: sections flush to black strip */
-    header .header.mini nav[aria-expanded='true'] .nav-sections {
+    header .header.mini nav[aria-expanded="true"] .nav-sections {
         padding: 0;
     }
 }
@@ -914,26 +1052,30 @@ header .header.motorrad nav .nav-tools a[href^="tel:"] {
 }
 
 /* Expanded menu: keep white background */
-header .header.motorrad nav[aria-expanded='true'] {
+header .header.motorrad nav[aria-expanded="true"] {
     background-color: var(--color-white);
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:first-child {
+header .header.motorrad nav[aria-expanded="true"] .nav-brand p:first-child {
     display: none;
 }
 
 /* Expanded: brand logo stays visible */
-header .header.motorrad nav[aria-expanded='true'] .nav-brand img {
+header .header.motorrad nav[aria-expanded="true"] .nav-brand img {
     visibility: visible;
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child {
+header .header.motorrad nav[aria-expanded="true"] .nav-brand p:last-child {
     position: static;
     width: auto;
     height: auto;
 }
 
-header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child::after {
+header
+    .header.motorrad
+    nav[aria-expanded="true"]
+    .nav-brand
+    p:last-child::after {
     content: none;
 }
 
@@ -948,7 +1090,7 @@ header .header.motorrad nav[aria-expanded='true'] .nav-brand p:last-child::after
         display: none;
     }
 
-    header .header.motorrad nav[aria-expanded='true'] .nav-tools {
+    header .header.motorrad nav[aria-expanded="true"] .nav-tools {
         display: flex;
         position: fixed;
         bottom: 0;

@@ -19,7 +19,8 @@
     --hd-welcome-line-height: 0;
     --hd-welcome-display: none;
     --hd-container-min-height: 100vh;
-    --hd-content-padding: calc(64px + var(--spacing-xl)) var(--spacing-m) var(--spacing-xl) 86px;
+    --hd-content-padding: calc(64px + var(--spacing-xl)) var(--spacing-m)
+        var(--spacing-xl) 86px;
     --hd-cta-font-size: 0.8125rem;
     --hd-cta-font-weight: 700;
     --hd-cta-padding: 12px 20px 15px;
@@ -142,7 +143,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
 /* Gradient overlay — radial from transparent to black */
 .hero-dealership > div:first-child::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: var(--hd-gradient);
@@ -240,7 +241,10 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
     letter-spacing: 0.39px;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
     width: var(--hd-cta-width);
     text-align: center;
     box-sizing: border-box;
@@ -363,7 +367,7 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 }
 
 .hero-dealership-ratings-row::after {
-    content: '';
+    content: "";
     display: table;
     clear: both;
 }
@@ -484,7 +488,9 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
 /* === Scroll-triggered fade-in animation (requires IntersectionObserver in JS) === */
 .hero-dealership .animate-child {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
 }
 
 /* === Responsive: Mobile (below 600px) === */
@@ -493,9 +499,27 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
         min-height: 85vh;
     }
 
+    /* BMW mobile: full viewport height, pull up to cover header + tool bar */
+    .hero-dealership:not(.mini):not(.motorrad) {
+        margin-top: -100px;
+        min-height: 100vh;
+    }
+
     .hero-dealership > div:nth-child(2) {
         min-height: 85vh;
         padding: calc(64px + var(--spacing-m)) var(--spacing-s) var(--spacing-m);
+    }
+
+    /* BMW mobile: full height + extra top padding for header + blue bar */
+    .hero-dealership:not(.mini):not(.motorrad) > div:nth-child(2) {
+        min-height: 100vh;
+        padding-top: calc(100px + var(--spacing-m));
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-title {
+        font-size: 2rem;
+        font-weight: 200;
+        letter-spacing: 1px;
     }
 
     .hero-dealership .hero-dealership-title {
@@ -511,11 +535,47 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
         line-height: 1.5;
     }
 
+    /* BMW mobile: hide subtitle to match original */
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-subtitle {
+        display: none;
+    }
+
     .hero-dealership-btn {
         float: none;
-        width: 100%;
+        width: auto;
         max-width: 300px;
         margin-bottom: 8px;
+    }
+
+    /* BMW mobile: CTAs as chevron text links using shared cta-chevron--white */
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-btn {
+        background-color: transparent;
+        border: none;
+        color: var(--color-white);
+        padding: 8px 36px 8px 0;
+        font-size: 0.875rem;
+        font-weight: 700;
+        width: fit-content;
+        text-align: left;
+        display: block;
+        float: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cpath d='M20.243 26.243l4.263-4.228-4.243-4.243' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 100% 0;
+        background-size: auto;
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-btn:hover {
+        text-decoration: underline;
+        background-color: transparent;
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) a.hero-dealership-btn-secondary,
+    .hero-dealership:not(.mini):not(.motorrad)
+        a.hero-dealership-btn-secondary:any-link {
+        background-color: transparent;
+        border: none;
+        color: var(--color-white);
     }
 
     .hero-dealership-rating {
@@ -526,6 +586,47 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
     .hero-dealership-rating-score {
         font-size: 1.25rem;
+    }
+
+    /* BMW mobile: center title/CTAs by splitting space above title and below CTAs */
+    .hero-dealership:not(.mini):not(.motorrad)
+        > div:nth-child(2)
+        > div:first-child {
+        margin-top: auto;
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-ctas {
+        margin-bottom: auto;
+    }
+
+    /* BMW mobile: ratings anchored to bottom of hero with dark background */
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-ratings {
+        background-color: rgb(38 38 38);
+        padding: 16px;
+        margin-top: 0;
+        margin-left: calc(-1 * var(--spacing-s));
+        margin-right: calc(-1 * var(--spacing-s));
+        margin-bottom: calc(-1 * var(--spacing-m));
+        width: calc(100% + 2 * var(--spacing-s));
+    }
+
+    /* BMW mobile: horizontal ratings (label + stars + score inline) */
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-rating {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-rating-label {
+        padding-bottom: 0;
+        font-size: 0.875rem;
+        min-width: 60px;
+    }
+
+    .hero-dealership:not(.mini):not(.motorrad) .hero-dealership-rating-score {
+        font-size: 1.25rem;
+        margin-left: 4px;
     }
 
     .hero-dealership .hero-dealership-welcome {
@@ -660,7 +761,8 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 /* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
     .hero-dealership > div:nth-child(2) {
-        padding: calc(64px + var(--spacing-xxl)) var(--spacing-l) var(--spacing-xl) 86px;
+        padding: calc(64px + var(--spacing-xxl)) var(--spacing-l)
+            var(--spacing-xl) 86px;
     }
 
     .hero-dealership.mini > div:nth-child(2) {
@@ -725,7 +827,9 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
 
 .hero-dealership.motorrad a.hero-dealership-btn-secondary,
 .hero-dealership.motorrad a.hero-dealership-btn-secondary:any-link,
-.section.dark .hero-dealership.motorrad a.hero-dealership-btn-secondary:any-link {
+.section.dark
+    .hero-dealership.motorrad
+    a.hero-dealership-btn-secondary:any-link {
     background-color: rgb(255 255 255 / 90%);
     border: 2px solid rgb(22 23 26);
     color: rgb(22 23 26);

@@ -497,6 +497,38 @@ body.motorrad main > .section > .default-content-wrapper > h2.visible::after {
   transform: scaleX(1);
 }
 
+/* Subsequent scroll: faster, simpler animation (no slide, just fade) */
+body.motorrad main > .section > .default-content-wrapper > h2.seen {
+  transition: opacity 0.3s ease-out;
+  transform: translateY(0);
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen:not(.visible) {
+  opacity: 0;
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen.visible {
+  opacity: 1;
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen::before {
+  transition: opacity 0.3s ease-out;
+  transform: scale(1) translateY(0);
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen:not(.visible)::before {
+  opacity: 0;
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen::after {
+  transition: opacity 0.3s ease-out;
+  transform: scaleX(1);
+}
+
+body.motorrad main > .section > .default-content-wrapper > h2.seen:not(.visible)::after {
+  opacity: 0;
+}
+
 /* Motorrad buttons/CTAs: BMW font, bold, uppercase */
 body.motorrad .button-container a,
 body.motorrad a.button {
@@ -681,6 +713,12 @@ main > .section.cards-news-container > .cards-news-wrapper {
   }
 }
 
+@media (max-width: 767px) {
+  main > .section.cards-news-container > .cards-news-wrapper {
+    padding: 0 24px 32px;
+  }
+}
+
 main > .section.columns-feature-container {
   max-width: var(--content-width-xl);
 }
@@ -700,6 +738,12 @@ main > .section.cards-about-container {
 @media (min-width: 900px) {
   main > .section.cards-about-container {
     padding: 64px 48px 88px;
+  }
+}
+
+@media (max-width: 767px) {
+  main > .section.cards-about-container {
+    padding: 48px 24px;
   }
 }
 
@@ -732,6 +776,12 @@ main > .section.tabs-dealer-locator-container > .default-content-wrapper:first-c
   margin-bottom: 88px;
 }
 
+@media (max-width: 767px) {
+  .section.cards-news-container .cards-news-wrapper {
+    margin-bottom: 12px;
+  }
+}
+
 .section.cards-news-container .columns-wrapper {
   margin-bottom: 75px;
 }
@@ -748,6 +798,14 @@ main > .section > .default-content-wrapper > h2 {
   line-height: 1.33;
   padding: 15px 0 36px;
   margin-bottom: 48px;
+}
+
+@media (max-width: 767px) {
+  main > .section > .default-content-wrapper > h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
 }
 
 /* Dealer locator H2 - smaller, left-aligned, uppercase */
