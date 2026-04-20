@@ -24,11 +24,11 @@
     z-index: 0;
 }
 
-/* On mobile, adjust image position to center key content (text + car) */
+/* On mobile, show left side of image where THE X7 text is */
 @media (max-width: 599px) {
     .brochure-hero-inner .brochure-hero-bg,
     .brochure-hero-inner .brochure-hero-bg img {
-        object-position: 42% center;
+        object-position: 22% center;
     }
 }
 
