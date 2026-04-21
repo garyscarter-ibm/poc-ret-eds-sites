@@ -91,6 +91,41 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Fix broken internal links by mapping them to working destinations.
+ * @param {Element} root The root element to process
+ */
+const brokenLinkMap = {
+  '/realtime-booking-form': 'https://www.bmw.co.uk/en/test-drive.html',
+  '/realtime-booking-form/': 'https://www.bmw.co.uk/en/test-drive.html',
+  '/appointment-booking-form': 'https://www.bmw.co.uk/en/topics/owners/bmw-service.html',
+  '/appointment-booking-form/': 'https://www.bmw.co.uk/en/topics/owners/bmw-service.html',
+  '/contact-us': '/',
+  '/contact-us/': '/',
+  '/contact-us/#form': '/',
+  '/bmw-electric/': 'https://www.bmw.co.uk/en/electric.html',
+  '/sell-your-bmw/': 'https://www.bmw.co.uk/en/topics/owners/sell-your-bmw.html',
+  '/vacancies/': '/',
+  '/hero-content/site-terms-and-conditions/': '/',
+  '/hero-content/site-cookies/': '/',
+  '/hero-content/site-complaints-procedure/': '/',
+  '/modern-slavery-statement/': '/',
+  '/content/speak-up-line/': '/',
+  '/hero-content/site-privacy-policy/': '/',
+  '/hero-content/site-company-information/': '/',
+  '/motor-industry-code-of-practice/': '/',
+  '/product-safety-enquiry/': '/',
+};
+
+function fixBrokenLinks(root) {
+  root.querySelectorAll('a[href^="/"]').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (brokenLinkMap[href]) {
+      a.href = brokenLinkMap[href];
+    }
+  });
+}
+
+/**
  * Rebrand: replace legacy retailer names with Strata across all visible text.
  * @param {Element} root The root element to process
  */
@@ -247,6 +282,9 @@ async function loadLazy(doc) {
     });
   }
 
+  // Fix broken internal links site-wide
+  fixBrokenLinks(doc);
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -265,11 +303,11 @@ async function loadLazy(doc) {
     if (headerEl.children.length > 0) {
       rebrandContent(headerEl);
     }
-    new MutationObserver(() => rebrandContent(headerEl))
+    new MutationObserver(() => { rebrandContent(headerEl); fixBrokenLinks(headerEl); })
       .observe(headerEl, { childList: true, subtree: true });
   }
   if (footerEl) {
-    new MutationObserver(() => rebrandContent(footerEl))
+    new MutationObserver(() => { rebrandContent(footerEl); fixBrokenLinks(footerEl); })
       .observe(footerEl, { childList: true, subtree: true });
   }
 
