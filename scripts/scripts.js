@@ -132,11 +132,31 @@ const brokenExternalLinkMap = {
   'https://www.cotswoldgroup.com/careers/': '/about-us',
 };
 
+// Known content pages that exist in the site
+const knownPages = new Set([
+  '/', '/index', '/index-mini', '/index-bmw', '/index-bmw-da', '/index-bmw-da-new',
+  '/about-us', '/about-us/',
+  '/brochures/x7', '/brochures/x7/',
+  '/brochures/x7/interior-design', '/brochures/x7/interior-design/',
+  '/brochures/x7/exterior-design', '/brochures/x7/exterior-design/',
+]);
+
 function fixBrokenLinks(root) {
   root.querySelectorAll('a[href^="/"]').forEach((a) => {
     const href = a.getAttribute('href');
+    // First check the explicit map
     if (brokenLinkMap[href]) {
       a.href = brokenLinkMap[href];
+      return;
+    }
+    // Then check if it's a known page — if not, redirect to current page
+    const cleanPath = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
+    if (!knownPages.has(cleanPath) && !knownPages.has(`${cleanPath}/`)) {
+      a.href = window.location.pathname;
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
   });
   root.querySelectorAll('a[href^="http"]').forEach((a) => {
