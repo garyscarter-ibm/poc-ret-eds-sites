@@ -114,6 +114,16 @@ const brokenLinkMap = {
   '/hero-content/site-company-information/': '/',
   '/motor-industry-code-of-practice/': '/',
   '/product-safety-enquiry/': '/',
+  '/about-us/news-events': '/about-us',
+  '/about-us/news-events/': '/about-us',
+  '/about-us/customer-reviews': '/about-us',
+  '/about-us/customer-reviews/': '/about-us',
+};
+
+const brokenExternalLinkMap = {
+  'https://www.strata.com/careers/': 'https://www.bmw.co.uk/en/topics/about-bmw/careers.html',
+  'https://usedcars.bmw.co.uk/retailer-groups/eastern': 'https://usedcars.bmw.co.uk/',
+  'https://www.cotswoldgroup.com/careers/': 'https://www.bmw.co.uk/en/topics/about-bmw/careers.html',
 };
 
 function fixBrokenLinks(root) {
@@ -121,6 +131,12 @@ function fixBrokenLinks(root) {
     const href = a.getAttribute('href');
     if (brokenLinkMap[href]) {
       a.href = brokenLinkMap[href];
+    }
+  });
+  root.querySelectorAll('a[href^="http"]').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (brokenExternalLinkMap[href]) {
+      a.href = brokenExternalLinkMap[href];
     }
   });
 }
