@@ -224,13 +224,27 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
-  // Hide specific sections on About Us page
+  // About Us page customizations
   if (window.location.pathname.startsWith('/about-us')) {
     main.querySelectorAll(':scope > div').forEach((section) => {
       const h2 = section.querySelector('h2');
       const heading = h2?.textContent.trim();
       if (heading === 'SECTION NAVIGATION.' || heading === 'ABOUT US.') {
         section.remove();
+      }
+    });
+
+    // Replace "Introducing Team Strata" image
+    const textMediaBlocks = main.querySelectorAll('.text-media');
+    textMediaBlocks.forEach((tm) => {
+      const p = tm.querySelector('p');
+      if (p && p.textContent.includes('Introducing Team Strata')) {
+        const img = tm.querySelector('img');
+        if (img) {
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/introducing-team-strata-image.jpg';
+          img.removeAttribute('width');
+          img.removeAttribute('height');
+        }
       }
     });
   }
