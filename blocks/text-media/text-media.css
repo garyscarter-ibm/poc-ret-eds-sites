@@ -1,5 +1,5 @@
 /* Text Media - Overlapping image+text layout
-     Matches cotswoldcheltenhambmw.co.uk/about-us/ splitBannerTeaserCMS style:
+     Matches about-us page splitBannerTeaserCMS style:
      - Large image overlaps vertically beyond the text area
      - Alternating image left/right
      - Generous whitespace around text */
@@ -85,7 +85,9 @@ body.brochure .text-media-content hr {
 
 /* Scroll animation placeholder */
 .text-media .animate-child {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+        opacity 0.6s ease-out,
+        transform 0.6s ease-out;
 }
 
 /* === Responsive: Tablet (600px+) === */

@@ -2,7 +2,9 @@
   "templates": [
     {
       "name": "motorrad-homepage",
-      "urls": ["https://www.bmw-motorrad.co.uk/cotswold-cheltenham/en/home.html"],
+      "urls": [
+        "https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/motorrad/"
+      ],
       "description": "BMW Motorrad dealer homepage with hero, model range, offers, services, and dealer locator",
       "blocks": [
         {
@@ -21,7 +23,9 @@
     },
     {
       "name": "about-us-page",
-      "urls": ["https://www.cotswoldcheltenhambmw.co.uk/about-us/"],
+      "urls": [
+        "https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us/"
+      ],
       "description": "About us / meet the team page with staff profiles and dealership information",
       "blocks": [
         {
@@ -38,7 +42,10 @@
         },
         {
           "name": "text-media",
-          "instances": [".splitFrameTeaserCMS.imageCarousel", ".splitBannerTeaserCMS"]
+          "instances": [
+            ".splitFrameTeaserCMS.imageCarousel",
+            ".splitBannerTeaserCMS"
+          ]
         },
         {
           "name": "cards-team",
