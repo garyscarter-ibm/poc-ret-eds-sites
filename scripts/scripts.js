@@ -334,7 +334,6 @@ async function loadLazy(doc) {
         video.setAttribute('controls', '');
         video.setAttribute('playsinline', '');
         video.setAttribute('preload', 'metadata');
-        video.setAttribute('poster', '');
         const source = document.createElement('source');
         source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
         source.type = 'video/mp4';
@@ -379,7 +378,6 @@ async function loadLazy(doc) {
         video.setAttribute('controls', '');
         video.setAttribute('playsinline', '');
         video.setAttribute('preload', 'metadata');
-        video.setAttribute('poster', '');
         const source = document.createElement('source');
         source.src = `https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/${src}`;
         source.type = 'video/mp4';
