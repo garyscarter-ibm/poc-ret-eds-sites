@@ -310,7 +310,7 @@ async function loadLazy(doc) {
       if (p && p.textContent.includes('Introducing Team Strata')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/introducing-team-strata-image.png';
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/two-titans.jpg';
           img.setAttribute('width', '1920');
           img.setAttribute('height', '1080');
         }
@@ -318,7 +318,7 @@ async function loadLazy(doc) {
       if (p && p.textContent.includes('Our Culture')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/our-culture-image.jpg';
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-culture.jpg';
           img.setAttribute('width', '1920');
           img.setAttribute('height', '1080');
         }
