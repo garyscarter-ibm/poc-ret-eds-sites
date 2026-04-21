@@ -132,19 +132,7 @@ function rebrandContent(root) {
 
   walk(root);
 
-  // Also fix link URLs
-  root.querySelectorAll('a[href*="cotswold"], a[href*="Cotswold"], a[href*="grassick"], a[href*="Grassick"]').forEach((a) => {
-    a.href = a.href
-      .replace('cotswoldgroup.com', 'strata.com')
-      .replace('CotswoldCheltenhamBMW', 'StrataBMW')
-      .replace('CotswoldBMW', 'StrataBMW')
-      .replace('cotswoldbmw', 'stratabmw')
-      .replace('cotswold-bmw', 'strata-bmw')
-      .replace('GrassicksBMW', 'StrataBMW')
-      .replace('grassicksbmw', 'stratabmw')
-      .replace('grassicksmini', 'stratamini')
-      .replace(/grassick's-garage-limited/i, 'strata-bmw');
-  });
+  // Link URLs are kept as original absolute URLs to avoid broken links
 }
 
 /**
