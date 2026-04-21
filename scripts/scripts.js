@@ -222,6 +222,17 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
+  // Hide specific sections on About Us page
+  if (window.location.pathname.startsWith('/about-us')) {
+    main.querySelectorAll(':scope > div').forEach((section) => {
+      const h2 = section.querySelector('h2');
+      const heading = h2?.textContent.trim();
+      if (heading === 'SECTION NAVIGATION.' || heading === 'ABOUT US.') {
+        section.remove();
+      }
+    });
+  }
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
