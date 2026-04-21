@@ -499,10 +499,10 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
         min-height: 85vh;
     }
 
-    /* BMW mobile: full viewport height, pull up to cover header + tool bar */
+    /* BMW mobile: shorter hero so title stays above fold */
     .hero-dealership:not(.mini):not(.motorrad) {
         margin-top: -100px;
-        min-height: 100vh;
+        min-height: 70vh;
     }
 
     .hero-dealership > div:nth-child(2) {
@@ -510,9 +510,9 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
         padding: calc(64px + var(--spacing-m)) var(--spacing-s) var(--spacing-m);
     }
 
-    /* BMW mobile: full height + extra top padding for header + blue bar */
+    /* BMW mobile: match reduced hero height */
     .hero-dealership:not(.mini):not(.motorrad) > div:nth-child(2) {
-        min-height: 100vh;
+        min-height: 70vh;
         padding-top: calc(100px + var(--spacing-m));
     }
 

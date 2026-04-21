@@ -295,6 +295,15 @@ async function loadLazy(doc) {
 
   // About Us page customizations
   if (window.location.pathname.startsWith('/about-us')) {
+    // Rebrand page title and meta description
+    document.title = 'About Your Local BMW Retailer | Strata BMW';
+    const descContent = 'View our range of BMW cars, brought to you by Strata BMW. Visit us or call today for our latest offers.';
+    document.querySelector('meta[name="description"]')?.setAttribute('content', descContent);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', descContent);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', document.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', descContent);
+
     main.querySelectorAll(':scope > div').forEach((section) => {
       const h2 = section.querySelector('h2');
       const heading = h2?.textContent.trim();
@@ -310,17 +319,17 @@ async function loadLazy(doc) {
       if (p && p.textContent.includes('Introducing Team Strata')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/introducing-team-strata-image.jpg';
-          img.removeAttribute('width');
-          img.removeAttribute('height');
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/two-titans.jpg';
+          img.setAttribute('width', '1920');
+          img.setAttribute('height', '1080');
         }
       }
       if (p && p.textContent.includes('Our Culture')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/our-culture-image.jpg';
-          img.removeAttribute('width');
-          img.removeAttribute('height');
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-culture.jpg';
+          img.setAttribute('width', '1920');
+          img.setAttribute('height', '1080');
         }
       }
     });
@@ -334,7 +343,6 @@ async function loadLazy(doc) {
         video.setAttribute('controls', '');
         video.setAttribute('playsinline', '');
         video.setAttribute('preload', 'metadata');
-        video.setAttribute('poster', '');
         const source = document.createElement('source');
         source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
         source.type = 'video/mp4';
@@ -379,7 +387,6 @@ async function loadLazy(doc) {
         video.setAttribute('controls', '');
         video.setAttribute('playsinline', '');
         video.setAttribute('preload', 'metadata');
-        video.setAttribute('poster', '');
         const source = document.createElement('source');
         source.src = `https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/${src}`;
         source.type = 'video/mp4';
