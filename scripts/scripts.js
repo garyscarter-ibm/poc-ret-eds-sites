@@ -368,6 +368,12 @@ async function loadLazy(doc) {
       {
         card: 6, name: 'TRACY', role: 'Team Strata Executive Leader', src: 'tracey.mp4',
       },
+      {
+        card: 7, name: 'GARY', role: 'Strata Enterprise Architect', src: 'gc.mp4',
+      },
+      {
+        card: 8, name: 'RUSSELL', role: 'Strata Client Director', src: 'russelvideo.mp4',
+      },
     ];
     teamVideos.forEach(({
       card, name, role, src,
