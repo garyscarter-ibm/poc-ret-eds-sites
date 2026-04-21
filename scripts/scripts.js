@@ -343,22 +343,37 @@ async function loadLazy(doc) {
       }
     }
 
-    // Inject Nicola video into second cards-video card
-    const secondCard = main.querySelector('.cards-video li:nth-child(2)');
-    if (secondCard) {
-      // Update name and role
-      const h4 = secondCard.querySelector('h4');
-      const h3 = secondCard.querySelector('h3');
-      if (h4) h4.textContent = 'NICOLA';
-      if (h3) h3.textContent = 'B2B Team Member';
-      // Remove "Video coming soon" placeholder text
-      const comingSoon = secondCard.querySelector('.cards-video-body p');
+    // Inject team member videos into cards-video cards (card index is 1-based nth-child)
+    const teamVideos = [
+      {
+        card: 2, name: 'NICOLA', role: 'B2B Team Member', src: 'nic-p-video.mp4',
+      },
+      {
+        card: 3, name: 'ELMIEN', role: 'BMW Client Partner', src: 'elmienvideo.mp4',
+      },
+      {
+        card: 4, name: 'SARAH', role: 'Strategy Lead', src: 'sarahvideo.mp4',
+      },
+      {
+        card: 5, name: 'BETH', role: 'Senior Account Director', src: 'beth-selfie-vid.mp4',
+      },
+      {
+        card: 6, name: 'TRACY', role: 'Team Strata Executive Leader', src: 'tracey.mp4',
+      },
+    ];
+    teamVideos.forEach(({
+      card, name, role, src,
+    }) => {
+      const li = main.querySelector(`.cards-video li:nth-child(${card})`);
+      if (!li) return;
+      const h4 = li.querySelector('h4');
+      const h3 = li.querySelector('h3');
+      if (h4) h4.textContent = name;
+      if (h3) h3.textContent = role;
+      const comingSoon = li.querySelector('.cards-video-body p');
       if (comingSoon && comingSoon.textContent.includes('Video coming soon')) comingSoon.remove();
-
-      // Inject video
-      const mediaDiv = secondCard.querySelector('.cards-video-media');
+      const mediaDiv = li.querySelector('.cards-video-media');
       if (mediaDiv && !mediaDiv.querySelector('video')) {
-        // Remove placeholder content
         mediaDiv.innerHTML = '';
         const video = document.createElement('video');
         video.setAttribute('controls', '');
@@ -366,12 +381,12 @@ async function loadLazy(doc) {
         video.setAttribute('preload', 'metadata');
         video.setAttribute('poster', '');
         const source = document.createElement('source');
-        source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/nic-p-video.mp4';
+        source.src = `https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/${src}`;
         source.type = 'video/mp4';
         video.append(source);
         mediaDiv.append(video);
       }
-    }
+    });
   }
 
   // Fix broken internal links site-wide
