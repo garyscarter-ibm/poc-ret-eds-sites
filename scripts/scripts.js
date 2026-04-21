@@ -171,6 +171,8 @@ function rebrandContent(root) {
     [/Perth/g, ''],
     [/Tewkesbury/g, 'our facilities'],
     [/Established in 1995.*PDI Centre[^.]*\./g, 'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.'],
+    [/\bCAMERON\b/g, 'BILLY SEABROOK'],
+    [/\bDeveloper\b/g, 'Global Chief Design Officer'],
     [/OUR CULTURE\./g, 'Our Culture'],
     [/We.re passionate that every customer.*treating each customer as an individual\./g, 'By combining our industry-leading digital development, marketing technology and campaign execution skills with creative and strategic excellence, we\u2019ve built a diverse team which is genuinely best-of-breed for each one of your requirements.'],
   ];
@@ -302,6 +304,24 @@ async function loadLazy(doc) {
         }
       }
     });
+
+    // Inject Billy Seabrook video into first cards-video card
+    const firstCard = main.querySelector('.cards-video li');
+    if (firstCard) {
+      const mediaDiv = firstCard.querySelector('.cards-video-media');
+      if (mediaDiv && !mediaDiv.querySelector('video')) {
+        const video = document.createElement('video');
+        video.setAttribute('controls', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'metadata');
+        video.setAttribute('poster', '');
+        const source = document.createElement('source');
+        source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
+        source.type = 'video/mp4';
+        video.append(source);
+        mediaDiv.append(video);
+      }
+    }
   }
 
   // Fix broken internal links site-wide
