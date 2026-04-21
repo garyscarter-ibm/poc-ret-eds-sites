@@ -113,7 +113,7 @@ function rebrandContent(root) {
     [/Grassicks/g, 'Strata'],
     [/Perth/g, ''],
     [/Tewkesbury/g, 'our facilities'],
-    [/Established in 1995 Strata is a privately-owned company with BMW and MINI Retail Centres plus an Approved Bodyshop and PDI Centre in our facilities\./g, 'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.'],
+    [/Established in 1995.*PDI Centre[^.]*\./g, 'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.'],
   ];
 
   const walk = (node) => {
