@@ -295,6 +295,15 @@ async function loadLazy(doc) {
 
   // About Us page customizations
   if (window.location.pathname.startsWith('/about-us')) {
+    // Rebrand page title and meta description
+    document.title = 'About Your Local BMW Retailer | Strata BMW';
+    const descContent = 'View our range of BMW cars, brought to you by Strata BMW. Visit us or call today for our latest offers.';
+    document.querySelector('meta[name="description"]')?.setAttribute('content', descContent);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', descContent);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', document.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', descContent);
+
     main.querySelectorAll(':scope > div').forEach((section) => {
       const h2 = section.querySelector('h2');
       const heading = h2?.textContent.trim();
