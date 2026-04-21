@@ -70,12 +70,37 @@ export default function decorate(block) {
       const a = reviewDiv.querySelector('a');
       if (a) {
         a.className = 'hero-dealership-reviews-link cta-chevron cta-chevron--white';
+        a.href = 'https://www.ibm.com/reports/analyst';
         ratingsContainer.append(a);
       }
       reviewDiv.remove();
     }
 
     contentRow.append(ratingsContainer);
+  }
+
+  // Redirect "View all reviews" link when not inside ratings
+  if (reviewDiv) {
+    const a = reviewDiv.querySelector('a');
+    if (a) {
+      a.href = 'https://www.ibm.com/reports/analyst';
+    }
+  }
+
+  // About Us page customizations
+  if (window.location.pathname.startsWith('/about-us')) {
+    // Replace hero image
+    const picture = block.querySelector('picture');
+    if (picture) {
+      const newSrc = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-hero.png';
+      picture.querySelectorAll('source').forEach((source) => source.remove());
+      const img = picture.querySelector('img');
+      if (img) {
+        img.src = newSrc;
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+      }
+    }
   }
 
   // MINI: add decorative frame elements
