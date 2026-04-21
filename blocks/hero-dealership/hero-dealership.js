@@ -70,12 +70,21 @@ export default function decorate(block) {
       const a = reviewDiv.querySelector('a');
       if (a) {
         a.className = 'hero-dealership-reviews-link cta-chevron cta-chevron--white';
+        a.href = 'https://www.ibm.com/reports/analyst';
         ratingsContainer.append(a);
       }
       reviewDiv.remove();
     }
 
     contentRow.append(ratingsContainer);
+  }
+
+  // Redirect "View all reviews" link when not inside ratings
+  if (reviewDiv) {
+    const a = reviewDiv.querySelector('a');
+    if (a) {
+      a.href = 'https://www.ibm.com/reports/analyst';
+    }
   }
 
   // MINI: add decorative frame elements
