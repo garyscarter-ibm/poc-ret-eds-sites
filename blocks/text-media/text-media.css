@@ -196,16 +196,14 @@ body.brochure .text-media-content hr {
         grid-column: 1 / 7;
     }
 
-    /* FIRST text-media only (AN INTRODUCTION): overlapping layout with white bg */
+    /* FIRST text-media only (AN INTRODUCTION): side-by-side layout */
     .text-media:first-child .text-media-layout.reversed .text-media-content {
-        grid-column: 1 / 7;
-        padding: 80px 56px 80px 0;
-        background-color: var(--color-white, #fff);
-        min-height: 500px;
+        grid-column: 1 / 6;
+        padding: 40px 32px 40px 0;
     }
 
     .text-media:first-child .text-media-layout.reversed .text-media-image {
-        grid-column: 5 / 13;
+        grid-column: 6 / 13;
     }
 
     .text-media-image img {
