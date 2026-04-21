@@ -95,15 +95,15 @@ function buildAutoBlocks(main) {
  * @param {Element} root The root element to process
  */
 const brokenLinkMap = {
-  '/realtime-booking-form': 'https://www.bmw.co.uk/en/test-drive.html',
-  '/realtime-booking-form/': 'https://www.bmw.co.uk/en/test-drive.html',
-  '/appointment-booking-form': 'https://www.bmw.co.uk/en/topics/owners/bmw-service.html',
-  '/appointment-booking-form/': 'https://www.bmw.co.uk/en/topics/owners/bmw-service.html',
+  '/realtime-booking-form': '/',
+  '/realtime-booking-form/': '/',
+  '/appointment-booking-form': '/',
+  '/appointment-booking-form/': '/',
   '/contact-us': '/',
   '/contact-us/': '/',
   '/contact-us/#form': '/',
-  '/bmw-electric/': 'https://www.bmw.co.uk/en/electric.html',
-  '/sell-your-bmw/': 'https://www.bmw.co.uk/en/topics/owners/sell-your-bmw.html',
+  '/bmw-electric/': '/',
+  '/sell-your-bmw/': '/',
   '/vacancies/': '/',
   '/hero-content/site-terms-and-conditions/': '/',
   '/hero-content/site-cookies/': '/',
@@ -121,9 +121,15 @@ const brokenLinkMap = {
 };
 
 const brokenExternalLinkMap = {
-  'https://www.strata.com/careers/': 'https://www.bmw.co.uk/en/topics/about-bmw/careers.html',
-  'https://usedcars.bmw.co.uk/retailer-groups/eastern': 'https://usedcars.bmw.co.uk/',
-  'https://www.cotswoldgroup.com/careers/': 'https://www.bmw.co.uk/en/topics/about-bmw/careers.html',
+  'https://www.bmw.co.uk/en/test-drive.html': '/',
+  'https://www.bmw.co.uk/en/topics/owners/bmw-service.html': '/',
+  'https://www.bmw.co.uk/en/electric.html': '/',
+  'https://www.bmw.co.uk/en/topics/owners/sell-your-bmw.html': '/',
+  'https://www.grassicksmini.co.uk/': '/',
+  'https://www.strata.com/careers/': '/',
+  'https://usedcars.bmw.co.uk/retailer-groups/eastern': '/',
+  'https://usedcars.bmw.co.uk/': '/',
+  'https://www.cotswoldgroup.com/careers/': '/',
 };
 
 function fixBrokenLinks(root) {
