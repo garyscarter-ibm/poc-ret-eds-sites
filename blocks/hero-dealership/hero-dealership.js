@@ -87,6 +87,21 @@ export default function decorate(block) {
     }
   }
 
+  // Replace hero image on About Us page
+  if (window.location.pathname.startsWith('/about-us')) {
+    const picture = block.querySelector('picture');
+    if (picture) {
+      const newSrc = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-hero.png';
+      picture.querySelectorAll('source').forEach((source) => source.remove());
+      const img = picture.querySelector('img');
+      if (img) {
+        img.src = newSrc;
+        img.removeAttribute('width');
+        img.removeAttribute('height');
+      }
+    }
+  }
+
   // MINI: add decorative frame elements
   if (isMini) {
     const frame = document.createElement('div');
