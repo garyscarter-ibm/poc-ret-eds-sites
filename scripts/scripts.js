@@ -114,6 +114,8 @@ function rebrandContent(root) {
     [/Perth/g, ''],
     [/Tewkesbury/g, 'our facilities'],
     [/Established in 1995.*PDI Centre[^.]*\./g, 'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.'],
+    [/OUR CULTURE\./g, 'Our Culture'],
+    [/We.re passionate that every customer.*treating each customer as an individual\./g, 'By combining our industry-leading digital development, marketing technology and campaign execution skills with creative and strategic excellence, we\u2019ve built a diverse team which is genuinely best-of-breed for each one of your requirements.'],
   ];
 
   const walk = (node) => {
@@ -242,6 +244,14 @@ async function loadLazy(doc) {
         const img = tm.querySelector('img');
         if (img) {
           img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/introducing-team-strata-image.jpg';
+          img.removeAttribute('width');
+          img.removeAttribute('height');
+        }
+      }
+      if (p && p.textContent.includes('Our Culture')) {
+        const img = tm.querySelector('img');
+        if (img) {
+          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/our-culture-image.jpg';
           img.removeAttribute('width');
           img.removeAttribute('height');
         }
