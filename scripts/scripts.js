@@ -342,6 +342,36 @@ async function loadLazy(doc) {
         mediaDiv.append(video);
       }
     }
+
+    // Inject Nicola video into second cards-video card
+    const secondCard = main.querySelector('.cards-video li:nth-child(2)');
+    if (secondCard) {
+      // Update name and role
+      const h4 = secondCard.querySelector('h4');
+      const h3 = secondCard.querySelector('h3');
+      if (h4) h4.textContent = 'NICOLA';
+      if (h3) h3.textContent = 'B2B Team Member';
+      // Remove "Video coming soon" placeholder text
+      const comingSoon = secondCard.querySelector('.cards-video-body p');
+      if (comingSoon && comingSoon.textContent.includes('Video coming soon')) comingSoon.remove();
+
+      // Inject video
+      const mediaDiv = secondCard.querySelector('.cards-video-media');
+      if (mediaDiv && !mediaDiv.querySelector('video')) {
+        // Remove placeholder content
+        mediaDiv.innerHTML = '';
+        const video = document.createElement('video');
+        video.setAttribute('controls', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'metadata');
+        video.setAttribute('poster', '');
+        const source = document.createElement('source');
+        source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/nic-p-video.mp4';
+        source.type = 'video/mp4';
+        video.append(source);
+        mediaDiv.append(video);
+      }
+    }
   }
 
   // Fix broken internal links site-wide
