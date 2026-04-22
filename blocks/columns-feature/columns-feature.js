@@ -110,8 +110,9 @@ export default function decorate(block) {
 
       // For motorrad, each block is a separate element so i is always 0.
       // Determine alternation from sibling block index within the section.
+      // Welcome variants always keep image on the left (no alternation).
       let altIndex = i;
-      if (isMotorrad && rows.length === 1) {
+      if (isMotorrad && !isWelcome && rows.length === 1) {
         const wrapper = block.closest('.columns-feature-wrapper');
         const section = wrapper?.parentElement;
         if (section) {
@@ -119,7 +120,7 @@ export default function decorate(block) {
           altIndex = siblingBlocks.indexOf(block);
         }
       }
-      if (altIndex % 2 !== 0) row.classList.add('columns-feature-alt');
+      if (!isWelcome && altIndex % 2 !== 0) row.classList.add('columns-feature-alt');
     }
   });
 
