@@ -18,7 +18,8 @@ import {
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+    if (!window.location.hostname.includes('localhost'))
+      sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
     // do nothing
   }
@@ -38,7 +39,9 @@ function decorateButtons(main) {
 
     try {
       if (new URL(a.href).href === new URL(text, window.location).href) return;
-    } catch { /* continue */ }
+    } catch {
+      /* continue */
+    }
 
     const strong = a.closest('strong');
     const em = a.closest('em');
@@ -66,9 +69,10 @@ function decorateButtons(main) {
  * @param {Element} main The main element
  */
 function buildAutoBlocks(main) {
-  const isBrochure = main.querySelector('.brochure-nav')
-    || main.querySelector('.brochure-hero')
-    || main.querySelector('.hero-brochure');
+  const isBrochure =
+    main.querySelector('.brochure-nav') ||
+    main.querySelector('.brochure-hero') ||
+    main.querySelector('.hero-brochure');
   if (!isBrochure) return;
 
   // Skip if brochure-locked already exists
@@ -86,7 +90,8 @@ function buildAutoBlocks(main) {
 
   // Build the locked section as a top-level div (becomes its own section)
   const lockedSection = document.createElement('div');
-  lockedSection.innerHTML = '<div class="brochure-locked"><div><div></div></div></div>';
+  lockedSection.innerHTML =
+    '<div class='brochure-locked'><div><div></div></div></div>';
   main.insertBefore(lockedSection, ctaTopLevel);
 }
 
@@ -134,15 +139,24 @@ const brokenExternalLinkMap = {
 
 // Known content pages that exist in the site
 const knownPages = new Set([
-  '/', '/index', '/index-mini', '/index-bmw', '/index-bmw-da', '/index-bmw-da-new',
-  '/about-us', '/about-us/',
-  '/brochures/x7', '/brochures/x7/',
-  '/brochures/x7/interior-design', '/brochures/x7/interior-design/',
-  '/brochures/x7/exterior-design', '/brochures/x7/exterior-design/',
+  '/',
+  '/index',
+  '/index-mini',
+  '/index-bmw',
+  '/index-bmw-da',
+  '/index-bmw-da-new',
+  '/about-us',
+  '/about-us/',
+  '/brochures/x7',
+  '/brochures/x7/',
+  '/brochures/x7/interior-design',
+  '/brochures/x7/interior-design/',
+  '/brochures/x7/exterior-design',
+  '/brochures/x7/exterior-design/',
 ]);
 
 function fixBrokenLinks(root) {
-  root.querySelectorAll('a[href^="/"]').forEach((a) => {
+  root.querySelectorAll('a[href^='/']').forEach((a) => {
     const href = a.getAttribute('href');
     // First check the explicit map
     if (brokenLinkMap[href]) {
@@ -150,7 +164,8 @@ function fixBrokenLinks(root) {
       return;
     }
     // Then check if it's a known page — if not, redirect to current page
-    const cleanPath = href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
+    const cleanPath =
+      href.split('#')[0].split('?')[0].replace(/\/$/, '') || '/';
     if (!knownPages.has(cleanPath) && !knownPages.has(`${cleanPath}/`)) {
       a.href = window.location.pathname;
       a.addEventListener('click', (e) => {
@@ -159,7 +174,7 @@ function fixBrokenLinks(root) {
       });
     }
   });
-  root.querySelectorAll('a[href^="http"]').forEach((a) => {
+  root.querySelectorAll('a[href^='http']').forEach((a) => {
     const href = a.getAttribute('href');
     if (brokenExternalLinkMap[href]) {
       a.href = brokenExternalLinkMap[href];
@@ -183,18 +198,27 @@ function rebrandContent(root) {
     [/Cotswold/g, 'Strata'],
     [/Cheltenham and Hereford, BMW Motorrad in Cheltenham, plus/g, 'plus'],
     [/in Cheltenham/g, 'with Strata'],
-    [/Cheltenham as well as surrounding areas including Gloucester, Winchcombe, Stroud and Stonehouse\. Our/g, 'Our'],
+    [
+      /Cheltenham as well as surrounding areas including Gloucester, Winchcombe, Stroud and Stonehouse\. Our/g,
+      'Our',
+    ],
     [/Cheltenham/g, 'Strata'],
     [/Grassicks MINI/g, 'Strata MINI'],
     [/Grassicks Perth/g, 'Strata'],
     [/Grassicks/g, 'Strata'],
     [/Perth/g, ''],
     [/Tewkesbury/g, 'our facilities'],
-    [/Established in 1995.*PDI Centre[^.]*\./g, 'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.'],
+    [
+      /Established in 1995.*PDI Centre[^.]*\./g,
+      'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.',
+    ],
     [/\bCAMERON\b/g, 'BILLY SEABROOK'],
     [/\bDeveloper\b/g, 'Global Chief Design Officer'],
     [/OUR CULTURE\./g, 'Our Culture'],
-    [/We.re passionate that every customer.*treating each customer as an individual\./g, 'By combining our industry-leading digital development, marketing technology and campaign execution skills with creative and strategic excellence, we\u2019ve built a diverse team which is genuinely best-of-breed for each one of your requirements.'],
+    [
+      /We.re passionate that every customer.*treating each customer as an individual\./g,
+      'By combining our industry-leading digital development, marketing technology and campaign execution skills with creative and strategic excellence, we\u2019ve built a diverse team which is genuinely best-of-breed for each one of your requirements.',
+    ],
   ];
 
   const walk = (node) => {
@@ -239,22 +263,49 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     // Rebrand page title and meta tags
-    if (document.title.includes('Cotswold') || document.title.includes('Cheltenham')) {
-      document.title = document.title.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
+    if (
+      document.title.includes('Cotswold') ||
+      document.title.includes('Cheltenham')
+    ) {
+      document.title = document.title
+        .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
+        .replace(/Cotswold/g, 'Strata')
+        .replace(/Cheltenham/g, 'Strata');
+    } else if (!document.title.includes('Strata')) {
+      document.title = 'Strata';
     }
-    document.querySelectorAll('meta[content*="Cotswold"], meta[content*="Cheltenham"]').forEach((meta) => {
-      meta.content = meta.content.replace(/Cotswold Cheltenham BMW/g, 'Strata BMW').replace(/Cotswold/g, 'Strata').replace(/Cheltenham/g, 'Strata');
-    });
+    document
+      .querySelectorAll(
+        'meta[content*='Cotswold'], meta[content*='Cheltenham']',
+      )
+      .forEach((meta) => {
+        meta.content = meta.content
+          .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
+          .replace(/Cotswold/g, 'Strata')
+          .replace(/Cheltenham/g, 'Strata');
+      });
     // Auto-detect MINI theme from block classes when no theme metadata is set
-    if (!document.body.classList.contains('mini') && main.querySelector('.mini')) {
+    if (
+      !document.body.classList.contains('mini') &&
+      main.querySelector('.mini')
+    ) {
       document.body.classList.add('mini');
     }
     // Auto-detect Motorrad theme from block classes
-    if (!document.body.classList.contains('motorrad') && main.querySelector('.motorrad')) {
+    if (
+      !document.body.classList.contains('motorrad') &&
+      main.querySelector('.motorrad')
+    ) {
       document.body.classList.add('motorrad');
     }
     // Auto-detect Brochure theme
-    if (main.querySelector('.brochure-nav') || main.querySelector('.brochure-hero') || main.querySelector('.hero-brochure') || main.querySelector('.brochure-hero-cards') || getMetadata('theme') === 'brochure') {
+    if (
+      main.querySelector('.brochure-nav') ||
+      main.querySelector('.brochure-hero') ||
+      main.querySelector('.hero-brochure') ||
+      main.querySelector('.brochure-hero-cards') ||
+      getMetadata('theme') === 'brochure'
+    ) {
       document.body.classList.add('brochure');
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
       // Set page title from brochure config
@@ -262,7 +313,9 @@ async function loadEager(doc) {
         const { getCurrentPage } = await import('./brochure-config.js');
         const page = getCurrentPage();
         if (page) document.title = `${page.title} - X7`;
-      } catch { /* brochure config not available */ }
+      } catch {
+        /* brochure config not available */
+      }
     }
     document.body.classList.add('appear');
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
@@ -297,12 +350,23 @@ async function loadLazy(doc) {
   if (window.location.pathname.startsWith('/about-us')) {
     // Rebrand page title and meta description
     document.title = 'About Your Local BMW Retailer | Strata BMW';
-    const descContent = 'View our range of BMW cars, brought to you by Strata BMW. Visit us or call today for our latest offers.';
-    document.querySelector('meta[name="description"]')?.setAttribute('content', descContent);
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', descContent);
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', document.title);
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', descContent);
+    const descContent =
+      'View our range of BMW cars, brought to you by Strata BMW. Visit us or call today for our latest offers.';
+    document
+      .querySelector('meta[name='description']')
+      ?.setAttribute('content', descContent);
+    document
+      .querySelector('meta[property='og:title']')
+      ?.setAttribute('content', document.title);
+    document
+      .querySelector('meta[property='og:description']')
+      ?.setAttribute('content', descContent);
+    document
+      .querySelector('meta[name='twitter:title']')
+      ?.setAttribute('content', document.title);
+    document
+      .querySelector('meta[name='twitter:description']')
+      ?.setAttribute('content', descContent);
 
     main.querySelectorAll(':scope > div').forEach((section) => {
       const h2 = section.querySelector('h2');
@@ -312,14 +376,15 @@ async function loadLazy(doc) {
       }
     });
 
-    // Replace "Introducing Team Strata" image
+    // Replace 'Introducing Team Strata' image
     const textMediaBlocks = main.querySelectorAll('.text-media');
     textMediaBlocks.forEach((tm) => {
       const p = tm.querySelector('p');
       if (p && p.textContent.includes('Introducing Team Strata')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/two-titans.jpg';
+          img.src =
+            'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/two-titans.jpg';
           img.setAttribute('width', '1920');
           img.setAttribute('height', '1080');
         }
@@ -327,7 +392,8 @@ async function loadLazy(doc) {
       if (p && p.textContent.includes('Our Culture')) {
         const img = tm.querySelector('img');
         if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-culture.jpg';
+          img.src =
+            'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-culture.jpg';
           img.setAttribute('width', '1920');
           img.setAttribute('height', '1080');
         }
@@ -344,7 +410,8 @@ async function loadLazy(doc) {
         video.setAttribute('playsinline', '');
         video.setAttribute('preload', 'metadata');
         const source = document.createElement('source');
-        source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
+        source.src =
+          'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
         source.type = 'video/mp4';
         video.append(source);
         mediaDiv.append(video);
@@ -354,30 +421,49 @@ async function loadLazy(doc) {
     // Inject team member videos into cards-video cards (card index is 1-based nth-child)
     const teamVideos = [
       {
-        card: 2, name: 'NICOLA', role: 'B2B Team Member', src: 'nic-p-video.mp4',
+        card: 2,
+        name: 'NICOLA',
+        role: 'B2B Team Member',
+        src: 'nic-p-video.mp4',
       },
       {
-        card: 3, name: 'ELMIEN', role: 'BMW Client Partner', src: 'elmienvideo.mp4',
+        card: 3,
+        name: 'ELMIEN',
+        role: 'BMW Client Partner',
+        src: 'elmienvideo.mp4',
       },
       {
-        card: 4, name: 'SARAH', role: 'Strategy Lead', src: 'sarahvideo.mp4',
+        card: 4,
+        name: 'SARAH',
+        role: 'Strategy Lead',
+        src: 'sarahvideo.mp4',
       },
       {
-        card: 5, name: 'BETH', role: 'Senior Account Director', src: 'beth-selfie-vid.mp4',
+        card: 5,
+        name: 'BETH',
+        role: 'Senior Account Director',
+        src: 'beth-selfie-vid.mp4',
       },
       {
-        card: 6, name: 'TRACY', role: 'Team Strata Executive Leader', src: 'tracey.mp4',
+        card: 6,
+        name: 'TRACY',
+        role: 'Team Strata Executive Leader',
+        src: 'tracey.mp4',
       },
       {
-        card: 7, name: 'GARY', role: 'Strata Enterprise Architect', src: 'gc.mp4',
+        card: 7,
+        name: 'GARY',
+        role: 'Strata Enterprise Architect',
+        src: 'gc.mp4',
       },
       {
-        card: 8, name: 'RUSSELL', role: 'Strata Client Director', src: 'russelvideo.mp4',
+        card: 8,
+        name: 'RUSSELL',
+        role: 'Strata Client Director',
+        src: 'russelvideo.mp4',
       },
     ];
-    teamVideos.forEach(({
-      card, name, role, src,
-    }) => {
+    teamVideos.forEach(({ card, name, role, src }) => {
       const li = main.querySelector(`.cards-video li:nth-child(${card})`);
       if (!li) return;
       const h4 = li.querySelector('h4');
@@ -385,7 +471,8 @@ async function loadLazy(doc) {
       if (h4) h4.textContent = name;
       if (h3) h3.textContent = role;
       const comingSoon = li.querySelector('.cards-video-body p');
-      if (comingSoon && comingSoon.textContent.includes('Video coming soon')) comingSoon.remove();
+      if (comingSoon && comingSoon.textContent.includes('Video coming soon'))
+        comingSoon.remove();
       const mediaDiv = li.querySelector('.cards-video-media');
       if (mediaDiv && !mediaDiv.querySelector('video')) {
         mediaDiv.innerHTML = '';
@@ -423,12 +510,16 @@ async function loadLazy(doc) {
     if (headerEl.children.length > 0) {
       rebrandContent(headerEl);
     }
-    new MutationObserver(() => { rebrandContent(headerEl); fixBrokenLinks(headerEl); })
-      .observe(headerEl, { childList: true, subtree: true });
+    new MutationObserver(() => {
+      rebrandContent(headerEl);
+      fixBrokenLinks(headerEl);
+    }).observe(headerEl, { childList: true, subtree: true });
   }
   if (footerEl) {
-    new MutationObserver(() => { rebrandContent(footerEl); fixBrokenLinks(footerEl); })
-      .observe(footerEl, { childList: true, subtree: true });
+    new MutationObserver(() => {
+      rebrandContent(footerEl);
+      fixBrokenLinks(footerEl);
+    }).observe(footerEl, { childList: true, subtree: true });
   }
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -439,34 +530,44 @@ async function loadLazy(doc) {
     // Hide metadata section (last section with plain-text key/value pairs)
     const sections = main.querySelectorAll('.section');
     const lastSection = sections[sections.length - 1];
-    if (lastSection && !lastSection.querySelector('[class*="brochure-"]')) {
+    if (lastSection && !lastSection.querySelector('[class*='brochure-']')) {
       const text = lastSection.textContent.trim();
-      if (text.includes('header') && text.includes('footer') && text.includes('brochure')) {
+      if (
+        text.includes('header') &&
+        text.includes('footer') &&
+        text.includes('brochure')
+      ) {
         lastSection.remove();
       }
     }
 
-    const { prepareBrochureAnimations, initBrochureAnimations } = await import('./brochure-animations.js');
+    const { prepareBrochureAnimations, initBrochureAnimations } =
+      await import('./brochure-animations.js');
     prepareBrochureAnimations(main);
     initBrochureAnimations(main);
   }
 
   // Motorrad: animate section dividers on scroll
   if (document.body.classList.contains('motorrad')) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          // After first full animation, mark as "seen" for simpler re-entry
-          if (!entry.target.classList.contains('seen')) {
-            setTimeout(() => entry.target.classList.add('seen'), 1200);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // After first full animation, mark as 'seen' for simpler re-entry
+            if (!entry.target.classList.contains('seen')) {
+              setTimeout(() => entry.target.classList.add('seen'), 1200);
+            }
+          } else {
+            entry.target.classList.remove('visible');
           }
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    main.querySelectorAll('.default-content-wrapper > h2').forEach((h2) => observer.observe(h2));
+        });
+      },
+      { threshold: 0.1 },
+    );
+    main
+      .querySelectorAll('.default-content-wrapper > h2')
+      .forEach((h2) => observer.observe(h2));
   }
 }
 

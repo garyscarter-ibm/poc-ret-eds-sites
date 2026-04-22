@@ -168,19 +168,19 @@ main > .section.cards-about-container {
     }
 
     .cards-about > div:has(img) {
-        min-height: 400px;
+        min-height: 320px;
     }
 }
 
 /* === Responsive: Desktop (900px+) === */
 @media (min-width: 900px) {
     .cards-about {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
 
     .cards-about > div:has(img) {
-        min-height: 488px;
+        min-height: 320px;
     }
 }
 
