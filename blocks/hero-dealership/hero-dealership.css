@@ -92,6 +92,11 @@
     );
 }
 
+/* === About Us: shorter hero so content is visible above the fold === */
+.hero-dealership.short {
+    --hd-container-min-height: 72vh;
+}
+
 /* === Section & Wrapper === */
 main > .section.hero-dealership-container {
     padding: 0;
