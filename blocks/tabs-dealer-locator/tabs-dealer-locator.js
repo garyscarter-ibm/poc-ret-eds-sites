@@ -47,8 +47,9 @@ export default function decorate(block) {
     const mapIframe = document.createElement('iframe');
     mapIframe.title = 'Dealer location map';
     mapIframe.loading = 'lazy';
+    mapIframe.allow = 'fullscreen';
     mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
-    mapIframe.src = `https://maps.google.com/maps?q=${mapConfig.lat},${mapConfig.lng}&z=${mapConfig.zoom}&output=embed`;
+    mapIframe.src = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2000!2d${mapConfig.lng}!3d${mapConfig.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1`;
     block.appendChild(mapIframe);
 
     if (mapConfig.areas) {
@@ -122,7 +123,7 @@ export default function decorate(block) {
       mapIframe.title = 'Dealer location map';
       mapIframe.loading = 'lazy';
       mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
-      mapIframe.src = `https://maps.google.com/maps?q=${mapConfig.lat},${mapConfig.lng}&z=${mapConfig.zoom}&output=embed`;
+      mapIframe.src = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2000!2d${mapConfig.lng}!3d${mapConfig.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2suk!4v1`;
       mapSection.appendChild(mapIframe);
 
       if (mapConfig.areas) {
