@@ -39,6 +39,32 @@ export default function decorate(block) {
     rows.pop(); // Remove map row from tab rows
   }
 
+  // Map-only mode: block contains only coordinates, no tab rows
+  if (mapConfig && rows.length === 0) {
+    block.textContent = '';
+    block.classList.add('map-only');
+
+    const mapIframe = document.createElement('iframe');
+    mapIframe.title = 'Dealer location map';
+    mapIframe.loading = 'lazy';
+    mapIframe.referrerPolicy = 'no-referrer-when-downgrade';
+    mapIframe.src = `https://maps.google.com/maps?q=${mapConfig.lat},${mapConfig.lng}&z=${mapConfig.zoom}&output=embed`;
+    block.appendChild(mapIframe);
+
+    if (mapConfig.areas) {
+      const areasDiv = document.createElement('div');
+      areasDiv.className = 'tabs-dealer-locator-areas';
+      const areasHeading = document.createElement('h5');
+      areasHeading.textContent = 'Areas served';
+      areasDiv.appendChild(areasHeading);
+      const areasText = document.createElement('p');
+      areasText.textContent = mapConfig.areas;
+      areasDiv.appendChild(areasText);
+      block.appendChild(areasDiv);
+    }
+    return;
+  }
+
   // Create tab navigation
   const tabNav = document.createElement('div');
   tabNav.className = 'tabs-dealer-locator-nav';
