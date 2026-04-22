@@ -903,6 +903,16 @@ main
      BMW font throughout, dark text, clean typography
      ============================================================ */
 
+/* Motorrad: let images display at natural height without clipping */
+.columns-feature.motorrad .columns-feature-image {
+    max-height: none;
+    overflow: visible;
+}
+
+.columns-feature.motorrad .columns-feature-image img {
+    object-fit: contain;
+}
+
 /* Motorrad: wider content to match original site (~1200px) */
 @media (min-width: 900px) {
     .columns-feature.motorrad:not(.welcome) {
