@@ -450,18 +450,6 @@ async function loadLazy(doc) {
         role: "Team Strata Executive Leader",
         src: "tracey.mp4",
       },
-      {
-        card: 7,
-        name: "GARY",
-        role: "Strata Enterprise Architect",
-        src: "gc.mp4",
-      },
-      {
-        card: 8,
-        name: "RUSSELL",
-        role: "Strata Client Director",
-        src: "russelvideo.mp4",
-      },
     ];
     teamVideos.forEach(({ card, name, role, src }) => {
       const li = main.querySelector(`.cards-video li:nth-child(${card})`);
