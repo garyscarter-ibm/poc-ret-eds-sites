@@ -99,7 +99,7 @@ export default function decorate(block) {
 
       // Detect quote panel: small circular image + name/title in text col (BMW only)
       const img = imgCol?.querySelector('img');
-      if (!isMotorrad && img && textCol?.querySelector('h3') && textCol?.querySelector('p')) {
+      if (!isMotorrad && !isWelcome && img && textCol?.querySelector('h3') && textCol?.querySelector('p')) {
         row.classList.add('quote-panel');
         // Move name + title from text col to image col (next to photo)
         const h3 = textCol.querySelector('h3');
