@@ -190,68 +190,11 @@ function fixBrokenLinks(root) {
 }
 
 /**
- * Rebrand: replace legacy retailer names with Strata across all visible text.
- * @param {Element} root The root element to process
- */
-function rebrandContent(root) {
-  const replacements = [
-    [/Cotswold Cheltenham BMW/g, 'Strata BMW'],
-    [/AN INTRODUCTION TO COTSWOLD MOTOR GROUP/g, 'Introducing Team Strata'],
-    [/AN INTRODUCTION TO STRATA\./g, 'Introducing Team Strata'],
-    [/Cotswold Motor Group/g, 'Strata'],
-    [/BMW Cotswold/g, 'Strata BMW'],
-    [/What does BMW Strata BMW/g, 'What does Strata BMW'],
-    [/visiting Strata BMW with Strata/g, 'visiting Strata BMW'],
-    [/Cotswold/g, 'Strata'],
-    [/Cheltenham and Hereford, BMW Motorrad in Cheltenham, plus/g, 'plus'],
-    [/in Cheltenham/g, 'with Strata'],
-    [
-      /Cheltenham as well as surrounding areas including Gloucester, Winchcombe, Stroud and Stonehouse\. Our/g,
-      'Our',
-    ],
-    [/Cheltenham/g, 'Strata'],
-    [/Grassicks MINI/g, 'Strata MINI'],
-    [/Grassicks Perth/g, 'Strata'],
-    [/Grassicks/g, 'Strata'],
-    [/Perth/g, ''],
-    [/Tewkesbury/g, 'our facilities'],
-    [
-      /Established in 1995.*PDI Centre[^.]*\./g,
-      'Team Strata is a meeting of minds \u2013 a collaboration between two organisations with diverse skillsets who share the same values. Between us, we have accumulated millions of hours of successful marketing projects, and we are trusted by some of the world\u2019s best brands \u2013 in automotive, financial services, sport, luxury, and more. Indeed, many of the logos on this slide are shared between both organisations. Taken together, we form the most exciting supergroup since McBusted - and we hope that you\u2019ll be fans.',
-    ],
-    [/\bCAMERON\b/g, 'BILLY SEABROOK'],
-    [/\bDeveloper\b/g, 'Global Chief Design Officer'],
-    [/OUR CULTURE\./g, 'Our Culture'],
-    [
-      /We.re passionate that every customer.*treating each customer as an individual\./g,
-      'By combining our industry-leading digital development, marketing technology and campaign execution skills with creative and strategic excellence, we\u2019ve built a diverse team which is genuinely best-of-breed for each one of your requirements.',
-    ],
-  ];
-
-  const walk = (node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      let text = node.textContent;
-      replacements.forEach(([pattern, replacement]) => {
-        text = text.replace(pattern, replacement);
-      });
-      if (text !== node.textContent) node.textContent = text;
-    } else if (node.nodeType === Node.ELEMENT_NODE) {
-      node.childNodes.forEach(walk);
-    }
-  };
-
-  walk(root);
-
-  // Link URLs are kept as original absolute URLs to avoid broken links
-}
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  rebrandContent(main);
   buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
@@ -276,28 +219,6 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    // Rebrand page title and meta tags
-    if (
-      document.title.includes('Cotswold')
-      || document.title.includes('Cheltenham')
-    ) {
-      document.title = document.title
-        .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
-        .replace(/Cotswold/g, 'Strata')
-        .replace(/Cheltenham/g, 'Strata');
-    } else if (!document.title.includes('Strata')) {
-      document.title = 'Strata';
-    }
-    document
-      .querySelectorAll(
-        'meta[content*="Cotswold"], meta[content*="Cheltenham"]',
-      )
-      .forEach((meta) => {
-        meta.content = meta.content
-          .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
-          .replace(/Cotswold/g, 'Strata')
-          .replace(/Cheltenham/g, 'Strata');
-      });
     // Auto-detect MINI theme from block classes when no theme metadata is set
     if (
       !document.body.classList.contains('mini')
@@ -359,134 +280,6 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
-
-  // About Us page customizations
-  if (window.location.pathname.startsWith('/about-us')) {
-    // Rebrand page title and meta description
-    document.title = 'About Your Local BMW Retailer | Strata BMW';
-    const descContent = 'View our range of BMW cars, brought to you by Strata BMW. Visit us or call today for our latest offers.';
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute('content', descContent);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute('content', document.title);
-    document
-      .querySelector('meta[property="og:description"]')
-      ?.setAttribute('content', descContent);
-    document
-      .querySelector('meta[name="twitter:title"]')
-      ?.setAttribute('content', document.title);
-    document
-      .querySelector('meta[name="twitter:description"]')
-      ?.setAttribute('content', descContent);
-
-    main.querySelectorAll(':scope > div').forEach((section) => {
-      const h2 = section.querySelector('h2');
-      const heading = h2?.textContent.trim();
-      if (heading === 'SECTION NAVIGATION.' || heading === 'ABOUT US.') {
-        section.remove();
-      }
-    });
-
-    // Replace "Introducing Team Strata" image
-    const textMediaBlocks = main.querySelectorAll('.text-media');
-    textMediaBlocks.forEach((tm) => {
-      const p = tm.querySelector('p');
-      if (p && p.textContent.includes('Introducing Team Strata')) {
-        const img = tm.querySelector('img');
-        if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/two-titans.jpg';
-          img.setAttribute('width', '1920');
-          img.setAttribute('height', '1080');
-        }
-      }
-      if (p && p.textContent.includes('Our Culture')) {
-        const img = tm.querySelector('img');
-        if (img) {
-          img.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/grassicksbmw-homepage-images/strata-culture.jpg';
-          img.setAttribute('width', '1920');
-          img.setAttribute('height', '1080');
-        }
-      }
-    });
-
-    // Inject Billy Seabrook video into first cards-video card
-    const firstCard = main.querySelector('.cards-video li');
-    if (firstCard) {
-      const mediaDiv = firstCard.querySelector('.cards-video-media');
-      if (mediaDiv && !mediaDiv.querySelector('video')) {
-        const video = document.createElement('video');
-        video.setAttribute('controls', '');
-        video.setAttribute('playsinline', '');
-        video.setAttribute('preload', 'metadata');
-        const source = document.createElement('source');
-        source.src = 'https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/bmwbillyvideo.mp4';
-        source.type = 'video/mp4';
-        video.append(source);
-        mediaDiv.append(video);
-      }
-    }
-
-    // Inject team member videos into cards-video cards (card index is 1-based nth-child)
-    const teamVideos = [
-      {
-        card: 2,
-        name: 'NICOLA',
-        role: 'B2B Team Member',
-        src: 'nic-p-video.mp4',
-      },
-      {
-        card: 3,
-        name: 'ELMIEN',
-        role: 'BMW Client Partner',
-        src: 'elmienvideo.mp4',
-      },
-      {
-        card: 4,
-        name: 'SARAH',
-        role: 'Strategy Lead',
-        src: 'sarahvideo.mp4',
-      },
-      {
-        card: 5,
-        name: 'BETH',
-        role: 'Senior Account Director',
-        src: 'beth-selfie-vid.mp4',
-      },
-      {
-        card: 6,
-        name: 'TRACY',
-        role: 'Team Strata Executive Leader',
-        src: 'tracey.mp4',
-      },
-    ];
-    teamVideos.forEach(({
-      card, name, role, src,
-    }) => {
-      const li = main.querySelector(`.cards-video li:nth-child(${card})`);
-      if (!li) return;
-      const h4 = li.querySelector('h4');
-      const h3 = li.querySelector('h3');
-      if (h4) h4.textContent = name;
-      if (h3) h3.textContent = role;
-      const comingSoon = li.querySelector('.cards-video-body p');
-      if (comingSoon && comingSoon.textContent.includes('Video coming soon')) comingSoon.remove();
-      const mediaDiv = li.querySelector('.cards-video-media');
-      if (mediaDiv && !mediaDiv.querySelector('video')) {
-        mediaDiv.innerHTML = '';
-        const video = document.createElement('video');
-        video.setAttribute('controls', '');
-        video.setAttribute('playsinline', '');
-        video.setAttribute('preload', 'metadata');
-        const source = document.createElement('source');
-        source.src = `https://main--poc-ret-eds-sites--garyscarter-ibm.aem.page/about-us-videos/${src}`;
-        source.type = 'video/mp4';
-        video.append(source);
-        mediaDiv.append(video);
-      }
-    });
-  }
 
   // Fix broken internal links site-wide
   fixBrokenLinks(doc);
