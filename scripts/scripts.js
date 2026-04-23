@@ -191,7 +191,6 @@ function fixBrokenLinks(root) {
   });
   root.querySelectorAll('a[href^="/"]').forEach((a) => {
     const href = a.getAttribute("href");
-    const href = a.getAttribute("href");
     // First check the explicit map
     if (brokenLinkMap[href]) {
       a.href = brokenLinkMap[href];
@@ -200,20 +199,15 @@ function fixBrokenLinks(root) {
     // Then check if it's a known page — if not, redirect to current page
     const cleanPath =
       href.split("#")[0].split("?")[0].replace(/\/$/, "") || "/";
-    const cleanPath =
-      href.split("#")[0].split("?")[0].replace(/\/$/, "") || "/";
     if (!knownPages.has(cleanPath) && !knownPages.has(`${cleanPath}/`)) {
       a.href = window.location.pathname;
       a.addEventListener("click", (e) => {
-      a.addEventListener("click", (e) => {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
   });
   root.querySelectorAll('a[href^="http"]').forEach((a) => {
-    const href = a.getAttribute("href");
     const href = a.getAttribute("href");
     if (brokenExternalLinkMap[href]) {
       a.href = brokenExternalLinkMap[href];
@@ -310,7 +304,6 @@ async function loadEager(doc) {
   document.documentElement.lang = "en";
   decorateTemplateAndTheme();
   const main = doc.querySelector("main");
-  const main = doc.querySelector("main");
   if (main) {
     decorateMain(main);
     // Rebrand page title and meta tags (skip Motorrad pages)
@@ -342,20 +335,14 @@ async function loadEager(doc) {
     if (
       !document.body.classList.contains("mini") &&
       main.querySelector(".mini")
-      !document.body.classList.contains("mini") &&
-      main.querySelector(".mini")
     ) {
-      document.body.classList.add("mini");
       document.body.classList.add("mini");
     }
     // Auto-detect Motorrad theme from block classes
     if (
       !document.body.classList.contains("motorrad") &&
       main.querySelector(".motorrad")
-      !document.body.classList.contains("motorrad") &&
-      main.querySelector(".motorrad")
     ) {
-      document.body.classList.add("motorrad");
       document.body.classList.add("motorrad");
     }
     // Auto-detect Brochure theme
@@ -365,18 +352,11 @@ async function loadEager(doc) {
       main.querySelector(".hero-brochure") ||
       main.querySelector(".brochure-hero-cards") ||
       getMetadata("theme") === "brochure"
-      main.querySelector(".brochure-nav") ||
-      main.querySelector(".brochure-hero") ||
-      main.querySelector(".hero-brochure") ||
-      main.querySelector(".brochure-hero-cards") ||
-      getMetadata("theme") === "brochure"
     ) {
-      document.body.classList.add("brochure");
       document.body.classList.add("brochure");
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
       // Set page title from brochure config
       try {
-        const { getCurrentPage } = await import("./brochure-config.js");
         const { getCurrentPage } = await import("./brochure-config.js");
         const page = getCurrentPage();
         if (page) document.title = `${page.title} - X7`;
@@ -385,14 +365,11 @@ async function loadEager(doc) {
       }
     }
     document.body.classList.add("appear");
-    document.body.classList.add("appear");
     await loadCSS(`${window.hlx.codeBasePath}/styles/shared-components.css`);
-    await loadSection(main.querySelector(".section"), waitForFirstImage);
     await loadSection(main.querySelector(".section"), waitForFirstImage);
   }
 
   try {
-    if (window.innerWidth >= 900 || sessionStorage.getItem("fonts-loaded")) {
     if (window.innerWidth >= 900 || sessionStorage.getItem("fonts-loaded")) {
       loadFonts();
     }
@@ -415,7 +392,6 @@ async function loadLazy(doc) {
     header.remove();
   }
 
-  const main = doc.querySelector("main");
   const main = doc.querySelector("main");
   await loadSections(main);
 
@@ -569,8 +545,6 @@ async function loadLazy(doc) {
   // Rebrand header and footer after they load
   const headerEl = doc.querySelector("header");
   const footerEl = doc.querySelector("footer");
-  const headerEl = doc.querySelector("header");
-  const footerEl = doc.querySelector("footer");
   if (headerEl) {
     if (headerEl.children.length > 0) {
       rebrandContent(headerEl);
@@ -592,17 +566,12 @@ async function loadLazy(doc) {
 
   // Brochure: scroll-triggered section animations and metadata cleanup
   if (document.body.classList.contains("brochure")) {
-  if (document.body.classList.contains("brochure")) {
     // Hide metadata section (last section with plain-text key/value pairs)
-    const sections = main.querySelectorAll(".section");
     const sections = main.querySelectorAll(".section");
     const lastSection = sections[sections.length - 1];
     if (lastSection && !lastSection.querySelector('[class*="brochure-"]')) {
       const text = lastSection.textContent.trim();
       if (
-        text.includes("header") &&
-        text.includes("footer") &&
-        text.includes("brochure")
         text.includes("header") &&
         text.includes("footer") &&
         text.includes("brochure")
@@ -613,37 +582,28 @@ async function loadLazy(doc) {
 
     const { prepareBrochureAnimations, initBrochureAnimations } =
       await import("./brochure-animations.js");
-    const { prepareBrochureAnimations, initBrochureAnimations } =
-      await import("./brochure-animations.js");
     prepareBrochureAnimations(main);
     initBrochureAnimations(main);
   }
 
   // Motorrad: animate section dividers on scroll
   if (document.body.classList.contains("motorrad")) {
-  if (document.body.classList.contains("motorrad")) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            entry.target.classList.add("visible");
             // After first full animation, mark as "seen" for simpler re-entry
             if (!entry.target.classList.contains("seen")) {
               setTimeout(() => entry.target.classList.add("seen"), 1200);
-            if (!entry.target.classList.contains("seen")) {
-              setTimeout(() => entry.target.classList.add("seen"), 1200);
-            }
           } else {
             entry.target.classList.remove("visible");
-            entry.target.classList.remove("visible");
           }
-        });
+        }});
       },
       { threshold: 0.1 },
     );
     main
-      .querySelectorAll(".default-content-wrapper > h2")
       .querySelectorAll(".default-content-wrapper > h2")
       .forEach((h2) => observer.observe(h2));
   }
