@@ -1,4 +1,3 @@
-
 .brochure-hotspot {
     padding: 40px 20px;
     background: var(--brochure-bg);
@@ -85,11 +84,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease;
 }
 
 .brochure-hotspot-dot::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
