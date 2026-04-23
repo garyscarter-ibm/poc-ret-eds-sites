@@ -17,15 +17,23 @@ export default async function decorate(block) {
 
     const overlayId = cols[1]?.textContent?.trim();
 
-    // Add background image if available
-    const imgSrc = FEATURE_IMAGES[overlayId];
-    if (imgSrc) {
-      const img = document.createElement('img');
-      img.className = 'brochure-feature-bg';
-      img.src = imgSrc;
-      img.alt = '';
-      img.loading = 'lazy';
-      card.append(img);
+    // Use authored image (col 2) if present, otherwise fall back to hardcoded map
+    const authoredImg = cols[2]?.querySelector('img');
+    if (authoredImg) {
+      authoredImg.className = 'brochure-feature-bg';
+      authoredImg.loading = 'lazy';
+      authoredImg.alt = '';
+      card.append(authoredImg);
+    } else {
+      const imgSrc = FEATURE_IMAGES[overlayId];
+      if (imgSrc) {
+        const img = document.createElement('img');
+        img.className = 'brochure-feature-bg';
+        img.src = imgSrc;
+        img.alt = '';
+        img.loading = 'lazy';
+        card.append(img);
+      }
     }
 
     const num = document.createElement('div');
