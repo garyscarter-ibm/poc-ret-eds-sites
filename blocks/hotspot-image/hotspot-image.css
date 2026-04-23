@@ -6,31 +6,50 @@
 }
 
 /* Image container with hotspot dots */
-.hotspot-image .hotspot-image-container {
+.hotspot-image .hotspot-image-main {
     position: relative;
     line-height: 0;
 }
 
-.hotspot-image .hotspot-image-container > img {
+.hotspot-image .hotspot-image-main > picture {
+    display: block;
+    line-height: 0;
+}
+
+.hotspot-image .hotspot-image-main > img,
+.hotspot-image .hotspot-image-main > picture img {
     width: 100%;
     height: auto;
     display: block;
 }
 
 /* ── Hotspot dots ── */
+/* Reset global button styles (styles.css applies to bare `button` selector) */
 .hotspot-image .hotspot-dot {
+    all: initial;
     position: absolute;
     width: 36px;
     height: 36px;
     transform: translate(-50%, -50%);
-    background: none;
+    background: transparent;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
     padding: 0;
+    margin: 0;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.hotspot-image .hotspot-dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    border-radius: 50%;
 }
 
 .hotspot-image .hotspot-dot-ring {
@@ -43,11 +62,14 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
 }
 
 .hotspot-image .hotspot-dot-ring::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -62,8 +84,14 @@
 
 /* Subtle pulse — uses opacity on the ring border to avoid overflow clipping */
 @keyframes hotspot-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .hotspot-image .hotspot-dot-ring {
@@ -96,31 +124,46 @@
 .hotspot-modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+    background: rgba(200, 200, 200, 0.85);
 }
 
-/* Close button */
-.hotspot-modal-close {
+/* Close button — reset global button styles */
+.hotspot-modal-close,
+.hotspot-modal-close:hover,
+.hotspot-modal-close:focus,
+.hotspot-modal-close:active {
+    all: initial;
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 24px;
+    right: 24px;
     width: 44px;
     height: 44px;
     background: none;
+    background-color: transparent;
     border: none;
-    color: #fff;
+    color: #262626;
     cursor: pointer;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.8;
+    opacity: 0.7;
     transition: opacity 0.2s ease;
     z-index: 2;
+    font-size: 0;
+    letter-spacing: normal;
+    line-height: 1;
+    appearance: none;
 }
 
 .hotspot-modal-close:hover {
     opacity: 1;
+}
+
+.hotspot-modal-close:focus-visible {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
 }
 
 /* Navigation arrows */
@@ -128,49 +171,63 @@
 .hotspot-modal-next {
     position: absolute;
     z-index: 2;
-    bottom: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #262626;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.hotspot-modal-prev:hover,
+.hotspot-modal-next:hover {
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .hotspot-modal-prev {
-    left: calc(50% - 52px);
+    left: 24px;
 }
 
 .hotspot-modal-next {
-    right: calc(50% - 52px);
+    right: 24px;
 }
 
 /* Card */
 .hotspot-modal-card {
     position: relative;
-    z-index: 1;
+    z-index: 10;
     background: #fff;
     width: 100%;
     max-width: 420px;
-    max-height: 70vh;
+    max-height: 80vh;
     min-width: 0;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    margin-bottom: 56px;
     box-sizing: border-box;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
 }
 
 .hotspot-modal-text {
     padding: 32px 24px;
 }
 
-.hotspot-modal-title {
+/* Use .hotspot-modal-card prefix to beat body.brochure h3/p specificity */
+.hotspot-modal-card .hotspot-modal-title {
     font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #1a1a1a;
-    margin: 0 0 12px;
+    margin: 0 0 16px;
+    line-height: 1.3;
 }
 
-.hotspot-modal-description {
-    font-size: 0.875rem;
-    line-height: 1.6;
+.hotspot-modal-card .hotspot-modal-description {
+    font-size: 0.9rem;
+    line-height: 1.7;
     color: #4a4a4a;
     margin: 0;
 }
@@ -202,11 +259,19 @@
     }
 
     .hotspot-modal-card {
-        max-width: 540px;
+        max-width: 580px;
     }
 
     .hotspot-modal-text {
         padding: 40px 32px;
+    }
+
+    .hotspot-modal-prev {
+        left: 16px;
+    }
+
+    .hotspot-modal-next {
+        right: 16px;
     }
 }
 
@@ -223,21 +288,20 @@
     }
 
     .hotspot-modal-card {
-        max-width: var(--content-width-s);
+        max-width: 860px;
         flex-direction: row;
         overflow: hidden;
-        margin-bottom: 0;
     }
 
     .hotspot-modal-text {
-        flex: 0 0 40%;
-        padding: 48px 40px;
+        flex: 0 0 45%;
+        padding: 56px 48px;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-    .hotspot-modal-title {
+    .hotspot-modal-card .hotspot-modal-title {
         font-size: 1.5rem;
     }
 
@@ -251,18 +315,11 @@
         object-fit: cover;
     }
 
-    .hotspot-modal-prev,
-    .hotspot-modal-next {
-        top: 50%;
-        bottom: auto;
-        transform: translateY(-50%);
-    }
-
     .hotspot-modal-prev {
-        left: 24px;
+        left: 80px;
     }
 
     .hotspot-modal-next {
-        right: 24px;
+        right: 80px;
     }
 }

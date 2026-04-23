@@ -1,4 +1,3 @@
-
 .brochure-overlay-modal {
     position: fixed;
     inset: 0;
@@ -6,6 +5,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .brochure-overlay-modal[hidden] {
@@ -15,63 +16,195 @@
 .brochure-overlay-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-}
-
-.brochure-overlay-container {
-    position: relative;
-    z-index: 1;
-    background: var(--color-dark-bg);
-    max-width: var(--content-width-xs);
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 40px 32px;
+    background: rgba(200, 200, 200, 0.85);
 }
 
 .brochure-overlay-close {
+    all: initial;
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 24px;
+    right: 24px;
     background: none;
     border: none;
-    color: var(--color-white);
+    color: #262626;
     cursor: pointer;
-    padding: 8px;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.7;
     transition: opacity 0.2s ease;
-    z-index: 1;
+    z-index: 2;
 }
 
 .brochure-overlay-close:hover {
     opacity: 1;
 }
 
+.brochure-overlay-close:focus-visible {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
+}
+
+.brochure-overlay-container {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    max-width: 420px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
+}
+
 .brochure-overlay-content {
-    color: var(--color-white);
+    padding: 32px 24px;
+    color: #1a1a1a;
 }
 
 .brochure-overlay-content h3,
 .brochure-overlay-content h4 {
-    color: var(--color-white);
-    margin-bottom: 16px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin: 0 0 16px;
+    line-height: 1.3;
 }
 
 .brochure-overlay-content p {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    margin-bottom: 16px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin: 0 0 16px;
+}
+
+.brochure-overlay-content p:last-child {
+    margin-bottom: 0;
 }
 
 .brochure-overlay-content img {
     width: 100%;
     height: auto;
+    display: block;
     margin-bottom: 16px;
+}
+
+/* Navigation arrows */
+.brochure-overlay-prev,
+.brochure-overlay-next {
+    all: initial;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: #262626;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.brochure-overlay-prev:hover,
+.brochure-overlay-next:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.brochure-overlay-prev:focus-visible,
+.brochure-overlay-next:focus-visible {
+    outline: 2px solid #262626;
+    outline-offset: 2px;
+}
+
+.brochure-overlay-prev {
+    left: 24px;
+}
+
+.brochure-overlay-next {
+    right: 24px;
+}
+
+/* Image column for side-by-side layout */
+.brochure-overlay-image {
+    line-height: 0;
+}
+
+.brochure-overlay-image[hidden] {
+    display: none;
+}
+
+.brochure-overlay-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
 }
 
 @media (min-width: 600px) {
     .brochure-overlay-container {
-        padding: 48px 40px;
+        max-width: 580px;
+    }
+
+    .brochure-overlay-content {
+        padding: 40px 32px;
+    }
+
+    .brochure-overlay-prev {
+        left: 16px;
+    }
+
+    .brochure-overlay-next {
+        right: 16px;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-overlay-container {
+        max-width: 860px;
+        flex-direction: row;
+        overflow: hidden;
+    }
+
+    .brochure-overlay-content {
+        flex: 0 0 45%;
+        padding: 56px 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .brochure-overlay-content h3,
+    .brochure-overlay-content h4 {
+        font-size: 1.5rem;
+    }
+
+    .brochure-overlay-image {
+        flex: 1;
+    }
+
+    .brochure-overlay-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .brochure-overlay-prev {
+        left: 80px;
+    }
+
+    .brochure-overlay-next {
+        right: 80px;
     }
 }

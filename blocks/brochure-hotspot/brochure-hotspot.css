@@ -1,4 +1,3 @@
-
 .brochure-hotspot {
     padding: 40px 20px;
     background: var(--brochure-bg);
@@ -27,8 +26,14 @@
 /* Image container */
 .brochure-hotspot-image-container {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
+    line-height: 0;
+}
+
+.brochure-hotspot-image-container picture {
+    display: block;
+    line-height: 0;
 }
 
 .brochure-hotspot-image-container img {
@@ -37,20 +42,32 @@
     display: block;
 }
 
-/* Hotspot buttons — elegant white circles matching original */
+/* Hotspot buttons — reset global button styles */
 .brochure-hotspot-btn {
+    all: initial;
     position: absolute;
     transform: translate(-50%, -50%);
-    background: none;
+    background: transparent;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
     padding: 0;
+    margin: 0;
     z-index: 1;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
+    box-sizing: border-box;
+    appearance: none;
+}
+
+.brochure-hotspot-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    border-radius: 50%;
 }
 
 .brochure-hotspot-dot {
@@ -63,11 +80,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease;
 }
 
 .brochure-hotspot-dot::after {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
@@ -76,8 +95,29 @@
 }
 
 .brochure-hotspot-btn:hover .brochure-hotspot-dot {
-    border-color: var(--color-white);
+    border-color: #fff;
     background: rgba(255, 255, 255, 0.15);
+}
+
+/* Subtle pulse animation */
+@keyframes brochure-hotspot-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.brochure-hotspot-dot {
+    animation: brochure-hotspot-pulse 2.5s ease-in-out infinite;
+}
+
+.brochure-hotspot-btn:hover .brochure-hotspot-dot {
+    animation: none;
+    opacity: 1;
 }
 
 /* Labels hidden by default, shown on hover */
@@ -95,7 +135,10 @@
         height: 44px;
     }
 
-    .brochure-hotspot-btn {
+    .brochure-hotspot-btn,
+    .brochure-hotspot-btn:hover,
+    .brochure-hotspot-btn:focus,
+    .brochure-hotspot-btn:active {
         width: 44px;
         height: 44px;
     }
