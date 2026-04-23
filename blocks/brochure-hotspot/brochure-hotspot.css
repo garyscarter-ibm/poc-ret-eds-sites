@@ -27,8 +27,14 @@
 /* Image container */
 .brochure-hotspot-image-container {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
+    line-height: 0;
+}
+
+.brochure-hotspot-image-container picture {
+    display: block;
+    line-height: 0;
 }
 
 .brochure-hotspot-image-container img {
@@ -37,11 +43,15 @@
     display: block;
 }
 
-/* Hotspot buttons — elegant white circles matching original */
-.brochure-hotspot-btn {
+/* Hotspot buttons — reset global button styles on all states */
+.brochure-hotspot-btn,
+.brochure-hotspot-btn:hover,
+.brochure-hotspot-btn:focus,
+.brochure-hotspot-btn:active {
     position: absolute;
     transform: translate(-50%, -50%);
     background: none;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
@@ -51,6 +61,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    font-size: 0;
+    letter-spacing: normal;
+    line-height: 1;
+    white-space: normal;
+    text-decoration: none;
+}
+
+.brochure-hotspot-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    border-radius: 50%;
 }
 
 .brochure-hotspot-dot {
@@ -76,8 +98,29 @@
 }
 
 .brochure-hotspot-btn:hover .brochure-hotspot-dot {
-    border-color: var(--color-white);
+    border-color: #fff;
     background: rgba(255, 255, 255, 0.15);
+}
+
+/* Subtle pulse animation */
+@keyframes brochure-hotspot-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.brochure-hotspot-dot {
+    animation: brochure-hotspot-pulse 2.5s ease-in-out infinite;
+}
+
+.brochure-hotspot-btn:hover .brochure-hotspot-dot {
+    animation: none;
+    opacity: 1;
 }
 
 /* Labels hidden by default, shown on hover */
@@ -95,7 +138,10 @@
         height: 44px;
     }
 
-    .brochure-hotspot-btn {
+    .brochure-hotspot-btn,
+    .brochure-hotspot-btn:hover,
+    .brochure-hotspot-btn:focus,
+    .brochure-hotspot-btn:active {
         width: 44px;
         height: 44px;
     }

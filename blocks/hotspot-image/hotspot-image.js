@@ -10,10 +10,16 @@ function parseHotspots(rows) {
       const x = parseFloat(cols[0]?.textContent?.trim()) || 0;
       const y = parseFloat(cols[1]?.textContent?.trim()) || 0;
       const title = cols[2]?.textContent?.trim() || '';
+      // Strip <a> wrappers — CMS may wrap description text in placeholder links
+      cols.forEach((col) => col.querySelectorAll('a').forEach((a) => a.replaceWith(a.textContent)));
       const description = cols[3]?.textContent?.trim() || '';
       const detailImg = cols[4]?.querySelector('img') || null;
       hotspots.push({
-        x, y, title, description, detailImg,
+        x,
+        y,
+        title,
+        description,
+        detailImg,
       });
     }
   }
@@ -54,13 +60,27 @@ function buildModal() {
 
   card.append(textCol, imageCol);
 
-  const prevBtn = createCarouselButton('prev', { classPrefix: 'hotspot-modal', ariaPrefix: 'hotspot' });
-  const nextBtn = createCarouselButton('next', { classPrefix: 'hotspot-modal', ariaPrefix: 'hotspot' });
+  const prevBtn = createCarouselButton('prev', {
+    classPrefix: 'hotspot-modal',
+    ariaPrefix: 'hotspot',
+  });
+  const nextBtn = createCarouselButton('next', {
+    classPrefix: 'hotspot-modal',
+    ariaPrefix: 'hotspot',
+  });
 
   modal.append(backdrop, closeBtn, prevBtn, card, nextBtn);
 
   return {
-    modal, backdrop, closeBtn, card, titleEl, descEl, imageCol, prevBtn, nextBtn,
+    modal,
+    backdrop,
+    closeBtn,
+    card,
+    titleEl,
+    descEl,
+    imageCol,
+    prevBtn,
+    nextBtn,
   };
 }
 
@@ -89,13 +109,13 @@ export default async function decorate(block) {
   const hotspots = parseHotspots(rows);
   if (!hotspots.length) return;
 
-  // Build image container
+  // Build image container (avoid 'hotspot-image-container' — AEM uses that on the section)
   const imageContainer = document.createElement('div');
-  imageContainer.className = 'hotspot-image-container';
+  imageContainer.className = 'hotspot-image-main';
 
   if (mainImg) {
     mainImg.loading = 'lazy';
-    imageContainer.append(mainImg);
+    imageContainer.append(mainImg.closest('picture') || mainImg);
   }
 
   // Build modal
@@ -138,7 +158,9 @@ export default async function decorate(block) {
     parts.modal.hidden = true;
     activeIndex = -1;
     document.body.style.overflow = '';
-    imageContainer.querySelectorAll('.hotspot-dot.active').forEach((d) => d.classList.remove('active'));
+    imageContainer
+      .querySelectorAll('.hotspot-dot.active')
+      .forEach((d) => d.classList.remove('active'));
     if (previousFocus) {
       previousFocus.focus();
       previousFocus = null;
