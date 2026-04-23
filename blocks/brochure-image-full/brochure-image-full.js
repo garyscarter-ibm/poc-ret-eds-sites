@@ -11,8 +11,9 @@ export default async function decorate(block) {
   const allImageBlocks = [...document.querySelectorAll('.brochure-image-full')];
   const index = allImageBlocks.indexOf(block);
 
-  // Full-width variant: no animation, 100% width
-  const isFullWidth = block.classList.contains('full-width') || index === 0;
+  // Full-width variant: no animation, 100% width (first, last, or explicit variant)
+  const isLast = index === allImageBlocks.length - 1;
+  const isFullWidth = block.classList.contains('full-width') || index === 0 || isLast;
   if (isFullWidth) {
     wrapper.classList.add('full-width');
   } else {
