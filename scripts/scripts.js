@@ -484,17 +484,12 @@ async function loadLazy(doc) {
   const headerEl = doc.querySelector('header');
   const footerEl = doc.querySelector('footer');
   if (headerEl) {
-    if (headerEl.children.length > 0) {
-      rebrandContent(headerEl);
-    }
     new MutationObserver(() => {
-      rebrandContent(headerEl);
       fixBrokenLinks(headerEl);
     }).observe(headerEl, { childList: true, subtree: true });
   }
   if (footerEl) {
     new MutationObserver(() => {
-      rebrandContent(footerEl);
       fixBrokenLinks(footerEl);
     }).observe(footerEl, { childList: true, subtree: true });
   }
