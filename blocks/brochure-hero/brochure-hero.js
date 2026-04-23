@@ -2,22 +2,22 @@ const HERO_LINKS = [
   {
     text: 'Build now',
     url: 'https://configure.bmw.co.uk/en_GB/configid/0c83sgb6',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l4-4h10l4 4"/><rect x="2" y="9" width="20" height="9" rx="1"/><circle cx="6.5" cy="14" r="1.5"/><circle cx="17.5" cy="14" r="1.5"/><path d="M2 18v2h4v-2M18 18v2h4v-2"/></svg>',
+    icon: '/icons/cta-build.svg',
   },
   {
     text: 'New Car Locator',
     url: 'https://stock.bmw.co.uk/marketing_search?model=G07',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    icon: '/icons/cta-locator.svg',
   },
   {
     text: 'Book a test drive',
     url: 'https://www.bmw.co.uk/en/topics/discover/forms/pdi_bmw_i3223_tda.html',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+    icon: '/icons/cta-test-drive.svg',
   },
   {
     text: 'Offers and Finance',
     url: 'https://offers.bmw.co.uk',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+    icon: '/icons/cta-offers.svg',
   },
 ];
 
@@ -33,7 +33,11 @@ function buildHeroActions() {
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'brochure-hero-action-icon';
-    iconSpan.innerHTML = icon;
+    const iconImg = document.createElement('img');
+    iconImg.src = icon;
+    iconImg.alt = text;
+    iconImg.loading = 'lazy';
+    iconSpan.append(iconImg);
     a.append(iconSpan);
 
     const label = document.createElement('span');

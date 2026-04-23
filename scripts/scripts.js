@@ -251,7 +251,8 @@ function rebrandContent(root) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  rebrandContent(main);
+  const isMotorrad = main.querySelector('.motorrad');
+  if (!isMotorrad) rebrandContent(main);
   buildAutoBlocks(main);
   decorateIcons(main);
   decorateSections(main);
@@ -276,28 +277,31 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    // Rebrand page title and meta tags
-    if (
-      document.title.includes('Cotswold')
-      || document.title.includes('Cheltenham')
-    ) {
-      document.title = document.title
-        .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
-        .replace(/Cotswold/g, 'Strata')
-        .replace(/Cheltenham/g, 'Strata');
-    } else if (!document.title.includes('Strata')) {
-      document.title = 'Strata';
-    }
-    document
-      .querySelectorAll(
-        'meta[content*="Cotswold"], meta[content*="Cheltenham"]',
-      )
-      .forEach((meta) => {
-        meta.content = meta.content
+    // Rebrand page title and meta tags (skip Motorrad pages)
+    const isMotorradPage = main.querySelector('.motorrad');
+    if (!isMotorradPage) {
+      if (
+        document.title.includes('Cotswold')
+        || document.title.includes('Cheltenham')
+      ) {
+        document.title = document.title
           .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
           .replace(/Cotswold/g, 'Strata')
           .replace(/Cheltenham/g, 'Strata');
-      });
+      } else if (!document.title.includes('Strata')) {
+        document.title = 'Strata';
+      }
+      document
+        .querySelectorAll(
+          'meta[content*="Cotswold"], meta[content*="Cheltenham"]',
+        )
+        .forEach((meta) => {
+          meta.content = meta.content
+            .replace(/Cotswold Cheltenham BMW/g, 'Strata BMW')
+            .replace(/Cotswold/g, 'Strata')
+            .replace(/Cheltenham/g, 'Strata');
+        });
+    }
     // Auto-detect MINI theme from block classes when no theme metadata is set
     if (
       !document.body.classList.contains('mini')
