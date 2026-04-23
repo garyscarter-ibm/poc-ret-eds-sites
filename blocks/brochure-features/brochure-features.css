@@ -1,4 +1,3 @@
-
 .brochure-features {
     padding: 0;
     background: var(--brochure-bg);
@@ -38,7 +37,7 @@
 
 /* Dark gradient overlay for text legibility */
 .brochure-feature-card::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -86,7 +85,7 @@ body.brochure .brochure-feature-link {
 }
 
 .brochure-feature-link::before {
-    content: '\203A';
+    content: "\203A";
     font-size: 1.2em;
 }
 
@@ -98,7 +97,7 @@ body.brochure .brochure-feature-link:hover {
     .brochure-features-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
-        padding: 0;
+        padding: 0 72px;
     }
 
     .brochure-feature-card {
