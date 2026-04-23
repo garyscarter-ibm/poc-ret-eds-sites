@@ -3,6 +3,7 @@ export default async function decorate(block) {
   if (!img) return;
 
   img.loading = 'lazy';
+  const picture = img.closest('picture') || img;
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-image-full-inner';
 
@@ -31,7 +32,7 @@ export default async function decorate(block) {
     observer.observe(wrapper);
   }
 
-  wrapper.append(img);
+  wrapper.append(picture);
   block.textContent = '';
   block.append(wrapper);
 }

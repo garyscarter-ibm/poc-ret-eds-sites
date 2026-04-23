@@ -21,7 +21,8 @@ export default async function decorate(block) {
   const img = imageRow?.querySelector('img');
   if (img) {
     img.loading = 'lazy';
-    imageCol.append(img);
+    const picture = img.closest('picture') || img;
+    imageCol.append(picture);
   }
 
   const quoteCol = document.createElement('div');
