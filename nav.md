@@ -1,5 +1,5 @@
-- ![Grassicks BMW](/icons/bmw-logo.svg)
-- [Grassicks Perth](/)
+- ![Strata BMW](/icons/bmw-logo.svg)
+- [Strata BMW](/)
 
 ---
 
