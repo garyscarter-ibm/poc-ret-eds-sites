@@ -85,17 +85,19 @@
     .brochure-blockquote.compact .brochure-blockquote-layout {
         min-height: auto;
         align-items: center;
-        padding: 80px 60px;
-        gap: 60px;
+        padding: 60px;
+        gap: 40px;
     }
 
     .brochure-blockquote.compact .brochure-blockquote-image {
         flex: 0 0 40%;
         min-height: auto;
+        padding: 0;
     }
 
     .brochure-blockquote.compact .brochure-blockquote-text {
         flex: 1;
         padding: 0;
+        justify-content: flex-start;
     }
 }
