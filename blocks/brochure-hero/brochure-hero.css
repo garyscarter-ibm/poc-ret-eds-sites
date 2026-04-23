@@ -74,18 +74,15 @@
 
 .brochure-hero-actions {
     display: flex;
-    justify-content: center;
-    gap: 0;
+    gap: 24px;
     list-style: none;
     margin: 0;
-    padding: 0;
-    background: rgba(0, 0, 0, 0.5);
+    padding: 0 32px 48px;
     z-index: 2;
 }
 
 .brochure-hero-actions li {
     margin: 0;
-    flex: 1;
 }
 
 .brochure-hero .brochure-hero-actions a,
@@ -93,32 +90,43 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 14px 12px;
+    gap: 8px;
+    padding: 0;
     color: var(--color-white);
-    font-size: 0.65rem;
-    font-weight: 400;
     text-decoration: none;
-    text-align: center;
-    transition: background 0.3s ease;
+    transition: opacity 0.2s ease;
     white-space: nowrap;
 }
 
 .brochure-hero .brochure-hero-actions a:hover {
-    background: rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
 }
 
-.brochure-hero-action-icon svg {
-    display: block;
-    width: 28px;
-    height: 28px;
+.brochure-hero-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.brochure-hero-action-icon img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.brochure-hero .brochure-hero-actions a > span:last-child {
+    font-family: var(--brochure-font);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (min-width: 600px) {
-    .brochure-hero-actions a {
-        padding: 16px 24px;
-        font-size: 0.7rem;
+    .brochure-hero-actions {
+        gap: 40px;
+        padding: 0 40px 60px;
     }
 }
 
@@ -131,9 +139,21 @@
         padding: 100px 60px 0;
     }
 
-    .brochure-hero-actions a {
-        padding: 18px 32px;
+    .brochure-hero-actions {
+        padding: 0 60px 80px;
+    }
+
+    .brochure-hero-action-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brochure-hero-action-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brochure-hero .brochure-hero-actions a > span:last-child {
         font-size: 0.75rem;
-        gap: 8px;
     }
 }
