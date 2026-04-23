@@ -11,8 +11,9 @@ export default async function decorate(block) {
   const allImageBlocks = [...document.querySelectorAll('.brochure-image-full')];
   const index = allImageBlocks.indexOf(block);
 
-  // First image (silhouette banner) is full-width centered, no animation
-  if (index === 0) {
+  // Full-width variant: no animation, 100% width
+  const isFullWidth = block.classList.contains('full-width') || index === 0;
+  if (isFullWidth) {
     wrapper.classList.add('full-width');
   } else {
     // Animated images alternate: odd index = slides from right, even = slides from left
