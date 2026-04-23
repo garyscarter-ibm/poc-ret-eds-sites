@@ -124,9 +124,7 @@ export default async function decorate(block) {
     imageEl.innerHTML = "";
     imageEl.hidden = true;
     activeIndex = -1;
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
-    }
+    // no hash cleanup needed — we no longer use hash routing
     if (previousFocus) {
       previousFocus.focus();
       previousFocus = null;
@@ -139,7 +137,6 @@ export default async function decorate(block) {
       (activeIndex + direction + overlayIds.length) % overlayIds.length;
     const id = overlayIds[activeIndex];
     populateContent(id);
-    window.history.replaceState(null, "", `#${id}`);
   }
 
   closeBtn.addEventListener("click", closeOverlay);
@@ -155,15 +152,11 @@ export default async function decorate(block) {
     if (e.key === "ArrowRight") navigate(1);
   });
 
-  // Listen for hash changes to open overlays
-  function checkHash() {
-    const hash = window.location.hash.substring(1);
-    if (hash && overlays[hash]) {
-      openOverlay(hash);
-    }
-  }
-
-  window.addEventListener("hashchange", checkHash);
+  // Listen for overlay-open events from hotspot buttons
+  window.addEventListener("overlay-open", (e) => {
+    const { id } = e.detail || {};
+    if (id && overlays[id]) openOverlay(id);
+  });
 
   // Also intercept overlay link clicks on the page
   document.addEventListener("click", (e) => {
@@ -173,15 +166,13 @@ export default async function decorate(block) {
       const id =
         link.href.split("#overlay-")[1] ||
         link.getAttribute("href").split("#overlay-")[1];
-      if (id) {
-        window.location.hash = `overlay-${id}`;
-      }
+      if (id && overlays[id]) openOverlay(id);
     }
   });
 
   block.textContent = "";
-  block.append(modal);
 
-  // Check initial hash
-  checkHash();
+  // Append modal to body (not block) because brochure-theme.css applies
+  // transform to .section ancestors, which breaks position:fixed inside them.
+  document.body.append(modal);
 }

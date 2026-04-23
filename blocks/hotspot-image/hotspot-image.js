@@ -1,212 +1,204 @@
-import { createCarouselButton } from '../../scripts/block-utils.js';
-
-const FOCUSABLE = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
-
-function parseHotspots(rows) {
-  const hotspots = [];
-  for (let i = 1; i < rows.length; i += 1) {
-    const cols = [...rows[i].children];
-    if (cols.length >= 3) {
-      const x = parseFloat(cols[0]?.textContent?.trim()) || 0;
-      const y = parseFloat(cols[1]?.textContent?.trim()) || 0;
-      const title = cols[2]?.textContent?.trim() || '';
-      // Strip <a> wrappers — CMS may wrap description text in placeholder links
-      cols.forEach((col) => col.querySelectorAll('a').forEach((a) => a.replaceWith(a.textContent)));
-      const description = cols[3]?.textContent?.trim() || '';
-      const detailImg = cols[4]?.querySelector('img') || null;
-      hotspots.push({
-        x,
-        y,
-        title,
-        description,
-        detailImg,
-      });
-    }
-  }
-  return hotspots;
-}
-
-function buildModal() {
-  const modal = document.createElement('div');
-  modal.className = 'hotspot-modal';
-  modal.hidden = true;
-  modal.setAttribute('role', 'dialog');
-  modal.setAttribute('aria-modal', 'true');
-
-  const backdrop = document.createElement('div');
-  backdrop.className = 'hotspot-modal-backdrop';
-
-  const closeBtn = document.createElement('button');
-  closeBtn.className = 'hotspot-modal-close';
-  closeBtn.setAttribute('aria-label', 'Close');
-  closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-
-  const card = document.createElement('div');
-  card.className = 'hotspot-modal-card';
-
-  const textCol = document.createElement('div');
-  textCol.className = 'hotspot-modal-text';
-
-  const titleEl = document.createElement('h3');
-  titleEl.className = 'hotspot-modal-title';
-
-  const descEl = document.createElement('p');
-  descEl.className = 'hotspot-modal-description';
-
-  textCol.append(titleEl, descEl);
-
-  const imageCol = document.createElement('div');
-  imageCol.className = 'hotspot-modal-image';
-
-  card.append(textCol, imageCol);
-
-  const prevBtn = createCarouselButton('prev', {
-    classPrefix: 'hotspot-modal',
-    ariaPrefix: 'hotspot',
-  });
-  const nextBtn = createCarouselButton('next', {
-    classPrefix: 'hotspot-modal',
-    ariaPrefix: 'hotspot',
-  });
-
-  modal.append(backdrop, closeBtn, prevBtn, card, nextBtn);
-
-  return {
-    modal,
-    backdrop,
-    closeBtn,
-    card,
-    titleEl,
-    descEl,
-    imageCol,
-    prevBtn,
-    nextBtn,
-  };
-}
-
-function populateModal(parts, hotspot) {
-  const { titleEl, descEl, imageCol } = parts;
-  titleEl.textContent = hotspot.title;
-  descEl.textContent = hotspot.description;
-  imageCol.innerHTML = '';
-
-  if (hotspot.detailImg) {
-    const img = hotspot.detailImg.cloneNode(true);
-    img.loading = 'lazy';
-    imageCol.append(img);
-    imageCol.hidden = false;
-  } else {
-    imageCol.hidden = true;
-  }
-}
+/**
+ * Hotspot Image Block
+ *
+ * CMS content structure (each row after the first is a hotspot):
+ *   Row 0: | image |
+ *   Row N: | x% | y% | title | description (may have <a> placeholders) | detail-image (opt) |
+ *
+ * Zero external dependencies — fully self-contained.
+ */
 
 export default async function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
-  // First row = main image
-  const mainImg = rows[0]?.querySelector('img');
-  const hotspots = parseHotspots(rows);
+  /* ── 1. Parse content ─────────────────────────────────── */
+
+  // Row 0 = hero image
+  const picture = rows[0]?.querySelector("picture");
+  const heroImg = rows[0]?.querySelector("img");
+
+  // Remaining rows = hotspot data
+  const hotspots = [];
+  for (let i = 1; i < rows.length; i += 1) {
+    const cols = [...rows[i].children];
+    if (cols.length < 3) continue; // eslint-disable-line no-continue
+    hotspots.push({
+      x: parseFloat(cols[0]?.textContent?.trim()) || 0,
+      y: parseFloat(cols[1]?.textContent?.trim()) || 0,
+      title: cols[2]?.textContent?.trim() || "",
+      desc: cols[3]?.textContent?.trim() || "",
+      img:
+        cols[4]?.querySelector("picture")?.cloneNode(true) ||
+        cols[4]?.querySelector("img")?.cloneNode(true) ||
+        null,
+    });
+  }
+
   if (!hotspots.length) return;
 
-  // Build image container (avoid 'hotspot-image-container' — AEM uses that on the section)
-  const imageContainer = document.createElement('div');
-  imageContainer.className = 'hotspot-image-main';
+  /* ── 2. Build DOM ──────────────────────────────────────── */
 
-  if (mainImg) {
-    mainImg.loading = 'lazy';
-    imageContainer.append(mainImg.closest('picture') || mainImg);
+  // Wipe the authored markup (removes any <a href="/"> placeholders)
+  block.textContent = "";
+
+  // Image wrapper
+  const wrap = document.createElement("div");
+  wrap.className = "hotspot-image-stage";
+  if (picture) {
+    wrap.append(picture);
+  } else if (heroImg) {
+    wrap.append(heroImg);
   }
 
-  // Build modal
-  const parts = buildModal();
-  let activeIndex = -1;
-  let previousFocus = null;
-
-  function trapFocus(e) {
-    if (parts.modal.hidden) return;
-    const focusable = [...parts.modal.querySelectorAll(FOCUSABLE)];
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  }
-
-  function openModal(index) {
-    activeIndex = index;
-    previousFocus = document.activeElement;
-    populateModal(parts, hotspots[index]);
-    parts.modal.setAttribute('aria-label', hotspots[index].title);
-    parts.modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-
-    imageContainer.querySelectorAll('.hotspot-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === index);
-    });
-
-    parts.closeBtn.focus();
-  }
-
-  function closeModal() {
-    parts.modal.hidden = true;
-    activeIndex = -1;
-    document.body.style.overflow = '';
-    imageContainer
-      .querySelectorAll('.hotspot-dot.active')
-      .forEach((d) => d.classList.remove('active'));
-    if (previousFocus) {
-      previousFocus.focus();
-      previousFocus = null;
-    }
-  }
-
-  function navigate(direction) {
-    if (activeIndex < 0) return;
-    const next = (activeIndex + direction + hotspots.length) % hotspots.length;
-    openModal(next);
-  }
-
-  parts.closeBtn.addEventListener('click', closeModal);
-  parts.backdrop.addEventListener('click', closeModal);
-  parts.prevBtn.addEventListener('click', () => navigate(-1));
-  parts.nextBtn.addEventListener('click', () => navigate(1));
-
-  document.addEventListener('keydown', (e) => {
-    if (parts.modal.hidden) return;
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'Tab') trapFocus(e);
-    if (e.key === 'ArrowLeft') navigate(-1);
-    if (e.key === 'ArrowRight') navigate(1);
-  });
-
-  // Create hotspot dots
-  hotspots.forEach((hs, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'hotspot-dot';
-    dot.setAttribute('role', 'button');
-    dot.setAttribute('tabindex', '0');
-    dot.setAttribute('aria-label', hs.title);
+  // Dots
+  hotspots.forEach((hs, idx) => {
+    const dot = document.createElement("span");
+    dot.className = "hotspot-dot";
+    dot.dataset.index = idx;
+    dot.setAttribute("role", "button");
+    dot.setAttribute("tabindex", "0");
+    dot.setAttribute("aria-label", hs.title);
     dot.style.left = `${hs.x}%`;
     dot.style.top = `${hs.y}%`;
-    dot.innerHTML = '<span class="hotspot-dot-ring"></span>';
-    dot.addEventListener('click', () => openModal(i));
-    dot.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openModal(i);
-      }
-    });
-    imageContainer.append(dot);
+    dot.innerHTML = '<span class="hotspot-pulse"></span>';
+    wrap.append(dot);
   });
 
-  // Assemble
-  block.textContent = '';
-  block.append(imageContainer);
-  document.body.append(parts.modal);
+  block.append(wrap);
+
+  // Modal must be on document.body (not inside the block) because
+  // brochure-theme.css applies transform to .section ancestors,
+  // which breaks position:fixed inside them.
+  const modal = document.createElement("div");
+  modal.className = "hotspot-modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="hotspot-modal-backdrop"></div>
+    <div class="hotspot-modal-chrome">
+      <button class="hotspot-modal-close" aria-label="Close" type="button">
+        <svg width="20" height="20" viewBox="0 0 20 20"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="hotspot-modal-prev" aria-label="Previous" type="button">
+        <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <div class="hotspot-modal-card">
+        <div class="hotspot-modal-text">
+          <h3 class="hotspot-modal-title"></h3>
+          <p class="hotspot-modal-desc"></p>
+        </div>
+        <div class="hotspot-modal-image"></div>
+      </div>
+      <button class="hotspot-modal-next" aria-label="Next" type="button">
+        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+    </div>`;
+  block.append(modal);
+
+  // Refs
+  const backdrop = modal.querySelector(".hotspot-modal-backdrop");
+  const closeBtn = modal.querySelector(".hotspot-modal-close");
+  const prevBtn = modal.querySelector(".hotspot-modal-prev");
+  const nextBtn = modal.querySelector(".hotspot-modal-next");
+  const titleEl = modal.querySelector(".hotspot-modal-title");
+  const descEl = modal.querySelector(".hotspot-modal-desc");
+  const imgBox = modal.querySelector(".hotspot-modal-image");
+
+  /* ── 3. Modal logic ────────────────────────────────────── */
+
+  let current = -1;
+  let returnFocus = null;
+
+  function show(idx) {
+    const hs = hotspots[idx];
+    if (!hs) return;
+    current = idx;
+    titleEl.textContent = hs.title;
+    descEl.textContent = hs.desc;
+    imgBox.innerHTML = "";
+    if (hs.img) imgBox.append(hs.img.cloneNode(true));
+    imgBox.hidden = !hs.img;
+    modal.setAttribute("aria-label", hs.title);
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function hide() {
+    modal.hidden = true;
+    current = -1;
+    document.body.style.overflow = "";
+    if (returnFocus) {
+      returnFocus.focus();
+      returnFocus = null;
+    }
+  }
+
+  function step(dir) {
+    if (current < 0) return;
+    show((current + dir + hotspots.length) % hotspots.length);
+  }
+
+  /* ── 4. Event listeners ────────────────────────────────── */
+
+  // Dot clicks (delegated on the stage wrapper)
+  wrap.addEventListener("click", (e) => {
+    const dot = e.target.closest(".hotspot-dot");
+    if (!dot) return;
+    e.preventDefault();
+    e.stopPropagation();
+    returnFocus = dot;
+    show(Number(dot.dataset.index));
+  });
+
+  // Dot keyboard
+  wrap.addEventListener("keydown", (e) => {
+    const dot = e.target.closest(".hotspot-dot");
+    if (!dot) return;
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      e.stopPropagation();
+      returnFocus = dot;
+      show(Number(dot.dataset.index));
+    }
+  });
+
+  // Modal controls
+  closeBtn.addEventListener("click", hide);
+  backdrop.addEventListener("click", hide);
+  prevBtn.addEventListener("click", () => step(-1));
+  nextBtn.addEventListener("click", () => step(1));
+
+  // Keyboard nav inside modal
+  modal.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      hide();
+      return;
+    }
+    if (e.key === "ArrowLeft") {
+      step(-1);
+      return;
+    }
+    if (e.key === "ArrowRight") {
+      step(1);
+      return;
+    }
+    // Trap focus
+    if (e.key === "Tab") {
+      const focusable = [...modal.querySelectorAll("button:not([hidden])")];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+  document.body.append(modal);
 }

@@ -1,117 +1,93 @@
-/* Block container */
+/* ── Hotspot Image Block ──────────────────────────────── */
+
 .hotspot-image {
+    position: relative;
     padding: 0;
     background: var(--brochure-bg, #fff);
-    position: relative;
 }
 
-/* Image container with hotspot dots */
-.hotspot-image .hotspot-image-main {
+/* Stage: holds image + dots */
+.hotspot-image .hotspot-image-stage {
     position: relative;
     line-height: 0;
 }
 
-.hotspot-image .hotspot-image-main > picture {
+.hotspot-image .hotspot-image-stage > picture {
     display: block;
     line-height: 0;
 }
 
-.hotspot-image .hotspot-image-main > img,
-.hotspot-image .hotspot-image-main > picture img {
+.hotspot-image .hotspot-image-stage img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-/* ── Hotspot dots ── */
+/* ── Dots ────────────────────────────────────────────── */
+
 .hotspot-image .hotspot-dot {
     position: absolute;
     width: 36px;
     height: 36px;
     transform: translate(-50%, -50%);
-    background: transparent;
-    border: none;
-    border-radius: 50%;
     cursor: pointer;
-    padding: 0;
-    margin: 0;
-    z-index: 1;
+    z-index: 2;
+
+    /* Reset every visual property — nothing from globals */
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
+    overflow: visible;
+    appearance: none;
+    font: inherit;
+    color: inherit;
+    outline: none;
 }
 
 .hotspot-image .hotspot-dot:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
+}
+
+.hotspot-image .hotspot-pulse {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: rgb(255 255 255 / 85%);
+    border: 2px solid rgb(255 255 255 / 60%);
     border-radius: 50%;
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 40%);
+    animation: hotspot-ping 2s ease-out infinite;
+    pointer-events: none;
 }
 
-.hotspot-image .hotspot-dot-ring {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition:
-        border-color 0.3s ease,
-        background 0.3s ease,
-        transform 0.3s ease;
-}
-
-.hotspot-image .hotspot-dot-ring::after {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.hotspot-image .hotspot-dot:hover .hotspot-dot-ring,
-.hotspot-image .hotspot-dot.active .hotspot-dot-ring {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.25);
-}
-
-/* Subtle pulse — uses opacity on the ring border to avoid overflow clipping */
-@keyframes hotspot-pulse {
-    0%,
+@keyframes hotspot-ping {
+    0% {
+        box-shadow: 0 0 0 0 rgb(255 255 255 / 40%);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgb(255 255 255 / 0%);
+    }
     100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.5;
+        box-shadow: 0 0 0 0 rgb(255 255 255 / 0%);
     }
 }
 
-.hotspot-image .hotspot-dot-ring {
-    animation: hotspot-pulse 2.5s ease-in-out infinite;
-}
+/* ── Modal (appended to body, outside .hotspot-image) ─ */
 
-.hotspot-image .hotspot-dot:hover .hotspot-dot-ring,
-.hotspot-image .hotspot-dot.active .hotspot-dot-ring {
-    animation: none;
-    opacity: 1;
-}
-
-/* ── Modal overlay (appended to body, not inside .hotspot-image) ── */
 .hotspot-modal {
     position: fixed;
     inset: 0;
-    z-index: 2000;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-    padding: 16px;
-    overflow: hidden;
 }
 
 .hotspot-modal[hidden] {
@@ -121,116 +97,96 @@
 .hotspot-modal-backdrop {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    background: rgba(200, 200, 200, 0.85);
+    background: rgb(200 200 200 / 85%);
 }
 
-/* Close button — reset global button styles */
-.hotspot-modal-close,
-.hotspot-modal-close:hover,
-.hotspot-modal-close:focus,
-.hotspot-modal-close:active {
-    all: initial;
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-    background: none;
-    background-color: transparent;
-    border: none;
-    color: #262626;
-    cursor: pointer;
-    padding: 0;
+.hotspot-modal-chrome {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-    z-index: 2;
-    font-size: 0;
-    letter-spacing: normal;
-    line-height: 1;
-    appearance: none;
+    gap: 12px;
+    width: 90%;
+    max-width: 860px;
+    z-index: 1;
+}
+
+/* Close button */
+.hotspot-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    color: #333;
+    line-height: 0;
 }
 
 .hotspot-modal-close:hover {
-    opacity: 1;
+    color: #000;
 }
 
-.hotspot-modal-close:focus-visible {
-    outline: 2px solid #262626;
-    outline-offset: 2px;
-}
-
-/* Navigation arrows */
+/* Nav arrows */
 .hotspot-modal-prev,
 .hotspot-modal-next {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    color: #262626;
-    width: 44px;
-    height: 44px;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background: #333;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .hotspot-modal-prev:hover,
 .hotspot-modal-next:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background: #111;
 }
 
-.hotspot-modal-prev {
-    left: 24px;
-}
-
-.hotspot-modal-next {
-    right: 24px;
+.hotspot-modal-prev svg,
+.hotspot-modal-next svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* Card */
 .hotspot-modal-card {
-    position: relative;
-    z-index: 10;
+    flex: 1;
     background: #fff;
-    width: 100%;
-    max-width: 420px;
-    max-height: 80vh;
-    min-width: 0;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgb(0 0 0 / 15%);
+    overflow: hidden;
+    min-height: 200px;
 }
 
 .hotspot-modal-text {
-    padding: 32px 24px;
+    padding: 32px;
 }
 
-/* Use .hotspot-modal-card prefix to beat body.brochure h3/p specificity */
-.hotspot-modal-card .hotspot-modal-title {
+.hotspot-modal-title {
+    margin: 0 0 12px;
     font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    color: #1c1c1c;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: #1a1a1a;
-    margin: 0 0 16px;
-    line-height: 1.3;
 }
 
-.hotspot-modal-card .hotspot-modal-description {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    color: #4a4a4a;
+.hotspot-modal-desc {
     margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
 }
 
 .hotspot-modal-image {
-    line-height: 0;
+    padding: 0 32px 32px;
 }
 
 .hotspot-modal-image[hidden] {
@@ -241,82 +197,33 @@
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 4px;
 }
 
-/* ── Tablet (≥600px) ── */
-@media (min-width: 600px) {
-    .hotspot-image .hotspot-dot {
-        width: 40px;
-        height: 40px;
-    }
-
-    .hotspot-image .hotspot-dot-ring {
-        width: 40px;
-        height: 40px;
-    }
-
-    .hotspot-modal-card {
-        max-width: 580px;
-    }
-
-    .hotspot-modal-text {
-        padding: 40px 32px;
-    }
-
-    .hotspot-modal-prev {
-        left: 16px;
-    }
-
-    .hotspot-modal-next {
-        right: 16px;
-    }
-}
-
-/* ── Desktop (≥900px) ── */
+/* Desktop: side-by-side layout */
 @media (min-width: 900px) {
-    .hotspot-image .hotspot-dot {
-        width: 44px;
-        height: 44px;
-    }
-
-    .hotspot-image .hotspot-dot-ring {
-        width: 44px;
-        height: 44px;
-    }
-
     .hotspot-modal-card {
-        max-width: 860px;
-        flex-direction: row;
-        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        min-height: 280px;
     }
 
     .hotspot-modal-text {
         flex: 0 0 45%;
-        padding: 56px 48px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-
-    .hotspot-modal-card .hotspot-modal-title {
-        font-size: 1.5rem;
+        padding: 40px;
     }
 
     .hotspot-modal-image {
-        flex: 1;
+        flex: 0 0 55%;
+        padding: 0;
     }
 
     .hotspot-modal-image img {
-        width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-
-    .hotspot-modal-prev {
-        left: 80px;
-    }
-
-    .hotspot-modal-next {
-        right: 80px;
+        border-radius: 0;
     }
 }
