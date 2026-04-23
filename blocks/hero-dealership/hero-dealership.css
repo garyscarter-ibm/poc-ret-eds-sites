@@ -638,14 +638,25 @@ main > .section.hero-dealership-container > .hero-dealership-wrapper {
         font-size: 1.5rem;
     }
 
-    /* MINI mobile: smaller hero, adjusted padding */
+    /* MINI mobile: full-viewport hero, centered buttons */
     .hero-dealership.mini {
-        min-height: auto;
+        min-height: 100vh;
     }
 
     .hero-dealership.mini > div:nth-child(2) {
-        min-height: auto;
+        min-height: 100vh;
         padding: calc(64px + var(--spacing-s)) var(--spacing-s) var(--spacing-s);
+    }
+
+    .hero-dealership.mini .hero-dealership-ctas {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: visible;
+    }
+
+    .hero-dealership.mini .hero-dealership-btn {
+        float: none;
     }
 
     .hero-dealership.mini .hero-dealership-btn {

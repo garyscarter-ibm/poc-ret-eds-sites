@@ -270,6 +270,10 @@
 }
 
 @media (max-width: 599px) {
+    .comparator-inner {
+        padding: 40px 24px 24px;
+    }
+
     .comparator-table-header,
     .comparator-table-row {
         grid-template-columns: 1.5fr 1fr 1fr 1fr;
