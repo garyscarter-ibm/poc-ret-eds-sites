@@ -31,16 +31,28 @@
 
 .brochure-blockquote-text blockquote {
     font-family: var(--brochure-font);
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-size: clamp(1.25rem, 2.8vw, 1.75rem);
     font-weight: 300;
     font-style: normal;
     color: var(--brochure-text);
-    line-height: 1.7;
-    max-width: 500px;
+    line-height: 1.6;
+    max-width: 550px;
     margin: 0;
     padding: 0;
     border: none;
     position: relative;
+}
+
+/* Compact variant: inset image with spacing */
+.brochure-blockquote.compact .brochure-blockquote-image {
+    padding: 40px 24px 0;
+    min-height: auto;
+}
+
+.brochure-blockquote.compact .brochure-blockquote-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .brochure-blockquote-text blockquote::before {
@@ -67,5 +79,23 @@
     .brochure-blockquote-text {
         flex: 0.8;
         padding: 60px 40px;
+    }
+
+    /* Compact variant: smaller inset image with spacing */
+    .brochure-blockquote.compact .brochure-blockquote-layout {
+        min-height: auto;
+        align-items: center;
+        padding: 80px 60px;
+        gap: 60px;
+    }
+
+    .brochure-blockquote.compact .brochure-blockquote-image {
+        flex: 0 0 40%;
+        min-height: auto;
+    }
+
+    .brochure-blockquote.compact .brochure-blockquote-text {
+        flex: 1;
+        padding: 0;
     }
 }
