@@ -1,0 +1,34 @@
+.brochure-comparator {
+    padding: 0;
+    background: var(--brochure-bg);
+}
+
+.brochure-comparator-inner {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.brochure-comparator-inner iframe {
+    width: 100%;
+    height: 900px;
+    border: none;
+}
+
+@media (min-width: 600px) {
+    .brochure-comparator-inner {
+        padding: 0 40px;
+    }
+}
+
+@media (min-width: 900px) {
+    .brochure-comparator-inner {
+        padding: 0 60px;
+    }
+
+    .brochure-comparator-inner iframe {
+        height: 1000px;
+    }
+}
