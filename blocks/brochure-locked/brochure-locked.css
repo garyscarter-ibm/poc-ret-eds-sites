@@ -1,0 +1,15 @@
+body.brochure .section.brochure-locked-container {
+  height: 250px;
+  margin-top: -250px;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+  padding: 0;
+}
+
+.brochure-locked {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  mask-image: linear-gradient(to bottom, transparent, black 40%);
+}
