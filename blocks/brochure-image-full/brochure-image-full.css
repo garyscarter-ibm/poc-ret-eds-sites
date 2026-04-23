@@ -50,12 +50,12 @@
 
 /* Slim full-width variant: thinner panoramic crop */
 .brochure-image-full-inner.full-width-slim {
-    max-height: 50vh;
+    max-height: 65vh;
     overflow: hidden;
 }
 
 .brochure-image-full-inner.full-width-slim img {
-    height: 50vh;
+    height: 65vh;
     object-fit: cover;
     object-position: center;
 }
