@@ -1,4 +1,4 @@
-import { createCarouselButton, wireCarouselScroll } from '../../scripts/block-utils.js';
+import { createCarouselButton } from '../../scripts/block-utils.js';
 
 const DEFAULT_BG = '#2D46DF';
 
@@ -125,8 +125,9 @@ export default function decorate(block) {
   // Slide transition state
   let activeIndex = -1;
   let isAnimating = false;
+  let navDirection = 1; // 1 = forward/right, -1 = backward/left
 
-  function setActive(idx) {
+  function setActive(idx, forceDir) {
     if (idx === activeIndex || isAnimating) return;
     const model = models[idx];
     if (!model) return;
@@ -149,7 +150,8 @@ export default function decorate(block) {
     }
 
     const outgoing = slides[prevIndex];
-    const direction = idx > prevIndex ? 1 : -1;
+    // Use explicit direction if provided, otherwise infer
+    const direction = forceDir || navDirection;
 
     isAnimating = true;
 
@@ -206,14 +208,159 @@ export default function decorate(block) {
     setActive(parseInt(thumb.dataset.index, 10));
   });
 
-  // Strip scroll
-  function getScrollAmount() {
-    if (thumbs.length === 0) return 200;
-    return (thumbs[0].offsetWidth + 16) * 2;
+  // === Infinite wheel thumbnail strip ===
+  const count = models.length;
+
+  // Disable native scroll — we'll position via CSS transforms
+  thumbTrack.style.overflow = 'hidden';
+  thumbTrack.style.position = 'relative';
+
+  // Measure thumb dimensions after layout
+  let thumbWidth = 0;
+  let gap = 16;
+  let offset = 0; // current pixel offset of the wheel
+
+  function measure() {
+    if (thumbs.length === 0) return;
+    thumbWidth = thumbs[0].offsetWidth;
+    gap = parseFloat(
+      window.getComputedStyle(thumbTrack).gap,
+    ) || 16;
   }
 
-  wireCarouselScroll(thumbTrack, prevBtn, nextBtn, { scrollAmount: getScrollAmount });
+  // Position all thumbs in a ring based on current offset
+  let animateLayout = false;
+  const prevPositions = new Map();
 
-  // Init first model
+  function layout() {
+    const trackW = thumbTrack.offsetWidth;
+    const step = thumbWidth + gap;
+    const totalW = step * count;
+    const centreX = trackW / 2;
+
+    thumbs.forEach((t, i) => {
+      let x = (i * step) - offset;
+      x = ((x % totalW) + totalW) % totalW;
+      if (x > totalW / 2) x -= totalW;
+      const finalX = centreX + x - (thumbWidth / 2);
+
+      // Detect wrapping: moved more than half the total ring width
+      const prev = prevPositions.get(i);
+      const wrapped = prev !== undefined
+        && Math.abs(finalX - prev) > totalW * 0.4;
+
+      /* eslint-disable no-param-reassign */
+      t.style.position = 'absolute';
+      t.style.left = '0';
+      t.style.top = '0';
+
+      if (animateLayout && wrapped) {
+        // Hide, snap to new position, then fade back in
+        t.style.transition = 'none';
+        t.style.opacity = '0';
+        t.style.transform = `translateX(${finalX}px)`;
+        setTimeout(() => {
+          t.style.transition = 'opacity 0.15s ease';
+          t.style.opacity = '1';
+        }, 350);
+      } else {
+        t.style.opacity = '1';
+        t.style.transition = animateLayout
+          ? 'transform 0.35s ease'
+          : 'none';
+        t.style.transform = `translateX(${finalX}px)`;
+      }
+      /* eslint-enable no-param-reassign */
+
+      prevPositions.set(i, finalX);
+    });
+  }
+
+  function goTo(idx, dir) {
+    const step = thumbWidth + gap;
+    offset = idx * step;
+    navDirection = dir || 1;
+    animateLayout = true;
+    setActive(idx, dir);
+    thumbs.forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+    });
+    layout();
+  }
+
+  // Looping prev/next — always continues in same direction
+  prevBtn.addEventListener('click', () => {
+    const next = (activeIndex - 1 + count) % count;
+    goTo(next, -1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const next = (activeIndex + 1) % count;
+    goTo(next, 1);
+  });
+
+  // Thumb click
+  thumbTrack.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.carousel-models-thumb');
+    if (!thumb) return;
+    const idx = parseInt(thumb.dataset.index, 10);
+    goTo(idx);
+  });
+
+  // Set track height to tallest thumb so underline is never clipped
+  function setTrackHeight() {
+    if (thumbs.length === 0) return;
+    let maxH = 0;
+    thumbs.forEach((t) => {
+      if (t.offsetHeight > maxH) maxH = t.offsetHeight;
+    });
+    // Make all thumbs the same height so borders align
+    thumbs.forEach((t) => {
+      /* eslint-disable no-param-reassign */
+      t.style.height = `${maxH}px`;
+      /* eslint-enable no-param-reassign */
+    });
+    // Add 4px for the active border-bottom to be visible
+    thumbTrack.style.height = `${maxH + 4}px`;
+  }
+
+  // Resize — no animation
+  window.addEventListener('resize', () => {
+    animateLayout = false;
+    measure();
+    setTrackHeight();
+    layout();
+  });
+
+  // Init
   setActive(0);
+
+  function initLayout() {
+    measure();
+    if (thumbWidth === 0) return false;
+    setTrackHeight();
+    goTo(0);
+    return true;
+  }
+
+  // Try immediately
+  requestAnimationFrame(() => {
+    if (!initLayout()) {
+      // Retry when carousel scrolls into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            requestAnimationFrame(() => {
+              initLayout();
+              observer.disconnect();
+            });
+          }
+        });
+      });
+      observer.observe(strip);
+      // Also retry on timeouts as fallback
+      setTimeout(initLayout, 500);
+      setTimeout(initLayout, 1000);
+    }
+  });
 }

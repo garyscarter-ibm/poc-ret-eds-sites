@@ -78,11 +78,14 @@ export default function decorate(block) {
     contentRow.append(ratingsContainer);
   }
 
-  // MINI: add decorative frame elements
+  // MINI: add decorative frame (pure CSS positioned)
   if (isMini) {
     const frame = document.createElement('div');
     frame.className = 'hero-dealership-frame';
-    frame.innerHTML = '<span class="frame-top"></span><span class="frame-right"></span><span class="frame-bottom"></span><span class="frame-left"></span>';
+    frame.innerHTML = '<span class="frame-top"></span>'
+      + '<span class="frame-right"></span>'
+      + '<span class="frame-bottom"></span>'
+      + '<span class="frame-left"></span>';
     block.append(frame);
   }
 }

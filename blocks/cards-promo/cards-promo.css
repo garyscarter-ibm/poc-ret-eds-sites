@@ -178,6 +178,29 @@
   font-weight: 400;
 }
 
+@media (max-width: 767px) {
+  .cards-promo.mini {
+    margin-left: -24px;
+    margin-right: -24px;
+    gap: 16px;
+  }
+
+  .cards-promo.mini > div {
+    min-height: 200px;
+    border-radius: 0;
+  }
+
+  .cards-promo.mini > div > div:last-child:not(:first-child) {
+    width: 80%;
+  }
+
+  .cards-promo.mini h3,
+  .cards-promo.mini h5 {
+    font-size: 1.5rem;
+    line-height: 28px;
+  }
+}
+
 @media (min-width: 768px) {
   .cards-promo.mini > div {
     min-height: 240px;

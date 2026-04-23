@@ -3,6 +3,7 @@ header {
   height: 64px;
 }
 
+
 header .nav-wrapper {
   background-color: transparent;
   width: 100%;
@@ -561,9 +562,15 @@ header nav[aria-expanded='true'] .nav-tools a[href^="tel:"] {
    White background, relative positioning, black text, MINI fonts
    ============================================================ */
 
-/* Override global header height for MINI's relative positioning */
+/* MINI header: fixed height to prevent layout jump on load */
 header:has(.header.mini) {
-  height: auto;
+  height: 109px;
+}
+
+@media (min-width: 768px) {
+  header:has(.header.mini) {
+    height: 100px;
+  }
 }
 
 /* Nav wrapper: white background, relative position (takes up space) */
@@ -828,10 +835,10 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
 
 /* --- Mobile (≤ 599px): black tool strip below header bar --- */
 @media (max-width: 767px) {
-  /* Allow nav to wrap so tools drop to second row */
+  /* Nav: fixed height with tools bar positioned below */
   header .header.mini nav {
-    height: auto;
-    flex-wrap: wrap;
+    height: 65px;
+    position: relative;
     padding: 0 24px;
   }
 
@@ -849,16 +856,21 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     height: 65px;
   }
 
-  /* Tools: full-width black strip */
+  /* Tools: black strip positioned below nav bar (matches BMW pattern) */
   header .header.mini .nav-tools {
     order: 3;
-    flex-basis: 100%;
-    margin: 0 -24px;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    margin: 0;
     background-color: var(--color-black);
-    padding: 0;
+    padding: 10px 16px;
+    display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0;
-    height: 40px;
+    z-index: 10;
   }
 
   header .header.mini .nav-tools > div {
@@ -866,12 +878,11 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     justify-content: center;
     align-items: center;
     gap: 0;
-    height: 40px;
   }
 
   header .header.mini .nav-tools p {
     margin: 0;
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   /* Pipe separator between visible tool links */
@@ -879,22 +890,24 @@ header .header.mini nav[aria-expanded='true'] .nav-brand p:last-child::after {
     border-left: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* Tool links: white text on black strip (match nav specificity) */
+  /* Tool links: white text on black strip */
   header .header.mini nav .nav-tools a:any-link {
     color: var(--color-white);
-    font-size: var(--body-font-size-s);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
   }
 
-  /* Expanded: keep black strip visible and styled */
+  /* Expanded: keep black strip in same position */
   header .header.mini nav[aria-expanded='true'] .nav-tools {
-    position: static;
-    flex-basis: 100%;
-    margin: 0 -24px;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
     background-color: var(--color-black);
-    padding: 0;
-    margin-left: -24px;
+    padding: 10px 16px;
     flex-direction: row;
-    height: 40px;
+    z-index: 10;
     gap: 0;
   }
 
