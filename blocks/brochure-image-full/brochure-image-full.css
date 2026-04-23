@@ -47,3 +47,15 @@
     display: block;
     object-fit: cover;
 }
+
+/* Slim full-width variant: thinner panoramic crop */
+.brochure-image-full-inner.full-width-slim {
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.brochure-image-full-inner.full-width-slim img {
+    height: 50vh;
+    object-fit: cover;
+    object-position: center;
+}
