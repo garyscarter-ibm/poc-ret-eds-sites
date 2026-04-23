@@ -42,30 +42,26 @@
     display: block;
 }
 
-/* Hotspot buttons — reset global button styles on all states */
-.brochure-hotspot-btn,
-.brochure-hotspot-btn:hover,
-.brochure-hotspot-btn:focus,
-.brochure-hotspot-btn:active {
+/* Hotspot buttons — reset global button styles */
+.brochure-hotspot-btn {
+    all: initial;
     position: absolute;
     transform: translate(-50%, -50%);
-    background: none;
-    background-color: transparent;
+    background: transparent;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
     padding: 0;
+    margin: 0;
     z-index: 1;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-size: 0;
-    letter-spacing: normal;
-    line-height: 1;
-    white-space: normal;
-    text-decoration: none;
+    overflow: visible;
+    box-sizing: border-box;
+    appearance: none;
 }
 
 .brochure-hotspot-btn:focus-visible {
