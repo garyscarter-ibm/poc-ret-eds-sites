@@ -61,8 +61,10 @@ export default async function decorate(block) {
     // Col 3 may be empty; overlay slug is in col 4 (or col 3 as fallback)
     const overlayId = cols[4]?.textContent?.trim() || cols[3]?.textContent?.trim() || '';
 
-    const btn = document.createElement('button');
+    const btn = document.createElement('div');
     btn.className = 'brochure-hotspot-btn';
+    btn.setAttribute('role', 'button');
+    btn.setAttribute('tabindex', '0');
     btn.style.left = `${xPos}%`;
     btn.style.top = `${yPos}%`;
     btn.setAttribute('aria-label', label);
@@ -74,6 +76,12 @@ export default async function decorate(block) {
     if (overlayId) {
       btn.addEventListener('click', () => {
         window.location.hash = `overlay-${overlayId}`;
+      });
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.hash = `overlay-${overlayId}`;
+        }
       });
     }
 

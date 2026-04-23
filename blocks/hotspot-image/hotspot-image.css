@@ -24,9 +24,7 @@
 }
 
 /* ── Hotspot dots ── */
-/* Reset global button styles (styles.css applies to bare `button` selector) */
 .hotspot-image .hotspot-dot {
-    all: initial;
     position: absolute;
     width: 36px;
     height: 36px;
@@ -43,7 +41,6 @@
     justify-content: center;
     overflow: visible;
     box-sizing: border-box;
-    appearance: none;
 }
 
 .hotspot-image .hotspot-dot:focus-visible {

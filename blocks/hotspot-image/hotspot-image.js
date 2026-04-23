@@ -187,13 +187,21 @@ export default async function decorate(block) {
 
   // Create hotspot dots
   hotspots.forEach((hs, i) => {
-    const dot = document.createElement('button');
+    const dot = document.createElement('div');
     dot.className = 'hotspot-dot';
+    dot.setAttribute('role', 'button');
+    dot.setAttribute('tabindex', '0');
     dot.setAttribute('aria-label', hs.title);
     dot.style.left = `${hs.x}%`;
     dot.style.top = `${hs.y}%`;
     dot.innerHTML = '<span class="hotspot-dot-ring"></span>';
     dot.addEventListener('click', () => openModal(i));
+    dot.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(i);
+      }
+    });
     imageContainer.append(dot);
   });
 

@@ -42,9 +42,8 @@
     display: block;
 }
 
-/* Hotspot buttons — reset global button styles */
+/* Hotspot dots */
 .brochure-hotspot-btn {
-    all: initial;
     position: absolute;
     transform: translate(-50%, -50%);
     background: transparent;
@@ -61,7 +60,6 @@
     justify-content: center;
     overflow: visible;
     box-sizing: border-box;
-    appearance: none;
 }
 
 .brochure-hotspot-btn:focus-visible {
