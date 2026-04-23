@@ -1,9 +1,17 @@
 export default async function decorate(block) {
-  const rows = [...block.children];
   const content = document.createElement('div');
   content.className = 'brochure-dimensions-content';
 
-  rows.forEach((row) => {
+  // Check for an authored background image in any row
+  const authoredImg = block.querySelector('img');
+  if (authoredImg) {
+    block.style.backgroundImage = `url('${authoredImg.src}')`;
+    authoredImg.closest('div')?.remove();
+  }
+
+  // Process remaining rows
+  const remainingRows = [...block.children];
+  remainingRows.forEach((row) => {
     const inner = row.querySelector(':scope > div') || row;
     content.append(...[...inner.childNodes].map((n) => n.cloneNode(true)));
   });
