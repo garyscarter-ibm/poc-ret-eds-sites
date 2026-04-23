@@ -88,6 +88,10 @@ body.brochure .section.animate.in-viewport {
     margin-top: 40px;
 }
 
+body.brochure .section.brochure-hero-container.animate.in-viewport {
+    margin-top: 0;
+}
+
 /* Staggered child animations */
 body.brochure .section.animate .animate-child {
     opacity: 0;
