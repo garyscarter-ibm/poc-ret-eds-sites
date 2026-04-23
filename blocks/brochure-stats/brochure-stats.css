@@ -80,7 +80,7 @@
 /* Locked stat — blur value and label */
 .brochure-stat.locked .brochure-stat-value,
 .brochure-stat.locked .brochure-stat-label {
-    filter: blur(6px);
+    filter: blur(10px);
     user-select: none;
 }
 
@@ -100,13 +100,13 @@
 
 .brochure-stats.all-locked .brochure-stat-value {
     color: #fff;
-    filter: blur(6px);
+    filter: blur(10px);
     user-select: none;
 }
 
 .brochure-stats.all-locked .brochure-stat-label {
     color: rgba(255, 255, 255, 0.5);
-    filter: blur(5px);
+    filter: blur(10px);
     user-select: none;
 }
 
