@@ -1,22 +1,30 @@
 export default async function decorate(block) {
+  const DEFAULT_BG = 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/x7-lci-dimensions-column_overlap_banners.accc75f6718b.jpg?ext=webp&width=1100';
+
+  // Grab authored image if present
+  const authoredImg = block.querySelector('picture img') || block.querySelector('img');
+  const bgUrl = authoredImg ? authoredImg.src : DEFAULT_BG;
+
+  // Remove image row so it doesn't appear in text content
+  if (authoredImg) {
+    const pictureRow = authoredImg.closest('picture')?.closest('div')
+      || authoredImg.closest('div');
+    if (pictureRow && pictureRow !== block) pictureRow.remove();
+  }
+
+  // Collect all remaining text content
+  const h4 = block.querySelector('h4');
+  const paragraphs = block.querySelectorAll('p');
+  const link = block.querySelector('a');
+
+  // Build the content card
   const content = document.createElement('div');
   content.className = 'brochure-dimensions-content';
 
-  // Check for an authored background image in any row
-  const DEFAULT_BG = 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/x7-lci-dimensions-column_overlap_banners.accc75f6718b.jpg?ext=webp&width=1100';
-  const authoredImg = block.querySelector('img');
-  const bgUrl = authoredImg ? authoredImg.src : DEFAULT_BG;
-  if (authoredImg) authoredImg.closest('div')?.remove();
-
-  // Process remaining rows
-  const remainingRows = [...block.children];
-  remainingRows.forEach((row) => {
-    const inner = row.querySelector(':scope > div') || row;
-    content.append(...[...inner.childNodes].map((n) => n.cloneNode(true)));
-  });
+  if (h4) content.append(h4);
+  paragraphs.forEach((p) => content.append(p));
 
   // Add download icon before the link
-  const link = content.querySelector('a');
   if (link) {
     const icon = document.createElement('span');
     icon.className = 'brochure-dimensions-download-icon';
@@ -24,6 +32,7 @@ export default async function decorate(block) {
     link.parentElement.insertBefore(icon, link);
   }
 
+  // Build wrapper
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-dimensions-inner';
   wrapper.style.setProperty('--dimensions-bg', `url('${bgUrl}')`);
