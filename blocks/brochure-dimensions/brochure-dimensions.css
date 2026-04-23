@@ -1,30 +1,42 @@
 
 .brochure-dimensions {
     padding: 0;
-    background: #2a5da8;
-    background-image:
-        url('https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/x7-lci-dimensions-column_overlap_banners.accc75f6718b.jpg?ext=webp&width=1100');
-    background-size: cover;
-    background-position: center right;
-    background-repeat: no-repeat;
-    min-height: 400px;
+    background: #f0f0f0;
+    overflow: visible;
 }
 
 .brochure-dimensions-inner {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    min-height: 400px;
-    padding: 40px 24px;
+    min-height: 500px;
+    padding: 80px 24px;
 }
 
+/* Blueprint image on the right */
+.brochure-dimensions-inner::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    bottom: -60px;
+    right: 0;
+    width: 55%;
+    background-image: var(--dimensions-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* White content card on the left */
 .brochure-dimensions-content {
-    background: var(--brochure-bg);
-    padding: 60px 48px;
-    max-width: 480px;
     position: relative;
     z-index: 1;
+    background: white;
+    padding: 60px 48px;
+    max-width: 480px;
 }
 
 body.brochure .brochure-dimensions-content h4 {
@@ -66,7 +78,7 @@ body.brochure .brochure-dimensions-content a:hover {
     display: block;
 }
 
-/* Left border accent */
+/* Left border accent on white card */
 .brochure-dimensions-content::before {
     content: '';
     position: absolute;
@@ -74,17 +86,12 @@ body.brochure .brochure-dimensions-content a:hover {
     top: 60px;
     bottom: 60px;
     width: 3px;
-    background: #1c69d4;
+    background: #333;
 }
 
 @media (min-width: 900px) {
-    .brochure-dimensions {
-        min-height: 500px;
-    }
-
     .brochure-dimensions-inner {
-        min-height: 500px;
-        padding: 60px;
+        padding: 100px 60px;
     }
 
     .brochure-dimensions-content {
@@ -93,9 +100,20 @@ body.brochure .brochure-dimensions-content a:hover {
 }
 
 @media (max-width: 599px) {
-    .brochure-dimensions {
-        background-position: center;
-        background-size: 200%;
+    .brochure-dimensions-inner {
+        flex-direction: column;
+        padding: 40px 24px;
+        min-height: auto;
+    }
+
+    .brochure-dimensions-inner::after {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        width: 100%;
+        height: 300px;
+        margin-top: 24px;
     }
 
     .brochure-dimensions-content {

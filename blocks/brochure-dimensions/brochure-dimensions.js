@@ -3,11 +3,10 @@ export default async function decorate(block) {
   content.className = 'brochure-dimensions-content';
 
   // Check for an authored background image in any row
+  const DEFAULT_BG = 'https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/15958/x7-lci-dimensions-column_overlap_banners.accc75f6718b.jpg?ext=webp&width=1100';
   const authoredImg = block.querySelector('img');
-  if (authoredImg) {
-    block.style.backgroundImage = `url('${authoredImg.src}')`;
-    authoredImg.closest('div')?.remove();
-  }
+  const bgUrl = authoredImg ? authoredImg.src : DEFAULT_BG;
+  if (authoredImg) authoredImg.closest('div')?.remove();
 
   // Process remaining rows
   const remainingRows = [...block.children];
@@ -27,6 +26,7 @@ export default async function decorate(block) {
 
   const wrapper = document.createElement('div');
   wrapper.className = 'brochure-dimensions-inner';
+  wrapper.style.setProperty('--dimensions-bg', `url('${bgUrl}')`);
   wrapper.append(content);
 
   block.textContent = '';
