@@ -1,8 +1,11 @@
 
+body.brochure .section.brochure-dimensions-container {
+    overflow: visible;
+    background: #f0f0f0;
+}
+
 .brochure-dimensions {
     padding: 0;
-    background: #f0f0f0;
-    overflow: visible;
 }
 
 .brochure-dimensions-inner {
@@ -19,10 +22,10 @@
 .brochure-dimensions-inner::after {
     content: '';
     position: absolute;
-    top: -60px;
-    bottom: -60px;
-    right: 0;
-    width: 55%;
+    top: -40px;
+    bottom: -40px;
+    right: -40px;
+    width: 58%;
     background-image: var(--dimensions-bg);
     background-size: cover;
     background-position: center;
