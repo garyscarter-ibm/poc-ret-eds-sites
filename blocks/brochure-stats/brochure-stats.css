@@ -5,11 +5,17 @@
 
 .brochure-stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 24px;
     max-width: var(--content-width-s);
     margin: 0 auto;
     text-align: center;
+}
+
+@media (min-width: 600px) {
+    .brochure-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .brochure-stat {
