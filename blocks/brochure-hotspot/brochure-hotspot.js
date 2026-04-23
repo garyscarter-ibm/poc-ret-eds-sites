@@ -41,7 +41,8 @@ export default async function decorate(block) {
   const img = imageRow?.querySelector('img');
   if (img) {
     img.loading = 'lazy';
-    imageContainer.append(img);
+    const picture = img.closest('picture') || img;
+    imageContainer.append(picture);
   }
 
   // Create hotspot buttons
