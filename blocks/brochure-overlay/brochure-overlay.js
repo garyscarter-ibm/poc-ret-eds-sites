@@ -16,50 +16,46 @@ export default async function decorate(block) {
   });
 
   // Build overlay modal
-  const modal = document.createElement("div");
-  modal.className = "brochure-overlay-modal";
+  const modal = document.createElement('div');
+  modal.className = 'brochure-overlay-modal';
   modal.hidden = true;
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
 
-  const backdrop = document.createElement("div");
-  backdrop.className = "brochure-overlay-backdrop";
+  const backdrop = document.createElement('div');
+  backdrop.className = 'brochure-overlay-backdrop';
 
-  const container = document.createElement("div");
-  container.className = "brochure-overlay-container";
+  const container = document.createElement('div');
+  container.className = 'brochure-overlay-container';
 
-  const closeBtn = document.createElement("button");
-  closeBtn.className = "brochure-overlay-close";
-  closeBtn.setAttribute("aria-label", "Close overlay");
-  closeBtn.innerHTML =
-    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'brochure-overlay-close';
+  closeBtn.setAttribute('aria-label', 'Close overlay');
+  closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
-  const contentEl = document.createElement("div");
-  contentEl.className = "brochure-overlay-content";
+  const contentEl = document.createElement('div');
+  contentEl.className = 'brochure-overlay-content';
 
-  const imageEl = document.createElement("div");
-  imageEl.className = "brochure-overlay-image";
+  const imageEl = document.createElement('div');
+  imageEl.className = 'brochure-overlay-image';
   imageEl.hidden = true;
 
   container.append(contentEl, imageEl);
 
   // Navigation arrows
-  const prevBtn = document.createElement("button");
-  prevBtn.className = "brochure-overlay-prev";
-  prevBtn.setAttribute("aria-label", "Previous");
-  prevBtn.innerHTML =
-    '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const prevBtn = document.createElement('button');
+  prevBtn.className = 'brochure-overlay-prev';
+  prevBtn.setAttribute('aria-label', 'Previous');
+  prevBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  const nextBtn = document.createElement("button");
-  nextBtn.className = "brochure-overlay-next";
-  nextBtn.setAttribute("aria-label", "Next");
-  nextBtn.innerHTML =
-    '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'brochure-overlay-next';
+  nextBtn.setAttribute('aria-label', 'Next');
+  nextBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   modal.append(backdrop, closeBtn, prevBtn, container, nextBtn);
 
-  const FOCUSABLE =
-    'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
+  const FOCUSABLE = 'a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])';
   let previousFocus = null;
   let activeIndex = -1;
 
@@ -83,15 +79,15 @@ export default async function decorate(block) {
     if (!html) return;
 
     // Parse content to separate text from images
-    const temp = document.createElement("div");
+    const temp = document.createElement('div');
     temp.innerHTML = html;
-    const img = temp.querySelector("picture, img");
+    const img = temp.querySelector('picture, img');
 
-    contentEl.innerHTML = "";
-    imageEl.innerHTML = "";
+    contentEl.innerHTML = '';
+    imageEl.innerHTML = '';
 
     if (img) {
-      const imgNode = img.closest("picture") || img;
+      const imgNode = img.closest('picture') || img;
       imgNode.remove();
       imageEl.append(imgNode);
       imageEl.hidden = false;
@@ -108,7 +104,7 @@ export default async function decorate(block) {
     activeIndex = overlayIds.indexOf(id);
     populateContent(id);
     modal.hidden = false;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     // Show/hide nav arrows
     prevBtn.hidden = overlayIds.length <= 1;
@@ -119,9 +115,9 @@ export default async function decorate(block) {
 
   function closeOverlay() {
     modal.hidden = true;
-    document.body.style.overflow = "";
-    contentEl.innerHTML = "";
-    imageEl.innerHTML = "";
+    document.body.style.overflow = '';
+    contentEl.innerHTML = '';
+    imageEl.innerHTML = '';
     imageEl.hidden = true;
     activeIndex = -1;
     // no hash cleanup needed — we no longer use hash routing
@@ -133,44 +129,42 @@ export default async function decorate(block) {
 
   function navigate(direction) {
     if (overlayIds.length <= 1) return;
-    activeIndex =
-      (activeIndex + direction + overlayIds.length) % overlayIds.length;
+    activeIndex = (activeIndex + direction + overlayIds.length) % overlayIds.length;
     const id = overlayIds[activeIndex];
     populateContent(id);
   }
 
-  closeBtn.addEventListener("click", closeOverlay);
-  backdrop.addEventListener("click", closeOverlay);
-  prevBtn.addEventListener("click", () => navigate(-1));
-  nextBtn.addEventListener("click", () => navigate(1));
+  closeBtn.addEventListener('click', closeOverlay);
+  backdrop.addEventListener('click', closeOverlay);
+  prevBtn.addEventListener('click', () => navigate(-1));
+  nextBtn.addEventListener('click', () => navigate(1));
 
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener('keydown', (e) => {
     if (modal.hidden) return;
-    if (e.key === "Escape") closeOverlay();
-    if (e.key === "Tab") trapFocus(e);
-    if (e.key === "ArrowLeft") navigate(-1);
-    if (e.key === "ArrowRight") navigate(1);
+    if (e.key === 'Escape') closeOverlay();
+    if (e.key === 'Tab') trapFocus(e);
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
   });
 
   // Listen for overlay-open events from hotspot buttons
-  window.addEventListener("overlay-open", (e) => {
+  window.addEventListener('overlay-open', (e) => {
     const { id } = e.detail || {};
     if (id && overlays[id]) openOverlay(id);
   });
 
   // Also intercept overlay link clicks on the page
-  document.addEventListener("click", (e) => {
+  document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href*="#overlay-"]');
     if (link) {
       e.preventDefault();
-      const id =
-        link.href.split("#overlay-")[1] ||
-        link.getAttribute("href").split("#overlay-")[1];
+      const id = link.href.split('#overlay-')[1]
+        || link.getAttribute('href').split('#overlay-')[1];
       if (id && overlays[id]) openOverlay(id);
     }
   });
 
-  block.textContent = "";
+  block.textContent = '';
 
   // Append modal to body (not block) because brochure-theme.css applies
   // transform to .section ancestors, which breaks position:fixed inside them.
