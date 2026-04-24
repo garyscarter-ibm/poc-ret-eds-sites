@@ -3,6 +3,20 @@
     background: var(--brochure-bg);
 }
 
+/* Section label heading authored above the block */
+.section:has(.brochure-features) .default-content-wrapper {
+    padding: 40px 12px 20px;
+}
+
+body.brochure .section:has(.brochure-features) .default-content-wrapper h2,
+body.brochure .section:has(.brochure-features) .default-content-wrapper h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brochure-text);
+}
+
 .brochure-features-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -94,6 +108,10 @@ body.brochure .brochure-feature-link:hover {
 }
 
 @media (min-width: 600px) {
+    .section:has(.brochure-features) .default-content-wrapper {
+        padding: 48px 72px 24px;
+    }
+
     .brochure-features-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
