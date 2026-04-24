@@ -80,7 +80,7 @@ export function buildCtaButtons(children, options = {}) {
     if (!a || !p) return false;
     const text = p.textContent.trim();
     if (text.includes('SALES') || text.includes('SERVICE')) return false;
-    if (text.includes('reviews') || text.includes('report')) return false;
+    if (text.includes('reviews')) return false;
     return true;
   });
 
@@ -155,9 +155,7 @@ export function findRatingDivs(children) {
 export function findReviewDiv(children) {
   return children.find((d) => {
     const a = d.querySelector('a');
-    if (!a) return false;
-    const text = a.textContent.toLowerCase();
-    return text.includes('review') || text.includes('report');
+    return a && a.textContent.includes('reviews');
   });
 }
 
