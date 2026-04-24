@@ -1,14 +1,11 @@
 import {
   buildStarRating,
-  buildCtaButtons,
   classifyHeadings,
   findRatingDivs,
-  findReviewDiv,
 } from '../../scripts/block-utils.js';
 
 export default function decorate(block) {
   const isMini = block.classList.contains('mini');
-  // Shorter hero on about-us so content is visible above the fold
   if (window.location.pathname.startsWith('/about-us')) {
     block.classList.add('short');
   }
@@ -18,7 +15,6 @@ export default function decorate(block) {
 
   const children = [...contentRow.children];
 
-  // Find optional "Welcome To" paragraph (MINI-specific)
   const firstChild = children[0];
   if (firstChild) {
     const p = firstChild.querySelector('p');
@@ -28,25 +24,39 @@ export default function decorate(block) {
     }
   }
 
-  // Classify headings
   const { subtitleDiv } = classifyHeadings(children, {
     titleClass: 'hero-dealership-title',
     subtitleClass: 'hero-dealership-subtitle',
   });
 
-  // Build CTA buttons
-  const result = buildCtaButtons(children, {
-    containerClass: 'hero-dealership-ctas',
-    btnClass: 'hero-dealership-btn',
-    primaryClass: 'hero-dealership-btn-primary',
-    secondaryClass: 'hero-dealership-btn-secondary',
-    allSecondary: isMini,
-  });
-  if (result && subtitleDiv) subtitleDiv.after(result.container);
-
-  // Build ratings
   const ratingDivs = findRatingDivs(children);
-  const reviewDiv = findReviewDiv(children);
+  const headingDivs = children.filter((d) => d.querySelector('h1, h2, h3, h4, h5, h6'));
+
+  const linkDivs = children.filter((d) => {
+    if (headingDivs.includes(d)) return false;
+    if (ratingDivs.includes(d)) return false;
+    return d.querySelector('a');
+  });
+
+  // Last link div goes with the ratings; earlier ones are CTAs
+  const trailingLinkDiv = ratingDivs.length > 0 ? linkDivs.pop() : null;
+  const ctaDivs = linkDivs;
+
+  if (ctaDivs.length > 0) {
+    const ctaContainer = document.createElement('div');
+    ctaContainer.className = 'hero-dealership-ctas';
+    ctaDivs.forEach((d, i) => {
+      const a = d.querySelector('a');
+      if (a) {
+        let variant = 'hero-dealership-btn-secondary';
+        if (!isMini && i === 0) variant = 'hero-dealership-btn-primary';
+        a.className = `hero-dealership-btn ${variant}`;
+        ctaContainer.append(a);
+      }
+      d.remove();
+    });
+    if (subtitleDiv) subtitleDiv.after(ctaContainer);
+  }
 
   if (ratingDivs.length > 0) {
     const ratingsContainer = document.createElement('div');
@@ -70,28 +80,18 @@ export default function decorate(block) {
 
     ratingsContainer.append(ratingsRow);
 
-    if (reviewDiv) {
-      const a = reviewDiv.querySelector('a');
+    if (trailingLinkDiv) {
+      const a = trailingLinkDiv.querySelector('a');
       if (a) {
         a.className = 'hero-dealership-reviews-link cta-chevron cta-chevron--white';
-        a.href = 'https://www.ibm.com/reports/analyst';
         ratingsContainer.append(a);
       }
-      reviewDiv.remove();
+      trailingLinkDiv.remove();
     }
 
     contentRow.append(ratingsContainer);
   }
 
-  // Redirect "View all reviews" link when not inside ratings
-  if (reviewDiv) {
-    const a = reviewDiv.querySelector('a');
-    if (a) {
-      a.href = 'https://www.ibm.com/reports/analyst';
-    }
-  }
-
-  // MINI: add decorative frame elements
   if (isMini) {
     const frame = document.createElement('div');
     frame.className = 'hero-dealership-frame';

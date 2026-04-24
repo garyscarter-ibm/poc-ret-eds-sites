@@ -59,7 +59,7 @@ export default async function decorate(block) {
       cta.append(icon, label);
       ctaBar.append(cta);
     } else if (img && !link) {
-      bgImage = img.src;
+      bgImage = img.src.replace('width=750', 'width=2000');
     }
   });
 
