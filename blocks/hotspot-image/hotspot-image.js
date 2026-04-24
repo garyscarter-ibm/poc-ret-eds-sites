@@ -15,8 +15,8 @@ export default async function decorate(block) {
   /* ── 1. Parse content ─────────────────────────────────── */
 
   // Row 0 = hero image
-  const picture = rows[0]?.querySelector("picture");
-  const heroImg = rows[0]?.querySelector("img");
+  const picture = rows[0]?.querySelector('picture');
+  const heroImg = rows[0]?.querySelector('img');
 
   // Remaining rows = hotspot data
   const hotspots = [];
@@ -26,12 +26,12 @@ export default async function decorate(block) {
     hotspots.push({
       x: parseFloat(cols[0]?.textContent?.trim()) || 0,
       y: parseFloat(cols[1]?.textContent?.trim()) || 0,
-      title: cols[2]?.textContent?.trim() || "",
-      desc: cols[3]?.textContent?.trim() || "",
+      title: cols[2]?.textContent?.trim() || '',
+      desc: cols[3]?.textContent?.trim() || '',
       img:
-        cols[4]?.querySelector("picture")?.cloneNode(true) ||
-        cols[4]?.querySelector("img")?.cloneNode(true) ||
-        null,
+        cols[4]?.querySelector('picture')?.cloneNode(true)
+        || cols[4]?.querySelector('img')?.cloneNode(true)
+        || null,
     });
   }
 
@@ -40,11 +40,11 @@ export default async function decorate(block) {
   /* ── 2. Build DOM ──────────────────────────────────────── */
 
   // Wipe the authored markup (removes any <a href="/"> placeholders)
-  block.textContent = "";
+  block.textContent = '';
 
   // Image wrapper
-  const wrap = document.createElement("div");
-  wrap.className = "hotspot-image-stage";
+  const wrap = document.createElement('div');
+  wrap.className = 'hotspot-image-stage';
   if (picture) {
     wrap.append(picture);
   } else if (heroImg) {
@@ -53,12 +53,12 @@ export default async function decorate(block) {
 
   // Dots
   hotspots.forEach((hs, idx) => {
-    const dot = document.createElement("span");
-    dot.className = "hotspot-dot";
+    const dot = document.createElement('span');
+    dot.className = 'hotspot-dot';
     dot.dataset.index = idx;
-    dot.setAttribute("role", "button");
-    dot.setAttribute("tabindex", "0");
-    dot.setAttribute("aria-label", hs.title);
+    dot.setAttribute('role', 'button');
+    dot.setAttribute('tabindex', '0');
+    dot.setAttribute('aria-label', hs.title);
     dot.style.left = `${hs.x}%`;
     dot.style.top = `${hs.y}%`;
     dot.innerHTML = '<span class="hotspot-pulse"></span>';
@@ -70,10 +70,10 @@ export default async function decorate(block) {
   // Modal must be on document.body (not inside the block) because
   // brochure-theme.css applies transform to .section ancestors,
   // which breaks position:fixed inside them.
-  const modal = document.createElement("div");
-  modal.className = "hotspot-modal";
-  modal.setAttribute("role", "dialog");
-  modal.setAttribute("aria-modal", "true");
+  const modal = document.createElement('div');
+  modal.className = 'hotspot-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
   modal.hidden = true;
   modal.innerHTML = `
     <div class="hotspot-modal-backdrop"></div>
@@ -98,13 +98,13 @@ export default async function decorate(block) {
   block.append(modal);
 
   // Refs
-  const backdrop = modal.querySelector(".hotspot-modal-backdrop");
-  const closeBtn = modal.querySelector(".hotspot-modal-close");
-  const prevBtn = modal.querySelector(".hotspot-modal-prev");
-  const nextBtn = modal.querySelector(".hotspot-modal-next");
-  const titleEl = modal.querySelector(".hotspot-modal-title");
-  const descEl = modal.querySelector(".hotspot-modal-desc");
-  const imgBox = modal.querySelector(".hotspot-modal-image");
+  const backdrop = modal.querySelector('.hotspot-modal-backdrop');
+  const closeBtn = modal.querySelector('.hotspot-modal-close');
+  const prevBtn = modal.querySelector('.hotspot-modal-prev');
+  const nextBtn = modal.querySelector('.hotspot-modal-next');
+  const titleEl = modal.querySelector('.hotspot-modal-title');
+  const descEl = modal.querySelector('.hotspot-modal-desc');
+  const imgBox = modal.querySelector('.hotspot-modal-image');
 
   /* ── 3. Modal logic ────────────────────────────────────── */
 
@@ -117,19 +117,19 @@ export default async function decorate(block) {
     current = idx;
     titleEl.textContent = hs.title;
     descEl.textContent = hs.desc;
-    imgBox.innerHTML = "";
+    imgBox.innerHTML = '';
     if (hs.img) imgBox.append(hs.img.cloneNode(true));
     imgBox.hidden = !hs.img;
-    modal.setAttribute("aria-label", hs.title);
+    modal.setAttribute('aria-label', hs.title);
     modal.hidden = false;
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
     closeBtn.focus();
   }
 
   function hide() {
     modal.hidden = true;
     current = -1;
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
     if (returnFocus) {
       returnFocus.focus();
       returnFocus = null;
@@ -144,8 +144,8 @@ export default async function decorate(block) {
   /* ── 4. Event listeners ────────────────────────────────── */
 
   // Dot clicks (delegated on the stage wrapper)
-  wrap.addEventListener("click", (e) => {
-    const dot = e.target.closest(".hotspot-dot");
+  wrap.addEventListener('click', (e) => {
+    const dot = e.target.closest('.hotspot-dot');
     if (!dot) return;
     e.preventDefault();
     e.stopPropagation();
@@ -154,10 +154,10 @@ export default async function decorate(block) {
   });
 
   // Dot keyboard
-  wrap.addEventListener("keydown", (e) => {
-    const dot = e.target.closest(".hotspot-dot");
+  wrap.addEventListener('keydown', (e) => {
+    const dot = e.target.closest('.hotspot-dot');
     if (!dot) return;
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       e.stopPropagation();
       returnFocus = dot;
@@ -166,28 +166,28 @@ export default async function decorate(block) {
   });
 
   // Modal controls
-  closeBtn.addEventListener("click", hide);
-  backdrop.addEventListener("click", hide);
-  prevBtn.addEventListener("click", () => step(-1));
-  nextBtn.addEventListener("click", () => step(1));
+  closeBtn.addEventListener('click', hide);
+  backdrop.addEventListener('click', hide);
+  prevBtn.addEventListener('click', () => step(-1));
+  nextBtn.addEventListener('click', () => step(1));
 
   // Keyboard nav inside modal
-  modal.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
       hide();
       return;
     }
-    if (e.key === "ArrowLeft") {
+    if (e.key === 'ArrowLeft') {
       step(-1);
       return;
     }
-    if (e.key === "ArrowRight") {
+    if (e.key === 'ArrowRight') {
       step(1);
       return;
     }
     // Trap focus
-    if (e.key === "Tab") {
-      const focusable = [...modal.querySelectorAll("button:not([hidden])")];
+    if (e.key === 'Tab') {
+      const focusable = [...modal.querySelectorAll('button:not([hidden])')];
       if (!focusable.length) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];

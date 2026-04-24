@@ -1,28 +1,27 @@
 const MODELS = {
   x7: {
-    name: "X7",
+    name: 'X7',
     image:
-      "https://range-comparator.s3.amazonaws.com/uploads/scaled_image/20231109155036440489/G07%20-%20Side.png",
+      'https://range-comparator.s3.amazonaws.com/uploads/scaled_image/20231109155036440489/G07%20-%20Side.png',
     length: 5181,
     height: 1835,
     doors: 5,
   },
   xm: {
-    name: "XM",
+    name: 'XM',
     image:
-      "https://range-comparator.s3.amazonaws.com/uploads/scaled_image/20221114072836171917/G09_XM%20Cape%20York%20Green%20Metallic%20sideview.png",
+      'https://range-comparator.s3.amazonaws.com/uploads/scaled_image/20221114072836171917/G09_XM%20Cape%20York%20Green%20Metallic%20sideview.png',
     length: 5110,
     height: 1755,
     doors: 5,
   },
 };
 
-const CAR_ICON =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="10" viewBox="0 0 61 25" fill="none"><path d="M60.8 13.1c-.2-.2-.4-.4-.5-.6-.6-.6-1-.2-1.2-.7s-.2-.9-.2-1.5V6.5l-4.4-.4-.3-.2c-3.2-1.8-5.6-3.3-8.2-4.3C43.2.5 40.5 0 36.9 0h-.2c-2.4 0-4.4 0-6.2.3-.8.1-1.5.3-2.3.6-2.3.8-4.7 2.3-8.5 5.5h-.4c-6.5.6-10 .9-12.4 1.4-2.5.6-3.9 1.4-6.5 2.9L0 11v8.5l.5.1c2.1.5 3.1.8 3.8.9.3.1.6.1.8.1l.4 0 .1.1.1.3c.9 2.4 3.1 3.9 5.6 3.9s4.7-1.5 5.6-3.8l.1-.3.1-.1h24.6l0 .1.1.3c.9 2.4 3.1 3.9 5.6 3.9s4.7-1.5 5.6-3.8l.1-.3.1-.1h.5c1.1 0 1.9-.1 2.8-.3 1.1-.3 2.3-.9 4.1-1.9l.4-.2v-5l-.2-.2z" fill="#999"/></svg>';
+const CAR_ICON = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="10" viewBox="0 0 61 25" fill="none"><path d="M60.8 13.1c-.2-.2-.4-.4-.5-.6-.6-.6-1-.2-1.2-.7s-.2-.9-.2-1.5V6.5l-4.4-.4-.3-.2c-3.2-1.8-5.6-3.3-8.2-4.3C43.2.5 40.5 0 36.9 0h-.2c-2.4 0-4.4 0-6.2.3-.8.1-1.5.3-2.3.6-2.3.8-4.7 2.3-8.5 5.5h-.4c-6.5.6-10 .9-12.4 1.4-2.5.6-3.9 1.4-6.5 2.9L0 11v8.5l.5.1c2.1.5 3.1.8 3.8.9.3.1.6.1.8.1l.4 0 .1.1.1.3c.9 2.4 3.1 3.9 5.6 3.9s4.7-1.5 5.6-3.8l.1-.3.1-.1h24.6l0 .1.1.3c.9 2.4 3.1 3.9 5.6 3.9s4.7-1.5 5.6-3.8l.1-.3.1-.1h.5c1.1 0 1.9-.1 2.8-.3 1.1-.3 2.3-.9 4.1-1.9l.4-.2v-5l-.2-.2z" fill="#999"/></svg>';
 
 function buildSelector(m1, m2) {
-  const el = document.createElement("div");
-  el.className = "comparator-selector";
+  const el = document.createElement('div');
+  el.className = 'comparator-selector';
   el.innerHTML = `
     <h3 class="comparator-heading">MODEL SELECTION.</h3>
     <div class="comparator-models">
@@ -49,8 +48,8 @@ function buildSelector(m1, m2) {
 }
 
 function buildViewer(m1, m2) {
-  const el = document.createElement("div");
-  el.className = "comparator-viewer";
+  const el = document.createElement('div');
+  el.className = 'comparator-viewer';
   el.innerHTML = `
     <div class="comparator-cars">
       <div class="comparator-car comparator-car-bottom">
@@ -70,9 +69,9 @@ function buildViewer(m1, m2) {
 
   // Make the divider draggable to reveal/hide the top car
   requestAnimationFrame(() => {
-    const cars = el.querySelector(".comparator-cars");
-    const topCar = el.querySelector(".comparator-car-top");
-    const divider = el.querySelector(".comparator-divider");
+    const cars = el.querySelector('.comparator-cars');
+    const topCar = el.querySelector('.comparator-car-top');
+    const divider = el.querySelector('.comparator-divider');
     let clipPercent = 50;
 
     function updateClip(pct) {
@@ -92,33 +91,33 @@ function buildViewer(m1, m2) {
       updateClip(pct);
     }
 
-    divider.addEventListener("mousedown", (e) => {
+    divider.addEventListener('mousedown', (e) => {
       e.preventDefault();
       dragging = true;
     });
     divider.addEventListener(
-      "touchstart",
+      'touchstart',
       () => {
         dragging = true;
       },
       { passive: true },
     );
 
-    window.addEventListener("mousemove", (e) => onMove(e.clientY));
-    window.addEventListener("touchmove", (e) => onMove(e.touches[0].clientY), {
+    window.addEventListener('mousemove', (e) => onMove(e.clientY));
+    window.addEventListener('touchmove', (e) => onMove(e.touches[0].clientY), {
       passive: true,
     });
 
-    window.addEventListener("mouseup", () => {
+    window.addEventListener('mouseup', () => {
       dragging = false;
     });
-    window.addEventListener("touchend", () => {
+    window.addEventListener('touchend', () => {
       dragging = false;
     });
 
     // Prevent click from firing after drag
-    const arrowBtn = el.querySelector(".comparator-arrow-btn");
-    arrowBtn.addEventListener("click", (e) => {
+    const arrowBtn = el.querySelector('.comparator-arrow-btn');
+    arrowBtn.addEventListener('click', (e) => {
       e.preventDefault();
     });
   });
@@ -128,15 +127,14 @@ function buildViewer(m1, m2) {
 
 function buildTable(m1, m2, dim) {
   const diff = (a, b) => Math.abs(a - b);
-  const dims =
-    dim === "height"
-      ? [{ label: "Height", v1: m1.height, v2: m2.height }]
-      : [{ label: "Length", v1: m1.length, v2: m2.length }];
+  const dims = dim === 'height'
+    ? [{ label: 'Height', v1: m1.height, v2: m2.height }]
+    : [{ label: 'Length', v1: m1.length, v2: m2.length }];
 
-  dims.push({ label: "Number of doors", v1: m1.doors, v2: m2.doors });
+  dims.push({ label: 'Number of doors', v1: m1.doors, v2: m2.doors });
 
-  const el = document.createElement("div");
-  el.className = "comparator-table";
+  const el = document.createElement('div');
+  el.className = 'comparator-table';
   el.innerHTML = `
     <div class="comparator-table-header">
       <div class="comparator-table-cell comparator-table-label"><strong>Model dimensions.</strong></div>
@@ -145,17 +143,17 @@ function buildTable(m1, m2, dim) {
       <div class="comparator-table-cell"><strong>Difference</strong></div>
     </div>
     ${dims
-      .map(
-        (d) => `
+    .map(
+      (d) => `
       <div class="comparator-table-row">
         <div class="comparator-table-cell comparator-table-label"><strong>${d.label}</strong></div>
-        <div class="comparator-table-cell">${d.v1}${d.label !== "Number of doors" ? " mm" : ""}</div>
-        <div class="comparator-table-cell">${d.v2}${d.label !== "Number of doors" ? " mm" : ""}</div>
-        <div class="comparator-table-cell"><strong>${diff(d.v1, d.v2)}${d.label !== "Number of doors" ? " mm" : ""}</strong></div>
+        <div class="comparator-table-cell">${d.v1}${d.label !== 'Number of doors' ? ' mm' : ''}</div>
+        <div class="comparator-table-cell">${d.v2}${d.label !== 'Number of doors' ? ' mm' : ''}</div>
+        <div class="comparator-table-cell"><strong>${diff(d.v1, d.v2)}${d.label !== 'Number of doors' ? ' mm' : ''}</strong></div>
       </div>
     `,
-      )
-      .join("")}
+    )
+    .join('')}
   `;
   return el;
 }
@@ -164,27 +162,27 @@ export default async function decorate(block) {
   const m1 = MODELS.x7;
   const m2 = MODELS.xm;
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "comparator-inner";
+  const wrapper = document.createElement('div');
+  wrapper.className = 'comparator-inner';
 
   const selector = buildSelector(m1, m2);
   const viewer = buildViewer(m1, m2);
-  const tableContainer = document.createElement("div");
-  tableContainer.className = "comparator-table-wrap";
-  tableContainer.append(buildTable(m1, m2, "length"));
+  const tableContainer = document.createElement('div');
+  tableContainer.className = 'comparator-table-wrap';
+  tableContainer.append(buildTable(m1, m2, 'length'));
 
   wrapper.append(selector, viewer, tableContainer);
-  block.textContent = "";
+  block.textContent = '';
   block.append(wrapper);
 
   // Dimension toggle
-  selector.querySelectorAll(".comparator-dim-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
+  selector.querySelectorAll('.comparator-dim-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
       selector
-        .querySelectorAll(".comparator-dim-btn")
-        .forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      tableContainer.textContent = "";
+        .querySelectorAll('.comparator-dim-btn')
+        .forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      tableContainer.textContent = '';
       tableContainer.append(buildTable(m1, m2, btn.dataset.dim));
     });
   });
