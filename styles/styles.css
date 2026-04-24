@@ -726,7 +726,7 @@ main > .section.columns-feature-container {
 main > .section.cards-about-container {
   padding: 40px 16px 48px;
   max-width: var(--content-width-xl);
-  background-color: var(--color-background-grey);
+  background-color: var(--color-white);
 }
 
 @media (min-width: 600px) {

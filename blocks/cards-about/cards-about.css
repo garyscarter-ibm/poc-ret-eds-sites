@@ -1,9 +1,9 @@
 /* Cards About - Section navigation cards with blue top border
      BMW (.linkBoxHolder): 4 white cards on grey background, heading + chevron link */
 
-/* Grey section background applied via section container */
+/* Section background applied via section container */
 main > .section.cards-about-container {
-    background-color: var(--color-background-grey, #f5f5f5);
+    background-color: var(--color-white, #fff);
 }
 
 .cards-about {
@@ -14,11 +14,11 @@ main > .section.cards-about-container {
     margin: 0 auto;
 }
 
-/* Each card: white background, 4px blue top border, subtle shadow on #f5f5f5 bg */
+/* Each card: white background, 4px blue top border, subtle shadow */
 .cards-about > div {
     background-color: var(--color-white, #fff);
     border-top: 4px solid var(--color-bmw-blue, #1c69d4);
-    box-shadow: 0 4px 20px rgb(245 245 245);
+    box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
     padding: 28px 20px;
     min-height: 140px;
     display: flex;
