@@ -85,11 +85,6 @@ body.brochure .section.animate {
 body.brochure .section.animate.in-viewport {
     opacity: 1;
     transform: translateY(0);
-    margin-top: 40px;
-}
-
-body.brochure .section.brochure-hero-container.animate.in-viewport {
-    margin-top: 0;
 }
 
 /* Staggered child animations */
