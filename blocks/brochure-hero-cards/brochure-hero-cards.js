@@ -59,7 +59,9 @@ export default async function decorate(block) {
       cta.append(icon, label);
       ctaBar.append(cta);
     } else if (img && !link) {
-      bgImage = img.src;
+      const picture = row.querySelector('picture');
+      const desktopSource = picture?.querySelector('source[media*="min-width"]');
+      bgImage = desktopSource?.srcset || img.src;
     }
   });
 

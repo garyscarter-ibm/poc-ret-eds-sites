@@ -21,7 +21,9 @@ export default async function decorate(block) {
     if (h1) {
       heading = h1;
     } else if (img) {
-      bgImage = img.src;
+      const picture = row.querySelector('picture');
+      const desktopSource = picture?.querySelector('source[media*="min-width"]');
+      bgImage = desktopSource?.srcset || img.src;
     }
   });
 
