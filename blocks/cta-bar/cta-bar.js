@@ -3,7 +3,10 @@ const CTA_ICON_MAP = {
   'build your bmw': '/icons/cta-build.svg',
   'new car locator': '/icons/cta-locator.svg',
   'book a test drive': '/icons/cta-test-drive.svg',
+  'book a test ride': '/icons/cta-test-drive.svg',
   'offers and finance': '/icons/cta-offers.svg',
+  'explore the model': '/icons/cta-explore.svg',
+  'find a dealer': '/icons/cta-locator.svg',
 };
 
 const CTA_LABEL_MAP = {
@@ -13,6 +16,9 @@ const CTA_LABEL_MAP = {
   pdi_bmw: 'Book a Test Drive',
   'offers.bmw.co.uk': 'Offers and Finance',
   'configure.bmw.co.uk': 'Build now',
+  'bmw-motorrad.co.uk/en/models/': 'Explore the model',
+  'bmw-motorrad.co.uk/en/test-ride': 'Book a test ride',
+  'bmw-motorrad.co.uk/en/shopping-tools/find-a-dealer': 'Find a dealer',
 };
 
 function resolveLabel(href) {
