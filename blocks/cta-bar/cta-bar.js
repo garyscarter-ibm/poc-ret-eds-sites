@@ -50,7 +50,7 @@ export default async function decorate(block) {
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
 
-    const label = resolveLabel(link.href);
+    const label = resolveLabel(link.href) || link.textContent.trim();
     const iconSrc = resolveIcon(label);
 
     if (iconSrc) {
