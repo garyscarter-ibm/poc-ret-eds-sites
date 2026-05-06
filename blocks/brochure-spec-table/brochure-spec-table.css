@@ -1,3 +1,7 @@
+body.brochure .section.brochure-spec-table-container {
+  background-color: #1a1a1a;
+}
+
 .brochure-spec-table {
   padding: 60px 24px;
 }

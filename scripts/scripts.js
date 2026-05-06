@@ -312,12 +312,15 @@ async function loadEager(doc) {
     ) {
       document.body.classList.add('brochure');
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
-      // Set page title from brochure config
+      // Set page title and brand class from brochure config
       try {
         const { getCurrentPage, getActiveBrochure } = await import('./brochure-config.js');
         const brochure = getActiveBrochure();
         const page = getCurrentPage();
         if (page && brochure) document.title = `${page.title} - ${brochure.title}`;
+        if (brochure && brochure.basePath.includes('s1000rr')) {
+          document.body.classList.add('motorrad');
+        }
       } catch {
         /* brochure config not available */
       }
