@@ -123,6 +123,18 @@ const knownPages = new Set([
   '/brochures/x7/interior-design/',
   '/brochures/x7/exterior-design',
   '/brochures/x7/exterior-design/',
+  '/brochures/s1000rr',
+  '/brochures/s1000rr/',
+  '/brochures/s1000rr/key-features',
+  '/brochures/s1000rr/key-features/',
+  '/brochures/s1000rr/model-colours',
+  '/brochures/s1000rr/model-colours/',
+  '/brochures/s1000rr/performance',
+  '/brochures/s1000rr/performance/',
+  '/brochures/s1000rr/hp-parts',
+  '/brochures/s1000rr/hp-parts/',
+  '/brochures/s1000rr/rider-service',
+  '/brochures/s1000rr/rider-service/',
 ]);
 
 // Nav links that use "#" as placeholder but should point to real pages
@@ -302,9 +314,10 @@ async function loadEager(doc) {
       await loadCSS(`${window.hlx.codeBasePath}/styles/brochure-theme.css`);
       // Set page title from brochure config
       try {
-        const { getCurrentPage } = await import('./brochure-config.js');
+        const { getCurrentPage, getActiveBrochure } = await import('./brochure-config.js');
+        const brochure = getActiveBrochure();
         const page = getCurrentPage();
-        if (page) document.title = `${page.title} - X7`;
+        if (page && brochure) document.title = `${page.title} - ${brochure.title}`;
       } catch {
         /* brochure config not available */
       }

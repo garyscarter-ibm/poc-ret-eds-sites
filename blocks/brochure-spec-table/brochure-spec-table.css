@@ -1,0 +1,59 @@
+.brochure-spec-table {
+  padding: 60px 24px;
+}
+
+.brochure-spec-table-grid {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.brochure-spec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.brochure-spec-item:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.brochure-spec-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.brochure-spec-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-white, #fff);
+  text-align: right;
+}
+
+@media (min-width: 600px) {
+  .brochure-spec-table {
+    padding: 80px 40px;
+  }
+
+  .brochure-spec-item {
+    padding: 20px 0;
+  }
+
+  .brochure-spec-label {
+    font-size: 1rem;
+  }
+
+  .brochure-spec-value {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .brochure-spec-table {
+    padding: 100px 60px;
+  }
+}

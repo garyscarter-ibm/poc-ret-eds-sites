@@ -1,3 +1,8 @@
+/* Hide raw nav content before JS decoration completes */
+header .header:not(:has(.nav-wrapper)) {
+    visibility: hidden;
+}
+
 /* Header container - transparent overlay */
 header {
     height: 64px;

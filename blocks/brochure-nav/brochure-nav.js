@@ -1,5 +1,6 @@
 import {
   getBrochurePages,
+  getActiveBrochure,
   getCurrentPage,
   getPreviousPage,
   getNextPage,
@@ -88,15 +89,20 @@ export default async function decorate(block) {
   navbar.className = 'brochure-navbar';
   navbar.setAttribute('aria-label', 'Brochure navigation');
 
-  // Left section: BMW Logo + hamburger
+  // Left section: Logo + hamburger
   const leftSection = document.createElement('div');
   leftSection.className = 'brochure-nav-left';
+
+  const brochure = getActiveBrochure();
+  const isMotorrad = brochure && brochure.basePath.includes('s1000rr');
+  const logoSrc = isMotorrad ? '/icons/bmw-motorrad-logo.svg' : '/icons/bmw-logo.svg';
+  const logoAlt = isMotorrad ? 'BMW Motorrad' : 'BMW';
 
   const logo = document.createElement('a');
   logo.href = pages[0].url;
   logo.className = 'brochure-nav-logo';
-  logo.setAttribute('aria-label', 'BMW');
-  logo.innerHTML = '<img src="/icons/bmw-logo.svg" alt="BMW" width="28" height="28">';
+  logo.setAttribute('aria-label', logoAlt);
+  logo.innerHTML = `<img src="${logoSrc}" alt="${logoAlt}" width="28" height="28">`;
 
   const hamburger = document.createElement('button');
   hamburger.className = 'brochure-nav-hamburger';
