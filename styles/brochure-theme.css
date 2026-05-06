@@ -239,36 +239,6 @@ body.brochure .text-media-content h3 {
 
 /* ===== Motorrad Brochure Variant ===== */
 body.brochure.motorrad {
-    --brochure-bg: #1a1a1a;
-    --brochure-bg-alt: #111;
-    --brochure-text: #fff;
-    --brochure-text-secondary: rgba(255, 255, 255, 0.85);
-    --brochure-text-muted: rgba(255, 255, 255, 0.6);
     --brochure-accent: #e22718;
     --brochure-accent-hover: #c7221a;
-    --brochure-separator: #fff;
-    --brochure-border: rgba(255, 255, 255, 0.15);
-    --brochure-footer-bg: #111;
-
-    background-color: var(--brochure-bg);
-    color: var(--brochure-text);
-}
-
-body.brochure.motorrad .section {
-    background-color: var(--brochure-bg);
-}
-
-body.brochure.motorrad h1,
-body.brochure.motorrad h2,
-body.brochure.motorrad h3,
-body.brochure.motorrad h4 {
-    color: var(--brochure-text);
-}
-
-body.brochure.motorrad p {
-    color: var(--brochure-text-secondary);
-}
-
-body.brochure.motorrad a:any-link {
-    color: var(--brochure-text);
 }
