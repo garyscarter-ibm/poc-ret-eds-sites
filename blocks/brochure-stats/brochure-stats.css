@@ -7,14 +7,14 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    max-width: var(--content-width-s);
+    max-width: var(--brochure-content-width, 1200px);
     margin: 0 auto;
     text-align: center;
 }
 
 @media (min-width: 600px) {
     .brochure-stats-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
 }
 
