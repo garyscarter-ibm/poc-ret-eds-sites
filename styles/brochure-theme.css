@@ -231,6 +231,11 @@ body.brochure
     }
 }
 
+/* ===== Brochure Motorrad section reset ===== */
+body.brochure.motorrad main > .section {
+    max-width: none;
+}
+
 /* ===== Brochure text-media heading spacing ===== */
 body.brochure .text-media-content h3 {
     font-weight: var(--heading-font-weight-light, 300);
