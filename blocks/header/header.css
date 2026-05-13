@@ -611,11 +611,14 @@ header .header.mini .nav-wrapper {
     position: relative;
 }
 
-/* Nav bar: taller height, black text, MINI font */
+/* Nav bar: taller height, black text, MINI font, centered with margins */
 header .header.mini nav {
     height: 100px;
     font-family: var(--mini-font-sans);
     color: var(--color-black);
+    max-width: var(--content-width-xl);
+    margin: 0 auto;
+    padding: 0 48px;
 }
 
 /* Bottom border separating header from content */
@@ -623,6 +626,7 @@ header .header.mini nav::after {
     background-color: #e6e6e6;
     left: 0;
     right: 0;
+    margin: 0;
 }
 
 header .header.mini nav a:any-link {
