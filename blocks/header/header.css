@@ -615,12 +615,12 @@ header .header.mini .nav-wrapper {
 
 /* Nav bar: taller height, black text, MINI font, centered with margins */
 header .header.mini nav {
-    height: 100px;
+    height: 110px;
     font-family: var(--mini-font-sans);
     color: var(--color-black);
     max-width: var(--content-width-xl);
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 0px 150px;
 }
 
 /* Bottom border separating header from content */
