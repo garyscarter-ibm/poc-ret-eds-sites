@@ -22,7 +22,9 @@ header nav {
     display: flex;
     align-items: center;
     height: 64px;
-    padding: 0 24px;
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
     font-family: var(--body-font-family);
     color: var(--color-white);
     position: relative;
