@@ -1,3 +1,7 @@
+main > .section.hero-search-container {
+    padding: 0;
+}
+
 .hero-search {
     position: relative;
     width: 100%;

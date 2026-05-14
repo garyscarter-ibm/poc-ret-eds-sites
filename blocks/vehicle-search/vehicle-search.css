@@ -1,3 +1,9 @@
+/* ---------- Section ---------- */
+
+main > .section.vehicle-search-container {
+    padding-top: 0;
+}
+
 /* ---------- Container ---------- */
 
 .vehicle-search-wrapper {
