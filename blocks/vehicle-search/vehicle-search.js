@@ -8,7 +8,7 @@ import {
   formatFuelType,
   formatTransmission,
   getUserId,
-} from '../../scripts/used-cars-config.js';
+} from "../../scripts/used-cars-config.js";
 
 /* ---------- GraphQL Queries ---------- */
 
@@ -469,16 +469,16 @@ function renderVehicleCard(vehicle, isSaved, onToggleSave, detailPath) {
   const ctas = document.createElement("div");
   ctas.className = "vehicle-card-ctas";
 
-  const viewBtn = document.createElement('a');
+  const viewBtn = document.createElement("a");
   viewBtn.href = `${detailPath}?id=${vehicle.id}`;
-  viewBtn.className = 'vehicle-card-cta vehicle-card-cta--primary';
-  viewBtn.textContent = 'View details';
+  viewBtn.className = "vehicle-card-cta vehicle-card-cta--primary";
+  viewBtn.textContent = "View details";
   ctas.append(viewBtn);
 
-  const enquireBtn = document.createElement('a');
+  const enquireBtn = document.createElement("a");
   enquireBtn.href = `${detailPath}?id=${vehicle.id}#enquire`;
-  enquireBtn.className = 'vehicle-card-cta vehicle-card-cta--secondary';
-  enquireBtn.textContent = 'Enquire';
+  enquireBtn.className = "vehicle-card-cta vehicle-card-cta--secondary";
+  enquireBtn.textContent = "Enquire";
   ctas.append(enquireBtn);
 
   const heartBtn = document.createElement("button");
@@ -601,8 +601,8 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     const key = row.children[0]?.textContent?.trim().toLowerCase();
     const value = row.children[1]?.textContent?.trim();
-    if (key === 'results-per-page' && value) pageSize = parseInt(value, 10);
-    if (key === 'detail-page' && value) detailPath = value;
+    if (key === "results-per-page" && value) pageSize = parseInt(value, 10);
+    if (key === "detail-page" && value) detailPath = value;
   });
 
   block.textContent = "";
@@ -716,7 +716,12 @@ export default async function decorate(block) {
       results.className = "vehicle-search-results";
       vehicles.forEach((vehicle) => {
         const isSaved = savedIds.has(vehicle.id);
-        const card = renderVehicleCard(vehicle, isSaved, handleToggleSave, detailPath);
+        const card = renderVehicleCard(
+          vehicle,
+          isSaved,
+          handleToggleSave,
+          detailPath,
+        );
         results.append(card);
       });
       resultsEl.replaceWith(results);
