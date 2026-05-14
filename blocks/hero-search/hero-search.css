@@ -41,7 +41,11 @@ main > .section.hero-search-container {
     z-index: -1;
     left: -110px;
     width: calc(100% + 110px);
-    background: linear-gradient(to right, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 0%) 80%);
+    background: linear-gradient(
+        to right,
+        rgb(0 0 0 / 70%) 0%,
+        rgb(0 0 0 / 0%) 80%
+    );
     pointer-events: none;
 }
 

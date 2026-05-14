@@ -1,6 +1,5 @@
-const API_ENDPOINT =
-  "https://bmw-backend.29rwihxro1te.eu-de.codeengine.appdomain.cloud/graphql";
-const API_KEY = "bmw-demo-api-key-2026";
+const API_ENDPOINT = 'https://bmw-backend.29rwihxro1te.eu-de.codeengine.appdomain.cloud/graphql';
+const API_KEY = 'bmw-demo-api-key-2026';
 
 /**
  * Execute a GraphQL query against the used cars API.
@@ -10,10 +9,10 @@ const API_KEY = "bmw-demo-api-key-2026";
  */
 export default async function queryAPI(query, variables = {}) {
   const resp = await fetch(API_ENDPOINT, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
-      "x-api-key": API_KEY,
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
     },
     body: JSON.stringify({ query, variables }),
   });

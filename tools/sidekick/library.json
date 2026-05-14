@@ -76,6 +76,10 @@
       {
         "name": "Vehicle Search",
         "path": "/docs/library/vehicle-search"
+      },
+      {
+        "name": "Vehicle Detail",
+        "path": "/docs/library/vehicle-detail"
       }
     ]
   },
@@ -92,6 +96,10 @@
       {
         "name": "Used Cars Search",
         "path": "/templates/used-cars-search"
+      },
+      {
+        "name": "Used Cars Detail",
+        "path": "/templates/used-cars-detail"
       }
     ]
   }
