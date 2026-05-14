@@ -1,8 +1,8 @@
 {
-  "data": [
-    {
-      "name": "Used Cars Search",
-      "path": "https://content.da.live/garyscarter-ibm/poc-ret-eds-sites/templates/used-cars-search"
-    }
-  ]
+    "data": [
+        {
+            "name": "Used Cars Search",
+            "path": "https://content.da.live/garyscarter-ibm/poc-ret-eds-sites/templates/used-cars-search"
+        }
+    ]
 }
