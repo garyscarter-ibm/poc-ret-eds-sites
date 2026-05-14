@@ -68,6 +68,14 @@
       {
         "name": "Brochure Stats (Mixed)",
         "path": "/docs/library/brochure-stats-mixed"
+      },
+      {
+        "name": "Hero Search",
+        "path": "/docs/library/hero-search"
+      },
+      {
+        "name": "Vehicle Search",
+        "path": "/docs/library/vehicle-search"
       }
     ]
   },
@@ -80,6 +88,10 @@
       {
         "name": "MINI Dealer Homepage",
         "path": "/templates/mini-homepage"
+      },
+      {
+        "name": "Used Cars Search",
+        "path": "/templates/used-cars-search"
       }
     ]
   }
