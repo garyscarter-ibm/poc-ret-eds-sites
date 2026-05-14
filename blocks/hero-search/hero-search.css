@@ -1,10 +1,11 @@
 .hero-search {
     position: relative;
     width: 100%;
-    height: 240px;
+    min-height: 240px;
     overflow: hidden;
     display: flex;
     align-items: center;
+    background: #1c1c1c;
 }
 
 .hero-search .hero-search-bg {
@@ -36,7 +37,7 @@
     z-index: -1;
     left: -110px;
     width: calc(100% + 110px);
-    background: linear-gradient(to right, #000 0%, rgb(102 102 102 / 0%) 60%);
+    background: linear-gradient(to right, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 0%) 80%);
     pointer-events: none;
 }
 
@@ -52,7 +53,7 @@
 
 @media (min-width: 600px) {
     .hero-search {
-        height: 280px;
+        min-height: 280px;
     }
 
     .hero-search .hero-search-overlay {
@@ -62,6 +63,6 @@
 
 @media (min-width: 900px) {
     .hero-search {
-        height: 308px;
+        min-height: 308px;
     }
 }
