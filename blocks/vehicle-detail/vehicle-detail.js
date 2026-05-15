@@ -97,8 +97,10 @@ function renderGallery(images) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
   const gallery = el("div", "vd-gallery");
 
-  const chevronLeft = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const chevronRight = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const chevronLeft =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const chevronRight =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   // Main image area with crossfade layers
   const main = el("div", "vd-gallery-main");
@@ -644,7 +646,8 @@ export default async function decorate(block) {
     fcCss.rel = "stylesheet";
     fcCss.href = "/blocks/finance-calculator/finance-calculator.css";
     document.head.append(fcCss);
-    const fcModule = await import("../finance-calculator/finance-calculator.js"); // eslint-disable-line import/no-unresolved
+    const fcModule =
+      await import("../finance-calculator/finance-calculator.js"); // eslint-disable-line import/no-unresolved
     await fcModule.default(fcWrapper);
   }
 
