@@ -1,4 +1,4 @@
-import queryAPI from '../../scripts/used-cars-api.js';
+import queryAPI from "../../scripts/used-cars-api.js";
 import {
   formatPrice,
   formatMonthly,
@@ -10,7 +10,7 @@ import {
   formatAcceleration,
   formatTopSpeed,
   DETAIL_PAGE_PATH,
-} from '../../scripts/used-cars-config.js';
+} from "../../scripts/used-cars-config.js";
 
 /* ---------- GraphQL ---------- */
 
@@ -56,24 +56,24 @@ function el(tag, cls, html) {
 /* ---------- AI Insights (backend-powered) ---------- */
 
 const AI_SECTIONS = [
-  { key: 'overview', title: 'Overview' },
-  { key: 'keyDifferences', title: 'Key Differences' },
-  { key: 'targetBuyer', title: 'Who Is It For' },
-  { key: 'valueAssessment', title: 'Value Assessment' },
-  { key: 'recommendation', title: 'Recommendation' },
+  { key: "overview", title: "Overview" },
+  { key: "keyDifferences", title: "Key Differences" },
+  { key: "targetBuyer", title: "Who Is It For" },
+  { key: "valueAssessment", title: "Value Assessment" },
+  { key: "recommendation", title: "Recommendation" },
 ];
 
 const PERSONA_FILTERS = {
-  lifestyle: ['overview', 'targetBuyer', 'valueAssessment', 'recommendation'],
-  russell: ['overview', 'keyDifferences', 'valueAssessment', 'recommendation'],
+  lifestyle: ["overview", "targetBuyer", "valueAssessment", "recommendation"],
+  russell: ["overview", "keyDifferences", "valueAssessment", "recommendation"],
 };
 
 /* ---------- Skeleton ---------- */
 
 function renderSkeleton() {
   return el(
-    'div',
-    'vc-loading',
+    "div",
+    "vc-loading",
     `
     <div class="vc-skeleton-cards">
       <div class="vc-skeleton-card"><div class="vc-skeleton-shimmer"></div></div>
@@ -87,54 +87,55 @@ function renderSkeleton() {
 
 function renderSpecTable(vehicles) {
   const specs = [
-    { label: 'Price', fn: (v) => formatPrice(v.price) },
-    { label: 'Series', fn: (v) => v.series || '—' },
+    { label: "Price", fn: (v) => formatPrice(v.price) },
+    { label: "Series", fn: (v) => v.series || "—" },
     {
-      label: 'Body Type',
-      fn: (v) => (v.bodyType || '—')
-        .toLowerCase()
-        .replace(/^\w/, (c) => c.toUpperCase()),
+      label: "Body Type",
+      fn: (v) =>
+        (v.bodyType || "—")
+          .toLowerCase()
+          .replace(/^\w/, (c) => c.toUpperCase()),
     },
-    { label: 'Mileage', fn: (v) => formatMileage(v.mileage) },
-    { label: 'Registration', fn: (v) => formatDate(v.registrationDate) },
-    { label: 'Fuel Type', fn: (v) => formatFuelType(v.fuelType) },
-    { label: 'Transmission', fn: (v) => formatTransmission(v.transmission) },
-    { label: 'Power', fn: (v) => formatPower(v.power) },
-    { label: '0-62 mph', fn: (v) => formatAcceleration(v.acceleration) },
-    { label: 'Top Speed', fn: (v) => formatTopSpeed(v.topSpeed) },
+    { label: "Mileage", fn: (v) => formatMileage(v.mileage) },
+    { label: "Registration", fn: (v) => formatDate(v.registrationDate) },
+    { label: "Fuel Type", fn: (v) => formatFuelType(v.fuelType) },
+    { label: "Transmission", fn: (v) => formatTransmission(v.transmission) },
+    { label: "Power", fn: (v) => formatPower(v.power) },
+    { label: "0-62 mph", fn: (v) => formatAcceleration(v.acceleration) },
+    { label: "Top Speed", fn: (v) => formatTopSpeed(v.topSpeed) },
     {
-      label: 'CO₂',
-      fn: (v) => (v.co2Emissions ? `${v.co2Emissions} g/km` : '—'),
-    },
-    {
-      label: 'MPG (Combined)',
-      fn: (v) => (v.mpgCombined ? `${v.mpgCombined}` : '—'),
+      label: "CO₂",
+      fn: (v) => (v.co2Emissions ? `${v.co2Emissions} g/km` : "—"),
     },
     {
-      label: 'Electric Range',
-      fn: (v) => (v.electricRange ? `${v.electricRange} miles` : '—'),
+      label: "MPG (Combined)",
+      fn: (v) => (v.mpgCombined ? `${v.mpgCombined}` : "—"),
     },
-    { label: 'Colour', fn: (v) => v.colour || '—' },
-    { label: 'Dealer', fn: (v) => v.dealer?.name || '—' },
+    {
+      label: "Electric Range",
+      fn: (v) => (v.electricRange ? `${v.electricRange} miles` : "—"),
+    },
+    { label: "Colour", fn: (v) => v.colour || "—" },
+    { label: "Dealer", fn: (v) => v.dealer?.name || "—" },
   ];
 
-  const table = el('div', 'vc-spec-table');
+  const table = el("div", "vc-spec-table");
   table.innerHTML = `
     <div class="vc-spec-header">
       <div class="vc-spec-label-col"></div>
-      ${vehicles.map((v) => `<div class="vc-spec-vehicle-col">${v.model}</div>`).join('')}
+      ${vehicles.map((v) => `<div class="vc-spec-vehicle-col">${v.model}</div>`).join("")}
     </div>
     ${specs
-    .map(({ label, fn }) => {
-      const values = vehicles.map((v) => fn(v));
-      const allSame = values.every((val) => val === values[0]);
-      return `
-        <div class="vc-spec-row${allSame ? '' : ' vc-spec-row--diff'}">
+      .map(({ label, fn }) => {
+        const values = vehicles.map((v) => fn(v));
+        const allSame = values.every((val) => val === values[0]);
+        return `
+        <div class="vc-spec-row${allSame ? "" : " vc-spec-row--diff"}">
           <div class="vc-spec-label-col">${label}</div>
-          ${values.map((val) => `<div class="vc-spec-value-col">${val}</div>`).join('')}
+          ${values.map((val) => `<div class="vc-spec-value-col">${val}</div>`).join("")}
         </div>`;
-    })
-    .join('')}`;
+      })
+      .join("")}`;
 
   return table;
 }
@@ -142,9 +143,9 @@ function renderSpecTable(vehicles) {
 /* ---------- AI Insights Panel ---------- */
 
 function renderInsightsSection() {
-  const section = el('div', 'vc-insights');
+  const section = el("div", "vc-insights");
 
-  const header = el('div', 'vc-insights-header');
+  const header = el("div", "vc-insights-header");
   header.innerHTML = `
     <div class="vc-insights-badge">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -156,7 +157,7 @@ function renderInsightsSection() {
     </div>`;
   section.append(header);
 
-  const content = el('div', 'vc-insights-content');
+  const content = el("div", "vc-insights-content");
   // Loading skeleton
   content.innerHTML = `
     <div class="vc-insight-card vc-insight-card--loading"><div class="vc-skeleton-shimmer"></div></div>
@@ -168,12 +169,13 @@ function renderInsightsSection() {
 }
 
 function populateInsights(section, summaryData) {
-  const content = section.querySelector('.vc-insights-content');
+  const content = section.querySelector(".vc-insights-content");
 
   function renderCards(persona) {
-    content.innerHTML = '';
+    content.innerHTML = "";
     if (!summaryData) {
-      content.innerHTML = '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
+      content.innerHTML =
+        '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
       return;
     }
     const keys = PERSONA_FILTERS[persona] || PERSONA_FILTERS.lifestyle;
@@ -181,7 +183,7 @@ function populateInsights(section, summaryData) {
       ({ key, title }) => {
         const text = summaryData[key];
         if (!text) return;
-        const card = el('div', 'vc-insight-card');
+        const card = el("div", "vc-insight-card");
         card.innerHTML = `<h4 class="vc-insight-title">${title}</h4><p class="vc-insight-text">${text}</p>`;
         content.append(card);
       },
@@ -189,18 +191,18 @@ function populateInsights(section, summaryData) {
   }
 
   // Tab switching
-  section.querySelector('.vc-insights-tabs').addEventListener('click', (e) => {
-    const tab = e.target.closest('.vc-tab');
+  section.querySelector(".vc-insights-tabs").addEventListener("click", (e) => {
+    const tab = e.target.closest(".vc-tab");
     if (!tab) return;
     section
-      .querySelectorAll('.vc-tab')
-      .forEach((t) => t.classList.remove('vc-tab--active'));
-    tab.classList.add('vc-tab--active');
+      .querySelectorAll(".vc-tab")
+      .forEach((t) => t.classList.remove("vc-tab--active"));
+    tab.classList.add("vc-tab--active");
     renderCards(tab.dataset.persona);
   });
 
   // Initial render
-  renderCards('lifestyle');
+  renderCards("lifestyle");
 }
 
 /* ---------- Finance Comparison ---------- */
@@ -208,29 +210,30 @@ function populateInsights(section, summaryData) {
 function renderFinanceGrid(container, vehicles, quotes) {
   const rows = [
     {
-      label: 'Monthly Payment',
-      fn: (q) => (q ? formatMonthly(q.monthlyPayment) : '—'),
+      label: "Monthly Payment",
+      fn: (q) => (q ? formatMonthly(q.monthlyPayment) : "—"),
     },
-    { label: 'APR', fn: (q) => (q ? `${q.apr}%` : '—') },
-    { label: 'Term', fn: (q) => (q ? `${q.term} months` : '—') },
-    { label: 'Deposit', fn: (q) => (q ? formatPrice(q.totalDeposit) : '—') },
+    { label: "APR", fn: (q) => (q ? `${q.apr}%` : "—") },
+    { label: "Term", fn: (q) => (q ? `${q.term} months` : "—") },
+    { label: "Deposit", fn: (q) => (q ? formatPrice(q.totalDeposit) : "—") },
     {
-      label: 'Total Payable',
-      fn: (q) => (q ? formatPrice(q.totalAmountPayable) : '—'),
-    },
-    {
-      label: 'Final Payment',
-      fn: (q) => (q && q.residualValue ? formatPrice(q.residualValue) : '—'),
+      label: "Total Payable",
+      fn: (q) => (q ? formatPrice(q.totalAmountPayable) : "—"),
     },
     {
-      label: 'Credit Charges',
-      fn: (q) => (q ? formatPrice(q.chargesForCredit) : '—'),
+      label: "Final Payment",
+      fn: (q) => (q && q.residualValue ? formatPrice(q.residualValue) : "—"),
     },
     {
-      label: 'Annual Mileage',
-      fn: (q) => (q && q.annualMileage
-        ? `${q.annualMileage.toLocaleString('en-GB')} miles`
-        : '—'),
+      label: "Credit Charges",
+      fn: (q) => (q ? formatPrice(q.chargesForCredit) : "—"),
+    },
+    {
+      label: "Annual Mileage",
+      fn: (q) =>
+        q && q.annualMileage
+          ? `${q.annualMileage.toLocaleString("en-GB")} miles`
+          : "—",
     },
   ];
 
@@ -238,37 +241,37 @@ function renderFinanceGrid(container, vehicles, quotes) {
   container.innerHTML = `
     <div class="vc-finance-header">
       <div class="vc-finance-label-col"></div>
-      ${vehicles.map((v) => `<div class="vc-finance-vehicle-col">${v.model}</div>`).join('')}
+      ${vehicles.map((v) => `<div class="vc-finance-vehicle-col">${v.model}</div>`).join("")}
     </div>
     ${rows
-    .map(({ label, fn }) => {
-      const values = quotes.map((q) => fn(q));
-      const diff = values[0] !== values[1];
-      return `
-        <div class="vc-finance-row${diff ? ' vc-finance-row--diff' : ''}">
+      .map(({ label, fn }) => {
+        const values = quotes.map((q) => fn(q));
+        const diff = values[0] !== values[1];
+        return `
+        <div class="vc-finance-row${diff ? " vc-finance-row--diff" : ""}">
           <div class="vc-finance-label-col">${label}</div>
-          ${values.map((val) => `<div class="vc-finance-value-col">${val}</div>`).join('')}
+          ${values.map((val) => `<div class="vc-finance-value-col">${val}</div>`).join("")}
         </div>`;
-    })
-    .join('')}
-    ${quotes.some(Boolean) ? '<p class="vc-finance-disclaimer">Representative example. Finance subject to status.</p>' : ''}`;
+      })
+      .join("")}
+    ${quotes.some(Boolean) ? '<p class="vc-finance-disclaimer">Representative example. Finance subject to status.</p>' : ""}`;
 }
 
 function renderFinanceComparison(vehicles, financeData) {
-  const section = el('div', 'vc-finance');
+  const section = el("div", "vc-finance");
   section.innerHTML = '<h3 class="vc-finance-title">Finance Comparison</h3>';
 
   const hasAny = financeData.some((quotes) => quotes && quotes.length);
   if (!hasAny) {
-    section.innerHTML
-      += '<p class="vc-finance-empty">Finance quotes are not available for these vehicles.</p>';
+    section.innerHTML +=
+      '<p class="vc-finance-empty">Finance quotes are not available for these vehicles.</p>';
     return section;
   }
 
   // Find PCP quotes (or first available) for comparison
   const primaryQuotes = financeData.map((quotes) => {
     if (!quotes || !quotes.length) return null;
-    return quotes.find((q) => q.productKey === 'PCP') || quotes[0];
+    return quotes.find((q) => q.productKey === "PCP") || quotes[0];
   });
 
   // Product type tabs
@@ -282,11 +285,11 @@ function renderFinanceComparison(vehicles, financeData) {
   ];
 
   if (allProducts.length > 1) {
-    const tabs = el('div', 'vc-finance-tabs');
+    const tabs = el("div", "vc-finance-tabs");
     allProducts.forEach((name, i) => {
       const btn = el(
-        'button',
-        `vc-finance-tab${i === 0 ? ' vc-finance-tab--active' : ''}`,
+        "button",
+        `vc-finance-tab${i === 0 ? " vc-finance-tab--active" : ""}`,
         name,
       );
       btn.dataset.product = name;
@@ -294,27 +297,27 @@ function renderFinanceComparison(vehicles, financeData) {
     });
     section.append(tabs);
 
-    tabs.addEventListener('click', (e) => {
-      const tab = e.target.closest('.vc-finance-tab');
+    tabs.addEventListener("click", (e) => {
+      const tab = e.target.closest(".vc-finance-tab");
       if (!tab) return;
       tabs
-        .querySelectorAll('.vc-finance-tab')
-        .forEach((t) => t.classList.remove('vc-finance-tab--active'));
-      tab.classList.add('vc-finance-tab--active');
+        .querySelectorAll(".vc-finance-tab")
+        .forEach((t) => t.classList.remove("vc-finance-tab--active"));
+      tab.classList.add("vc-finance-tab--active");
       const { product } = tab.dataset;
       const selected = financeData.map((quotes) => {
         if (!quotes || !quotes.length) return null;
         return quotes.find((q) => q.productName === product) || null;
       });
       renderFinanceGrid(
-        section.querySelector('.vc-finance-grid'),
+        section.querySelector(".vc-finance-grid"),
         vehicles,
         selected,
       );
     });
   }
 
-  const grid = el('div', 'vc-finance-grid');
+  const grid = el("div", "vc-finance-grid");
   section.append(grid);
   renderFinanceGrid(grid, vehicles, primaryQuotes);
 
@@ -324,14 +327,14 @@ function renderFinanceComparison(vehicles, financeData) {
 /* ---------- Vehicle Header Cards ---------- */
 
 function renderVehicleCards(vehicles, detailPath) {
-  const row = el('div', 'vc-vehicles');
+  const row = el("div", "vc-vehicles");
 
   vehicles.forEach((v) => {
     const img = v.images?.sort((a, b) => a.order - b.order)[0];
-    const card = el('div', 'vc-vehicle-card');
+    const card = el("div", "vc-vehicle-card");
     card.innerHTML = `
       <a href="${detailPath}?id=${v.id}" class="vc-vehicle-img">
-        <img src="${img?.url || ''}" alt="${img?.alt || v.model}" loading="lazy">
+        <img src="${img?.url || ""}" alt="${img?.alt || v.model}" loading="lazy">
       </a>
       <div class="vc-vehicle-info">
         <h3 class="vc-vehicle-name"><a href="${detailPath}?id=${v.id}">${v.model}</a></h3>
@@ -351,19 +354,19 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     const key = row.children[0]?.textContent?.trim().toLowerCase();
     const value = row.children[1]?.textContent?.trim();
-    if (key === 'detail-page' && value) detailPath = value;
+    if (key === "detail-page" && value) detailPath = value;
   });
-  block.textContent = '';
+  block.textContent = "";
 
   // Get vehicle IDs from URL
   const params = new URLSearchParams(window.location.search);
-  const ids = (params.get('ids') || '').split(',').filter(Boolean);
+  const ids = (params.get("ids") || "").split(",").filter(Boolean);
 
   if (ids.length < 2) {
     block.append(
       el(
-        'div',
-        'vc-error',
+        "div",
+        "vc-error",
         `
       <h2>Select vehicles to compare</h2>
       <p>Choose at least 2 vehicles from the search results to see a side-by-side comparison.</p>
@@ -375,7 +378,7 @@ export default async function decorate(block) {
   }
 
   // Header
-  const header = el('div', 'vc-header');
+  const header = el("div", "vc-header");
   header.innerHTML = `
     <a href="/used-cars/inventory" class="vc-back-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -396,8 +399,8 @@ export default async function decorate(block) {
   } catch (err) {
     skeleton.replaceWith(
       el(
-        'div',
-        'vc-error',
+        "div",
+        "vc-error",
         `<p>Unable to load comparison. Please try again later.</p><p class="vc-error-detail">${err.message}</p>`,
       ),
     );
@@ -407,21 +410,21 @@ export default async function decorate(block) {
   if (vehicles.length < 2) {
     skeleton.replaceWith(
       el(
-        'div',
-        'vc-error',
-        '<p>Could not load comparison data. Please try again.</p>',
+        "div",
+        "vc-error",
+        "<p>Could not load comparison data. Please try again.</p>",
       ),
     );
     return;
   }
 
   // Render vehicle cards and specs immediately
-  const wrapper = el('div', 'vc-content');
+  const wrapper = el("div", "vc-content");
   wrapper.append(renderVehicleCards(vehicles, detailPath));
   wrapper.append(renderSpecTable(vehicles));
 
   // Finance placeholder with skeleton
-  const financePlaceholder = el('div', 'vc-finance vc-finance--loading');
+  const financePlaceholder = el("div", "vc-finance vc-finance--loading");
   financePlaceholder.innerHTML = `
     <h3 class="vc-finance-title">Finance Comparison</h3>
     <div class="vc-finance-grid">
@@ -438,13 +441,17 @@ export default async function decorate(block) {
   // Load finance and AI in parallel, populate when ready
   const [aiData, ...financeResults] = await Promise.all([
     queryAPI(AI_SUMMARY_QUERY, { ids }).catch(() => null),
-    ...ids.map((vid) => queryAPI(FINANCE_QUERY, { vehicleId: vid })
-      .then((d) => d.vehicleFinanceQuotes || [])
-      .catch(() => [])),
+    ...ids.map((vid) =>
+      queryAPI(FINANCE_QUERY, { vehicleId: vid })
+        .then((d) => d.vehicleFinanceQuotes || [])
+        .catch(() => []),
+    ),
   ]);
 
   // Replace finance skeleton with real content
-  financePlaceholder.replaceWith(renderFinanceComparison(vehicles, financeResults));
+  financePlaceholder.replaceWith(
+    renderFinanceComparison(vehicles, financeResults),
+  );
 
   // Populate AI insights
   populateInsights(insightsSection, aiData?.compareVehicleSummary || null);
