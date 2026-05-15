@@ -386,6 +386,13 @@
     font-size: 0.875rem;
 }
 
+.vehicle-compare .vc-finance--loading .vc-skeleton-shimmer {
+    background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+    background-size: 200% 100%;
+    animation: vc-shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+
 .vehicle-compare .vc-finance-tabs {
     display: flex;
     gap: 0;
