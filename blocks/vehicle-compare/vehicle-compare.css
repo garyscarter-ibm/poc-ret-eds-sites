@@ -3,7 +3,8 @@
 .vehicle-compare {
     max-width: var(--content-width, 1200px);
     margin: 0 auto;
-    padding: var(--spacing-l, 40px) var(--spacing-m, 24px);
+    padding: var(--spacing-xl, 48px) var(--spacing-m, 24px);
+    font-family: var(--body-font-family, sans-serif);
 }
 
 /* ---------- Header ---------- */
@@ -16,14 +17,14 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
-    color: #666;
+    font-size: var(--body-font-size-s, 0.875rem);
+    color: var(--color-text-light, #666);
     text-decoration: none;
-    margin-bottom: 12px;
+    margin-bottom: var(--spacing-s, 16px);
 }
 
 .vehicle-compare .vc-back-link:hover {
-    color: #1b69d4;
+    color: var(--color-bmw-blue, #1c69d4);
 }
 
 .vehicle-compare .vc-back-link svg {
@@ -31,8 +32,8 @@
 }
 
 .vehicle-compare .vc-title {
-    font-size: 28px;
-    font-weight: 400;
+    font-size: var(--heading-font-size-l, 1.5rem);
+    font-weight: var(--heading-font-weight-light, 300);
     margin: 0;
     color: var(--color-text, #262626);
 }
@@ -171,13 +172,45 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: var(--heading-font-size-s, 1.125rem);
+    font-weight: 700;
     color: var(--color-text, #262626);
 }
 
 .vehicle-compare .vc-insights-badge svg {
-    color: #1b69d4;
+    color: var(--color-bmw-blue, #1c69d4);
+}
+
+.vehicle-compare .vc-insights-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--color-background-grey, #f5f5f5);
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.vehicle-compare .vc-tab {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    background: none;
+    font-size: var(--body-font-size-s, 0.875rem);
+    font-family: var(--body-font-family, sans-serif);
+    font-weight: 400;
+    color: var(--color-text-light, #666);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.vehicle-compare .vc-tab:hover {
+    color: var(--color-text, #262626);
+}
+
+.vehicle-compare .vc-tab--active {
+    background: var(--color-white, #fff);
+    color: var(--color-text, #262626);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    font-weight: 700;
 }
 
 .vehicle-compare .vc-insights-content {
@@ -187,10 +220,10 @@
 }
 
 .vehicle-compare .vc-insight-card {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 8px;
-    padding: 20px 24px;
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-background-grey, #e8e8e8);
+    border-radius: 4px;
+    padding: var(--spacing-m, 24px);
     transition: box-shadow 0.2s;
 }
 
@@ -203,21 +236,17 @@
     overflow: hidden;
 }
 
-.vehicle-compare .vc-insight-icon {
-    margin-right: 4px;
-}
-
 .vehicle-compare .vc-insight-title {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: var(--body-font-size-s, 0.875rem);
+    font-weight: 700;
     margin: 0 0 8px;
     color: var(--color-text, #262626);
 }
 
 .vehicle-compare .vc-insight-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #444;
+    font-size: var(--body-font-size-s, 0.875rem);
+    line-height: var(--body-line-height, 1.5);
+    color: var(--color-text-light, #666);
     margin: 0;
 }
 
@@ -255,22 +284,24 @@
 .vehicle-compare .vc-btn {
     display: inline-flex;
     align-items: center;
-    padding: 12px 24px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: var(--button-padding, 12px 24px);
+    border-radius: var(--button-border-radius, 0);
+    font-size: var(--button-font-size, 0.8125rem);
     font-family: var(--body-font-family, sans-serif);
+    font-weight: var(--button-font-weight, 700);
+    letter-spacing: var(--button-letter-spacing, 0.39px);
     text-decoration: none;
     cursor: pointer;
     border: none;
 }
 
 .vehicle-compare .vc-btn--primary {
-    background: #1c1c1c;
-    color: #fff;
+    background: var(--color-text, #262626);
+    color: var(--color-white, #fff);
 }
 
 .vehicle-compare .vc-btn--primary:hover {
-    background: #333;
+    background: #4d4d4d;
 }
 
 /* ---------- Skeleton ---------- */
@@ -323,6 +354,6 @@
     }
 
     .vehicle-compare .vc-title {
-        font-size: 32px;
+        font-size: var(--heading-font-size-xl, 2rem);
     }
 }

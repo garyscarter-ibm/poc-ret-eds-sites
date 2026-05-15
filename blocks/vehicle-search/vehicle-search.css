@@ -11,9 +11,10 @@ main > .section.vehicle-search-container {
 }
 
 .vehicle-search {
-    max-width: 1400px;
+    max-width: var(--content-width, 1200px);
     margin: 0 auto;
     padding: var(--spacing-m, 24px) var(--spacing-m, 24px) 0;
+    font-family: var(--body-font-family, sans-serif);
 }
 
 /* ---------- Toolbar ---------- */
@@ -28,21 +29,21 @@ main > .section.vehicle-search-container {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #1b69d4;
+    font-size: var(--body-font-size-s, 0.875rem);
+    font-weight: 700;
+    color: var(--color-bmw-blue, #1c69d4);
     text-decoration: none;
     padding: 8px 16px;
-    border: 1px solid #1b69d4;
-    border-radius: 4px;
+    border: 1px solid var(--color-bmw-blue, #1c69d4);
+    border-radius: 0;
     transition:
         background 0.2s,
         color 0.2s;
 }
 
 .vehicle-search .vehicle-search-garage-link:hover {
-    background: #1b69d4;
-    color: #fff;
+    background: var(--color-bmw-blue, #1c69d4);
+    color: var(--color-white, #fff);
 }
 
 .vehicle-search .vehicle-search-garage-link svg {

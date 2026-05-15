@@ -223,7 +223,8 @@ main > .section.vehicle-detail-container {
     border-color: #1b69d4;
 }
 
-.vehicle-detail .vd-heart-btn img {
+.vehicle-detail .vd-heart-btn img,
+.vehicle-detail .vd-heart-btn svg {
     width: 20px;
     height: 20px;
 }

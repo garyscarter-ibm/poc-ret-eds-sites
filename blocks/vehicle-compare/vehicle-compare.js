@@ -47,12 +47,17 @@ function el(tag, cls, html) {
 /* ---------- AI Insights (backend-powered) ---------- */
 
 const AI_SECTIONS = [
-  { key: "overview", title: "Overview", icon: "📋" },
-  { key: "keyDifferences", title: "Key Differences", icon: "⚡" },
-  { key: "targetBuyer", title: "Who Is It For?", icon: "👤" },
-  { key: "valueAssessment", title: "Value Assessment", icon: "💰" },
-  { key: "recommendation", title: "Recommendation", icon: "✅" },
+  { key: "overview", title: "Overview" },
+  { key: "keyDifferences", title: "Key Differences" },
+  { key: "targetBuyer", title: "Who Is It For" },
+  { key: "valueAssessment", title: "Value Assessment" },
+  { key: "recommendation", title: "Recommendation" },
 ];
+
+const PERSONA_FILTERS = {
+  lifestyle: ["overview", "targetBuyer", "valueAssessment", "recommendation"],
+  russell: ["overview", "keyDifferences", "valueAssessment", "recommendation"],
+};
 
 /* ---------- Skeleton ---------- */
 
@@ -136,6 +141,10 @@ function renderInsightsSection() {
     <div class="vc-insights-badge">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       AI Comparison Insights
+    </div>
+    <div class="vc-insights-tabs">
+      <button type="button" class="vc-tab vc-tab--active" data-persona="lifestyle">Lifestyle</button>
+      <button type="button" class="vc-tab" data-persona="russell">Russell</button>
     </div>`;
   section.append(header);
 
@@ -152,21 +161,35 @@ function renderInsightsSection() {
 
 function populateInsights(section, summaryData) {
   const content = section.querySelector(".vc-insights-content");
-  content.innerHTML = "";
 
-  if (!summaryData) {
-    content.innerHTML =
-      '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
-    return;
+  function renderCards(persona) {
+    content.innerHTML = "";
+    if (!summaryData) {
+      content.innerHTML =
+        '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
+      return;
+    }
+    const keys = PERSONA_FILTERS[persona] || PERSONA_FILTERS.lifestyle;
+    AI_SECTIONS.filter(({ key }) => keys.includes(key)).forEach(({ key, title }) => {
+      const text = summaryData[key];
+      if (!text) return;
+      const card = el("div", "vc-insight-card");
+      card.innerHTML = `<h4 class="vc-insight-title">${title}</h4><p class="vc-insight-text">${text}</p>`;
+      content.append(card);
+    });
   }
 
-  AI_SECTIONS.forEach(({ key, title, icon }) => {
-    const text = summaryData[key];
-    if (!text) return;
-    const card = el("div", "vc-insight-card");
-    card.innerHTML = `<h4 class="vc-insight-title"><span class="vc-insight-icon">${icon}</span> ${title}</h4><p class="vc-insight-text">${text}</p>`;
-    content.append(card);
+  // Tab switching
+  section.querySelector(".vc-insights-tabs").addEventListener("click", (e) => {
+    const tab = e.target.closest(".vc-tab");
+    if (!tab) return;
+    section.querySelectorAll(".vc-tab").forEach((t) => t.classList.remove("vc-tab--active"));
+    tab.classList.add("vc-tab--active");
+    renderCards(tab.dataset.persona);
   });
+
+  // Initial render
+  renderCards("lifestyle");
 }
 
 /* ---------- Vehicle Header Cards ---------- */
@@ -225,7 +248,7 @@ export default async function decorate(block) {
   // Header
   const header = el("div", "vc-header");
   header.innerHTML = `
-    <a href="/used-cars/search" class="vc-back-link">
+    <a href="/used-cars/inventory" class="vc-back-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Back to search
     </a>

@@ -139,6 +139,10 @@ const knownPages = new Set([
   '/used-cars/inventory/',
   '/used-cars/vehicle',
   '/used-cars/vehicle/',
+  '/used-cars/garage',
+  '/used-cars/garage/',
+  '/used-cars/compare',
+  '/used-cars/compare/',
 ]);
 
 // Nav links that use "#" as placeholder but should point to real pages
