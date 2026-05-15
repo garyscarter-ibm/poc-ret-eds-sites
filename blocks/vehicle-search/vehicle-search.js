@@ -740,18 +740,20 @@ export default async function decorate(block) {
     }
   };
 
-  // Load garage IDs + initial search in parallel
+  // Load garage IDs then fetch results (non-blocking so section is revealed immediately)
   const params = getSearchParams();
   const userId = getUserId();
 
-  try {
-    const garageData = await queryAPI(GARAGE_IDS_QUERY, { userId });
-    savedIds = new Set(garageData.garageVehicleIds || []);
-  } catch {
-    // Non-critical — continue without saved state
-  }
-
-  await fetchAndRender(params);
+  const initialLoad = async () => {
+    try {
+      const garageData = await queryAPI(GARAGE_IDS_QUERY, { userId });
+      savedIds = new Set(garageData.garageVehicleIds || []);
+    } catch {
+      // Non-critical — continue without saved state
+    }
+    await fetchAndRender(params);
+  };
+  initialLoad();
 
   // Handle browser back/forward
   window.addEventListener('popstate', () => {

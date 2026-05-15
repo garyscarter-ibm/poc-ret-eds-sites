@@ -135,6 +135,10 @@ const knownPages = new Set([
   '/brochures/s1000rr/hp-parts/',
   '/brochures/s1000rr/rider-service',
   '/brochures/s1000rr/rider-service/',
+  '/used-cars/inventory',
+  '/used-cars/inventory/',
+  '/used-cars/vehicle',
+  '/used-cars/vehicle/',
 ]);
 
 // Nav links that use "#" as placeholder but should point to real pages
