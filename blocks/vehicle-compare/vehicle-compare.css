@@ -199,7 +199,9 @@
     font-weight: 400;
     color: var(--color-text-light, #666);
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition:
+        background 0.2s,
+        color 0.2s;
 }
 
 .vehicle-compare .vc-tab:hover {

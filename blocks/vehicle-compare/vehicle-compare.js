@@ -170,20 +170,24 @@ function populateInsights(section, summaryData) {
       return;
     }
     const keys = PERSONA_FILTERS[persona] || PERSONA_FILTERS.lifestyle;
-    AI_SECTIONS.filter(({ key }) => keys.includes(key)).forEach(({ key, title }) => {
-      const text = summaryData[key];
-      if (!text) return;
-      const card = el("div", "vc-insight-card");
-      card.innerHTML = `<h4 class="vc-insight-title">${title}</h4><p class="vc-insight-text">${text}</p>`;
-      content.append(card);
-    });
+    AI_SECTIONS.filter(({ key }) => keys.includes(key)).forEach(
+      ({ key, title }) => {
+        const text = summaryData[key];
+        if (!text) return;
+        const card = el("div", "vc-insight-card");
+        card.innerHTML = `<h4 class="vc-insight-title">${title}</h4><p class="vc-insight-text">${text}</p>`;
+        content.append(card);
+      },
+    );
   }
 
   // Tab switching
   section.querySelector(".vc-insights-tabs").addEventListener("click", (e) => {
     const tab = e.target.closest(".vc-tab");
     if (!tab) return;
-    section.querySelectorAll(".vc-tab").forEach((t) => t.classList.remove("vc-tab--active"));
+    section
+      .querySelectorAll(".vc-tab")
+      .forEach((t) => t.classList.remove("vc-tab--active"));
     tab.classList.add("vc-tab--active");
     renderCards(tab.dataset.persona);
   });
