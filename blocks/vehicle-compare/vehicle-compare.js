@@ -153,7 +153,7 @@ function renderInsightsSection() {
     </div>
     <div class="vc-insights-tabs">
       <button type="button" class="vc-tab vc-tab--active" data-persona="lifestyle">Lifestyle</button>
-      <button type="button" class="vc-tab" data-persona="russell">Russell</button>
+      <button type="button" class="vc-tab" data-persona="russell">Russell Mode 🏎️</button>
     </div>`;
   section.append(header);
 
