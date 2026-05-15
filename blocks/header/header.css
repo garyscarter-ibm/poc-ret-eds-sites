@@ -6,6 +6,7 @@ header .header:not(:has(.nav-wrapper)) {
 /* Header container - transparent overlay */
 header {
     height: 64px;
+    background-color: #1c1c1c;
 }
 
 header .nav-wrapper {

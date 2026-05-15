@@ -68,6 +68,26 @@
       {
         "name": "Brochure Stats (Mixed)",
         "path": "/docs/library/brochure-stats-mixed"
+      },
+      {
+        "name": "Hero Search",
+        "path": "/docs/library/hero-search"
+      },
+      {
+        "name": "Vehicle Search",
+        "path": "/docs/library/vehicle-search"
+      },
+      {
+        "name": "Vehicle Detail",
+        "path": "/docs/library/vehicle-detail"
+      },
+      {
+        "name": "Finance Calculator",
+        "path": "/docs/library/finance-calculator"
+      },
+      {
+        "name": "Vehicle Enquiry",
+        "path": "/docs/library/vehicle-enquiry"
       }
     ]
   },
@@ -80,6 +100,14 @@
       {
         "name": "MINI Dealer Homepage",
         "path": "/templates/mini-homepage"
+      },
+      {
+        "name": "Used Cars Search",
+        "path": "/templates/used-cars-search"
+      },
+      {
+        "name": "Used Cars Detail",
+        "path": "/templates/used-cars-detail"
       }
     ]
   }
