@@ -359,4 +359,103 @@
     .vehicle-compare .vc-title {
         font-size: var(--heading-font-size-xl, 2rem);
     }
+
+    .vehicle-compare .vc-finance-row {
+        grid-template-columns: 180px repeat(auto-fit, minmax(0, 1fr));
+    }
+}
+
+/* ---------- Finance Comparison ---------- */
+
+.vehicle-compare .vc-finance {
+    background: #1c1c1c;
+    color: #fff;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.vehicle-compare .vc-finance-title {
+    font-family: var(--body-font-family, 'BMWTypeNextLatin', sans-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem;
+}
+
+.vehicle-compare .vc-finance-empty {
+    color: #999;
+    font-size: 0.875rem;
+}
+
+.vehicle-compare .vc-finance-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+}
+
+.vehicle-compare .vc-finance-tab {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.vehicle-compare .vc-finance-tab:hover {
+    color: #fff;
+}
+
+.vehicle-compare .vc-finance-tab--active {
+    color: #fff;
+    border-bottom-color: var(--color-bmw-blue, #1c69d4);
+}
+
+.vehicle-compare .vc-finance-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.vehicle-compare .vc-finance-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #333;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    color: #ccc;
+}
+
+.vehicle-compare .vc-finance-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #2a2a2a;
+    font-size: 0.875rem;
+}
+
+.vehicle-compare .vc-finance-row--diff {
+    background: rgba(28, 105, 212, 0.08);
+}
+
+.vehicle-compare .vc-finance-label-col {
+    color: #999;
+    font-weight: 600;
+}
+
+.vehicle-compare .vc-finance-vehicle-col,
+.vehicle-compare .vc-finance-value-col {
+    color: #fff;
+    text-align: right;
+}
+
+.vehicle-compare .vc-finance-disclaimer {
+    color: #666;
+    font-size: 0.75rem;
+    margin-top: 1rem;
 }
