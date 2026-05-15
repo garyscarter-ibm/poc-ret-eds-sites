@@ -97,22 +97,27 @@ function renderGallery(images) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
   const gallery = el("div", "vd-gallery");
 
-  // Main image
-  const main = el("div", "vd-gallery-main");
-  const mainImg = document.createElement("img");
-  mainImg.src = sorted[0]?.url || "";
-  mainImg.alt = sorted[0]?.alt || "Vehicle image";
-  mainImg.loading = "eager";
-  main.append(mainImg);
+  const chevronLeft = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const chevronRight = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  // Navigation arrows
+  // Main image area with crossfade layers
+  const main = el("div", "vd-gallery-main");
+  const imgCurrent = document.createElement("img");
+  imgCurrent.className = "vd-gallery-img vd-gallery-img--active";
+  imgCurrent.src = sorted[0]?.url || "";
+  imgCurrent.alt = sorted[0]?.alt || "Vehicle image";
+  imgCurrent.loading = "eager";
+  const imgNext = document.createElement("img");
+  imgNext.className = "vd-gallery-img";
+  imgNext.loading = "eager";
+  main.append(imgCurrent, imgNext);
+
+  // Navigation arrows (inline SVG, no circles)
   const prevBtn = el("button", "vd-gallery-nav vd-gallery-prev");
-  prevBtn.innerHTML =
-    '<img src="/icons/chevron-left.svg" alt="Previous" width="24" height="24">';
+  prevBtn.innerHTML = chevronLeft;
   prevBtn.setAttribute("aria-label", "Previous image");
   const nextBtn = el("button", "vd-gallery-nav vd-gallery-next");
-  nextBtn.innerHTML =
-    '<img src="/icons/chevron-right.svg" alt="Next" width="24" height="24">';
+  nextBtn.innerHTML = chevronRight;
   nextBtn.setAttribute("aria-label", "Next image");
   main.append(prevBtn, nextBtn);
 
@@ -135,17 +140,38 @@ function renderGallery(images) {
   });
   gallery.append(thumbStrip);
 
-  // Gallery logic
+  // Gallery logic with crossfade
   let current = 0;
+  let transitioning = false;
+
   function goTo(idx) {
-    current = (idx + sorted.length) % sorted.length;
-    mainImg.src = sorted[current].url;
-    mainImg.alt = sorted[current].alt || `Image ${current + 1}`;
-    counter.textContent = `${current + 1} / ${sorted.length}`;
+    const next = (idx + sorted.length) % sorted.length;
+    if (next === current || transitioning) return;
+    transitioning = true;
+
+    // Prepare next image behind
+    imgNext.src = sorted[next].url;
+    imgNext.alt = sorted[next].alt || `Image ${next + 1}`;
+    imgNext.classList.add("vd-gallery-img--active");
+
+    // Fade out current
+    imgCurrent.classList.add("vd-gallery-img--fading");
+
+    setTimeout(() => {
+      // Swap: put new image in the current layer
+      imgCurrent.src = sorted[next].url;
+      imgCurrent.alt = sorted[next].alt || `Image ${next + 1}`;
+      imgCurrent.classList.remove("vd-gallery-img--fading");
+      imgNext.classList.remove("vd-gallery-img--active");
+      current = next;
+      transitioning = false;
+    }, 350);
+
+    // Update counter and thumbs immediately
+    counter.textContent = `${next + 1} / ${sorted.length}`;
     thumbStrip.querySelectorAll(".vd-thumb").forEach((t, i) => {
-      t.classList.toggle("active", i === current);
+      t.classList.toggle("active", i === next);
     });
-    // Scroll active thumb into view
     const activeThumb = thumbStrip.querySelector(".vd-thumb.active");
     if (activeThumb) {
       activeThumb.scrollIntoView({
@@ -609,9 +635,7 @@ export default async function decorate(block) {
   const dealer = renderDealer(vehicle.dealer);
   if (dealer) block.append(dealer);
 
-  block.append(renderEnquiryForm(vehicleId, vehicle.model));
-
-  // Dynamically load finance calculator block (not authored on page)
+  // Dynamically load finance calculator block (before enquiry form)
   if (vehicle.financeAvailable) {
     const fcWrapper = el("div", "finance-calculator block");
     fcWrapper.dataset.blockName = "finance-calculator";
@@ -623,6 +647,8 @@ export default async function decorate(block) {
     const fcModule = await import("../finance-calculator/finance-calculator.js"); // eslint-disable-line import/no-unresolved
     await fcModule.default(fcWrapper);
   }
+
+  block.append(renderEnquiryForm(vehicleId, vehicle.model));
 
   // Auto-scroll to enquiry form if hash is #enquire
   if (window.location.hash === "#enquire") {

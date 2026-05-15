@@ -415,13 +415,28 @@ function renderSpecsGrid(vehicle) {
   return grid;
 }
 
-function renderVehicleCard(vehicle, isSaved, onToggleSave, detailPath) {
+function renderVehicleCard(vehicle, isSaved, onToggleSave, detailPath, compareSet, onCompareToggle) {
   const card = document.createElement('article');
   card.className = 'vehicle-card';
   card.dataset.vehicleId = vehicle.id;
 
   // Image carousel
   card.append(renderImageCarousel(vehicle.images || [], vehicle.videoUrl));
+
+  // Compare button (top-right overlay on image)
+  const compareBtn = document.createElement('button');
+  compareBtn.type = 'button';
+  const isCompared = compareSet.has(vehicle.id);
+  compareBtn.className = `vehicle-card-compare${isCompared ? ' vehicle-card-compare--active' : ''}`;
+  compareBtn.innerHTML = isCompared
+    ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Compare'
+    : '+ Compare';
+  compareBtn.setAttribute('aria-label', isCompared ? 'Remove from comparison' : 'Add to comparison');
+  compareBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    onCompareToggle(vehicle.id, compareBtn);
+  });
+  card.querySelector('.vehicle-card-image').append(compareBtn);
 
   // Badge
   if (vehicle.badges && vehicle.badges.length) {
@@ -605,6 +620,60 @@ export default async function decorate(block) {
   // Garage state (saved vehicle IDs)
   let savedIds = new Set();
 
+  // Compare state
+  const compareIds = new Set();
+  const MAX_COMPARE = 4;
+
+  // Compare bar (sticky bottom)
+  const compareBar = document.createElement('div');
+  compareBar.className = 'vehicle-search-compare-bar';
+  compareBar.hidden = true;
+  compareBar.innerHTML = `
+    <span class="compare-bar-text"></span>
+    <div class="compare-bar-actions">
+      <button type="button" class="compare-bar-clear">Clear</button>
+      <a class="compare-bar-btn" href="#">Compare (<span class="compare-bar-count">0</span>)</a>
+    </div>`;
+  document.body.append(compareBar);
+
+  function updateCompareBar() {
+    const count = compareIds.size;
+    compareBar.hidden = count === 0;
+    compareBar.querySelector('.compare-bar-text').textContent = `${count} vehicle${count !== 1 ? 's' : ''} selected for comparison`;
+    compareBar.querySelector('.compare-bar-count').textContent = count;
+    compareBar.querySelector('.compare-bar-btn').href = `/used-cars/compare?ids=${[...compareIds].join(',')}`;
+    if (count >= 2) {
+      compareBar.querySelector('.compare-bar-btn').classList.remove('compare-bar-btn--disabled');
+    } else {
+      compareBar.querySelector('.compare-bar-btn').classList.add('compare-bar-btn--disabled');
+    }
+  }
+
+  compareBar.querySelector('.compare-bar-clear').addEventListener('click', () => {
+    compareIds.clear();
+    block.querySelectorAll('.vehicle-card-compare--active').forEach((btn) => {
+      btn.classList.remove('vehicle-card-compare--active');
+      btn.innerHTML = '+ Compare';
+    });
+    updateCompareBar();
+  });
+
+  const handleCompareToggle = (vehicleId, btn) => {
+    if (compareIds.has(vehicleId)) {
+      compareIds.delete(vehicleId);
+      btn.classList.remove('vehicle-card-compare--active');
+      btn.innerHTML = '+ Compare';
+      btn.setAttribute('aria-label', 'Add to comparison');
+    } else {
+      if (compareIds.size >= MAX_COMPARE) return;
+      compareIds.add(vehicleId);
+      btn.classList.add('vehicle-card-compare--active');
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Compare';
+      btn.setAttribute('aria-label', 'Remove from comparison');
+    }
+    updateCompareBar();
+  };
+
   // Toggle save/unsave
   const handleToggleSave = async (vehicleId, btn) => {
     const toggleUserId = getUserId();
@@ -707,6 +776,8 @@ export default async function decorate(block) {
           isSaved,
           handleToggleSave,
           detailPath,
+          compareIds,
+          handleCompareToggle,
         );
         results.append(card);
       });
