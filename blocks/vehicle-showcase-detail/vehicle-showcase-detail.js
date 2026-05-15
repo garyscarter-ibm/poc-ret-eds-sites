@@ -1,4 +1,4 @@
-import queryAPI from '../../scripts/used-cars-api.js';
+import queryAPI from "../../scripts/used-cars-api.js";
 import {
   formatPrice,
   formatMileage,
@@ -10,8 +10,8 @@ import {
   formatTopSpeed,
   formatDrivetrain,
   formatMonthly,
-} from '../../scripts/used-cars-config.js';
-import { loadCSS } from '../../scripts/aem.js';
+} from "../../scripts/used-cars-config.js";
+import { loadCSS } from "../../scripts/aem.js";
 
 /* ---------- GraphQL ---------- */
 
@@ -41,9 +41,12 @@ function getVehicleImages(vehicle) {
   return [...vehicle.images].sort((a, b) => a.order - b.order);
 }
 
-const SVG_CHEVRON_LEFT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
-const SVG_CHEVRON_RIGHT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
-const SVG_ARROW_LEFT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
+const SVG_CHEVRON_LEFT =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>';
+const SVG_CHEVRON_RIGHT =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>';
+const SVG_ARROW_LEFT =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>';
 
 /* ---------- State ---------- */
 
@@ -55,9 +58,9 @@ let blockEl;
 /* ---------- Swipe dots ---------- */
 
 function updateSwipeDots() {
-  const dots = blockEl.querySelectorAll('.vsd-swipe-dot');
+  const dots = blockEl.querySelectorAll(".vsd-swipe-dot");
   dots.forEach((dot, i) => {
-    dot.classList.toggle('vsd-dot-active', i === currentIdIndex);
+    dot.classList.toggle("vsd-dot-active", i === currentIdIndex);
   });
 }
 
@@ -65,45 +68,70 @@ function updateSwipeDots() {
 
 function renderVehicle(vehicle) {
   const images = getVehicleImages(vehicle);
-  const heroImage = images.length ? images[0] : { url: '', alt: '' };
+  const heroImage = images.length ? images[0] : { url: "", alt: "" };
 
   const monthlyHtml = vehicle.estimatedMonthlyPayment
     ? `<span class="vsd-price-monthly">${formatMonthly(vehicle.estimatedMonthlyPayment)} PCP</span>`
-    : '';
+    : "";
 
   const specsHtml = [
-    vehicle.mileage != null ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Mileage</div><div class="vsd-spec-value">${formatMileage(vehicle.mileage)}</div></div>` : '',
-    vehicle.registrationDate ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Registered</div><div class="vsd-spec-value">${formatDate(vehicle.registrationDate)}</div></div>` : '',
-    vehicle.fuelType ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Fuel</div><div class="vsd-spec-value">${formatFuelType(vehicle.fuelType)}</div></div>` : '',
-    vehicle.transmission ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Transmission</div><div class="vsd-spec-value">${formatTransmission(vehicle.transmission)}</div></div>` : '',
-    vehicle.power ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Power</div><div class="vsd-spec-value">${formatPower(vehicle.power)}</div></div>` : '',
-    vehicle.acceleration ? `<div class="vsd-spec-card"><div class="vsd-spec-label">0-62 mph</div><div class="vsd-spec-value">${formatAcceleration(vehicle.acceleration)}</div></div>` : '',
-    vehicle.topSpeed ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Top Speed</div><div class="vsd-spec-value">${formatTopSpeed(vehicle.topSpeed)}</div></div>` : '',
-    vehicle.drivetrain ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Drivetrain</div><div class="vsd-spec-value">${formatDrivetrain(vehicle.drivetrain)}</div></div>` : '',
-  ].filter(Boolean).join('');
+    vehicle.mileage != null
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Mileage</div><div class="vsd-spec-value">${formatMileage(vehicle.mileage)}</div></div>`
+      : "",
+    vehicle.registrationDate
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Registered</div><div class="vsd-spec-value">${formatDate(vehicle.registrationDate)}</div></div>`
+      : "",
+    vehicle.fuelType
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Fuel</div><div class="vsd-spec-value">${formatFuelType(vehicle.fuelType)}</div></div>`
+      : "",
+    vehicle.transmission
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Transmission</div><div class="vsd-spec-value">${formatTransmission(vehicle.transmission)}</div></div>`
+      : "",
+    vehicle.power
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Power</div><div class="vsd-spec-value">${formatPower(vehicle.power)}</div></div>`
+      : "",
+    vehicle.acceleration
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">0-62 mph</div><div class="vsd-spec-value">${formatAcceleration(vehicle.acceleration)}</div></div>`
+      : "",
+    vehicle.topSpeed
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Top Speed</div><div class="vsd-spec-value">${formatTopSpeed(vehicle.topSpeed)}</div></div>`
+      : "",
+    vehicle.drivetrain
+      ? `<div class="vsd-spec-card"><div class="vsd-spec-label">Drivetrain</div><div class="vsd-spec-value">${formatDrivetrain(vehicle.drivetrain)}</div></div>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
 
-  const featuresHtml = vehicle.standardFeatures && vehicle.standardFeatures.length
-    ? `<div class="vsd-features">
+  const featuresHtml =
+    vehicle.standardFeatures && vehicle.standardFeatures.length
+      ? `<div class="vsd-features">
         <p class="vsd-features-title">Standard Features</p>
         <div class="vsd-features-grid">
-          ${vehicle.standardFeatures.map((f) => `<span class="vsd-feature-pill">${f}</span>`).join('')}
+          ${vehicle.standardFeatures.map((f) => `<span class="vsd-feature-pill">${f}</span>`).join("")}
         </div>
       </div>`
-    : '';
+      : "";
 
-  const galleryHtml = images.length > 1
-    ? `<div class="vsd-gallery">
+  const galleryHtml =
+    images.length > 1
+      ? `<div class="vsd-gallery">
         <div class="vsd-gallery-grid">
-          ${images.slice(1, 7).map((img) => `
+          ${images
+            .slice(1, 7)
+            .map(
+              (img) => `
             <div class="vsd-gallery-item">
               <img src="${img.url}" alt="${img.alt || vehicle.model}" loading="lazy" />
             </div>
-          `).join('')}
+          `,
+            )
+            .join("")}
         </div>
       </div>`
-    : '';
+      : "";
 
-  const content = el('div', 'vsd-vehicle');
+  const content = el("div", "vsd-vehicle");
   content.innerHTML = `
     <div class="vsd-hero">
       <img src="${heroImage.url}" alt="${heroImage.alt || vehicle.model}" />
@@ -111,7 +139,7 @@ function renderVehicle(vehicle) {
       <div class="vsd-hero-glow"></div>
     </div>
     <div class="vsd-title-area">
-      <span class="vsd-series-badge">${vehicle.series || ''}</span>
+      <span class="vsd-series-badge">${vehicle.series || ""}</span>
       <h1 class="vsd-model-name">${vehicle.model}</h1>
       <div class="vsd-price-row">
         <span class="vsd-price-main">${formatPrice(vehicle.price)}</span>
@@ -134,10 +162,11 @@ async function transitionToVehicle(direction) {
   isTransitioning = true;
 
   let nextIndex;
-  if (direction === 'next') {
+  if (direction === "next") {
     nextIndex = (currentIdIndex + 1) % vehicleIds.length;
   } else {
-    nextIndex = currentIdIndex === 0 ? vehicleIds.length - 1 : currentIdIndex - 1;
+    nextIndex =
+      currentIdIndex === 0 ? vehicleIds.length - 1 : currentIdIndex - 1;
   }
 
   const nextId = vehicleIds[nextIndex];
@@ -150,25 +179,29 @@ async function transitionToVehicle(direction) {
       return;
     }
 
-    const container = blockEl.querySelector('.vsd-slide-container');
-    const currentContent = container.querySelector('.vsd-vehicle');
+    const container = blockEl.querySelector(".vsd-slide-container");
+    const currentContent = container.querySelector(".vsd-vehicle");
 
-    const outClass = direction === 'next' ? 'vsd-sliding-out-left' : 'vsd-sliding-out-right';
+    const outClass =
+      direction === "next" ? "vsd-sliding-out-left" : "vsd-sliding-out-right";
     if (currentContent) currentContent.classList.add(outClass);
 
-    await new Promise((resolve) => { setTimeout(resolve, 400); });
+    await new Promise((resolve) => {
+      setTimeout(resolve, 400);
+    });
 
     currentIdIndex = nextIndex;
     const newContent = renderVehicle(nextVehicle);
-    const inClass = direction === 'next' ? 'vsd-sliding-in-left' : 'vsd-sliding-in-right';
+    const inClass =
+      direction === "next" ? "vsd-sliding-in-left" : "vsd-sliding-in-right";
     newContent.classList.add(inClass);
 
     if (currentContent) currentContent.remove();
     container.appendChild(newContent);
 
     const url = new URL(window.location);
-    url.searchParams.set('id', nextId);
-    window.history.replaceState({}, '', url);
+    url.searchParams.set("id", nextId);
+    window.history.replaceState({}, "", url);
 
     updateSwipeDots();
 
@@ -178,7 +211,7 @@ async function transitionToVehicle(direction) {
     }, 600);
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error('Failed to load next vehicle:', err);
+    console.error("Failed to load next vehicle:", err);
     isTransitioning = false;
   }
 }
@@ -186,39 +219,44 @@ async function transitionToVehicle(direction) {
 /* ---------- Build page structure ---------- */
 
 function buildDetailPage(block, vehicle) {
-  block.innerHTML = '';
+  block.innerHTML = "";
   blockEl = block;
 
   // Back link
-  const back = el('a', 'vsd-back');
-  back.href = '/used-cars/vehicle-showcase';
+  const back = el("a", "vsd-back");
+  back.href = "/used-cars/vehicle-showcase";
   back.innerHTML = `${SVG_ARROW_LEFT}<span>Back</span>`;
   block.appendChild(back);
 
   // Swipe nav arrows
   if (vehicleIds.length > 1) {
-    const prevBtn = el('button', 'vsd-swipe-nav vsd-swipe-prev');
+    const prevBtn = el("button", "vsd-swipe-nav vsd-swipe-prev");
     prevBtn.innerHTML = SVG_CHEVRON_LEFT;
-    prevBtn.setAttribute('aria-label', 'Previous vehicle');
-    prevBtn.addEventListener('click', () => transitionToVehicle('prev'));
+    prevBtn.setAttribute("aria-label", "Previous vehicle");
+    prevBtn.addEventListener("click", () => transitionToVehicle("prev"));
     block.appendChild(prevBtn);
 
-    const nextBtn = el('button', 'vsd-swipe-nav vsd-swipe-next');
+    const nextBtn = el("button", "vsd-swipe-nav vsd-swipe-next");
     nextBtn.innerHTML = SVG_CHEVRON_RIGHT;
-    nextBtn.setAttribute('aria-label', 'Next vehicle');
-    nextBtn.addEventListener('click', () => transitionToVehicle('next'));
+    nextBtn.setAttribute("aria-label", "Next vehicle");
+    nextBtn.addEventListener("click", () => transitionToVehicle("next"));
     block.appendChild(nextBtn);
   }
 
   // Slide container
-  const slideContainer = el('div', 'vsd-slide-container');
+  const slideContainer = el("div", "vsd-slide-container");
   slideContainer.appendChild(renderVehicle(vehicle));
   block.appendChild(slideContainer);
 
   // Swipe indicator
   if (vehicleIds.length > 1) {
-    const indicator = el('div', 'vsd-swipe-indicator');
-    const dotsHtml = vehicleIds.map((_, i) => `<div class="vsd-swipe-dot ${i === currentIdIndex ? 'vsd-dot-active' : ''}"></div>`).join('');
+    const indicator = el("div", "vsd-swipe-indicator");
+    const dotsHtml = vehicleIds
+      .map(
+        (_, i) =>
+          `<div class="vsd-swipe-dot ${i === currentIdIndex ? "vsd-dot-active" : ""}"></div>`,
+      )
+      .join("");
     indicator.innerHTML = `
       <span class="vsd-swipe-indicator-text">Swipe to browse</span>
       <div class="vsd-swipe-dots">${dotsHtml}</div>
@@ -227,7 +265,7 @@ function buildDetailPage(block, vehicle) {
   }
 
   // Action bar
-  const actionBar = el('div', 'vsd-action-bar');
+  const actionBar = el("div", "vsd-action-bar");
   actionBar.innerHTML = `
     <div class="vsd-action-inner">
       <div class="vsd-action-ctas">
@@ -242,31 +280,39 @@ function buildDetailPage(block, vehicle) {
 /* ---------- Keyboard & touch ---------- */
 
 function setupInteractions(block) {
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') transitionToVehicle('next');
-    else if (e.key === 'ArrowLeft') transitionToVehicle('prev');
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") transitionToVehicle("next");
+    else if (e.key === "ArrowLeft") transitionToVehicle("prev");
   });
 
   let startX = 0;
   let startY = 0;
   let tracking = false;
 
-  block.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    tracking = true;
-  }, { passive: true });
+  block.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    },
+    { passive: true },
+  );
 
-  block.addEventListener('touchend', (e) => {
-    if (!tracking) return;
-    tracking = false;
-    const dx = e.changedTouches[0].clientX - startX;
-    const dy = e.changedTouches[0].clientY - startY;
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
-      if (dx < 0) transitionToVehicle('next');
-      else transitionToVehicle('prev');
-    }
-  }, { passive: true });
+  block.addEventListener(
+    "touchend",
+    (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) transitionToVehicle("next");
+        else transitionToVehicle("prev");
+      }
+    },
+    { passive: true },
+  );
 }
 
 /* ---------- Decorate (entry point) ---------- */
@@ -275,16 +321,17 @@ export default async function decorate(block) {
   await loadCSS(`${window.hlx.codeBasePath}/styles/showcase-theme.css`);
 
   const params = new URLSearchParams(window.location.search);
-  const vehicleId = params.get('id');
+  const vehicleId = params.get("id");
 
   if (!vehicleId) {
-    block.innerHTML = '<div class="vsd-loading"><p class="vsd-loading-text">No vehicle specified.</p></div>';
+    block.innerHTML =
+      '<div class="vsd-loading"><p class="vsd-loading-text">No vehicle specified.</p></div>';
     return;
   }
 
   // Read stored vehicle IDs for swipe-between
   try {
-    const stored = sessionStorage.getItem('showcase-vehicle-ids');
+    const stored = sessionStorage.getItem("showcase-vehicle-ids");
     if (stored) {
       vehicleIds = JSON.parse(stored);
       currentIdIndex = vehicleIds.indexOf(vehicleId);
@@ -301,22 +348,25 @@ export default async function decorate(block) {
     currentIdIndex = 0;
   }
 
-  block.innerHTML = '<div class="vsd-loading"><p class="vsd-loading-text">Loading...</p></div>';
+  block.innerHTML =
+    '<div class="vsd-loading"><p class="vsd-loading-text">Loading...</p></div>';
 
   try {
     const data = await queryAPI(VEHICLE_QUERY, { id: vehicleId });
     const vehicle = data.usedVehicle;
 
     if (!vehicle) {
-      block.innerHTML = '<div class="vsd-loading"><p class="vsd-loading-text">Vehicle not found.</p></div>';
+      block.innerHTML =
+        '<div class="vsd-loading"><p class="vsd-loading-text">Vehicle not found.</p></div>';
       return;
     }
 
     buildDetailPage(block, vehicle);
     setupInteractions(block);
   } catch (err) {
-    block.innerHTML = '<div class="vsd-loading"><p class="vsd-loading-text">Failed to load vehicle details.</p></div>';
+    block.innerHTML =
+      '<div class="vsd-loading"><p class="vsd-loading-text">Failed to load vehicle details.</p></div>';
     // eslint-disable-next-line no-console
-    console.error('Showcase detail error:', err);
+    console.error("Showcase detail error:", err);
   }
 }
