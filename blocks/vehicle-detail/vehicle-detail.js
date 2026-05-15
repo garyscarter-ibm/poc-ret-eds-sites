@@ -1,4 +1,4 @@
-import queryAPI from "../../scripts/used-cars-api.js";
+import queryAPI from '../../scripts/used-cars-api.js';
 import {
   formatPrice,
   formatMileage,
@@ -15,7 +15,7 @@ import {
   formatDrivetrain,
   formatMonthly,
   getUserId,
-} from "../../scripts/used-cars-config.js";
+} from '../../scripts/used-cars-config.js';
 
 /* ---------- GraphQL Queries ---------- */
 
@@ -56,7 +56,7 @@ function el(tag, cls, html) {
 }
 
 function specRow(label, value) {
-  if (!value || value === "—") return "";
+  if (!value || value === '—') return '';
   return `<div class="vd-spec-row"><span class="vd-spec-label">${label}</span><span class="vd-spec-value">${value}</span></div>`;
 }
 
@@ -91,48 +91,46 @@ function renderError(block, message) {
 
 function renderGallery(images) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
-  const gallery = el("div", "vd-gallery");
+  const gallery = el('div', 'vd-gallery');
 
-  const chevronLeft =
-    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const chevronRight =
-    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const chevronLeft = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const chevronRight = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   // Main image area with crossfade layers
-  const main = el("div", "vd-gallery-main");
-  const imgCurrent = document.createElement("img");
-  imgCurrent.className = "vd-gallery-img vd-gallery-img--active";
-  imgCurrent.src = sorted[0]?.url || "";
-  imgCurrent.alt = sorted[0]?.alt || "Vehicle image";
-  imgCurrent.loading = "eager";
-  const imgNext = document.createElement("img");
-  imgNext.className = "vd-gallery-img";
-  imgNext.loading = "eager";
+  const main = el('div', 'vd-gallery-main');
+  const imgCurrent = document.createElement('img');
+  imgCurrent.className = 'vd-gallery-img vd-gallery-img--active';
+  imgCurrent.src = sorted[0]?.url || '';
+  imgCurrent.alt = sorted[0]?.alt || 'Vehicle image';
+  imgCurrent.loading = 'eager';
+  const imgNext = document.createElement('img');
+  imgNext.className = 'vd-gallery-img';
+  imgNext.loading = 'eager';
   main.append(imgCurrent, imgNext);
 
   // Navigation arrows (inline SVG, no circles)
-  const prevBtn = el("button", "vd-gallery-nav vd-gallery-prev");
+  const prevBtn = el('button', 'vd-gallery-nav vd-gallery-prev');
   prevBtn.innerHTML = chevronLeft;
-  prevBtn.setAttribute("aria-label", "Previous image");
-  const nextBtn = el("button", "vd-gallery-nav vd-gallery-next");
+  prevBtn.setAttribute('aria-label', 'Previous image');
+  const nextBtn = el('button', 'vd-gallery-nav vd-gallery-next');
   nextBtn.innerHTML = chevronRight;
-  nextBtn.setAttribute("aria-label", "Next image");
+  nextBtn.setAttribute('aria-label', 'Next image');
   main.append(prevBtn, nextBtn);
 
   // Counter
-  const counter = el("div", "vd-gallery-counter", `1 / ${sorted.length}`);
+  const counter = el('div', 'vd-gallery-counter', `1 / ${sorted.length}`);
   main.append(counter);
 
   gallery.append(main);
 
   // Thumbnails
-  const thumbStrip = el("div", "vd-gallery-thumbs");
+  const thumbStrip = el('div', 'vd-gallery-thumbs');
   sorted.forEach((img, i) => {
-    const thumb = document.createElement("img");
+    const thumb = document.createElement('img');
     thumb.src = img.url;
     thumb.alt = img.alt || `Image ${i + 1}`;
-    thumb.loading = "lazy";
-    thumb.className = i === 0 ? "vd-thumb active" : "vd-thumb";
+    thumb.loading = 'lazy';
+    thumb.className = i === 0 ? 'vd-thumb active' : 'vd-thumb';
     thumb.dataset.index = i;
     thumbStrip.append(thumb);
   });
@@ -150,39 +148,39 @@ function renderGallery(images) {
     // Prepare next image behind
     imgNext.src = sorted[next].url;
     imgNext.alt = sorted[next].alt || `Image ${next + 1}`;
-    imgNext.classList.add("vd-gallery-img--active");
+    imgNext.classList.add('vd-gallery-img--active');
 
     // Fade out current
-    imgCurrent.classList.add("vd-gallery-img--fading");
+    imgCurrent.classList.add('vd-gallery-img--fading');
 
     setTimeout(() => {
       // Swap: put new image in the current layer
       imgCurrent.src = sorted[next].url;
       imgCurrent.alt = sorted[next].alt || `Image ${next + 1}`;
-      imgCurrent.classList.remove("vd-gallery-img--fading");
-      imgNext.classList.remove("vd-gallery-img--active");
+      imgCurrent.classList.remove('vd-gallery-img--fading');
+      imgNext.classList.remove('vd-gallery-img--active');
       current = next;
       transitioning = false;
     }, 350);
 
     // Update counter and thumbs immediately
     counter.textContent = `${next + 1} / ${sorted.length}`;
-    thumbStrip.querySelectorAll(".vd-thumb").forEach((t, i) => {
-      t.classList.toggle("active", i === next);
+    thumbStrip.querySelectorAll('.vd-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === next);
     });
-    const activeThumb = thumbStrip.querySelector(".vd-thumb.active");
+    const activeThumb = thumbStrip.querySelector('.vd-thumb.active');
     if (activeThumb) {
       activeThumb.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
       });
     }
   }
 
-  prevBtn.addEventListener("click", () => goTo(current - 1));
-  nextBtn.addEventListener("click", () => goTo(current + 1));
-  thumbStrip.addEventListener("click", (e) => {
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  thumbStrip.addEventListener('click', (e) => {
     if (e.target.dataset.index != null) goTo(Number(e.target.dataset.index));
   });
 
@@ -192,26 +190,26 @@ function renderGallery(images) {
 /* ---------- Key Facts Bar ---------- */
 
 function renderKeyFacts(vehicle) {
-  const facts = el("div", "vd-key-facts");
+  const facts = el('div', 'vd-key-facts');
   const items = [
-    { label: "Mileage", value: formatMileage(vehicle.mileage) },
-    { label: "Registered", value: formatDate(vehicle.registrationDate) },
-    { label: "Fuel", value: formatFuelType(vehicle.fuelType) },
-    { label: "Transmission", value: formatTransmission(vehicle.transmission) },
-    { label: "Drivetrain", value: formatDrivetrain(vehicle.drivetrain) },
+    { label: 'Mileage', value: formatMileage(vehicle.mileage) },
+    { label: 'Registered', value: formatDate(vehicle.registrationDate) },
+    { label: 'Fuel', value: formatFuelType(vehicle.fuelType) },
+    { label: 'Transmission', value: formatTransmission(vehicle.transmission) },
+    { label: 'Drivetrain', value: formatDrivetrain(vehicle.drivetrain) },
     {
-      label: "Body",
+      label: 'Body',
       value: vehicle.bodyType
         ? vehicle.bodyType.charAt(0) + vehicle.bodyType.slice(1).toLowerCase()
-        : "—",
+        : '—',
     },
   ];
   items.forEach(({ label, value }) => {
-    if (value && value !== "—") {
+    if (value && value !== '—') {
       facts.append(
         el(
-          "div",
-          "vd-fact",
+          'div',
+          'vd-fact',
           `<span class="vd-fact-label">${label}</span><span class="vd-fact-value">${value}</span>`,
         ),
       );
@@ -223,43 +221,40 @@ function renderKeyFacts(vehicle) {
 /* ---------- Overview / Header ---------- */
 
 function renderOverview(vehicle, isSaved, onToggleSave) {
-  const overview = el("div", "vd-overview");
+  const overview = el('div', 'vd-overview');
 
   // Left column: title + details
-  const left = el("div", "vd-overview-left");
-  const h1 = el("h1", "vd-title", vehicle.model);
+  const left = el('div', 'vd-overview-left');
+  const h1 = el('h1', 'vd-title', vehicle.model);
   left.append(h1);
 
-  const details = el("div", "vd-overview-details");
-  if (vehicle.colour)
-    details.append(el("span", "vd-detail-tag", vehicle.colour));
-  if (vehicle.upholstery)
-    details.append(el("span", "vd-detail-tag", vehicle.upholstery));
-  if (vehicle.registrationNumber)
-    details.append(el("span", "vd-detail-tag", vehicle.registrationNumber));
+  const details = el('div', 'vd-overview-details');
+  if (vehicle.colour) details.append(el('span', 'vd-detail-tag', vehicle.colour));
+  if (vehicle.upholstery) details.append(el('span', 'vd-detail-tag', vehicle.upholstery));
+  if (vehicle.registrationNumber) details.append(el('span', 'vd-detail-tag', vehicle.registrationNumber));
   left.append(details);
   overview.append(left);
 
   // Right column: price card
-  const right = el("div", "vd-price-card");
+  const right = el('div', 'vd-price-card');
   right.innerHTML = `
     <div class="vd-price">${formatPrice(vehicle.price)}</div>
-    ${vehicle.estimatedMonthlyPayment ? `<div class="vd-monthly">From ${formatMonthly(vehicle.estimatedMonthlyPayment)} PCP</div>` : ""}
+    ${vehicle.estimatedMonthlyPayment ? `<div class="vd-monthly">From ${formatMonthly(vehicle.estimatedMonthlyPayment)} PCP</div>` : ''}
     <div class="vd-price-ctas">
       <a href="#enquire" class="vd-btn vd-btn--primary">Enquire Now</a>
       <a href="#enquire" class="vd-btn vd-btn--secondary">Book a Test Drive</a>
     </div>`;
 
   // Heart/save button
-  const heartBtn = el("button", `vd-heart-btn${isSaved ? " saved" : ""}`);
+  const heartBtn = el('button', `vd-heart-btn${isSaved ? ' saved' : ''}`);
   heartBtn.innerHTML = isSaved
     ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="#1b69d4" stroke="#1b69d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
     : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
   heartBtn.setAttribute(
-    "aria-label",
-    isSaved ? "Remove from saved" : "Save vehicle",
+    'aria-label',
+    isSaved ? 'Remove from saved' : 'Save vehicle',
   );
-  heartBtn.addEventListener("click", () => onToggleSave(heartBtn));
+  heartBtn.addEventListener('click', () => onToggleSave(heartBtn));
   right.append(heartBtn);
 
   overview.append(right);
@@ -269,73 +264,73 @@ function renderOverview(vehicle, isSaved, onToggleSave) {
 /* ---------- Specifications ---------- */
 
 function renderSpecs(vehicle) {
-  const section = el("div", "vd-specs");
+  const section = el('div', 'vd-specs');
   section.innerHTML = '<h2 class="vd-section-title">Specifications</h2>';
 
-  const tabs = el("div", "vd-tabs");
-  const tabNav = el("div", "vd-tab-nav");
-  const tabPanels = el("div", "vd-tab-panels");
+  const tabs = el('div', 'vd-tabs');
+  const tabNav = el('div', 'vd-tab-nav');
+  const tabPanels = el('div', 'vd-tab-panels');
 
   const tabData = [
     {
-      id: "performance",
-      label: "Performance",
+      id: 'performance',
+      label: 'Performance',
       content: [
-        specRow("Power", formatPower(vehicle.power)),
-        specRow("Torque", formatTorque(vehicle.torque)),
-        specRow("0-62 mph", formatAcceleration(vehicle.acceleration)),
-        specRow("Top Speed", formatTopSpeed(vehicle.topSpeed)),
-        specRow("Insurance Group", vehicle.insuranceGroup),
-      ].join(""),
+        specRow('Power', formatPower(vehicle.power)),
+        specRow('Torque', formatTorque(vehicle.torque)),
+        specRow('0-62 mph', formatAcceleration(vehicle.acceleration)),
+        specRow('Top Speed', formatTopSpeed(vehicle.topSpeed)),
+        specRow('Insurance Group', vehicle.insuranceGroup),
+      ].join(''),
     },
     {
-      id: "efficiency",
-      label: "Efficiency",
+      id: 'efficiency',
+      label: 'Efficiency',
       content: [
         specRow(
-          "CO₂ Emissions",
+          'CO₂ Emissions',
           vehicle.co2Emissions ? `${vehicle.co2Emissions} g/km` : null,
         ),
         specRow(
-          "MPG (Combined)",
+          'MPG (Combined)',
           vehicle.mpgCombined ? `${vehicle.mpgCombined} mpg` : null,
         ),
         specRow(
-          "MPG (Urban)",
+          'MPG (Urban)',
           vehicle.mpgUrban ? `${vehicle.mpgUrban} mpg` : null,
         ),
         specRow(
-          "MPG (Extra Urban)",
+          'MPG (Extra Urban)',
           vehicle.mpgExtraUrban ? `${vehicle.mpgExtraUrban} mpg` : null,
         ),
         specRow(
-          "Electric Range",
+          'Electric Range',
           vehicle.electricRange ? `${vehicle.electricRange} miles` : null,
         ),
         specRow(
-          "Electric Range (City)",
+          'Electric Range (City)',
           vehicle.electricRangeCity
             ? `${vehicle.electricRangeCity} miles`
             : null,
         ),
         specRow(
-          "Energy Consumption",
+          'Energy Consumption',
           vehicle.energyConsumption
             ? `${vehicle.energyConsumption} kWh/100km`
             : null,
         ),
-      ].join(""),
+      ].join(''),
     },
     {
-      id: "dimensions",
-      label: "Dimensions",
+      id: 'dimensions',
+      label: 'Dimensions',
       content: [
-        specRow("Length", formatDimension(vehicle.length)),
-        specRow("Width", formatDimension(vehicle.width)),
-        specRow("Height", formatDimension(vehicle.height)),
-        specRow("Weight", formatWeight(vehicle.weight)),
-        specRow("Boot Volume", formatVolume(vehicle.bootVolume)),
-      ].join(""),
+        specRow('Length', formatDimension(vehicle.length)),
+        specRow('Width', formatDimension(vehicle.width)),
+        specRow('Height', formatDimension(vehicle.height)),
+        specRow('Weight', formatWeight(vehicle.weight)),
+        specRow('Boot Volume', formatVolume(vehicle.bootVolume)),
+      ].join(''),
     },
   ];
 
@@ -344,35 +339,35 @@ function renderSpecs(vehicle) {
 
   activeTabs.forEach((tab, i) => {
     const btn = el(
-      "button",
-      `vd-tab-btn${i === 0 ? " active" : ""}`,
+      'button',
+      `vd-tab-btn${i === 0 ? ' active' : ''}`,
       tab.label,
     );
     btn.dataset.tab = tab.id;
-    btn.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
     tabNav.append(btn);
 
-    const panel = el("div", `vd-tab-panel${i === 0 ? " active" : ""}`);
+    const panel = el('div', `vd-tab-panel${i === 0 ? ' active' : ''}`);
     panel.dataset.tab = tab.id;
     panel.innerHTML = tab.content;
     tabPanels.append(panel);
   });
 
-  tabNav.addEventListener("click", (e) => {
-    const btn = e.target.closest(".vd-tab-btn");
+  tabNav.addEventListener('click', (e) => {
+    const btn = e.target.closest('.vd-tab-btn');
     if (!btn) return;
-    tabNav.querySelectorAll(".vd-tab-btn").forEach((b) => {
-      b.classList.remove("active");
-      b.setAttribute("aria-selected", "false");
+    tabNav.querySelectorAll('.vd-tab-btn').forEach((b) => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
     });
     tabPanels
-      .querySelectorAll(".vd-tab-panel")
-      .forEach((p) => p.classList.remove("active"));
-    btn.classList.add("active");
-    btn.setAttribute("aria-selected", "true");
+      .querySelectorAll('.vd-tab-panel')
+      .forEach((p) => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
     tabPanels
       .querySelector(`[data-tab="${btn.dataset.tab}"]`)
-      .classList.add("active");
+      .classList.add('active');
   });
 
   tabs.append(tabNav, tabPanels);
@@ -385,29 +380,23 @@ function renderSpecs(vehicle) {
 function renderFeatures(vehicle) {
   const { standardFeatures, optionalPacks } = vehicle;
   if (
-    (!standardFeatures || !standardFeatures.length) &&
-    (!optionalPacks || !optionalPacks.length)
-  )
-    return null;
+    (!standardFeatures || !standardFeatures.length)
+    && (!optionalPacks || !optionalPacks.length)
+  ) return null;
 
-  const section = el("div", "vd-features");
-  section.innerHTML =
-    '<h2 class="vd-section-title">Features &amp; Equipment</h2>';
+  const section = el('div', 'vd-features');
+  section.innerHTML = '<h2 class="vd-section-title">Features &amp; Equipment</h2>';
 
   if (standardFeatures && standardFeatures.length) {
-    const list = el("div", "vd-features-list");
-    standardFeatures.forEach((f) =>
-      list.append(el("span", "vd-feature-pill", f)),
-    );
-    section.append(el("h3", "vd-features-subtitle", "Standard Features"), list);
+    const list = el('div', 'vd-features-list');
+    standardFeatures.forEach((f) => list.append(el('span', 'vd-feature-pill', f)));
+    section.append(el('h3', 'vd-features-subtitle', 'Standard Features'), list);
   }
 
   if (optionalPacks && optionalPacks.length) {
-    const list = el("div", "vd-features-list");
-    optionalPacks.forEach((p) =>
-      list.append(el("span", "vd-feature-pill vd-feature-pill--highlight", p)),
-    );
-    section.append(el("h3", "vd-features-subtitle", "Optional Packs"), list);
+    const list = el('div', 'vd-features-list');
+    optionalPacks.forEach((p) => list.append(el('span', 'vd-feature-pill vd-feature-pill--highlight', p)));
+    section.append(el('h3', 'vd-features-subtitle', 'Optional Packs'), list);
   }
 
   return section;
@@ -417,14 +406,14 @@ function renderFeatures(vehicle) {
 
 function renderDealer(dealer) {
   if (!dealer) return null;
-  const section = el("div", "vd-dealer");
+  const section = el('div', 'vd-dealer');
   section.innerHTML = `
     <h2 class="vd-section-title">Dealer</h2>
     <div class="vd-dealer-card">
       <h3 class="vd-dealer-name">${dealer.name}</h3>
-      ${dealer.address ? `<p class="vd-dealer-address">${dealer.address}${dealer.postcode ? `, ${dealer.postcode}` : ""}</p>` : ""}
-      ${dealer.phone ? `<a href="tel:${dealer.phone}" class="vd-dealer-phone">${dealer.phone}</a>` : ""}
-      ${dealer.latitude && dealer.longitude ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${dealer.latitude},${dealer.longitude}" target="_blank" rel="noopener" class="vd-btn vd-btn--secondary vd-dealer-directions">Get Directions</a>` : ""}
+      ${dealer.address ? `<p class="vd-dealer-address">${dealer.address}${dealer.postcode ? `, ${dealer.postcode}` : ''}</p>` : ''}
+      ${dealer.phone ? `<a href="tel:${dealer.phone}" class="vd-dealer-phone">${dealer.phone}</a>` : ''}
+      ${dealer.latitude && dealer.longitude ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${dealer.latitude},${dealer.longitude}" target="_blank" rel="noopener" class="vd-btn vd-btn--secondary vd-dealer-directions">Get Directions</a>` : ''}
     </div>`;
   return section;
 }
@@ -432,12 +421,11 @@ function renderDealer(dealer) {
 /* ---------- Back Navigation ---------- */
 
 function renderBackLink() {
-  const nav = el("div", "vd-back");
-  const link = el("a", "vd-back-link", "← Back to search results");
-  link.href =
-    document.referrer && document.referrer.includes("/used-cars/")
-      ? document.referrer
-      : "/used-cars/inventory";
+  const nav = el('div', 'vd-back');
+  const link = el('a', 'vd-back-link', '← Back to search results');
+  link.href = document.referrer && document.referrer.includes('/used-cars/')
+    ? document.referrer
+    : '/used-cars/inventory';
   nav.append(link);
   return nav;
 }
@@ -446,12 +434,12 @@ function renderBackLink() {
 
 export default async function decorate(block) {
   const params = new URLSearchParams(window.location.search);
-  const vehicleId = params.get("id");
+  const vehicleId = params.get('id');
 
   if (!vehicleId) {
     renderError(
       block,
-      "No vehicle ID provided. Please select a vehicle from the search results.",
+      'No vehicle ID provided. Please select a vehicle from the search results.',
     );
     return;
   }
@@ -469,17 +457,16 @@ export default async function decorate(block) {
       queryAPI(GARAGE_IDS, { userId }),
     ]);
 
-    if (vehicleData.status === "rejected" || !vehicleData.value?.usedVehicle) {
+    if (vehicleData.status === 'rejected' || !vehicleData.value?.usedVehicle) {
       renderError(
         block,
-        "This vehicle could not be found. It may have been sold or removed.",
+        'This vehicle could not be found. It may have been sold or removed.',
       );
       return;
     }
 
     vehicle = vehicleData.value.usedVehicle;
-    if (garageData.status === "fulfilled")
-      garageIds = garageData.value?.garageVehicleIds || [];
+    if (garageData.status === 'fulfilled') garageIds = garageData.value?.garageVehicleIds || [];
   } catch (err) {
     renderError(block, `Failed to load vehicle details. ${err.message}`);
     return;
@@ -489,20 +476,20 @@ export default async function decorate(block) {
   document.title = `${vehicle.model} | BMW Used Cars`;
 
   // Clear skeleton and render
-  block.textContent = "";
+  block.textContent = '';
   const isSaved = garageIds.includes(vehicleId);
 
   // Toggle save handler
   async function onToggleSave(btn) {
     const userId = getUserId();
-    const currentlySaved = btn.classList.contains("saved");
-    btn.classList.toggle("saved");
+    const currentlySaved = btn.classList.contains('saved');
+    btn.classList.toggle('saved');
     btn.innerHTML = currentlySaved
       ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
       : '<svg width="24" height="24" viewBox="0 0 24 24" fill="#1b69d4" stroke="#1b69d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
     btn.setAttribute(
-      "aria-label",
-      currentlySaved ? "Save vehicle" : "Remove from saved",
+      'aria-label',
+      currentlySaved ? 'Save vehicle' : 'Remove from saved',
     );
     try {
       if (currentlySaved) {

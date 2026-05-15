@@ -1,0 +1,718 @@
+/* ============================================================
+   Vehicle Showcase — Selection Page (Forza Horizon style)
+   Full-viewport dark immersive vehicle browsing with filter tabs
+   ============================================================ */
+
+/* ---------- Full-page layout ---------- */
+
+.vehicle-showcase {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--showcase-black, #000);
+  color: var(--showcase-text, #fff);
+  overflow: hidden;
+  font-family: var(--body-font-family, 'BMWTypeNextLatin', sans-serif);
+}
+
+/* ---------- Ambient backdrop ---------- */
+
+.vehicle-showcase .vs-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.vehicle-showcase .vs-backdrop-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.25) blur(var(--showcase-blur-heavy, 40px));
+  transform: scale(1.15);
+  transition: opacity var(--showcase-duration-slow) var(--showcase-easing);
+  opacity: 1;
+}
+
+.vehicle-showcase .vs-backdrop-image.vs-exiting {
+  opacity: 0;
+}
+
+.vehicle-showcase .vs-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(28 105 212 / 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(28 105 212 / 0.15), transparent 60%),
+    linear-gradient(to bottom, rgba(0 0 0 / 0.4), rgba(0 0 0 / 0.8));
+}
+
+/* ---------- Header bar ---------- */
+
+.vehicle-showcase .vs-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  animation: showcase-fade-in var(--showcase-duration) var(--showcase-easing) both;
+}
+
+.vehicle-showcase .vs-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vehicle-showcase .vs-header-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-showcase .vs-header-logo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.vehicle-showcase .vs-header-title {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--showcase-text-muted);
+}
+
+.vehicle-showcase .vs-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.vehicle-showcase .vs-header-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--showcase-border);
+  background: none;
+  color: var(--showcase-text);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+}
+
+.vehicle-showcase .vs-header-btn:hover {
+  background: var(--showcase-text);
+  color: var(--showcase-black);
+  border-color: var(--showcase-text);
+}
+
+/* ---------- Filter tabs ---------- */
+
+.vehicle-showcase .vs-filters {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 32px 16px;
+  animation: showcase-slide-up var(--showcase-duration) var(--showcase-easing) 0.2s both;
+}
+
+.vehicle-showcase .vs-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--showcase-surface);
+  border: 1px solid var(--showcase-border);
+  backdrop-filter: blur(var(--showcase-blur));
+}
+
+.vehicle-showcase .vs-filter-tab {
+  padding: 8px 20px;
+  border: none;
+  background: none;
+  color: var(--showcase-text-muted);
+  font-size: 12px;
+  font-family: inherit;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+  white-space: nowrap;
+}
+
+.vehicle-showcase .vs-filter-tab:hover {
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-filter-tab.vs-active {
+  background: var(--showcase-accent);
+  color: var(--showcase-text);
+  box-shadow: 0 0 20px var(--showcase-accent-glow);
+}
+
+.vehicle-showcase .vs-filter-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--showcase-border);
+  margin: 0 8px;
+}
+
+/* ---------- Main content area ---------- */
+
+.vehicle-showcase .vs-main {
+  position: relative;
+  z-index: 5;
+  height: calc(100dvh - 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Navigation arrows ---------- */
+
+.vehicle-showcase .vs-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  background: none;
+  border: 2px solid var(--showcase-border-active);
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+}
+
+.vehicle-showcase .vs-nav:hover {
+  border-color: var(--showcase-text);
+  background: rgba(255 255 255 / 0.08);
+  box-shadow: 0 0 30px var(--showcase-accent-glow);
+}
+
+.vehicle-showcase .vs-nav svg {
+  width: 28px;
+  height: 28px;
+  color: var(--showcase-text);
+  transition: transform var(--showcase-duration-fast) var(--showcase-easing);
+}
+
+.vehicle-showcase .vs-nav:hover svg {
+  transform: scale(1.2);
+}
+
+.vehicle-showcase .vs-nav--prev {
+  left: 24px;
+}
+
+.vehicle-showcase .vs-nav--next {
+  right: 24px;
+}
+
+/* ---------- Hero vehicle display ---------- */
+
+.vehicle-showcase .vs-hero {
+  position: relative;
+  width: 100%;
+  max-width: var(--showcase-content-max);
+  margin: 0 auto;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+}
+
+.vehicle-showcase .vs-hero-image-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-showcase .vs-hero-image {
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  filter: drop-shadow(0 0 60px var(--showcase-accent-glow));
+  animation: showcase-scale-in var(--showcase-duration-slow) var(--showcase-easing-spring) both;
+}
+
+.vehicle-showcase .vs-hero-image.vs-entering {
+  animation: showcase-scale-in 0.7s var(--showcase-easing-spring) both;
+}
+
+.vehicle-showcase .vs-hero-image.vs-exiting {
+  animation: showcase-scale-out 0.4s var(--showcase-easing) both;
+}
+
+/* ---------- Left info panel ---------- */
+
+.vehicle-showcase .vs-info-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 280px;
+  animation: showcase-slide-in-left var(--showcase-duration) var(--showcase-easing) 0.3s both;
+}
+
+.vehicle-showcase .vs-info-left.vs-entering {
+  animation: showcase-slide-in-left var(--showcase-duration) var(--showcase-easing) both;
+}
+
+.vehicle-showcase .vs-accent-bar {
+  width: 3px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--showcase-accent), transparent);
+  margin-bottom: 16px;
+}
+
+.vehicle-showcase .vs-series {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--showcase-accent);
+  margin-bottom: 8px;
+}
+
+.vehicle-showcase .vs-model {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--showcase-text);
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.vehicle-showcase .vs-year {
+  font-size: 14px;
+  color: var(--showcase-text-muted);
+  margin-bottom: 24px;
+}
+
+.vehicle-showcase .vs-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vehicle-showcase .vs-spec-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.vehicle-showcase .vs-spec-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--showcase-text-dim);
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.vehicle-showcase .vs-spec-value {
+  font-size: 16px;
+  color: var(--showcase-text);
+}
+
+/* ---------- Right price panel ---------- */
+
+.vehicle-showcase .vs-info-right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: right;
+  animation: showcase-slide-in-right var(--showcase-duration) var(--showcase-easing) 0.3s both;
+}
+
+.vehicle-showcase .vs-info-right.vs-entering {
+  animation: showcase-slide-in-right var(--showcase-duration) var(--showcase-easing) both;
+}
+
+.vehicle-showcase .vs-price-label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--showcase-text-muted);
+  margin-bottom: 12px;
+}
+
+.vehicle-showcase .vs-price {
+  position: relative;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-price-glow {
+  position: absolute;
+  inset: -16px;
+  background: linear-gradient(90deg, var(--showcase-accent-glow), transparent);
+  filter: blur(20px);
+  z-index: -1;
+  border-radius: 8px;
+}
+
+.vehicle-showcase .vs-monthly {
+  font-size: 14px;
+  color: var(--showcase-text-muted);
+  margin-top: 8px;
+}
+
+.vehicle-showcase .vs-location {
+  font-size: 13px;
+  color: var(--showcase-text-dim);
+  margin-top: 12px;
+}
+
+/* ---------- Bottom thumbnail carousel ---------- */
+
+.vehicle-showcase .vs-carousel {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 24px;
+  animation: showcase-slide-up var(--showcase-duration) var(--showcase-easing) 0.4s both;
+}
+
+.vehicle-showcase .vs-carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: none;
+}
+
+.vehicle-showcase .vs-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.vehicle-showcase .vs-thumb {
+  flex-shrink: 0;
+  width: 120px;
+  height: 72px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--showcase-border);
+  cursor: pointer;
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+}
+
+.vehicle-showcase .vs-thumb:hover {
+  border-color: var(--showcase-border-active);
+  transform: translateY(-3px);
+}
+
+.vehicle-showcase .vs-thumb.vs-thumb--active {
+  border: 2px solid var(--showcase-accent);
+  box-shadow: 0 0 25px var(--showcase-accent-glow);
+  transform: scale(1.08);
+}
+
+.vehicle-showcase .vs-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vehicle-showcase .vs-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0 0 0 / 0.7), transparent);
+}
+
+.vehicle-showcase .vs-thumb-name {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  right: 6px;
+  font-size: 9px;
+  color: var(--showcase-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Progress dots */
+.vehicle-showcase .vs-progress {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.vehicle-showcase .vs-dot {
+  height: 2px;
+  width: 16px;
+  background: var(--showcase-border);
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+}
+
+.vehicle-showcase .vs-dot.vs-dot--active {
+  width: 32px;
+  background: var(--showcase-accent);
+}
+
+/* ---------- Bottom action bar ---------- */
+
+.vehicle-showcase .vs-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  border-top: 1px solid var(--showcase-border);
+  background: rgba(0 0 0 / 0.6);
+  backdrop-filter: blur(var(--showcase-blur));
+  animation: showcase-slide-up var(--showcase-duration) var(--showcase-easing) 0.5s both;
+}
+
+.vehicle-showcase .vs-action-inner {
+  max-width: var(--showcase-content-max);
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vehicle-showcase .vs-action-ctas {
+  display: flex;
+  gap: 12px;
+}
+
+.vehicle-showcase .vs-cta {
+  padding: 12px 32px;
+  font-size: 11px;
+  font-family: inherit;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--showcase-duration-fast) var(--showcase-easing);
+  border: none;
+}
+
+.vehicle-showcase .vs-cta--primary {
+  background: var(--showcase-accent);
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-cta--primary:hover {
+  background: var(--showcase-accent-hover);
+  box-shadow: 0 0 30px var(--showcase-accent-glow);
+}
+
+.vehicle-showcase .vs-cta--secondary {
+  background: none;
+  border: 2px solid var(--showcase-text);
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-cta--secondary:hover {
+  background: var(--showcase-text);
+  color: var(--showcase-black);
+}
+
+.vehicle-showcase .vs-cta--tertiary {
+  background: none;
+  border: 2px solid var(--showcase-border);
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-cta--tertiary:hover {
+  border-color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--showcase-text);
+}
+
+.vehicle-showcase .vs-counter-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--showcase-text-dim);
+}
+
+.vehicle-showcase .vs-counter-current {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.vehicle-showcase .vs-counter-sep {
+  color: var(--showcase-text-dim);
+}
+
+.vehicle-showcase .vs-counter-total {
+  font-size: 18px;
+  color: var(--showcase-text-muted);
+}
+
+/* ---------- Loading state ---------- */
+
+.vehicle-showcase .vs-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.vehicle-showcase .vs-loading-content {
+  text-align: center;
+}
+
+.vehicle-showcase .vs-loading-bar {
+  width: 200px;
+  height: 2px;
+  background: var(--showcase-surface);
+  margin: 16px auto 0;
+  overflow: hidden;
+}
+
+.vehicle-showcase .vs-loading-bar::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: var(--showcase-accent);
+  animation: showcase-shimmer 1.2s infinite;
+}
+
+/* ---------- Responsive: Mobile ---------- */
+
+@media (max-width: 599px) {
+  .vehicle-showcase .vs-header {
+    padding: 16px;
+  }
+
+  .vehicle-showcase .vs-header-actions {
+    display: none;
+  }
+
+  .vehicle-showcase .vs-filters {
+    padding: 0 16px 12px;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .vehicle-showcase .vs-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .vehicle-showcase .vs-nav--prev {
+    left: 8px;
+  }
+
+  .vehicle-showcase .vs-nav--next {
+    right: 8px;
+  }
+
+  .vehicle-showcase .vs-hero {
+    padding: 0 56px;
+  }
+
+  .vehicle-showcase .vs-info-left {
+    position: relative;
+    top: auto;
+    transform: none;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  .vehicle-showcase .vs-info-right {
+    position: relative;
+    top: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  .vehicle-showcase .vs-main {
+    flex-direction: column;
+    height: auto;
+    padding-top: 16px;
+    padding-bottom: 200px;
+  }
+
+  .vehicle-showcase .vs-hero {
+    flex-direction: column;
+  }
+
+  .vehicle-showcase .vs-carousel {
+    bottom: 100px;
+    max-width: 100%;
+  }
+
+  .vehicle-showcase .vs-thumb {
+    width: 80px;
+    height: 48px;
+  }
+
+  .vehicle-showcase .vs-action-inner {
+    padding: 12px 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vehicle-showcase .vs-action-ctas {
+    width: 100%;
+  }
+
+  .vehicle-showcase .vs-cta {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .vehicle-showcase .vs-cta--tertiary {
+    display: none;
+  }
+}
+
+/* ---------- Responsive: Tablet ---------- */
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .vehicle-showcase .vs-hero {
+    padding: 0 80px;
+  }
+
+  .vehicle-showcase .vs-info-left {
+    max-width: 200px;
+  }
+
+  .vehicle-showcase .vs-model {
+    font-size: 2rem;
+  }
+
+  .vehicle-showcase .vs-price {
+    font-size: 2.5rem;
+  }
+}
