@@ -3,7 +3,8 @@
 .finance-calculator {
     max-width: var(--content-width, 1200px);
     margin: 0 auto;
-    padding: var(--spacing-l, 32px) var(--spacing-m, 24px) var(--spacing-xl, 48px);
+    padding: var(--spacing-l, 32px) var(--spacing-m, 24px)
+        var(--spacing-xl, 48px);
     background: #1c1c1c;
     color: #fff;
     border-radius: 0;
