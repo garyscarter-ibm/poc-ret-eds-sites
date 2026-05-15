@@ -29,7 +29,6 @@ const VEHICLE_QUERY = `query GetVehicle($id: ID!) {
     insuranceGroup financeAvailable estimatedMonthlyPayment
     length width height weight bootVolume
     images { url alt order }
-    videoUrl
     standardFeatures optionalPacks
     dealer { id name address postcode phone latitude longitude }
   }
@@ -94,7 +93,7 @@ function renderError(block, message) {
 
 /* ---------- Image Gallery ---------- */
 
-function renderGallery(images, videoUrl) {
+function renderGallery(images) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
   const gallery = el("div", "vd-gallery");
 
@@ -135,16 +134,6 @@ function renderGallery(images, videoUrl) {
     thumbStrip.append(thumb);
   });
   gallery.append(thumbStrip);
-
-  // Video link (if available)
-  if (videoUrl) {
-    const videoLink = el("a", "vd-gallery-video");
-    videoLink.href = videoUrl;
-    videoLink.target = "_blank";
-    videoLink.rel = "noopener";
-    videoLink.innerHTML = '<img src="/icons/play.svg" alt="" width="20" height="20"><span>Watch Video</span>';
-    gallery.append(videoLink);
-  }
 
   // Gallery logic
   let current = 0;
@@ -609,7 +598,7 @@ export default async function decorate(block) {
 
   // Build page sections
   block.append(renderBackLink());
-  if (vehicle.images?.length) block.append(renderGallery(vehicle.images, vehicle.videoUrl));
+  if (vehicle.images?.length) block.append(renderGallery(vehicle.images));
   block.append(renderOverview(vehicle, isSaved, onToggleSave));
   block.append(renderKeyFacts(vehicle));
   block.append(renderSpecs(vehicle));
@@ -621,6 +610,19 @@ export default async function decorate(block) {
   if (dealer) block.append(dealer);
 
   block.append(renderEnquiryForm(vehicleId, vehicle.model));
+
+  // Dynamically load finance calculator block (not authored on page)
+  if (vehicle.financeAvailable) {
+    const fcWrapper = el("div", "finance-calculator block");
+    fcWrapper.dataset.blockName = "finance-calculator";
+    block.append(fcWrapper);
+    const fcCss = document.createElement("link");
+    fcCss.rel = "stylesheet";
+    fcCss.href = "/blocks/finance-calculator/finance-calculator.css";
+    document.head.append(fcCss);
+    const fcModule = await import("../finance-calculator/finance-calculator.js"); // eslint-disable-line import/no-unresolved
+    await fcModule.default(fcWrapper);
+  }
 
   // Auto-scroll to enquiry form if hash is #enquire
   if (window.location.hash === "#enquire") {
