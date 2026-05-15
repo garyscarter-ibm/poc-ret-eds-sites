@@ -12,6 +12,24 @@
     margin-bottom: 32px;
 }
 
+.vehicle-compare .vc-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 12px;
+}
+
+.vehicle-compare .vc-back-link:hover {
+    color: #1b69d4;
+}
+
+.vehicle-compare .vc-back-link svg {
+    flex-shrink: 0;
+}
+
 .vehicle-compare .vc-title {
     font-size: 28px;
     font-weight: 400;
@@ -162,39 +180,6 @@
     color: #1b69d4;
 }
 
-.vehicle-compare .vc-insights-tabs {
-    display: flex;
-    gap: 4px;
-    background: #f4f4f4;
-    border-radius: 6px;
-    padding: 3px;
-}
-
-.vehicle-compare .vc-tab {
-    padding: 8px 20px;
-    border: none;
-    border-radius: 4px;
-    background: none;
-    font-size: 14px;
-    font-family: var(--body-font-family, sans-serif);
-    color: #666;
-    cursor: pointer;
-    transition:
-        background 0.2s,
-        color 0.2s;
-}
-
-.vehicle-compare .vc-tab:hover {
-    color: var(--color-text, #262626);
-}
-
-.vehicle-compare .vc-tab--active {
-    background: #fff;
-    color: var(--color-text, #262626);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
-    font-weight: 500;
-}
-
 .vehicle-compare .vc-insights-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -213,6 +198,15 @@
     box-shadow: 0 2px 12px rgb(0 0 0 / 6%);
 }
 
+.vehicle-compare .vc-insight-card--loading {
+    min-height: 80px;
+    overflow: hidden;
+}
+
+.vehicle-compare .vc-insight-icon {
+    margin-right: 4px;
+}
+
 .vehicle-compare .vc-insight-title {
     font-size: 15px;
     font-weight: 500;
@@ -225,6 +219,12 @@
     line-height: 1.6;
     color: #444;
     margin: 0;
+}
+
+.vehicle-compare .vc-insights-fallback {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
 }
 
 /* ---------- Error / Empty ---------- */

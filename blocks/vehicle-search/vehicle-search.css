@@ -16,6 +16,37 @@ main > .section.vehicle-search-container {
     padding: var(--spacing-m, 24px) var(--spacing-m, 24px) 0;
 }
 
+/* ---------- Toolbar ---------- */
+
+.vehicle-search .vehicle-search-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 0 16px;
+}
+
+.vehicle-search .vehicle-search-garage-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1b69d4;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #1b69d4;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.vehicle-search .vehicle-search-garage-link:hover {
+    background: #1b69d4;
+    color: #fff;
+}
+
+.vehicle-search .vehicle-search-garage-link svg {
+    flex-shrink: 0;
+}
+
 /* ---------- Filters ---------- */
 
 .vehicle-search .vehicle-search-filters {

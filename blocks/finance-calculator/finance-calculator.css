@@ -4,6 +4,9 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px 40px;
+  background: #1c1c1c;
+  color: #fff;
+  border-radius: 8px;
 }
 
 /* ---------- Title ---------- */
@@ -12,7 +15,7 @@
   font-size: 24px;
   font-weight: 400;
   margin: 0 0 24px;
-  color: var(--color-text, #262626);
+  color: #fff;
 }
 
 /* ---------- Toggle Tabs ---------- */
@@ -26,19 +29,25 @@
 
 .finance-calculator .fc-tab-btn {
   padding: 10px 20px;
-  border: 1px solid #e3e3e3;
+  border: 1px solid #444;
   border-radius: 4px;
-  background: var(--color-white, #fff);
+  background: transparent;
+  color: #ccc;
   font-size: 14px;
   font-family: var(--body-font-family, sans-serif);
   cursor: pointer;
   transition: all 0.2s;
 }
 
+.finance-calculator .fc-tab-btn:hover {
+  border-color: #888;
+  color: #fff;
+}
+
 .finance-calculator .fc-tab-btn.active {
-  background: #262626;
-  color: var(--color-white, #fff);
-  border-color: #262626;
+  background: #fff;
+  color: #1c1c1c;
+  border-color: #fff;
 }
 
 /* ---------- Cards ---------- */
@@ -50,8 +59,8 @@
 .finance-calculator .fc-card {
   display: none;
   position: relative;
-  background: var(--color-white, #fff);
-  border: 1px solid #e3e3e3;
+  background: #262626;
+  border: 1px solid #333;
   border-radius: 8px;
   padding: 32px;
 }
@@ -66,7 +75,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgb(255 255 255 / 70%);
+  background: rgb(38 38 38 / 70%);
   border-radius: 8px;
   z-index: 5;
 }
@@ -79,7 +88,7 @@
   transform: translate(-50%, -50%);
   width: 32px;
   height: 32px;
-  border: 3px solid #e3e3e3;
+  border: 3px solid #444;
   border-top-color: #1b69d4;
   border-radius: 50%;
   animation: fc-spin 0.8s linear infinite;
@@ -100,18 +109,18 @@
   gap: 16px;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 1px solid #333;
 }
 
 .finance-calculator .fc-monthly {
   font-size: 32px;
   font-weight: 400;
-  color: var(--color-text, #262626);
+  color: #fff;
 }
 
 .finance-calculator .fc-apr {
   font-size: 16px;
-  color: #666;
+  color: #999;
 }
 
 /* ---------- Grid ---------- */
@@ -131,20 +140,20 @@
 
 .finance-calculator .fc-label {
   font-size: 12px;
-  color: #666;
+  color: #999;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .finance-calculator .fc-value {
   font-size: 16px;
-  color: var(--color-text, #262626);
+  color: #fff;
 }
 
 /* ---------- Adjust Section ---------- */
 
 .finance-calculator .fc-adjust {
-  border-top: 1px solid #e3e3e3;
+  border-top: 1px solid #333;
   padding-top: 16px;
   margin-bottom: 16px;
 }
@@ -153,7 +162,7 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  color: #1b69d4;
+  color: #4d9ef5;
   padding: 8px 0;
 }
 
@@ -169,7 +178,7 @@
   flex-direction: column;
   gap: 8px;
   font-size: 14px;
-  color: var(--color-text, #262626);
+  color: #ccc;
 }
 
 .finance-calculator .fc-slider {
@@ -181,7 +190,7 @@
 
 .finance-calculator .fc-disclaimer {
   font-size: 12px;
-  color: #999;
+  color: #777;
   margin: 0;
 }
 
@@ -190,7 +199,7 @@
 .finance-calculator .fc-empty {
   text-align: center;
   padding: 48px 24px;
-  color: #666;
+  color: #999;
   font-size: 16px;
 }
 
@@ -210,13 +219,13 @@
   width: 120px;
   height: 40px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #e3e3e3 25%, #f0f0f0 50%, #e3e3e3 75%);
+  background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
   background-size: 200% 100%;
   animation: fc-shimmer 1.5s infinite;
 }
 
 .finance-calculator .fc-skeleton-card {
-  border: 1px solid #e3e3e3;
+  border: 1px solid #333;
   border-radius: 8px;
   padding: 32px;
 }
@@ -225,7 +234,7 @@
   height: 20px;
   border-radius: 4px;
   margin-bottom: 16px;
-  background: linear-gradient(90deg, #e3e3e3 25%, #f0f0f0 50%, #e3e3e3 75%);
+  background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
   background-size: 200% 100%;
   animation: fc-shimmer 1.5s infinite;
 }

@@ -513,7 +513,9 @@ function renderVehicleCard(
     "aria-label",
     isSaved ? "Remove from saved" : "Save vehicle",
   );
-  heartBtn.innerHTML = `<img src="/icons/${isSaved ? "heart-filled" : "heart"}.svg" alt="" width="24" height="24">`;
+  heartBtn.innerHTML = isSaved
+    ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="#1b69d4" stroke="#1b69d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>'
+    : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
   heartBtn.addEventListener("click", () => onToggleSave(vehicle.id, heartBtn));
   ctas.append(heartBtn);
 
@@ -703,17 +705,20 @@ export default async function decorate(block) {
     const toggleUserId = getUserId();
     const wasSaved = savedIds.has(vehicleId);
 
+    const heartOutline = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#262626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+    const heartFilled = '<svg width="24" height="24" viewBox="0 0 24 24" fill="#1b69d4" stroke="#1b69d4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+
     // Optimistic UI update
     if (wasSaved) {
       savedIds.delete(vehicleId);
       btn.classList.remove("saved");
       btn.setAttribute("aria-label", "Save vehicle");
-      btn.querySelector("img").src = "/icons/heart.svg";
+      btn.innerHTML = heartOutline;
     } else {
       savedIds.add(vehicleId);
       btn.classList.add("saved");
       btn.setAttribute("aria-label", "Remove from saved");
-      btn.querySelector("img").src = "/icons/heart-filled.svg";
+      btn.innerHTML = heartFilled;
     }
 
     // Fire API call in background
@@ -734,14 +739,24 @@ export default async function decorate(block) {
       if (wasSaved) {
         savedIds.add(vehicleId);
         btn.classList.add("saved");
-        btn.querySelector("img").src = "/icons/heart-filled.svg";
+        btn.innerHTML = heartFilled;
       } else {
         savedIds.delete(vehicleId);
         btn.classList.remove("saved");
-        btn.querySelector("img").src = "/icons/heart.svg";
+        btn.innerHTML = heartOutline;
       }
     }
   };
+
+  // Page toolbar with garage link
+  const toolbar = document.createElement("div");
+  toolbar.className = "vehicle-search-toolbar";
+  toolbar.innerHTML = `
+    <a href="/used-cars/garage" class="vehicle-search-garage-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      My Garage
+    </a>`;
+  block.append(toolbar);
 
   // Placeholder for filters (rendered after data arrives)
   const filtersContainer = document.createElement("div");

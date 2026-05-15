@@ -25,6 +25,16 @@ const COMPARE_QUERY = `query Compare($ids: [ID!]!) {
   }
 }`;
 
+const AI_SUMMARY_QUERY = `query CompareSummary($ids: [ID!]!) {
+  compareVehicleSummary(ids: $ids) {
+    overview
+    keyDifferences
+    targetBuyer
+    valueAssessment
+    recommendation
+  }
+}`;
+
 /* ---------- Helpers ---------- */
 
 function el(tag, cls, html) {
@@ -34,95 +44,15 @@ function el(tag, cls, html) {
   return e;
 }
 
-/* ---------- AI Insight Generation (client-side) ---------- */
+/* ---------- AI Insights (backend-powered) ---------- */
 
-function generateInsights(vehicles, persona) {
-  const insights = [];
-
-  if (persona === "lifestyle") {
-    // Price comparison
-    const sorted = [...vehicles].sort((a, b) => a.price - b.price);
-    if (sorted.length >= 2) {
-      const diff = sorted[sorted.length - 1].price - sorted[0].price;
-      insights.push({
-        title: "Value",
-        text: `The ${sorted[0].model} offers the most accessible entry point at ${formatPrice(sorted[0].price)}, which is ${formatPrice(diff)} less than the ${sorted[sorted.length - 1].model}. Consider what that saving could fund — a holiday, home improvements, or simply peace of mind.`,
-      });
-    }
-
-    // Running costs
-    const fuelEfficient = [...vehicles].sort(
-      (a, b) => (b.mpgCombined || 0) - (a.mpgCombined || 0),
-    );
-    if (fuelEfficient[0]?.mpgCombined) {
-      insights.push({
-        title: "Running Costs",
-        text: `For daily commuting, the ${fuelEfficient[0].model} leads with ${fuelEfficient[0].mpgCombined} mpg combined. ${fuelEfficient[0].co2Emissions ? `Its ${fuelEfficient[0].co2Emissions} g/km CO₂ output also means lower road tax.` : ""}`,
-      });
-    }
-
-    // Practicality
-    const bodyTypes = vehicles.map(
-      (v) => `${v.model} (${v.bodyType?.toLowerCase() || "saloon"})`,
-    );
-    insights.push({
-      title: "Lifestyle Fit",
-      text: `Consider your typical week: ${bodyTypes.join(" vs ")}. ${vehicles.some((v) => v.bodyType === "ESTATE" || v.bodyType === "SUV") ? "The estate/SUV option gives you space for family trips and weekend adventures." : "Both are well-suited to urban driving with presence."}`,
-    });
-
-    // Mileage/age
-    const freshest = [...vehicles].sort((a, b) =>
-      (b.registrationDate || "").localeCompare(a.registrationDate || ""),
-    );
-    if (freshest[0]) {
-      insights.push({
-        title: "Peace of Mind",
-        text: `The ${freshest[0].model} is the newest, registered ${formatDate(freshest[0].registrationDate)} with ${formatMileage(freshest[0].mileage)}. Lower mileage typically means more warranty remaining and fewer wear items to budget for.`,
-      });
-    }
-  } else if (persona === "performance") {
-    // Power comparison
-    const powerful = [...vehicles].sort(
-      (a, b) => (b.power || 0) - (a.power || 0),
-    );
-    if (powerful[0]?.power) {
-      insights.push({
-        title: "Power Delivery",
-        text: `The ${powerful[0].model} tops the group at ${formatPower(powerful[0].power)}${powerful[0].acceleration ? `, reaching 62 mph in just ${formatAcceleration(powerful[0].acceleration)}` : ""}. ${powerful[0].fuelType === "PETROL_PLUG_IN_HYBRID" ? "Its hybrid powertrain combines instant electric torque with sustained performance." : "Pure combustion power for an engaging driving experience."}`,
-      });
-    }
-
-    // Drivetrain
-    const awdVehicles = vehicles.filter(
-      (v) => v.drivetrain === "AWD" || v.drivetrain === "XDRIVE",
-    );
-    if (awdVehicles.length) {
-      insights.push({
-        title: "Traction",
-        text: `${awdVehicles.map((v) => v.model).join(" and ")} ${awdVehicles.length > 1 ? "feature" : "features"} xDrive all-wheel drive, distributing power dynamically for maximum grip in all conditions.`,
-      });
-    }
-
-    // Top speed
-    const fastest = [...vehicles].sort(
-      (a, b) => (b.topSpeed || 0) - (a.topSpeed || 0),
-    );
-    if (fastest[0]?.topSpeed) {
-      insights.push({
-        title: "Top End",
-        text: `For track day potential, the ${fastest[0].model} reaches ${formatTopSpeed(fastest[0].topSpeed)}${fastest.length > 1 && fastest[1]?.topSpeed ? ` vs the ${fastest[1].model} at ${formatTopSpeed(fastest[1].topSpeed)}` : ""}.`,
-      });
-    }
-
-    // Weight/efficiency
-    insights.push({
-      title: "The Verdict",
-      text: "Both are M-bred machines engineered for driving pleasure. The choice comes down to whether you prioritise outright power or a more balanced, exploitable chassis.",
-    });
-  }
-
-  return insights;
-}
+const AI_SECTIONS = [
+  { key: 'overview', title: 'Overview', icon: '📋' },
+  { key: 'keyDifferences', title: 'Key Differences', icon: '⚡' },
+  { key: 'targetBuyer', title: 'Who Is It For?', icon: '👤' },
+  { key: 'valueAssessment', title: 'Value Assessment', icon: '💰' },
+  { key: 'recommendation', title: 'Recommendation', icon: '✅' },
+];
 
 /* ---------- Skeleton ---------- */
 
@@ -198,49 +128,44 @@ function renderSpecTable(vehicles) {
 
 /* ---------- AI Insights Panel ---------- */
 
-function renderInsights(vehicles) {
-  const section = el("div", "vc-insights");
+function renderInsightsSection() {
+  const section = el('div', 'vc-insights');
 
-  const header = el("div", "vc-insights-header");
+  const header = el('div', 'vc-insights-header');
   header.innerHTML = `
     <div class="vc-insights-badge">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
       AI Comparison Insights
-    </div>
-    <div class="vc-insights-tabs">
-      <button type="button" class="vc-tab vc-tab--active" data-persona="lifestyle">Lifestyle</button>
-      <button type="button" class="vc-tab" data-persona="performance">Performance</button>
     </div>`;
   section.append(header);
 
-  const content = el("div", "vc-insights-content");
+  const content = el('div', 'vc-insights-content');
+  // Loading skeleton
+  content.innerHTML = `
+    <div class="vc-insight-card vc-insight-card--loading"><div class="vc-skeleton-shimmer"></div></div>
+    <div class="vc-insight-card vc-insight-card--loading"><div class="vc-skeleton-shimmer"></div></div>
+    <div class="vc-insight-card vc-insight-card--loading"><div class="vc-skeleton-shimmer"></div></div>`;
   section.append(content);
 
-  function renderPersona(persona) {
-    const insights = generateInsights(vehicles, persona);
-    content.innerHTML = "";
-    insights.forEach(({ title, text }) => {
-      const card = el("div", "vc-insight-card");
-      card.innerHTML = `<h4 class="vc-insight-title">${title}</h4><p class="vc-insight-text">${text}</p>`;
-      content.append(card);
-    });
+  return section;
+}
+
+function populateInsights(section, summaryData) {
+  const content = section.querySelector('.vc-insights-content');
+  content.innerHTML = '';
+
+  if (!summaryData) {
+    content.innerHTML = '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
+    return;
   }
 
-  // Tab switching
-  header.addEventListener("click", (e) => {
-    const tab = e.target.closest(".vc-tab");
-    if (!tab) return;
-    header
-      .querySelectorAll(".vc-tab")
-      .forEach((t) => t.classList.remove("vc-tab--active"));
-    tab.classList.add("vc-tab--active");
-    renderPersona(tab.dataset.persona);
+  AI_SECTIONS.forEach(({ key, title, icon }) => {
+    const text = summaryData[key];
+    if (!text) return;
+    const card = el('div', 'vc-insight-card');
+    card.innerHTML = `<h4 class="vc-insight-title"><span class="vc-insight-icon">${icon}</span> ${title}</h4><p class="vc-insight-text">${text}</p>`;
+    content.append(card);
   });
-
-  // Initial render
-  renderPersona("lifestyle");
-
-  return section;
 }
 
 /* ---------- Vehicle Header Cards ---------- */
@@ -298,7 +223,12 @@ export default async function decorate(block) {
 
   // Header
   const header = el("div", "vc-header");
-  header.innerHTML = '<h2 class="vc-title">Vehicle Comparison</h2>';
+  header.innerHTML = `
+    <a href="/used-cars/search" class="vc-back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to search
+    </a>
+    <h2 class="vc-title">Vehicle Comparison</h2>`;
   block.append(header);
 
   // Skeleton
@@ -306,7 +236,11 @@ export default async function decorate(block) {
   block.append(skeleton);
 
   try {
-    const data = await queryAPI(COMPARE_QUERY, { ids });
+    // Fire both queries in parallel — specs render instantly, AI arrives later
+    const [data, aiData] = await Promise.all([
+      queryAPI(COMPARE_QUERY, { ids }),
+      queryAPI(AI_SUMMARY_QUERY, { ids }).catch(() => null),
+    ]);
     const vehicles = data.compareVehicles?.vehicles || [];
 
     if (vehicles.length < 2) {
@@ -328,8 +262,10 @@ export default async function decorate(block) {
     // Spec comparison table
     wrapper.append(renderSpecTable(vehicles));
 
-    // AI Insights
-    wrapper.append(renderInsights(vehicles));
+    // AI Insights (render section with data from backend)
+    const insightsSection = renderInsightsSection();
+    wrapper.append(insightsSection);
+    populateInsights(insightsSection, aiData?.compareVehicleSummary || null);
 
     skeleton.replaceWith(wrapper);
   } catch (err) {
