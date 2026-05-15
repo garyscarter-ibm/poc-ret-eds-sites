@@ -1,170 +1,170 @@
 /* ---------- Container ---------- */
 
 .vehicle-enquiry {
-  max-width: var(--content-width, 1200px);
-  margin: 0 auto;
-  padding: var(--spacing-l, 32px) var(--spacing-m, 24px);
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
+    padding: var(--spacing-l, 32px) var(--spacing-m, 24px);
 }
 
 .vehicle-enquiry .ve-inner {
-  padding: 32px;
-  background: #fff;
-  border: 1px solid #e3e3e3;
-  border-radius: 0;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
 }
 
 /* ---------- Title ---------- */
 
 .vehicle-enquiry .ve-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0 0 8px;
-  color: var(--color-text, #262626);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: var(--color-text, #262626);
 }
 
 .vehicle-enquiry .ve-subtitle {
-  font-size: 14px;
-  color: #4d4d4d;
-  margin: 0 0 24px;
+    font-size: 14px;
+    color: #4d4d4d;
+    margin: 0 0 24px;
 }
 
 /* ---------- Form Layout ---------- */
 
 .vehicle-enquiry .ve-form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .vehicle-enquiry .ve-form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
 }
 
 .vehicle-enquiry .ve-form-field--full {
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .vehicle-enquiry .ve-form-label {
-  font-size: 13px;
-  color: #4d4d4d;
+    font-size: 13px;
+    color: #4d4d4d;
 }
 
 .vehicle-enquiry .ve-form-field input,
 .vehicle-enquiry .ve-form-field select,
 .vehicle-enquiry .ve-form-field textarea {
-  padding: 10px 14px;
-  border: 1px solid #e3e3e3;
-  border-radius: 0;
-  font-size: 14px;
-  font-family: var(--body-font-family, sans-serif);
-  color: #262626;
-  background: #fff;
+    padding: 10px 14px;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    font-size: 14px;
+    font-family: var(--body-font-family, sans-serif);
+    color: #262626;
+    background: #fff;
 }
 
 .vehicle-enquiry .ve-form-field input:focus,
 .vehicle-enquiry .ve-form-field select:focus,
 .vehicle-enquiry .ve-form-field textarea:focus {
-  outline: none;
-  border-color: #1b69d4;
+    outline: none;
+    border-color: #1b69d4;
 }
 
 /* ---------- Checkboxes ---------- */
 
 .vehicle-enquiry .ve-form-checkboxes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .vehicle-enquiry .ve-checkbox {
-  font-size: 14px;
-  color: #262626;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
+    font-size: 14px;
+    color: #262626;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
 }
 
 .vehicle-enquiry .ve-checkbox input {
-  width: 16px;
-  height: 16px;
-  accent-color: #1b69d4;
+    width: 16px;
+    height: 16px;
+    accent-color: #1b69d4;
 }
 
 /* ---------- Submit Button ---------- */
 
 .vehicle-enquiry .ve-submit {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  padding: 0 32px;
-  background: #1b69d4;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: var(--body-font-family, sans-serif);
-  cursor: pointer;
-  width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 0 32px;
+    background: #1b69d4;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--body-font-family, sans-serif);
+    cursor: pointer;
+    width: 100%;
 }
 
 .vehicle-enquiry .ve-submit:hover {
-  background: #1557b0;
+    background: #1557b0;
 }
 
 .vehicle-enquiry .ve-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* ---------- Status ---------- */
 
 .vehicle-enquiry .ve-status {
-  margin-top: 12px;
-  font-size: 14px;
-  min-height: 20px;
+    margin-top: 12px;
+    font-size: 14px;
+    min-height: 20px;
 }
 
 .vehicle-enquiry .ve-status--success {
-  color: #1a8a3e;
+    color: #1a8a3e;
 }
 
 .vehicle-enquiry .ve-status--error {
-  color: #d4351c;
+    color: #d4351c;
 }
 
 /* ---------- Empty ---------- */
 
 .vehicle-enquiry .ve-empty {
-  text-align: center;
-  padding: 48px;
-  color: #4d4d4d;
+    text-align: center;
+    padding: 48px;
+    color: #4d4d4d;
 }
 
 /* ---------- Responsive: Tablet (600px+) ---------- */
 
 @media (min-width: 600px) {
-  .vehicle-enquiry .ve-form-row {
-    flex-direction: row;
-  }
+    .vehicle-enquiry .ve-form-row {
+        flex-direction: row;
+    }
 }
 
 /* ---------- Responsive: Desktop (900px+) ---------- */
 
 @media (min-width: 900px) {
-  .vehicle-enquiry {
-    padding: var(--spacing-l, 32px) 0;
-  }
+    .vehicle-enquiry {
+        padding: var(--spacing-l, 32px) 0;
+    }
 
-  .vehicle-enquiry .ve-submit {
-    width: auto;
-    min-width: 200px;
-  }
+    .vehicle-enquiry .ve-submit {
+        width: auto;
+        min-width: 200px;
+    }
 }

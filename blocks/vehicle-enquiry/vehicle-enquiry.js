@@ -1,4 +1,4 @@
-import queryAPI from '../../scripts/used-cars-api.js';
+import queryAPI from "../../scripts/used-cars-api.js";
 
 /* ---------- GraphQL ---------- */
 
@@ -23,7 +23,7 @@ function el(tag, cls, html) {
 
 export default async function decorate(block) {
   const params = new URLSearchParams(window.location.search);
-  const vehicleId = params.get('id');
+  const vehicleId = params.get("id");
 
   if (!vehicleId) {
     block.innerHTML = '<p class="ve-empty">No vehicle selected.</p>';
@@ -31,16 +31,18 @@ export default async function decorate(block) {
   }
 
   // Fetch vehicle model name for display
-  let vehicleModel = 'this vehicle';
+  let vehicleModel = "this vehicle";
   try {
     const data = await queryAPI(VEHICLE_MODEL_QUERY, { id: vehicleId });
     if (data.usedVehicle?.model) vehicleModel = data.usedVehicle.model;
-  } catch { /* fallback to generic text */ }
+  } catch {
+    /* fallback to generic text */
+  }
 
-  block.textContent = '';
+  block.textContent = "";
 
-  const section = el('div', 've-inner');
-  section.id = 'enquire';
+  const section = el("div", "ve-inner");
+  section.id = "enquire";
   section.innerHTML = `
     <h2 class="ve-title">Enquire About This Vehicle</h2>
     <p class="ve-subtitle">Interested in the ${vehicleModel}? Fill in your details and a dealer will be in touch.</p>
@@ -81,34 +83,34 @@ export default async function decorate(block) {
       <div class="ve-status" aria-live="polite"></div>
     </form>`;
 
-  const form = section.querySelector('form');
-  const status = section.querySelector('.ve-status');
+  const form = section.querySelector("form");
+  const status = section.querySelector(".ve-status");
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.textContent = '';
-    status.className = 've-status';
+    status.textContent = "";
+    status.className = "ve-status";
 
     const fd = new FormData(form);
-    const name = fd.get('customerName')?.trim();
-    const email = fd.get('customerEmail')?.trim();
-    const phone = fd.get('customerPhone')?.trim();
+    const name = fd.get("customerName")?.trim();
+    const email = fd.get("customerEmail")?.trim();
+    const phone = fd.get("customerPhone")?.trim();
 
     if (!name || !email || !phone) {
-      status.textContent = 'Please fill in all required fields.';
-      status.classList.add('ve-status--error');
+      status.textContent = "Please fill in all required fields.";
+      status.classList.add("ve-status--error");
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      status.textContent = 'Please enter a valid email address.';
-      status.classList.add('ve-status--error');
+      status.textContent = "Please enter a valid email address.";
+      status.classList.add("ve-status--error");
       return;
     }
 
-    const submitBtn = form.querySelector('.ve-submit');
+    const submitBtn = form.querySelector(".ve-submit");
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
+    submitBtn.textContent = "Sending...";
 
     try {
       const input = {
@@ -116,25 +118,28 @@ export default async function decorate(block) {
         customerName: name,
         customerEmail: email,
         customerPhone: phone,
-        message: fd.get('message')?.trim() || undefined,
-        preferredContactMethod: fd.get('preferredContactMethod'),
-        interestedInFinance: fd.get('interestedInFinance') === 'on',
-        interestedInPartExchange: fd.get('interestedInPartExchange') === 'on',
+        message: fd.get("message")?.trim() || undefined,
+        preferredContactMethod: fd.get("preferredContactMethod"),
+        interestedInFinance: fd.get("interestedInFinance") === "on",
+        interestedInPartExchange: fd.get("interestedInPartExchange") === "on",
       };
       const data = await queryAPI(ENQUIRY_MUTATION, { input });
       if (data.submitVehicleEnquiry?.success) {
-        status.textContent = 'Enquiry sent successfully! A dealer will be in touch shortly.';
-        status.classList.add('ve-status--success');
+        status.textContent =
+          "Enquiry sent successfully! A dealer will be in touch shortly.";
+        status.classList.add("ve-status--success");
         form.reset();
       } else {
-        throw new Error(data.submitVehicleEnquiry?.message || 'Submission failed');
+        throw new Error(
+          data.submitVehicleEnquiry?.message || "Submission failed",
+        );
       }
     } catch (err) {
       status.textContent = `Something went wrong. Please try again. (${err.message})`;
-      status.classList.add('ve-status--error');
+      status.classList.add("ve-status--error");
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Enquiry';
+      submitBtn.textContent = "Send Enquiry";
     }
   });
 
