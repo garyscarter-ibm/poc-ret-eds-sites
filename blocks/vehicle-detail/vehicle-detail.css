@@ -129,6 +129,25 @@ main > .section.vehicle-detail-container {
     border-color: #1b69d4;
 }
 
+.vehicle-detail .vd-gallery-video {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: #1c1c1c;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.vehicle-detail .vd-gallery-video:hover {
+    background: #333;
+}
+
 /* ---------- Overview (2-column) ---------- */
 
 .vehicle-detail .vd-overview {
@@ -435,126 +454,6 @@ main > .section.vehicle-detail-container {
     display: inline-flex;
 }
 
-/* ---------- Finance ---------- */
-
-.vehicle-detail .vd-finance {
-    margin-bottom: 40px;
-    padding: 32px;
-    background: #1c1c1c;
-    border-radius: 8px;
-    color: #fff;
-}
-
-.vehicle-detail .vd-finance .vd-section-title {
-    color: #fff;
-}
-
-.vehicle-detail .vd-finance-toggle {
-    display: flex;
-    gap: 0;
-    margin-bottom: 24px;
-    border-bottom: 1px solid rgb(255 255 255 / 20%);
-}
-
-.vehicle-detail .vd-finance-tab-btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: rgb(255 255 255 / 60%);
-    cursor: pointer;
-    font-family: var(--body-font-family, sans-serif);
-}
-
-.vehicle-detail .vd-finance-tab-btn.active {
-    color: #fff;
-    border-bottom-color: #1b69d4;
-}
-
-.vehicle-detail .vd-finance-card {
-    display: none;
-}
-
-.vehicle-detail .vd-finance-card.active {
-    display: block;
-}
-
-.vehicle-detail .vd-finance-headline {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 24px;
-}
-
-.vehicle-detail .vd-finance-monthly {
-    font-size: 28px;
-    font-weight: 400;
-    color: #fff;
-}
-
-.vehicle-detail .vd-finance-apr {
-    font-size: 14px;
-    color: rgb(255 255 255 / 60%);
-}
-
-.vehicle-detail .vd-finance-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 20px;
-}
-
-.vehicle-detail .vd-finance-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.vehicle-detail .vd-finance-label {
-    font-size: 12px;
-    color: rgb(255 255 255 / 50%);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.vehicle-detail .vd-finance-value {
-    font-size: 15px;
-    color: #fff;
-}
-
-.vehicle-detail .vd-finance-adjust summary {
-    font-size: 14px;
-    color: #1b69d4;
-    cursor: pointer;
-    margin-bottom: 16px;
-}
-
-.vehicle-detail .vd-finance-sliders {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.vehicle-detail .vd-slider-label {
-    font-size: 13px;
-    color: rgb(255 255 255 / 80%);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.vehicle-detail .vd-slider {
-    width: 100%;
-    accent-color: #1b69d4;
-}
-
-.vehicle-detail .vd-finance-disclaimer {
-    font-size: 12px;
-    color: rgb(255 255 255 / 40%);
-    margin-top: 16px;
-}
-
 /* ---------- Enquiry Form ---------- */
 
 .vehicle-detail .vd-enquiry {
@@ -742,10 +641,6 @@ main > .section.vehicle-detail-container {
 
     .vehicle-detail .vd-form-row {
         flex-direction: row;
-    }
-
-    .vehicle-detail .vd-finance-grid {
-        grid-template-columns: repeat(3, 1fr);
     }
 
     .vehicle-detail .vd-gallery-thumbs .vd-thumb {

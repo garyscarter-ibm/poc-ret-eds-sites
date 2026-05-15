@@ -29,26 +29,9 @@ const VEHICLE_QUERY = `query GetVehicle($id: ID!) {
     insuranceGroup financeAvailable estimatedMonthlyPayment
     length width height weight bootVolume
     images { url alt order }
+    videoUrl
     standardFeatures optionalPacks
     dealer { id name address postcode phone latitude longitude }
-  }
-}`;
-
-const FINANCE_QUERY = `query VehicleFinance($vehicleId: ID!) {
-  vehicleFinanceQuotes(vehicleId: $vehicleId) {
-    quoteId monthlyPayment apr term totalDeposit cashDeposit
-    balance residualValue totalAmountPayable chargesForCredit
-    annualMileage contractMileage excessMileageRate
-    productName productKey vehiclePrice validFrom validTo
-  }
-}`;
-
-const RECALC_MUTATION = `mutation RecalcFinance($input: RecalculateFinanceInput!) {
-  recalculateFinance(input: $input) {
-    quoteId monthlyPayment apr term totalDeposit cashDeposit
-    balance residualValue totalAmountPayable chargesForCredit
-    annualMileage contractMileage excessMileageRate
-    productName productKey vehiclePrice validFrom validTo
   }
 }`;
 
@@ -111,7 +94,7 @@ function renderError(block, message) {
 
 /* ---------- Image Gallery ---------- */
 
-function renderGallery(images) {
+function renderGallery(images, videoUrl) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
   const gallery = el("div", "vd-gallery");
 
@@ -152,6 +135,16 @@ function renderGallery(images) {
     thumbStrip.append(thumb);
   });
   gallery.append(thumbStrip);
+
+  // Video link (if available)
+  if (videoUrl) {
+    const videoLink = el("a", "vd-gallery-video");
+    videoLink.href = videoUrl;
+    videoLink.target = "_blank";
+    videoLink.rel = "noopener";
+    videoLink.innerHTML = '<img src="/icons/play.svg" alt="" width="20" height="20"><span>Watch Video</span>';
+    gallery.append(videoLink);
+  }
 
   // Gallery logic
   let current = 0;
@@ -421,128 +414,6 @@ function renderDealer(dealer) {
   return section;
 }
 
-/* ---------- Finance Calculator ---------- */
-
-function renderFinance(quotes) {
-  if (!quotes || !quotes.length) return null;
-
-  const section = el("div", "vd-finance");
-  section.innerHTML = '<h2 class="vd-section-title">Finance Options</h2>';
-
-  const toggle = el("div", "vd-finance-toggle");
-  const cards = el("div", "vd-finance-cards");
-
-  quotes.forEach((q, i) => {
-    const btn = el(
-      "button",
-      `vd-finance-tab-btn${i === 0 ? " active" : ""}`,
-      q.productName,
-    );
-    btn.dataset.index = i;
-    toggle.append(btn);
-
-    const card = el("div", `vd-finance-card${i === 0 ? " active" : ""}`);
-    card.dataset.index = i;
-    card.innerHTML = `
-      <div class="vd-finance-headline">
-        <span class="vd-finance-monthly">${formatMonthly(q.monthlyPayment)}</span>
-        <span class="vd-finance-apr">${q.apr}% APR</span>
-      </div>
-      <div class="vd-finance-grid">
-        <div class="vd-finance-item"><span class="vd-finance-label">Term</span><span class="vd-finance-value">${q.term} months</span></div>
-        <div class="vd-finance-item"><span class="vd-finance-label">Deposit</span><span class="vd-finance-value">${formatPrice(q.totalDeposit)}</span></div>
-        <div class="vd-finance-item"><span class="vd-finance-label">Total Payable</span><span class="vd-finance-value">${formatPrice(q.totalAmountPayable)}</span></div>
-        ${q.residualValue ? `<div class="vd-finance-item"><span class="vd-finance-label">Final Payment</span><span class="vd-finance-value">${formatPrice(q.residualValue)}</span></div>` : ""}
-        <div class="vd-finance-item"><span class="vd-finance-label">Annual Mileage</span><span class="vd-finance-value">${q.annualMileage?.toLocaleString("en-GB")} miles</span></div>
-        <div class="vd-finance-item"><span class="vd-finance-label">Credit Charges</span><span class="vd-finance-value">${formatPrice(q.chargesForCredit)}</span></div>
-      </div>
-      <details class="vd-finance-adjust">
-        <summary>Adjust Finance</summary>
-        <div class="vd-finance-sliders">
-          <label class="vd-slider-label">Deposit: <strong>£<span class="vd-deposit-display">${q.cashDeposit}</span></strong>
-            <input type="range" class="vd-slider" data-field="deposit" min="0" max="${Math.round(q.vehiclePrice * 0.5)}" step="500" value="${q.cashDeposit}">
-          </label>
-          <label class="vd-slider-label">Term: <strong><span class="vd-term-display">${q.term}</span> months</strong>
-            <input type="range" class="vd-slider" data-field="term" min="24" max="60" step="12" value="${q.term}">
-          </label>
-          <label class="vd-slider-label">Annual Mileage: <strong><span class="vd-mileage-display">${q.annualMileage}</span> miles</strong>
-            <input type="range" class="vd-slider" data-field="annualMileage" min="5000" max="20000" step="1000" value="${q.annualMileage}">
-          </label>
-        </div>
-      </details>
-      <p class="vd-finance-disclaimer">Representative example. Finance subject to status.</p>`;
-    cards.append(card);
-  });
-
-  // Tab switching
-  toggle.addEventListener("click", (e) => {
-    const btn = e.target.closest(".vd-finance-tab-btn");
-    if (!btn) return;
-    toggle
-      .querySelectorAll(".vd-finance-tab-btn")
-      .forEach((b) => b.classList.remove("active"));
-    cards
-      .querySelectorAll(".vd-finance-card")
-      .forEach((c) => c.classList.remove("active"));
-    btn.classList.add("active");
-    cards
-      .querySelector(`[data-index="${btn.dataset.index}"]`)
-      .classList.add("active");
-  });
-
-  // Slider recalculation (debounced)
-  let debounceTimer;
-  cards.addEventListener("input", (e) => {
-    const slider = e.target.closest(".vd-slider");
-    if (!slider) return;
-    const card = slider.closest(".vd-finance-card");
-    const { field } = slider.dataset;
-    const val = Number(slider.value);
-
-    // Update display
-    if (field === "deposit")
-      card.querySelector(".vd-deposit-display").textContent =
-        val.toLocaleString("en-GB");
-    if (field === "term")
-      card.querySelector(".vd-term-display").textContent = val;
-    if (field === "annualMileage")
-      card.querySelector(".vd-mileage-display").textContent =
-        val.toLocaleString("en-GB");
-
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(async () => {
-      const idx = Number(card.dataset.index);
-      const { quoteId } = quotes[idx];
-      const input = { quoteId };
-      if (field === "deposit") input.deposit = val;
-      if (field === "term") input.term = val;
-      if (field === "annualMileage") input.annualMileage = val;
-
-      try {
-        const data = await queryAPI(RECALC_MUTATION, { input });
-        const updated = data.recalculateFinance;
-        if (updated) {
-          quotes[idx] = { ...quotes[idx], ...updated };
-          card.querySelector(".vd-finance-monthly").textContent = formatMonthly(
-            updated.monthlyPayment,
-          );
-          card.querySelector(".vd-finance-apr").textContent =
-            `${updated.apr}% APR`;
-          const items = card.querySelectorAll(".vd-finance-value");
-          items[0].textContent = `${updated.term} months`;
-          items[1].textContent = formatPrice(updated.totalDeposit);
-          items[2].textContent = formatPrice(updated.totalAmountPayable);
-        }
-      } catch {
-        /* silent fail on recalc */
-      }
-    }, 600);
-  });
-
-  section.append(toggle, cards);
-  return section;
-}
-
 /* ---------- Enquiry Form ---------- */
 
 function renderEnquiryForm(vehicleId, vehicleModel) {
@@ -680,17 +551,15 @@ export default async function decorate(block) {
 
   renderSkeleton(block);
 
-  // Fetch vehicle + garage status + finance in parallel
+  // Fetch vehicle + garage status in parallel
   let vehicle;
   let garageIds = [];
-  let financeQuotes = [];
 
   try {
     const userId = getUserId();
-    const [vehicleData, garageData, financeData] = await Promise.allSettled([
+    const [vehicleData, garageData] = await Promise.allSettled([
       queryAPI(VEHICLE_QUERY, { id: vehicleId }),
       queryAPI(GARAGE_IDS, { userId }),
-      queryAPI(FINANCE_QUERY, { vehicleId }),
     ]);
 
     if (vehicleData.status === "rejected" || !vehicleData.value?.usedVehicle) {
@@ -704,8 +573,6 @@ export default async function decorate(block) {
     vehicle = vehicleData.value.usedVehicle;
     if (garageData.status === "fulfilled")
       garageIds = garageData.value?.garageVehicleIds || [];
-    if (financeData.status === "fulfilled")
-      financeQuotes = financeData.value?.vehicleFinanceQuotes || [];
   } catch (err) {
     renderError(block, `Failed to load vehicle details. ${err.message}`);
     return;
@@ -742,7 +609,7 @@ export default async function decorate(block) {
 
   // Build page sections
   block.append(renderBackLink());
-  if (vehicle.images?.length) block.append(renderGallery(vehicle.images));
+  if (vehicle.images?.length) block.append(renderGallery(vehicle.images, vehicle.videoUrl));
   block.append(renderOverview(vehicle, isSaved, onToggleSave));
   block.append(renderKeyFacts(vehicle));
   block.append(renderSpecs(vehicle));
@@ -752,9 +619,6 @@ export default async function decorate(block) {
 
   const dealer = renderDealer(vehicle.dealer);
   if (dealer) block.append(dealer);
-
-  const finance = renderFinance(financeQuotes);
-  if (finance) block.append(finance);
 
   block.append(renderEnquiryForm(vehicleId, vehicle.model));
 

@@ -650,12 +650,6 @@ export default async function decorate(block) {
     }
   };
 
-  // Loading spinner (shown on initial load)
-  const loader = document.createElement('div');
-  loader.className = 'vehicle-search-loader';
-  loader.innerHTML = '<div class="vehicle-search-spinner"></div><span class="vehicle-search-loader-text">Loading vehicles…</span>';
-  block.append(loader);
-
   // Placeholder for filters (rendered after data arrives)
   const filtersContainer = document.createElement('div');
   filtersContainer.className = 'vehicle-search-filters-container';
@@ -689,9 +683,6 @@ export default async function decorate(block) {
       const {
         vehicles, facets, totalCount, totalPages, page,
       } = data.searchUsedVehicles;
-
-      // Remove initial loader if present
-      block.querySelector('.vehicle-search-loader')?.remove();
 
       // Render filters
       filtersContainer.innerHTML = '';
