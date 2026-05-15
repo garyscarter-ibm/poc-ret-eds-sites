@@ -203,9 +203,11 @@
 .vehicle-garage .vg-skeleton-line--wide {
     width: 80%;
 }
+
 .vehicle-garage .vg-skeleton-line--medium {
     width: 50%;
 }
+
 .vehicle-garage .vg-skeleton-line--narrow {
     width: 30%;
 }
@@ -214,6 +216,7 @@
     0% {
         background-position: 200% 0;
     }
+
     100% {
         background-position: -200% 0;
     }

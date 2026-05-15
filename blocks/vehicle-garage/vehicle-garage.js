@@ -1,4 +1,4 @@
-import queryAPI from "../../scripts/used-cars-api.js";
+import queryAPI from '../../scripts/used-cars-api.js';
 import {
   DETAIL_PAGE_PATH,
   formatPrice,
@@ -7,7 +7,7 @@ import {
   formatTransmission,
   formatDate,
   getUserId,
-} from "../../scripts/used-cars-config.js";
+} from '../../scripts/used-cars-config.js';
 
 /* ---------- GraphQL ---------- */
 
@@ -42,12 +42,12 @@ function el(tag, cls, html) {
 
 function renderSkeleton() {
   return el(
-    "div",
-    "vg-grid",
+    'div',
+    'vg-grid',
     `
     ${Array.from(
-      { length: 3 },
-      () => `
+    { length: 3 },
+    () => `
       <div class="vg-card vg-card--skeleton">
         <div class="vg-card-image"><div class="vg-skeleton-shimmer"></div></div>
         <div class="vg-card-body">
@@ -56,7 +56,7 @@ function renderSkeleton() {
           <div class="vg-skeleton-line vg-skeleton-line--narrow"></div>
         </div>
       </div>`,
-    ).join("")}
+  ).join('')}
   `,
   );
 }
@@ -65,8 +65,8 @@ function renderSkeleton() {
 
 function renderEmpty() {
   return el(
-    "div",
-    "vg-empty",
+    'div',
+    'vg-empty',
     `
     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -81,12 +81,12 @@ function renderEmpty() {
 /* ---------- Vehicle Card ---------- */
 
 function renderGarageCard(vehicle, detailPath, onRemove) {
-  const card = el("div", "vg-card");
+  const card = el('div', 'vg-card');
   const img = vehicle.images?.sort((a, b) => a.order - b.order)[0];
 
   card.innerHTML = `
     <a href="${detailPath}?id=${vehicle.id}" class="vg-card-image">
-      <img src="${img?.url || ""}" alt="${img?.alt || vehicle.model}" loading="lazy">
+      <img src="${img?.url || ''}" alt="${img?.alt || vehicle.model}" loading="lazy">
     </a>
     <div class="vg-card-body">
       <h3 class="vg-card-title">
@@ -108,8 +108,8 @@ function renderGarageCard(vehicle, detailPath, onRemove) {
       </div>
     </div>`;
 
-  card.querySelector(".vg-btn--remove").addEventListener("click", () => {
-    card.classList.add("vg-card--removing");
+  card.querySelector('.vg-btn--remove').addEventListener('click', () => {
+    card.classList.add('vg-card--removing');
     setTimeout(() => onRemove(vehicle.id, card), 300);
   });
 
@@ -123,14 +123,14 @@ export default async function decorate(block) {
   [...block.children].forEach((row) => {
     const key = row.children[0]?.textContent?.trim().toLowerCase();
     const value = row.children[1]?.textContent?.trim();
-    if (key === "detail-page" && value) detailPath = value;
+    if (key === 'detail-page' && value) detailPath = value;
   });
-  block.textContent = "";
+  block.textContent = '';
 
   const userId = getUserId();
 
   // Header
-  const header = el("div", "vg-header");
+  const header = el('div', 'vg-header');
   header.innerHTML = `
     <h2 class="vg-title">My Garage</h2>
     <p class="vg-subtitle">Your saved vehicles</p>`;
@@ -160,7 +160,7 @@ export default async function decorate(block) {
     }
 
     // Render grid
-    const grid = el("div", "vg-grid");
+    const grid = el('div', 'vg-grid');
     const handleRemove = async (vehicleId, card) => {
       try {
         await queryAPI(REMOVE_GARAGE, { userId, vehicleId });
@@ -170,7 +170,7 @@ export default async function decorate(block) {
           grid.replaceWith(renderEmpty());
         }
       } catch {
-        card.classList.remove("vg-card--removing");
+        card.classList.remove('vg-card--removing');
       }
     };
 
@@ -182,8 +182,8 @@ export default async function decorate(block) {
   } catch (err) {
     skeleton.replaceWith(
       el(
-        "div",
-        "vg-error",
+        'div',
+        'vg-error',
         `<p>Unable to load your garage. Please try again later.</p><p class="vg-error-detail">${err.message}</p>`,
       ),
     );
