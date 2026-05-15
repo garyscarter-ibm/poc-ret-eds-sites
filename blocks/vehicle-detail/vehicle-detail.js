@@ -34,10 +34,6 @@ const VEHICLE_QUERY = `query GetVehicle($id: ID!) {
   }
 }`;
 
-const ENQUIRY_MUTATION = `mutation SubmitEnquiry($input: VehicleEnquiryInput!) {
-  submitVehicleEnquiry(input: $input) { id success message }
-}`;
-
 const GARAGE_ADD = `mutation AddToGarage($userId: String!, $vehicleId: ID!) {
   addToGarage(userId: $userId, vehicleId: $vehicleId)
 }`;
@@ -639,29 +635,4 @@ export default async function decorate(block) {
 
   const dealer = renderDealer(vehicle.dealer);
   if (dealer) block.append(dealer);
-
-  // Dynamically load finance calculator block (before enquiry form)
-  if (vehicle.financeAvailable) {
-    const fcWrapper = el("div", "finance-calculator block");
-    fcWrapper.dataset.blockName = "finance-calculator";
-    block.append(fcWrapper);
-    const fcCss = document.createElement("link");
-    fcCss.rel = "stylesheet";
-    fcCss.href = "/blocks/finance-calculator/finance-calculator.css";
-    document.head.append(fcCss);
-    const fcModule =
-      await import("../finance-calculator/finance-calculator.js"); // eslint-disable-line import/no-unresolved
-    await fcModule.default(fcWrapper);
-  }
-
-  block.append(renderEnquiryForm(vehicleId, vehicle.model));
-
-  // Auto-scroll to enquiry form if hash is #enquire
-  if (window.location.hash === "#enquire") {
-    setTimeout(() => {
-      document
-        .getElementById("enquire")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }
 }
