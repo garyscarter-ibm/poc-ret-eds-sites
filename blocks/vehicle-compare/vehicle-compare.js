@@ -47,11 +47,11 @@ function el(tag, cls, html) {
 /* ---------- AI Insights (backend-powered) ---------- */
 
 const AI_SECTIONS = [
-  { key: 'overview', title: 'Overview', icon: '📋' },
-  { key: 'keyDifferences', title: 'Key Differences', icon: '⚡' },
-  { key: 'targetBuyer', title: 'Who Is It For?', icon: '👤' },
-  { key: 'valueAssessment', title: 'Value Assessment', icon: '💰' },
-  { key: 'recommendation', title: 'Recommendation', icon: '✅' },
+  { key: "overview", title: "Overview", icon: "📋" },
+  { key: "keyDifferences", title: "Key Differences", icon: "⚡" },
+  { key: "targetBuyer", title: "Who Is It For?", icon: "👤" },
+  { key: "valueAssessment", title: "Value Assessment", icon: "💰" },
+  { key: "recommendation", title: "Recommendation", icon: "✅" },
 ];
 
 /* ---------- Skeleton ---------- */
@@ -129,9 +129,9 @@ function renderSpecTable(vehicles) {
 /* ---------- AI Insights Panel ---------- */
 
 function renderInsightsSection() {
-  const section = el('div', 'vc-insights');
+  const section = el("div", "vc-insights");
 
-  const header = el('div', 'vc-insights-header');
+  const header = el("div", "vc-insights-header");
   header.innerHTML = `
     <div class="vc-insights-badge">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -139,7 +139,7 @@ function renderInsightsSection() {
     </div>`;
   section.append(header);
 
-  const content = el('div', 'vc-insights-content');
+  const content = el("div", "vc-insights-content");
   // Loading skeleton
   content.innerHTML = `
     <div class="vc-insight-card vc-insight-card--loading"><div class="vc-skeleton-shimmer"></div></div>
@@ -151,18 +151,19 @@ function renderInsightsSection() {
 }
 
 function populateInsights(section, summaryData) {
-  const content = section.querySelector('.vc-insights-content');
-  content.innerHTML = '';
+  const content = section.querySelector(".vc-insights-content");
+  content.innerHTML = "";
 
   if (!summaryData) {
-    content.innerHTML = '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
+    content.innerHTML =
+      '<p class="vc-insights-fallback">AI insights are currently unavailable. Please try again later.</p>';
     return;
   }
 
   AI_SECTIONS.forEach(({ key, title, icon }) => {
     const text = summaryData[key];
     if (!text) return;
-    const card = el('div', 'vc-insight-card');
+    const card = el("div", "vc-insight-card");
     card.innerHTML = `<h4 class="vc-insight-title"><span class="vc-insight-icon">${icon}</span> ${title}</h4><p class="vc-insight-text">${text}</p>`;
     content.append(card);
   });

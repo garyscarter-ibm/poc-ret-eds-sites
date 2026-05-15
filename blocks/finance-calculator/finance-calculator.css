@@ -1,277 +1,277 @@
 /* ---------- Block Container ---------- */
 
 .finance-calculator {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px 40px;
-  background: #1c1c1c;
-  color: #fff;
-  border-radius: 8px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+    background: #1c1c1c;
+    color: #fff;
+    border-radius: 8px;
 }
 
 /* ---------- Title ---------- */
 
 .finance-calculator .fc-title {
-  font-size: 24px;
-  font-weight: 400;
-  margin: 0 0 24px;
-  color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    color: #fff;
 }
 
 /* ---------- Toggle Tabs ---------- */
 
 .finance-calculator .fc-toggle {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
 .finance-calculator .fc-tab-btn {
-  padding: 10px 20px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background: transparent;
-  color: #ccc;
-  font-size: 14px;
-  font-family: var(--body-font-family, sans-serif);
-  cursor: pointer;
-  transition: all 0.2s;
+    padding: 10px 20px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background: transparent;
+    color: #ccc;
+    font-size: 14px;
+    font-family: var(--body-font-family, sans-serif);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .finance-calculator .fc-tab-btn:hover {
-  border-color: #888;
-  color: #fff;
+    border-color: #888;
+    color: #fff;
 }
 
 .finance-calculator .fc-tab-btn.active {
-  background: #fff;
-  color: #1c1c1c;
-  border-color: #fff;
+    background: #fff;
+    color: #1c1c1c;
+    border-color: #fff;
 }
 
 /* ---------- Cards ---------- */
 
 .finance-calculator .fc-cards {
-  position: relative;
+    position: relative;
 }
 
 .finance-calculator .fc-card {
-  display: none;
-  position: relative;
-  background: #262626;
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 32px;
+    display: none;
+    position: relative;
+    background: #262626;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 32px;
 }
 
 .finance-calculator .fc-card.active {
-  display: block;
+    display: block;
 }
 
 /* ---------- Loading State ---------- */
 
 .finance-calculator .fc-card--loading::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgb(38 38 38 / 70%);
-  border-radius: 8px;
-  z-index: 5;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgb(38 38 38 / 70%);
+    border-radius: 8px;
+    z-index: 5;
 }
 
 .finance-calculator .fc-card--loading::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 32px;
-  height: 32px;
-  border: 3px solid #444;
-  border-top-color: #1b69d4;
-  border-radius: 50%;
-  animation: fc-spin 0.8s linear infinite;
-  z-index: 6;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border: 3px solid #444;
+    border-top-color: #1b69d4;
+    border-radius: 50%;
+    animation: fc-spin 0.8s linear infinite;
+    z-index: 6;
 }
 
 @keyframes fc-spin {
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }
 
 /* ---------- Headline ---------- */
 
 .finance-calculator .fc-headline {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #333;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #333;
 }
 
 .finance-calculator .fc-monthly {
-  font-size: 32px;
-  font-weight: 400;
-  color: #fff;
+    font-size: 32px;
+    font-weight: 400;
+    color: #fff;
 }
 
 .finance-calculator .fc-apr {
-  font-size: 16px;
-  color: #999;
+    font-size: 16px;
+    color: #999;
 }
 
 /* ---------- Grid ---------- */
 
 .finance-calculator .fc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 .finance-calculator .fc-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .finance-calculator .fc-label {
-  font-size: 12px;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .finance-calculator .fc-value {
-  font-size: 16px;
-  color: #fff;
+    font-size: 16px;
+    color: #fff;
 }
 
 /* ---------- Adjust Section ---------- */
 
 .finance-calculator .fc-adjust {
-  border-top: 1px solid #333;
-  padding-top: 16px;
-  margin-bottom: 16px;
+    border-top: 1px solid #333;
+    padding-top: 16px;
+    margin-bottom: 16px;
 }
 
 .finance-calculator .fc-adjust summary {
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  color: #4d9ef5;
-  padding: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #4d9ef5;
+    padding: 8px 0;
 }
 
 .finance-calculator .fc-sliders {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px 0;
 }
 
 .finance-calculator .fc-slider-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 14px;
-  color: #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: #ccc;
 }
 
 .finance-calculator .fc-slider {
-  width: 100%;
-  accent-color: #1b69d4;
+    width: 100%;
+    accent-color: #1b69d4;
 }
 
 /* ---------- Disclaimer ---------- */
 
 .finance-calculator .fc-disclaimer {
-  font-size: 12px;
-  color: #777;
-  margin: 0;
+    font-size: 12px;
+    color: #777;
+    margin: 0;
 }
 
 /* ---------- Empty State ---------- */
 
 .finance-calculator .fc-empty {
-  text-align: center;
-  padding: 48px 24px;
-  color: #999;
-  font-size: 16px;
+    text-align: center;
+    padding: 48px 24px;
+    color: #999;
+    font-size: 16px;
 }
 
 /* ---------- Skeleton ---------- */
 
 .finance-calculator .fc-skeleton {
-  padding: 32px;
+    padding: 32px;
 }
 
 .finance-calculator .fc-skeleton-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .finance-calculator .fc-skeleton-tab {
-  width: 120px;
-  height: 40px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
-  background-size: 200% 100%;
-  animation: fc-shimmer 1.5s infinite;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+    animation: fc-shimmer 1.5s infinite;
 }
 
 .finance-calculator .fc-skeleton-card {
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 32px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 32px;
 }
 
 .finance-calculator .fc-skeleton-line {
-  height: 20px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
-  background-size: 200% 100%;
-  animation: fc-shimmer 1.5s infinite;
+    height: 20px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #333 25%, #3a3a3a 50%, #333 75%);
+    background-size: 200% 100%;
+    animation: fc-shimmer 1.5s infinite;
 }
 
 .finance-calculator .fc-skeleton-line--wide {
-  width: 60%;
+    width: 60%;
 }
 
 .finance-calculator .fc-skeleton-line--medium {
-  width: 40%;
+    width: 40%;
 }
 
 .finance-calculator .fc-skeleton-line--narrow {
-  width: 80%;
+    width: 80%;
 }
 
 .finance-calculator .fc-skeleton-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
 }
 
 @keyframes fc-shimmer {
-  0% {
-    background-position: 200% 0;
-  }
+    0% {
+        background-position: 200% 0;
+    }
 
-  100% {
-    background-position: -200% 0;
-  }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* ---------- Responsive: Desktop (3 columns in grid) ---------- */
 
 @media (min-width: 900px) {
-  .finance-calculator .fc-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+    .finance-calculator .fc-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
