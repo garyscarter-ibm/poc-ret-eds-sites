@@ -1,4 +1,4 @@
-import queryAPI from "../../scripts/used-cars-api.js";
+import queryAPI from '../../scripts/used-cars-api.js';
 import {
   formatPrice,
   formatMileage,
@@ -8,7 +8,7 @@ import {
   formatPower,
   formatMonthly,
   getUserId,
-} from "../../scripts/used-cars-config.js";
+} from '../../scripts/used-cars-config.js';
 
 /* ---------- GraphQL Queries ---------- */
 
@@ -50,34 +50,34 @@ const GARAGE_IDS = `query GarageIds($userId: String!) {
 /* ---------- Colour Map ---------- */
 
 const COLOUR_MAP = {
-  "alpine white": "#f2f2f2",
-  "mineral white": "#e8e8e4",
-  "black sapphire": "#1c1f2a",
-  "carbon black": "#222222",
-  "jet black": "#0a0a0a",
-  "sophisto grey": "#6b6e72",
-  "mineral grey": "#5a5d61",
-  "thunder grey": "#4a4d51",
-  "brooklyn grey": "#7a7d81",
-  "skyscraper grey": "#8e9196",
-  "tanzanite blue": "#1d2951",
-  "phytonic blue": "#2a4a6b",
-  "portimao blue": "#2c5a8a",
-  "san remo green": "#2d5c3f",
-  "isle of man green": "#1e4d2b",
-  "aventurine red": "#6b1d2a",
-  "melbourne red": "#8b1a2a",
-  "fire red": "#cc2222",
-  "toronto red": "#a01020",
-  "sunset orange": "#d4601a",
-  "Individual frozen": "#c8ccd0",
+  'alpine white': '#f2f2f2',
+  'mineral white': '#e8e8e4',
+  'black sapphire': '#1c1f2a',
+  'carbon black': '#222222',
+  'jet black': '#0a0a0a',
+  'sophisto grey': '#6b6e72',
+  'mineral grey': '#5a5d61',
+  'thunder grey': '#4a4d51',
+  'brooklyn grey': '#7a7d81',
+  'skyscraper grey': '#8e9196',
+  'tanzanite blue': '#1d2951',
+  'phytonic blue': '#2a4a6b',
+  'portimao blue': '#2c5a8a',
+  'san remo green': '#2d5c3f',
+  'isle of man green': '#1e4d2b',
+  'aventurine red': '#6b1d2a',
+  'melbourne red': '#8b1a2a',
+  'fire red': '#cc2222',
+  'toronto red': '#a01020',
+  'sunset orange': '#d4601a',
+  'Individual frozen': '#c8ccd0',
 };
 
 function getAccentColour(colourName) {
-  if (!colourName) return "#1b69d4";
+  if (!colourName) return '#1b69d4';
   const key = colourName.toLowerCase();
   const match = Object.entries(COLOUR_MAP).find(([k]) => key.includes(k));
-  return match ? match[1] : "#1b69d4";
+  return match ? match[1] : '#1b69d4';
 }
 
 function getAccentTextColour(hex) {
@@ -85,7 +85,7 @@ function getAccentTextColour(hex) {
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.6 ? "#262626" : "#ffffff";
+  return luminance > 0.6 ? '#262626' : '#ffffff';
 }
 
 /* ---------- Helpers ---------- */
@@ -158,150 +158,250 @@ function renderError(block, message) {
     </div>`;
 }
 
-/* ---------- Gallery (Hero + Side Strips + Dots) ---------- */
+/* ---------- Gallery (Horizontal Accordion) ---------- */
 
 function renderGallery(images, accentColour) {
   const sorted = [...images].sort((a, b) => a.order - b.order);
-  const gallery = el("div", "vd2-gallery");
+  const gallery = el('div', 'vd2-gallery');
+  let current = 0;
 
-  // Main hero image
-  const heroWrap = el("div", "vd2-gallery-hero");
-  const heroImg = document.createElement("img");
-  heroImg.className = "vd2-gallery-hero-img";
-  heroImg.src = sorted[0]?.url || "";
-  heroImg.alt = sorted[0]?.alt || "Vehicle image";
-  heroImg.loading = "eager";
-  heroWrap.append(heroImg);
+  // All images in a single expanding/contracting row
+  const track = el('div', 'vd2-gallery-track');
+  track.setAttribute('tabindex', '0');
+
+  sorted.forEach((img, i) => {
+    const panel = el('div', `vd2-gallery-panel${i === 0 ? ' vd2-panel--active' : ''}`);
+    panel.dataset.index = i;
+    const imgEl = document.createElement('img');
+    imgEl.src = i < 3 ? img.url : '';
+    imgEl.dataset.src = img.url;
+    imgEl.alt = img.alt || `${sorted[0].alt?.split(' - ')[0] || 'Vehicle'} - image ${i + 1}`;
+    imgEl.loading = i === 0 ? 'eager' : 'lazy';
+    imgEl.className = 'vd2-gallery-panel-img';
+
+    panel.append(imgEl);
+
+    // Overlay for collapsed panels
+    const overlay = el('div', 'vd2-gallery-panel-overlay');
+    panel.append(overlay);
+
+    track.append(panel);
+  });
+
+  // Navigation arrows (on the track)
+  const prevBtn = el('button', 'vd2-gallery-nav vd2-gallery-prev');
+  prevBtn.innerHTML = ICONS.chevronLeft;
+  prevBtn.setAttribute('aria-label', 'Previous image');
+  const nextBtn = el('button', 'vd2-gallery-nav vd2-gallery-next');
+  nextBtn.innerHTML = ICONS.chevronRight;
+  nextBtn.setAttribute('aria-label', 'Next image');
+  track.append(prevBtn, nextBtn);
 
   // Fullscreen button
-  const fsBtn = el("button", "vd2-gallery-fs");
+  const fsBtn = el('button', 'vd2-gallery-fs');
   fsBtn.innerHTML = ICONS.fullscreen;
-  fsBtn.setAttribute("aria-label", "View fullscreen");
-  heroWrap.append(fsBtn);
+  fsBtn.setAttribute('aria-label', 'View fullscreen');
+  track.append(fsBtn);
 
-  // Navigation arrows on hero
-  const prevBtn = el("button", "vd2-gallery-nav vd2-gallery-prev");
-  prevBtn.innerHTML = ICONS.chevronLeft;
-  prevBtn.setAttribute("aria-label", "Previous image");
-  const nextBtn = el("button", "vd2-gallery-nav vd2-gallery-next");
-  nextBtn.innerHTML = ICONS.chevronRight;
-  nextBtn.setAttribute("aria-label", "Next image");
-  heroWrap.append(prevBtn, nextBtn);
+  gallery.append(track);
 
-  gallery.append(heroWrap);
-
-  // Side preview strips (show next 4 images with overlay)
-  const sideStrips = el("div", "vd2-gallery-sides");
-  const previewCount = Math.min(4, sorted.length - 1);
-  for (let i = 1; i <= previewCount; i += 1) {
-    const strip = el("div", "vd2-gallery-strip");
-    const img = document.createElement("img");
-    img.src = sorted[i].url;
-    img.alt = sorted[i].alt || `Preview ${i}`;
-    img.loading = "lazy";
-    strip.append(img);
-    const overlay = el("div", "vd2-gallery-strip-overlay");
-    strip.append(overlay);
-    strip.dataset.index = i;
-    sideStrips.append(strip);
-  }
-  gallery.append(sideStrips);
-
-  // Fade edge
-  gallery.append(el("div", "vd2-gallery-fade"));
+  // Fade edge on right
+  gallery.append(el('div', 'vd2-gallery-fade'));
 
   // Dot pagination
-  const dots = el("div", "vd2-gallery-dots");
+  const dots = el('div', 'vd2-gallery-dots');
   sorted.forEach((_, i) => {
-    const dot = el("button", i === 0 ? "vd2-dot vd2-dot--active" : "vd2-dot");
-    dot.setAttribute("aria-label", `Image ${i + 1}`);
+    const dot = el('button', i === 0 ? 'vd2-dot vd2-dot--active' : 'vd2-dot');
+    dot.setAttribute('aria-label', `Image ${i + 1}`);
     dot.dataset.index = i;
     dots.append(dot);
   });
   gallery.append(dots);
 
-  // Gallery logic
-  let current = 0;
+  // Preload adjacent images
+  function preloadNear(idx) {
+    for (let offset = -1; offset <= 2; offset += 1) {
+      const target = (idx + offset + sorted.length) % sorted.length;
+      const panel = track.querySelectorAll('.vd2-gallery-panel')[target];
+      const img = panel?.querySelector('img');
+      if (img && !img.src && img.dataset.src) {
+        img.src = img.dataset.src;
+      }
+    }
+  }
 
+  // Navigate — expand target panel, contract current
   function goTo(idx) {
     const next = (idx + sorted.length) % sorted.length;
     if (next === current) return;
 
-    heroImg.style.opacity = "0";
-    setTimeout(() => {
-      heroImg.src = sorted[next].url;
-      heroImg.alt = sorted[next].alt || `Image ${next + 1}`;
-      heroImg.style.opacity = "1";
-    }, 250);
-
-    // Update dots
-    dots.querySelectorAll(".vd2-dot").forEach((d, i) => {
-      d.classList.toggle("vd2-dot--active", i === next);
+    const panels = track.querySelectorAll('.vd2-gallery-panel');
+    panels.forEach((p, i) => {
+      p.classList.toggle('vd2-panel--active', i === next);
     });
 
-    // Update side strips highlight
-    sideStrips.querySelectorAll(".vd2-gallery-strip").forEach((s) => {
-      const sIdx = Number(s.dataset.index);
-      s.querySelector(".vd2-gallery-strip-overlay").style.opacity =
-        sIdx === next ? "0" : "";
+    // Ensure target image is loaded
+    const targetImg = panels[next].querySelector('img');
+    if (!targetImg.src && targetImg.dataset.src) {
+      targetImg.src = targetImg.dataset.src;
+    }
+
+    // Update dots
+    dots.querySelectorAll('.vd2-dot').forEach((d, i) => {
+      d.classList.toggle('vd2-dot--active', i === next);
     });
 
     current = next;
+    preloadNear(next);
   }
 
-  prevBtn.addEventListener("click", () => goTo(current - 1));
-  nextBtn.addEventListener("click", () => goTo(current + 1));
-  dots.addEventListener("click", (e) => {
-    const dot = e.target.closest(".vd2-dot");
+  preloadNear(0);
+
+  // Click panel to expand it
+  track.addEventListener('click', (e) => {
+    const panel = e.target.closest('.vd2-gallery-panel');
+    if (panel && !e.target.closest('button')) {
+      goTo(Number(panel.dataset.index));
+    }
+  });
+
+  // Nav button events
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    goTo(current - 1);
+  });
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    goTo(current + 1);
+  });
+
+  // Dot events
+  dots.addEventListener('click', (e) => {
+    const dot = e.target.closest('.vd2-dot');
     if (dot) goTo(Number(dot.dataset.index));
   });
-  sideStrips.addEventListener("click", (e) => {
-    const strip = e.target.closest(".vd2-gallery-strip");
-    if (strip) goTo(Number(strip.dataset.index));
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchDeltaX = 0;
+  let isSwiping = false;
+
+  track.addEventListener(
+    'touchstart',
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaX = 0;
+      isSwiping = false;
+    },
+    { passive: true },
+  );
+
+  track.addEventListener(
+    'touchmove',
+    (e) => {
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      if (!isSwiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+        isSwiping = true;
+      }
+      if (isSwiping) touchDeltaX = dx;
+    },
+    { passive: true },
+  );
+
+  track.addEventListener('touchend', () => {
+    if (!isSwiping) return;
+    const threshold = 50;
+    if (touchDeltaX < -threshold) goTo(current + 1);
+    else if (touchDeltaX > threshold) goTo(current - 1);
+    isSwiping = false;
+  });
+
+  // Keyboard navigation
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { goTo(current - 1); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { goTo(current + 1); e.preventDefault(); }
   });
 
   // Fullscreen lightbox
-  fsBtn.addEventListener("click", () => {
-    const lightbox = el("div", "vd2-lightbox");
+  fsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const lightbox = el('div', 'vd2-lightbox');
     lightbox.innerHTML = `
       <button class="vd2-lightbox-close" aria-label="Close">✕</button>
-      <img src="${sorted[current].url}" alt="${sorted[current].alt || ""}" />
+      <div class="vd2-lightbox-counter"><span class="vd2-lb-current">${current + 1}</span> / ${sorted.length}</div>
+      <img src="${sorted[current].url}" alt="${sorted[current].alt || ''}" />
       <button class="vd2-lightbox-prev" aria-label="Previous">${ICONS.chevronLeft}</button>
       <button class="vd2-lightbox-next" aria-label="Next">${ICONS.chevronRight}</button>`;
     document.body.append(lightbox);
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
 
     let lbIdx = current;
-    const lbImg = lightbox.querySelector("img");
+    const lbImg = lightbox.querySelector('img');
+    const lbCounter = lightbox.querySelector('.vd2-lb-current');
 
-    lightbox
-      .querySelector(".vd2-lightbox-close")
-      .addEventListener("click", () => {
+    function lbGoTo(idx) {
+      const n = (idx + sorted.length) % sorted.length;
+      lbImg.style.opacity = '0';
+      lbImg.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        lbImg.src = sorted[n].url;
+        lbImg.alt = sorted[n].alt || '';
+        lbImg.style.opacity = '1';
+        lbImg.style.transform = 'scale(1)';
+      }, 200);
+      lbIdx = n;
+      lbCounter.textContent = n + 1;
+    }
+
+    lightbox.querySelector('.vd2-lightbox-close').addEventListener('click', () => {
+      lightbox.remove();
+      document.body.style.overflow = '';
+    });
+    lightbox.querySelector('.vd2-lightbox-prev').addEventListener('click', () => lbGoTo(lbIdx - 1));
+    lightbox.querySelector('.vd2-lightbox-next').addEventListener('click', () => lbGoTo(lbIdx + 1));
+    lightbox.addEventListener('click', (ev) => {
+      if (ev.target === lightbox) {
         lightbox.remove();
-        document.body.style.overflow = "";
-      });
-    lightbox
-      .querySelector(".vd2-lightbox-prev")
-      .addEventListener("click", () => {
-        lbIdx = (lbIdx - 1 + sorted.length) % sorted.length;
-        lbImg.src = sorted[lbIdx].url;
-      });
-    lightbox
-      .querySelector(".vd2-lightbox-next")
-      .addEventListener("click", () => {
-        lbIdx = (lbIdx + 1) % sorted.length;
-        lbImg.src = sorted[lbIdx].url;
-      });
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        lightbox.remove();
-        document.body.style.overflow = "";
+        document.body.style.overflow = '';
       }
     });
+    lightbox.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') { lightbox.remove(); document.body.style.overflow = ''; }
+      if (ev.key === 'ArrowLeft') lbGoTo(lbIdx - 1);
+      if (ev.key === 'ArrowRight') lbGoTo(lbIdx + 1);
+    });
+    lightbox.setAttribute('tabindex', '0');
+    lightbox.focus();
   });
 
   // Set accent colour on dots
-  dots.style.setProperty("--vd2-accent", accentColour);
+  dots.style.setProperty('--vd2-accent', accentColour);
+
+  // Size images after gallery is in DOM to avoid race condition
+  requestAnimationFrame(() => {
+    function sizeImage(imgEl) {
+      if (!imgEl.naturalWidth || !track.offsetHeight) return;
+      const trackH = track.offsetHeight;
+      const trackW = track.offsetWidth;
+      const ratio = imgEl.naturalWidth / imgEl.naturalHeight;
+      const widthFromHeight = Math.round(trackH * ratio);
+      const minNeeded = Math.round(trackW * 0.7);
+      const fixedWidth = Math.max(widthFromHeight, minNeeded);
+      imgEl.style.width = `${fixedWidth}px`;
+      imgEl.style.height = `${Math.round(fixedWidth / ratio)}px`;
+    }
+
+    track.querySelectorAll('.vd2-gallery-panel-img').forEach((imgEl) => {
+      if (imgEl.complete && imgEl.naturalWidth) {
+        sizeImage(imgEl);
+      } else {
+        imgEl.addEventListener('load', () => sizeImage(imgEl), { once: true });
+      }
+    });
+  });
 
   return gallery;
 }
@@ -309,27 +409,27 @@ function renderGallery(images, accentColour) {
 /* ---------- Key Facts (2 rows of 4) ---------- */
 
 function renderKeyFacts(vehicle) {
-  const section = el("div", "vd2-key-facts");
+  const section = el('div', 'vd2-key-facts');
 
   const row1 = [
     {
       icon: ICONS.calendar,
-      label: "Registered",
+      label: 'Registered',
       value: formatDate(vehicle.registrationDate),
     },
     {
       icon: ICONS.fuel,
-      label: "Fuel",
+      label: 'Fuel',
       value: formatFuelType(vehicle.fuelType),
     },
     {
       icon: ICONS.mileage,
-      label: "Mileage",
+      label: 'Mileage',
       value: formatMileage(vehicle.mileage),
     },
     {
       icon: ICONS.gearbox,
-      label: "Gearbox",
+      label: 'Gearbox',
       value: formatTransmission(vehicle.transmission),
     },
   ];
@@ -337,30 +437,30 @@ function renderKeyFacts(vehicle) {
   const row2 = [
     {
       icon: ICONS.engine,
-      label: "Engine Power",
+      label: 'Engine Power',
       value: formatPower(vehicle.power),
     },
     {
       icon: ICONS.registration,
-      label: "Registration",
-      value: vehicle.registrationNumber || "—",
+      label: 'Registration',
+      value: vehicle.registrationNumber || '—',
     },
-    { icon: ICONS.exterior, label: "Exterior", value: vehicle.colour || "—" },
+    { icon: ICONS.exterior, label: 'Exterior', value: vehicle.colour || '—' },
     {
       icon: ICONS.upholstery,
-      label: "Upholstery",
-      value: vehicle.upholstery || "—",
+      label: 'Upholstery',
+      value: vehicle.upholstery || '—',
     },
   ];
 
   function buildRow(items) {
-    const row = el("div", "vd2-facts-row");
+    const row = el('div', 'vd2-facts-row');
     items.forEach(({ icon, label, value }) => {
-      if (!value || value === "—") return;
+      if (!value || value === '—') return;
       row.append(
         el(
-          "div",
-          "vd2-fact",
+          'div',
+          'vd2-fact',
           `
         <div class="vd2-fact-icon">${icon}</div>
         <span class="vd2-fact-label">${label}</span>
@@ -373,7 +473,7 @@ function renderKeyFacts(vehicle) {
   }
 
   section.append(buildRow(row1));
-  section.append(el("hr", "vd2-divider"));
+  section.append(el('hr', 'vd2-divider'));
   section.append(buildRow(row2));
 
   return section;
@@ -382,48 +482,48 @@ function renderKeyFacts(vehicle) {
 /* ---------- Price Card ---------- */
 
 function renderPriceCard(vehicle, isSaved, onToggleSave, accentColour) {
-  const card = el("div", "vd2-price-card");
-  card.style.setProperty("--vd2-accent", accentColour);
+  const card = el('div', 'vd2-price-card');
+  card.style.setProperty('--vd2-accent', accentColour);
 
-  const price = el("div", "vd2-price", formatPrice(vehicle.price));
+  const price = el('div', 'vd2-price', formatPrice(vehicle.price));
   card.append(price);
 
   if (vehicle.estimatedMonthlyPayment) {
     card.append(
       el(
-        "div",
-        "vd2-monthly",
+        'div',
+        'vd2-monthly',
         `${formatMonthly(vehicle.estimatedMonthlyPayment)}  / mo`,
       ),
     );
   }
 
   // Enquire now CTA
-  const enquireBtn = el("a", "vd2-btn vd2-btn--primary", "Enquire now");
+  const enquireBtn = el('a', 'vd2-btn vd2-btn--primary', 'Enquire now');
   enquireBtn.href = `/used-cars/enquire?id=${vehicle.id}`;
   card.append(enquireBtn);
 
   // Reserve CTA
-  const reserveBtn = el("a", "vd2-btn vd2-btn--secondary", "Reserve for £100");
-  reserveBtn.href = "#reserve";
+  const reserveBtn = el('a', 'vd2-btn vd2-btn--secondary', 'Reserve for £100');
+  reserveBtn.href = '#reserve';
   card.append(reserveBtn);
 
   // Save + Share row
-  const actionRow = el("div", "vd2-action-row");
+  const actionRow = el('div', 'vd2-action-row');
 
-  const saveBtn = el("button", `vd2-action-btn${isSaved ? " saved" : ""}`);
+  const saveBtn = el('button', `vd2-action-btn${isSaved ? ' saved' : ''}`);
   saveBtn.innerHTML = `${isSaved ? ICONS.heartFilled : ICONS.heart}<span>Save</span>`;
   saveBtn.setAttribute(
-    "aria-label",
-    isSaved ? "Remove from saved" : "Save vehicle",
+    'aria-label',
+    isSaved ? 'Remove from saved' : 'Save vehicle',
   );
-  saveBtn.addEventListener("click", () => onToggleSave(saveBtn));
+  saveBtn.addEventListener('click', () => onToggleSave(saveBtn));
   actionRow.append(saveBtn);
 
-  const shareBtn = el("button", "vd2-action-btn");
+  const shareBtn = el('button', 'vd2-action-btn');
   shareBtn.innerHTML = `${ICONS.share}<span>Share</span>`;
-  shareBtn.setAttribute("aria-label", "Share vehicle");
-  shareBtn.addEventListener("click", () => {
+  shareBtn.setAttribute('aria-label', 'Share vehicle');
+  shareBtn.addEventListener('click', () => {
     if (navigator.share) {
       navigator.share({ title: vehicle.model, url: window.location.href });
     } else {
@@ -436,10 +536,10 @@ function renderPriceCard(vehicle, isSaved, onToggleSave, accentColour) {
 
   // Dealer info
   if (vehicle.dealer) {
-    const dealer = el("div", "vd2-dealer-info");
+    const dealer = el('div', 'vd2-dealer-info');
     dealer.innerHTML = `
       <div class="vd2-dealer-row">${ICONS.location}<span>${vehicle.dealer.name}</span></div>
-      ${vehicle.dealer.phone ? `<div class="vd2-dealer-row">${ICONS.phone}<a href="tel:${vehicle.dealer.phone}">${vehicle.dealer.phone}</a></div>` : ""}`;
+      ${vehicle.dealer.phone ? `<div class="vd2-dealer-row">${ICONS.phone}<a href="tel:${vehicle.dealer.phone}">${vehicle.dealer.phone}</a></div>` : ''}`;
     card.append(dealer);
   }
 
@@ -452,20 +552,19 @@ function renderSimilarOffers(vehicles, currentId) {
   const filtered = vehicles.filter((v) => v.id !== currentId);
   if (!filtered.length) return null;
 
-  const section = el("div", "vd2-similar");
-  section.innerHTML =
-    '<div class="vd2-similar-header"><span class="vd2-similar-line"></span><h2>Similar Offers</h2><span class="vd2-similar-line"></span></div>';
+  const section = el('div', 'vd2-similar');
+  section.innerHTML = '<div class="vd2-similar-header"><span class="vd2-similar-line"></span><h2>Similar Offers</h2><span class="vd2-similar-line"></span></div>';
 
-  const track = el("div", "vd2-similar-track");
+  const track = el('div', 'vd2-similar-track');
   filtered.forEach((v) => {
-    const card = el("a", "vd2-similar-card");
+    const card = el('a', 'vd2-similar-card');
     card.href = `/vehicle?id=${v.id}`;
     const img = v.images?.sort((a, b) => a.order - b.order)[0];
     if (img) {
-      const imgEl = document.createElement("img");
+      const imgEl = document.createElement('img');
       imgEl.src = img.url;
-      imgEl.alt = v.model || "Vehicle";
-      imgEl.loading = "lazy";
+      imgEl.alt = v.model || 'Vehicle';
+      imgEl.loading = 'lazy';
       card.append(imgEl);
     }
     track.append(card);
@@ -478,13 +577,12 @@ function renderSimilarOffers(vehicles, currentId) {
 /* ---------- Back Navigation ---------- */
 
 function renderBackLink() {
-  const nav = el("div", "vd2-back");
-  const link = el("a", "vd2-back-link");
+  const nav = el('div', 'vd2-back');
+  const link = el('a', 'vd2-back-link');
   link.innerHTML = `${ICONS.chevronLeft}<span>Back to results</span>`;
-  link.href =
-    document.referrer && document.referrer.includes("/used-cars/")
-      ? document.referrer
-      : "/used-cars/inventory";
+  link.href = document.referrer && document.referrer.includes('/used-cars/')
+    ? document.referrer
+    : '/used-cars/inventory';
   nav.append(link);
   return nav;
 }
@@ -493,12 +591,12 @@ function renderBackLink() {
 
 export default async function decorate(block) {
   const params = new URLSearchParams(window.location.search);
-  const vehicleId = params.get("id");
+  const vehicleId = params.get('id');
 
   if (!vehicleId) {
     renderError(
       block,
-      "No vehicle ID provided. Please select a vehicle from the search results.",
+      'No vehicle ID provided. Please select a vehicle from the search results.',
     );
     return;
   }
@@ -515,17 +613,16 @@ export default async function decorate(block) {
       queryAPI(GARAGE_IDS, { userId }),
     ]);
 
-    if (vehicleData.status === "rejected" || !vehicleData.value?.usedVehicle) {
+    if (vehicleData.status === 'rejected' || !vehicleData.value?.usedVehicle) {
       renderError(
         block,
-        "This vehicle could not be found. It may have been sold or removed.",
+        'This vehicle could not be found. It may have been sold or removed.',
       );
       return;
     }
 
     vehicle = vehicleData.value.usedVehicle;
-    if (garageData.status === "fulfilled")
-      garageIds = garageData.value?.garageVehicleIds || [];
+    if (garageData.status === 'fulfilled') garageIds = garageData.value?.garageVehicleIds || [];
   } catch (err) {
     renderError(block, `Failed to load vehicle details. ${err.message}`);
     return;
@@ -538,24 +635,24 @@ export default async function decorate(block) {
   const accentText = getAccentTextColour(accentColour);
 
   // Set CSS custom properties on the block
-  block.style.setProperty("--vd2-accent", accentColour);
-  block.style.setProperty("--vd2-accent-text", accentText);
+  block.style.setProperty('--vd2-accent', accentColour);
+  block.style.setProperty('--vd2-accent-text', accentText);
 
   // Clear skeleton
-  block.textContent = "";
+  block.textContent = '';
   const isSaved = garageIds.includes(vehicleId);
 
   // Toggle save handler
   async function onToggleSave(btn) {
     const userId = getUserId();
-    const currentlySaved = btn.classList.contains("saved");
-    btn.classList.toggle("saved");
+    const currentlySaved = btn.classList.contains('saved');
+    btn.classList.toggle('saved');
     btn.innerHTML = currentlySaved
       ? `${ICONS.heart}<span>Save</span>`
       : `${ICONS.heartFilled}<span>Save</span>`;
     btn.setAttribute(
-      "aria-label",
-      currentlySaved ? "Save vehicle" : "Remove from saved",
+      'aria-label',
+      currentlySaved ? 'Save vehicle' : 'Remove from saved',
     );
     try {
       if (currentlySaved) {
@@ -575,27 +672,26 @@ export default async function decorate(block) {
     block.append(renderGallery(vehicle.images, accentColour));
   } else {
     // No-image placeholder
-    const placeholder = el("div", "vd2-gallery");
-    const heroWrap = el("div", "vd2-gallery-hero vd2-gallery-hero--empty");
-    heroWrap.innerHTML =
-      '<div class="vd2-gallery-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>No images available</span></div>';
+    const placeholder = el('div', 'vd2-gallery');
+    const heroWrap = el('div', 'vd2-gallery-hero vd2-gallery-hero--empty');
+    heroWrap.innerHTML = '<div class="vd2-gallery-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>No images available</span></div>';
     placeholder.append(heroWrap);
     block.append(placeholder);
   }
 
   // Content area (2-column: info left, price card right)
-  const content = el("div", "vd2-content");
+  const content = el('div', 'vd2-content');
 
   // Left column
-  const left = el("div", "vd2-content-left");
+  const left = el('div', 'vd2-content-left');
 
   // Badge
   if (vehicle.optionalPacks?.length > 2) {
-    left.append(el("div", "vd2-badge", "High specification"));
+    left.append(el('div', 'vd2-badge', 'High specification'));
   }
 
   // Title
-  left.append(el("h1", "vd2-title", vehicle.model));
+  left.append(el('h1', 'vd2-title', vehicle.model));
 
   // Key facts
   left.append(renderKeyFacts(vehicle));
