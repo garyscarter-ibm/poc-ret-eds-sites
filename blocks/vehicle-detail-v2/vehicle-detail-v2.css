@@ -334,7 +334,7 @@ main > .section.vehicle-detail-v2-container {
 
 .vehicle-detail-v2 .vd2-efficiency {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     border: 1px solid #e3e3e3;
     border-radius: 8px;
     overflow: hidden;
@@ -345,26 +345,27 @@ main > .section.vehicle-detail-v2-container {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 14px 16px;
+    padding: 12px 14px;
     border-right: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
+    min-width: 0;
 }
 
-.vehicle-detail-v2 .vd2-efficiency-stat:last-child {
+.vehicle-detail-v2 .vd2-efficiency-stat:nth-child(3n) {
     border-right: none;
 }
 
-/* Remove bottom border on last row */
-.vehicle-detail-v2 .vd2-efficiency-stat:nth-last-child(-n+4) {
+.vehicle-detail-v2 .vd2-efficiency-stat:nth-last-child(-n+3) {
     border-bottom: none;
 }
 
 .vehicle-detail-v2 .vd2-efficiency-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
     color: #666;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
 }
 
 .vehicle-detail-v2 .vd2-efficiency-value {
