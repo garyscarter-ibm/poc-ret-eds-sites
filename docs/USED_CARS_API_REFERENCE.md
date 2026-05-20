@@ -536,8 +536,8 @@ query CompareVehicles($ids: [ID!]!) {
 Generates a structured AI comparison using WatsonX (Llama 3.3 70B). Returns **5 independent sections** so the frontend can render them separately — as cards, accordions, or progressive reveals. Takes ~4-8s due to AI inference.
 
 ```graphql
-query CompareVehicleSummary($ids: [ID!]!) {
-  compareVehicleSummary(ids: $ids) {
+query CompareVehicleSummary($ids: [ID!]!, $tone: CompareTone) {
+  compareVehicleSummary(ids: $ids, tone: $tone) {
     overview # Brief categorisation of the vehicles
     keyDifferences # Detailed spec/feature breakdown
     targetBuyer # Who each vehicle suits
@@ -549,9 +549,24 @@ query CompareVehicleSummary($ids: [ID!]!) {
 
 **Variables:**
 
+| Variable | Type          | Required | Description                                                           |
+| -------- | ------------- | -------- | --------------------------------------------------------------------- |
+| `ids`    | `[ID!]!`      | Yes      | Array of 2–3 vehicle IDs to compare                                   |
+| `tone`   | `CompareTone` | No       | Controls the writing style of the AI summary. Defaults to `LIFESTYLE` |
+
+**`CompareTone` enum:**
+
+| Value       | Description                                                                                                                                                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `LIFESTYLE` | Friendly, benefit-focused language aimed at everyday buyers (default)                                                                                                                                                                                        |
+| `RUSSELL`   | 🏎️ Deep technical analysis — chassis codes, engine families (B48/S58/N55), gearbox variants (ZF 8HP), xDrive ratios, suspension geometry, drag coefficients, known failure modes, TSBs, and production-run differences. Written like an obsessive petrolhead |
+
+**Example variables:**
+
 ```json
 {
-  "ids": ["202406150775633", "202503049727321"]
+  "ids": ["202406150775633", "202503049727321"],
+  "tone": "RUSSELL"
 }
 ```
 
