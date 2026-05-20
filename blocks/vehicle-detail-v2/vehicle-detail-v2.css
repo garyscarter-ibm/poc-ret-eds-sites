@@ -1,5 +1,12 @@
 /* ========== Vehicle Detail V2 – Figma-aligned layout ========== */
 
+/* ---------- Section Override – remove AEM section padding ---------- */
+
+main > .section.vehicle-detail-v2-container {
+    padding: 0;
+    max-width: 100%;
+}
+
 /* ---------- Container ---------- */
 
 .vehicle-detail-v2 {
@@ -15,7 +22,7 @@
 /* ---------- Back Link ---------- */
 
 .vehicle-detail-v2 .vd2-back {
-    padding: 16px 24px;
+    padding: 16px 20px;
 }
 
 .vehicle-detail-v2 .vd2-back-link {
@@ -48,9 +55,9 @@
     position: relative;
     display: flex;
     gap: 6px;
-    height: 200px;
-    margin: 0 24px;
-    border-radius: 8px;
+    height: 280px;
+    margin: 0;
+    border-radius: 0;
     overflow: hidden;
     background: #1c1c1c;
     outline: none;
@@ -88,7 +95,9 @@
     pointer-events: none;
 }
 
-.vehicle-detail-v2 .vd2-gallery-panel.vd2-panel--active .vd2-gallery-panel-overlay {
+.vehicle-detail-v2
+    .vd2-gallery-panel.vd2-panel--active
+    .vd2-gallery-panel-overlay {
     opacity: 0;
 }
 
@@ -223,7 +232,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    padding: 0 24px 40px;
+    padding: 0 20px 40px;
 }
 
 /* ---------- Badge ---------- */
@@ -253,7 +262,7 @@
     padding-bottom: 24px;
 }
 
-.vehicle-detail-v2 .vd2-facts-row {
+.vehicle-detail-v2 .vd2-facts-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px 24px;
@@ -297,6 +306,104 @@
     font-weight: 400;
     color: #262626;
     margin-left: 0;
+}
+
+/* ---------- Efficiency Stats ---------- */
+
+.vehicle-detail-v2 .vd2-efficiency {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.vehicle-detail-v2 .vd2-efficiency-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 20px;
+    flex: 1 1 auto;
+    border-right: 1px solid #e3e3e3;
+}
+
+.vehicle-detail-v2 .vd2-efficiency-stat:last-child {
+    border-right: none;
+}
+
+.vehicle-detail-v2 .vd2-efficiency-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.vehicle-detail-v2 .vd2-efficiency-value {
+    font-size: 20px;
+    font-weight: 400;
+    color: #262626;
+    line-height: 1.1;
+}
+
+.vehicle-detail-v2 .vd2-efficiency-unit {
+    font-size: 12px;
+    color: #666;
+    font-weight: 300;
+}
+
+/* ---------- Vehicle Description ---------- */
+
+.vehicle-detail-v2 .vd2-description {
+    margin-bottom: 24px;
+}
+
+.vehicle-detail-v2 .vd2-description-inner {
+    font-size: 15px;
+    font-weight: 300;
+    color: #4d4d4d;
+    line-height: 1.65;
+}
+
+.vehicle-detail-v2 .vd2-description-inner.vd2-description--loading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vehicle-detail-v2 .vd2-description-skel {
+    height: 14px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #e3e3e3 25%, #f0f0f0 50%, #e3e3e3 75%);
+    background-size: 200% 100%;
+    animation: vd2-shimmer 1.5s infinite;
+}
+
+.vehicle-detail-v2 .vd2-description-skel:nth-child(1) { width: 100%; }
+
+.vehicle-detail-v2 .vd2-description-skel:nth-child(2) { width: 92%; }
+
+.vehicle-detail-v2 .vd2-description-skel:nth-child(3) { width: 75%; }
+
+.vehicle-detail-v2 .vd2-description-highlight-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.vehicle-detail-v2 .vd2-highlight-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--vd2-accent, #1b69d4);
+    background: #e8f1fd;
+    padding: 4px 10px;
+    border-radius: 4px;
 }
 
 /* ---------- Price Card ---------- */
@@ -578,7 +685,9 @@
     max-height: 90vh;
     object-fit: contain;
     border-radius: 4px;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
 }
 
 .vd2-lightbox-close {
@@ -636,12 +745,11 @@
 
 @media (min-width: 600px) {
     .vehicle-detail-v2 .vd2-back {
-        padding: 16px 60px;
+        padding: 16px 32px;
     }
 
     .vehicle-detail-v2 .vd2-gallery-track {
-        height: 280px;
-        margin: 0 60px;
+        height: 380px;
         gap: 8px;
     }
 
@@ -650,10 +758,10 @@
     }
 
     .vehicle-detail-v2 .vd2-content {
-        padding: 0 60px 40px;
+        padding: 0 32px 40px;
     }
 
-    .vehicle-detail-v2 .vd2-facts-row {
+    .vehicle-detail-v2 .vd2-facts-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 
@@ -662,7 +770,7 @@
     }
 
     .vehicle-detail-v2 .vd2-similar {
-        padding: 40px 60px;
+        padding: 40px 32px;
     }
 }
 
@@ -670,14 +778,13 @@
 
 @media (min-width: 900px) {
     .vehicle-detail-v2 .vd2-back {
-        padding: 16px 110px;
+        padding: 16px 40px;
     }
 
     .vehicle-detail-v2 .vd2-gallery-track {
-        height: 340px;
-        margin: 0 110px;
+        height: 460px;
         gap: 8px;
-        border-radius: 12px;
+        border-radius: 0;
     }
 
     .vehicle-detail-v2 .vd2-gallery-panel {
@@ -686,21 +793,13 @@
     }
 
     .vehicle-detail-v2 .vd2-gallery-fade {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 110px;
-        width: 80px;
-        height: 340px;
-        background: linear-gradient(to right, transparent, white);
-        pointer-events: none;
-        z-index: 2;
+        display: none;
     }
 
     .vehicle-detail-v2 .vd2-content {
-        grid-template-columns: 1fr 420px;
+        grid-template-columns: 1fr 400px;
         gap: 40px;
-        padding: 0 110px 40px;
+        padding: 0 40px 40px;
         align-items: start;
     }
 
@@ -714,7 +813,7 @@
     }
 
     .vehicle-detail-v2 .vd2-similar {
-        padding: 40px 110px;
+        padding: 40px;
     }
 
     .vehicle-detail-v2 .vd2-similar-card {
@@ -727,18 +826,19 @@
 
 @media (min-width: 1200px) {
     .vehicle-detail-v2 .vd2-gallery-track {
-        height: 420px;
+        height: 540px;
     }
 
     .vehicle-detail-v2 .vd2-gallery-panel {
         flex: 0 0 60px;
     }
 
-    .vehicle-detail-v2 .vd2-gallery-fade {
-        height: 420px;
+    .vehicle-detail-v2 .vd2-content {
+        grid-template-columns: 1fr 480px;
+        padding: 0 60px 40px;
     }
 
-    .vehicle-detail-v2 .vd2-content {
-        grid-template-columns: 1fr 550px;
+    .vehicle-detail-v2 .vd2-similar {
+        padding: 40px 60px;
     }
 }
