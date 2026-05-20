@@ -22,6 +22,8 @@ main > .section.vehicle-detail-v2-container {
 /* ---------- Back Link ---------- */
 
 .vehicle-detail-v2 .vd2-back {
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
     padding: 16px 20px;
 }
 
@@ -232,6 +234,8 @@ main > .section.vehicle-detail-v2-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
     padding: 24px 20px 40px;
 }
 
@@ -320,18 +324,18 @@ main > .section.vehicle-detail-v2-container {
 }
 
 .vehicle-detail-v2 .vd2-fact-value {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     color: #262626;
     margin-left: 0;
+    white-space: nowrap;
 }
 
 /* ---------- Efficiency Stats ---------- */
 
 .vehicle-detail-v2 .vd2-efficiency {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     border: 1px solid #e3e3e3;
     border-radius: 8px;
     overflow: hidden;
@@ -342,13 +346,18 @@ main > .section.vehicle-detail-v2-container {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: 14px 20px;
-    flex: 1 1 auto;
+    padding: 14px 16px;
     border-right: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
 }
 
 .vehicle-detail-v2 .vd2-efficiency-stat:last-child {
     border-right: none;
+}
+
+/* Remove bottom border on last row */
+.vehicle-detail-v2 .vd2-efficiency-stat:nth-last-child(-n+4) {
+    border-bottom: none;
 }
 
 .vehicle-detail-v2 .vd2-efficiency-label {
@@ -562,6 +571,8 @@ main > .section.vehicle-detail-v2-container {
 /* ---------- Similar Offers ---------- */
 
 .vehicle-detail-v2 .vd2-similar {
+    max-width: var(--content-width, 1200px);
+    margin: 0 auto;
     padding: 40px 24px;
 }
 
@@ -769,7 +780,7 @@ main > .section.vehicle-detail-v2-container {
 
 @media (min-width: 600px) {
     .vehicle-detail-v2 .vd2-back {
-        padding: 16px 32px;
+        padding: 16px 24px;
     }
 
     .vehicle-detail-v2 .vd2-gallery-track {
@@ -782,7 +793,7 @@ main > .section.vehicle-detail-v2-container {
     }
 
     .vehicle-detail-v2 .vd2-content {
-        padding: 24px 32px 40px;
+        padding: 24px 24px 40px;
     }
 
     .vehicle-detail-v2 .vd2-facts-grid {
@@ -794,7 +805,7 @@ main > .section.vehicle-detail-v2-container {
     }
 
     .vehicle-detail-v2 .vd2-similar {
-        padding: 40px 32px;
+        padding: 40px 24px;
     }
 }
 
@@ -802,7 +813,7 @@ main > .section.vehicle-detail-v2-container {
 
 @media (min-width: 900px) {
     .vehicle-detail-v2 .vd2-back {
-        padding: 16px 40px;
+        padding: 16px 24px;
     }
 
     .vehicle-detail-v2 .vd2-gallery-track {
@@ -823,7 +834,7 @@ main > .section.vehicle-detail-v2-container {
     .vehicle-detail-v2 .vd2-content {
         grid-template-columns: 1fr 400px;
         gap: 40px;
-        padding: 24px 40px 40px;
+        padding: 24px 24px 40px;
         align-items: start;
     }
 
@@ -837,7 +848,7 @@ main > .section.vehicle-detail-v2-container {
     }
 
     .vehicle-detail-v2 .vd2-similar {
-        padding: 40px;
+        padding: 40px 24px;
     }
 
     .vehicle-detail-v2 .vd2-similar-card {
@@ -859,10 +870,10 @@ main > .section.vehicle-detail-v2-container {
 
     .vehicle-detail-v2 .vd2-content {
         grid-template-columns: 1fr 480px;
-        padding: 24px 60px 40px;
+        padding: 24px 24px 40px;
     }
 
     .vehicle-detail-v2 .vd2-similar {
-        padding: 40px 60px;
+        padding: 40px 24px;
     }
 }
