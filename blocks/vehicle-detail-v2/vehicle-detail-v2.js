@@ -468,8 +468,7 @@ function renderKeyFacts(vehicle) {
         'div',
         'vd2-fact',
         `
-        <div class="vd2-fact-icon">${icon}</div>
-        <span class="vd2-fact-label">${label}</span>
+        <div class="vd2-fact-icon">${icon}<span class="vd2-fact-label">${label}</span></div>
         <span class="vd2-fact-value">${value}</span>
       `,
       ),
