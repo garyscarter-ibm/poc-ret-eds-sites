@@ -425,12 +425,12 @@ function renderGallery(images, accentColour) {
   return gallery;
 }
 
-/* ---------- Key Facts (single auto-flowing grid) ---------- */
+/* ---------- Key Facts (primary grid + secondary tags) ---------- */
 
 function renderKeyFacts(vehicle) {
   const section = el('div', 'vd2-key-facts');
 
-  const items = [
+  const primaryItems = [
     {
       icon: ICONS.calendar,
       label: 'Registered',
@@ -451,26 +451,17 @@ function renderKeyFacts(vehicle) {
       label: 'Gearbox',
       value: formatTransmission(vehicle.transmission),
     },
-    {
-      icon: ICONS.engine,
-      label: 'Engine Power',
-      value: formatPower(vehicle.power),
-    },
-    {
-      icon: ICONS.registration,
-      label: 'Registration',
-      value: vehicle.registrationNumber || null,
-    },
-    { icon: ICONS.exterior, label: 'Exterior', value: vehicle.colour || null },
-    {
-      icon: ICONS.upholstery,
-      label: 'Upholstery',
-      value: vehicle.upholstery || null,
-    },
+  ];
+
+  const secondaryItems = [
+    { label: 'Engine Power', value: formatPower(vehicle.power) },
+    { label: 'Registration', value: vehicle.registrationNumber || null },
+    { label: 'Exterior', value: vehicle.colour || null },
+    { label: 'Upholstery', value: vehicle.upholstery || null },
   ];
 
   const grid = el('div', 'vd2-facts-grid');
-  items.forEach(({ icon, label, value }) => {
+  primaryItems.forEach(({ icon, label, value }) => {
     if (!value || value === '—') return;
     grid.append(
       el(
@@ -485,8 +476,19 @@ function renderKeyFacts(vehicle) {
     );
   });
 
+  const validSecondary = secondaryItems.filter(
+    ({ value }) => value && value !== '—',
+  );
+  const secondary = el('div', 'vd2-facts-secondary');
+  validSecondary.forEach(({ label, value }) => {
+    secondary.append(
+      el('span', 'vd2-fact-tag', `${label}: <strong>${value}</strong>`),
+    );
+  });
+
   section.append(el('hr', 'vd2-divider'));
   section.append(grid);
+  if (validSecondary.length) section.append(secondary);
 
   return section;
 }
@@ -500,10 +502,18 @@ function renderEfficiencyStats(vehicle) {
     stats.push({ label: 'CO₂', value: vehicle.co2Emissions, unit: 'g/km' });
   }
   if (vehicle.mpgCombined) {
-    stats.push({ label: 'MPG Combined', value: vehicle.mpgCombined, unit: 'mpg' });
+    stats.push({
+      label: 'MPG Combined',
+      value: vehicle.mpgCombined,
+      unit: 'mpg',
+    });
   }
   if (vehicle.electricRange) {
-    stats.push({ label: 'Electric Range', value: vehicle.electricRange, unit: 'mi' });
+    stats.push({
+      label: 'Electric Range',
+      value: vehicle.electricRange,
+      unit: 'mi',
+    });
   }
   if (vehicle.energyConsumption) {
     stats.push({ label: 'Energy', value: vehicle.energyConsumption, unit: '' });
@@ -512,7 +522,11 @@ function renderEfficiencyStats(vehicle) {
     stats.push({ label: 'MPG Urban', value: vehicle.mpgUrban, unit: 'mpg' });
   }
   if (vehicle.mpgExtraUrban) {
-    stats.push({ label: 'MPG Extra Urban', value: vehicle.mpgExtraUrban, unit: 'mpg' });
+    stats.push({
+      label: 'MPG Extra Urban',
+      value: vehicle.mpgExtraUrban,
+      unit: 'mpg',
+    });
   }
 
   if (!stats.length) return null;
@@ -537,19 +551,30 @@ function renderEfficiencyStats(vehicle) {
  * -------------------------------------------------- */
 
 const HIGH_VALUE_OPTIONS = {
-  'm sport pro': 'M Sport Pro pack — enhanced body styling, M specific suspension and 19" alloys',
-  'm sport': 'M Sport specification — sport bumpers, M steering wheel and upgraded alloy wheels',
-  'technology pack': 'Technology Pack — includes heads-up display, Harman Kardon audio and gesture control',
-  'innovation pack': 'Innovation Pack — wireless charging, BMW live services and parking assistant',
-  'driving assistant pro': 'Driving Assistant Professional — lane-keep assist, active cruise control and emergency city braking',
-  'driving assistant': 'Driving Assistant — collision alert, lane departure warning and speed limit info',
-  'comfort access': 'Comfort Access — hands-free boot and keyless entry for effortless access',
+  'm sport pro':
+    'M Sport Pro pack — enhanced body styling, M specific suspension and 19" alloys',
+  'm sport':
+    'M Sport specification — sport bumpers, M steering wheel and upgraded alloy wheels',
+  'technology pack':
+    'Technology Pack — includes heads-up display, Harman Kardon audio and gesture control',
+  'innovation pack':
+    'Innovation Pack — wireless charging, BMW live services and parking assistant',
+  'driving assistant pro':
+    'Driving Assistant Professional — lane-keep assist, active cruise control and emergency city braking',
+  'driving assistant':
+    'Driving Assistant — collision alert, lane departure warning and speed limit info',
+  'comfort access':
+    'Comfort Access — hands-free boot and keyless entry for effortless access',
   'harman kardon': 'Harman Kardon premium surround-sound audio system',
-  'bowers wilkins': 'Bowers & Wilkins Diamond surround-sound audio — audiophile-grade in-car acoustics',
+  'bowers wilkins':
+    'Bowers & Wilkins Diamond surround-sound audio — audiophile-grade in-car acoustics',
   panoramic: 'Panoramic glass roof — floods the cabin with natural light',
-  'heads up': 'Head-up display — projects speed and navigation onto the windscreen',
-  'head-up': 'Head-up display — projects speed and navigation onto the windscreen',
-  'laser light': 'BMW Laserlight headlights — exceptional visibility up to 600 m',
+  'heads up':
+    'Head-up display — projects speed and navigation onto the windscreen',
+  'head-up':
+    'Head-up display — projects speed and navigation onto the windscreen',
+  'laser light':
+    'BMW Laserlight headlights — exceptional visibility up to 600 m',
   'adaptive led': 'Adaptive LED headlights with cornering function',
   'heated seats': 'Heated front and rear seats',
   massage: 'Seat massage function — multi-zone lumbar and shoulder massage',
@@ -557,11 +582,15 @@ const HIGH_VALUE_OPTIONS = {
   'night vision': 'Night Vision pedestrian detection with alert display',
   360: '360° camera system — surround-view parking assistance',
   'reversing camera': 'High-resolution reversing camera',
-  'connected package': 'BMW Connected Package Professional — real-time traffic, online entertainment and remote services',
-  'executive pack': 'Executive Pack — soft-close doors, sun protection glass and gesture control',
-  'luxury pack': 'Luxury interior pack — Merino leather and wood trim highlights',
+  'connected package':
+    'BMW Connected Package Professional — real-time traffic, online entertainment and remote services',
+  'executive pack':
+    'Executive Pack — soft-close doors, sun protection glass and gesture control',
+  'luxury pack':
+    'Luxury interior pack — Merino leather and wood trim highlights',
   individual: 'BMW Individual bespoke colour and upholstery specification',
-  'plug-in': 'Plug-in hybrid powertrain — EV range for urban commuting, petrol for longer journeys',
+  'plug-in':
+    'Plug-in hybrid powertrain — EV range for urban commuting, petrol for longer journeys',
 };
 
 /* ---------- Vehicle Description (AI-style, config-driven) ---------- */
