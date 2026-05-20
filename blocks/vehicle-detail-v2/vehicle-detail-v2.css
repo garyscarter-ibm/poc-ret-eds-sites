@@ -313,14 +313,13 @@ main > .section.vehicle-detail-v2-container {
 .vehicle-detail-v2 .vd2-fact-icon svg {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
 }
 
 .vehicle-detail-v2 .vd2-fact-label {
     font-size: 13px;
     font-weight: 300;
     color: #262626;
-    display: inline;
-    margin-left: 26px;
 }
 
 .vehicle-detail-v2 .vd2-fact-value {
