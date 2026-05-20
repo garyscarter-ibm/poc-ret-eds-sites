@@ -232,7 +232,7 @@ main > .section.vehicle-detail-v2-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    padding: 0 20px 40px;
+    padding: 24px 20px 40px;
 }
 
 /* ---------- Badge ---------- */
@@ -259,7 +259,7 @@ main > .section.vehicle-detail-v2-container {
 /* ---------- Key Facts ---------- */
 
 .vehicle-detail-v2 .vd2-key-facts {
-    padding-bottom: 24px;
+    margin-bottom: 0;
 }
 
 .vehicle-detail-v2 .vd2-facts-grid {
@@ -267,6 +267,24 @@ main > .section.vehicle-detail-v2-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px 24px;
     padding: 16px 0;
+}
+
+.vehicle-detail-v2 .vd2-facts-secondary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 12px 0 4px;
+}
+
+.vehicle-detail-v2 .vd2-fact-tag {
+    font-size: 13px;
+    color: #666;
+    font-weight: 300;
+}
+
+.vehicle-detail-v2 .vd2-fact-tag strong {
+    font-weight: 400;
+    color: #262626;
 }
 
 .vehicle-detail-v2 .vd2-divider {
@@ -381,11 +399,17 @@ main > .section.vehicle-detail-v2-container {
     animation: vd2-shimmer 1.5s infinite;
 }
 
-.vehicle-detail-v2 .vd2-description-skel:nth-child(1) { width: 100%; }
+.vehicle-detail-v2 .vd2-description-skel:nth-child(1) {
+    width: 100%;
+}
 
-.vehicle-detail-v2 .vd2-description-skel:nth-child(2) { width: 92%; }
+.vehicle-detail-v2 .vd2-description-skel:nth-child(2) {
+    width: 92%;
+}
 
-.vehicle-detail-v2 .vd2-description-skel:nth-child(3) { width: 75%; }
+.vehicle-detail-v2 .vd2-description-skel:nth-child(3) {
+    width: 75%;
+}
 
 .vehicle-detail-v2 .vd2-description-highlight-strip {
     display: flex;
@@ -758,7 +782,7 @@ main > .section.vehicle-detail-v2-container {
     }
 
     .vehicle-detail-v2 .vd2-content {
-        padding: 0 32px 40px;
+        padding: 24px 32px 40px;
     }
 
     .vehicle-detail-v2 .vd2-facts-grid {
@@ -799,7 +823,7 @@ main > .section.vehicle-detail-v2-container {
     .vehicle-detail-v2 .vd2-content {
         grid-template-columns: 1fr 400px;
         gap: 40px;
-        padding: 0 40px 40px;
+        padding: 24px 40px 40px;
         align-items: start;
     }
 
@@ -835,7 +859,7 @@ main > .section.vehicle-detail-v2-container {
 
     .vehicle-detail-v2 .vd2-content {
         grid-template-columns: 1fr 480px;
-        padding: 0 60px 40px;
+        padding: 24px 60px 40px;
     }
 
     .vehicle-detail-v2 .vd2-similar {
