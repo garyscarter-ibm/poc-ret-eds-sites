@@ -170,12 +170,16 @@ function renderGallery(images, accentColour) {
   track.setAttribute('tabindex', '0');
 
   sorted.forEach((img, i) => {
-    const panel = el('div', `vd2-gallery-panel${i === 0 ? ' vd2-panel--active' : ''}`);
+    const panel = el(
+      'div',
+      `vd2-gallery-panel${i === 0 ? ' vd2-panel--active' : ''}`,
+    );
     panel.dataset.index = i;
     const imgEl = document.createElement('img');
     imgEl.src = i < 3 ? img.url : '';
     imgEl.dataset.src = img.url;
-    imgEl.alt = img.alt || `${sorted[0].alt?.split(' - ')[0] || 'Vehicle'} - image ${i + 1}`;
+    imgEl.alt = img.alt
+      || `${sorted[0].alt?.split(' - ')[0] || 'Vehicle'} - image ${i + 1}`;
     imgEl.loading = i === 0 ? 'eager' : 'lazy';
     imgEl.className = 'vd2-gallery-panel-img';
 
@@ -321,8 +325,14 @@ function renderGallery(images, accentColour) {
 
   // Keyboard navigation
   track.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') { goTo(current - 1); e.preventDefault(); }
-    if (e.key === 'ArrowRight') { goTo(current + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') {
+      goTo(current - 1);
+      e.preventDefault();
+    }
+    if (e.key === 'ArrowRight') {
+      goTo(current + 1);
+      e.preventDefault();
+    }
   });
 
   // Fullscreen lightbox
@@ -356,12 +366,18 @@ function renderGallery(images, accentColour) {
       lbCounter.textContent = n + 1;
     }
 
-    lightbox.querySelector('.vd2-lightbox-close').addEventListener('click', () => {
-      lightbox.remove();
-      document.body.style.overflow = '';
-    });
-    lightbox.querySelector('.vd2-lightbox-prev').addEventListener('click', () => lbGoTo(lbIdx - 1));
-    lightbox.querySelector('.vd2-lightbox-next').addEventListener('click', () => lbGoTo(lbIdx + 1));
+    lightbox
+      .querySelector('.vd2-lightbox-close')
+      .addEventListener('click', () => {
+        lightbox.remove();
+        document.body.style.overflow = '';
+      });
+    lightbox
+      .querySelector('.vd2-lightbox-prev')
+      .addEventListener('click', () => lbGoTo(lbIdx - 1));
+    lightbox
+      .querySelector('.vd2-lightbox-next')
+      .addEventListener('click', () => lbGoTo(lbIdx + 1));
     lightbox.addEventListener('click', (ev) => {
       if (ev.target === lightbox) {
         lightbox.remove();
@@ -369,7 +385,10 @@ function renderGallery(images, accentColour) {
       }
     });
     lightbox.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Escape') { lightbox.remove(); document.body.style.overflow = ''; }
+      if (ev.key === 'Escape') {
+        lightbox.remove();
+        document.body.style.overflow = '';
+      }
       if (ev.key === 'ArrowLeft') lbGoTo(lbIdx - 1);
       if (ev.key === 'ArrowRight') lbGoTo(lbIdx + 1);
     });
@@ -406,12 +425,12 @@ function renderGallery(images, accentColour) {
   return gallery;
 }
 
-/* ---------- Key Facts (2 rows of 4) ---------- */
+/* ---------- Key Facts (single auto-flowing grid) ---------- */
 
 function renderKeyFacts(vehicle) {
   const section = el('div', 'vd2-key-facts');
 
-  const row1 = [
+  const items = [
     {
       icon: ICONS.calendar,
       label: 'Registered',
@@ -432,9 +451,6 @@ function renderKeyFacts(vehicle) {
       label: 'Gearbox',
       value: formatTransmission(vehicle.transmission),
     },
-  ];
-
-  const row2 = [
     {
       icon: ICONS.engine,
       label: 'Engine Power',
@@ -443,40 +459,185 @@ function renderKeyFacts(vehicle) {
     {
       icon: ICONS.registration,
       label: 'Registration',
-      value: vehicle.registrationNumber || '—',
+      value: vehicle.registrationNumber || null,
     },
-    { icon: ICONS.exterior, label: 'Exterior', value: vehicle.colour || '—' },
+    { icon: ICONS.exterior, label: 'Exterior', value: vehicle.colour || null },
     {
       icon: ICONS.upholstery,
       label: 'Upholstery',
-      value: vehicle.upholstery || '—',
+      value: vehicle.upholstery || null,
     },
   ];
 
-  function buildRow(items) {
-    const row = el('div', 'vd2-facts-row');
-    items.forEach(({ icon, label, value }) => {
-      if (!value || value === '—') return;
-      row.append(
-        el(
-          'div',
-          'vd2-fact',
-          `
+  const grid = el('div', 'vd2-facts-grid');
+  items.forEach(({ icon, label, value }) => {
+    if (!value || value === '—') return;
+    grid.append(
+      el(
+        'div',
+        'vd2-fact',
+        `
         <div class="vd2-fact-icon">${icon}</div>
         <span class="vd2-fact-label">${label}</span>
         <span class="vd2-fact-value">${value}</span>
       `,
-        ),
-      );
-    });
-    return row;
-  }
+      ),
+    );
+  });
 
-  section.append(buildRow(row1));
   section.append(el('hr', 'vd2-divider'));
-  section.append(buildRow(row2));
+  section.append(grid);
 
   return section;
+}
+
+/* ---------- Efficiency Stats ---------- */
+
+function renderEfficiencyStats(vehicle) {
+  const stats = [];
+
+  if (vehicle.co2Emissions) {
+    stats.push({ label: 'CO₂', value: vehicle.co2Emissions, unit: 'g/km' });
+  }
+  if (vehicle.mpgCombined) {
+    stats.push({ label: 'MPG Combined', value: vehicle.mpgCombined, unit: 'mpg' });
+  }
+  if (vehicle.electricRange) {
+    stats.push({ label: 'Electric Range', value: vehicle.electricRange, unit: 'mi' });
+  }
+  if (vehicle.energyConsumption) {
+    stats.push({ label: 'Energy', value: vehicle.energyConsumption, unit: '' });
+  }
+  if (vehicle.mpgUrban) {
+    stats.push({ label: 'MPG Urban', value: vehicle.mpgUrban, unit: 'mpg' });
+  }
+  if (vehicle.mpgExtraUrban) {
+    stats.push({ label: 'MPG Extra Urban', value: vehicle.mpgExtraUrban, unit: 'mpg' });
+  }
+
+  if (!stats.length) return null;
+
+  const section = el('div', 'vd2-efficiency');
+  stats.forEach(({ label, value, unit }) => {
+    section.append(
+      el(
+        'div',
+        'vd2-efficiency-stat',
+        `<span class="vd2-efficiency-label">${label}</span>
+         <span class="vd2-efficiency-value">${value}<span class="vd2-efficiency-unit"> ${unit}</span></span>`,
+      ),
+    );
+  });
+  return section;
+}
+
+/* ---------- HIGH_VALUE_OPTIONS config ----------
+ * Map option pack substrings (lowercase) → highlight text shown to the buyer.
+ * Extend this list to "train" the description on new high-value packs.
+ * -------------------------------------------------- */
+
+const HIGH_VALUE_OPTIONS = {
+  'm sport pro': 'M Sport Pro pack — enhanced body styling, M specific suspension and 19" alloys',
+  'm sport': 'M Sport specification — sport bumpers, M steering wheel and upgraded alloy wheels',
+  'technology pack': 'Technology Pack — includes heads-up display, Harman Kardon audio and gesture control',
+  'innovation pack': 'Innovation Pack — wireless charging, BMW live services and parking assistant',
+  'driving assistant pro': 'Driving Assistant Professional — lane-keep assist, active cruise control and emergency city braking',
+  'driving assistant': 'Driving Assistant — collision alert, lane departure warning and speed limit info',
+  'comfort access': 'Comfort Access — hands-free boot and keyless entry for effortless access',
+  'harman kardon': 'Harman Kardon premium surround-sound audio system',
+  'bowers wilkins': 'Bowers & Wilkins Diamond surround-sound audio — audiophile-grade in-car acoustics',
+  panoramic: 'Panoramic glass roof — floods the cabin with natural light',
+  'heads up': 'Head-up display — projects speed and navigation onto the windscreen',
+  'head-up': 'Head-up display — projects speed and navigation onto the windscreen',
+  'laser light': 'BMW Laserlight headlights — exceptional visibility up to 600 m',
+  'adaptive led': 'Adaptive LED headlights with cornering function',
+  'heated seats': 'Heated front and rear seats',
+  massage: 'Seat massage function — multi-zone lumbar and shoulder massage',
+  'active seats': 'Active ventilated and heated sports seats',
+  'night vision': 'Night Vision pedestrian detection with alert display',
+  360: '360° camera system — surround-view parking assistance',
+  'reversing camera': 'High-resolution reversing camera',
+  'connected package': 'BMW Connected Package Professional — real-time traffic, online entertainment and remote services',
+  'executive pack': 'Executive Pack — soft-close doors, sun protection glass and gesture control',
+  'luxury pack': 'Luxury interior pack — Merino leather and wood trim highlights',
+  individual: 'BMW Individual bespoke colour and upholstery specification',
+  'plug-in': 'Plug-in hybrid powertrain — EV range for urban commuting, petrol for longer journeys',
+};
+
+/* ---------- Vehicle Description (AI-style, config-driven) ---------- */
+
+function renderVehicleDescription(vehicle) {
+  const wrapper = el('div', 'vd2-description');
+  const inner = el('div', 'vd2-description-inner vd2-description--loading');
+
+  // Shimmer skeleton while composing
+  inner.innerHTML = `
+    <div class="vd2-description-skel"></div>
+    <div class="vd2-description-skel"></div>
+    <div class="vd2-description-skel"></div>`;
+  wrapper.append(inner);
+
+  // Compose description asynchronously so skeleton renders first
+  requestAnimationFrame(() => {
+    const packs = [
+      ...(vehicle.optionalPacks || []),
+      ...(vehicle.standardFeatures || []),
+    ];
+    const packsLower = packs.map((p) => p.toLowerCase());
+
+    const matched = Object.entries(HIGH_VALUE_OPTIONS)
+      .filter(([key]) => packsLower.some((p) => p.includes(key)));
+
+    // Build natural language description
+    const fuelLabel = {
+      ELECTRIC: 'fully electric',
+      PETROL_PLUG_IN_HYBRID: 'plug-in hybrid',
+      DIESEL_PLUG_IN_HYBRID: 'diesel plug-in hybrid',
+      DIESEL: 'diesel',
+      PETROL: 'petrol',
+    }[vehicle.fuelType] || 'petrol';
+
+    const transLabel = vehicle.transmission === 'AUTOMATIC' ? 'automatic' : 'manual';
+    const regYear = vehicle.registrationDate
+      ? new Date(vehicle.registrationDate).getFullYear()
+      : null;
+    const yearStr = regYear ? `${regYear} ` : '';
+
+    let intro = `This ${yearStr}${vehicle.model} is a ${fuelLabel} ${transLabel}`;
+    if (vehicle.mileage) {
+      const miles = vehicle.mileage.toLocaleString('en-GB');
+      intro += ` with ${miles} miles on the clock`;
+    }
+    intro += '.';
+
+    let body = '';
+    if (matched.length >= 3) {
+      body = ` It comes generously equipped with ${matched.length} notable option packs, making it an exceptionally well-specified example.`;
+    } else if (matched.length > 0) {
+      body = ` Key highlights include ${matched.map(([, v]) => v.split(' — ')[0]).join(', ')}.`;
+    } else if (packs.length > 0) {
+      body = ' This example has been specified with a range of standard and optional equipment.';
+    }
+
+    const closing = vehicle.dealer?.name
+      ? ` Available from ${vehicle.dealer.name}.`
+      : '';
+
+    inner.classList.remove('vd2-description--loading');
+    inner.innerHTML = `<p>${intro}${body}${closing}</p>`;
+
+    // Highlight tags for matched high-value packs (max 4)
+    if (matched.length) {
+      const strip = el('div', 'vd2-description-highlight-strip');
+      matched.slice(0, 4).forEach(([, text]) => {
+        const label = text.split(' — ')[0];
+        strip.append(el('span', 'vd2-highlight-tag', `★ ${label}`));
+      });
+      inner.append(strip);
+    }
+  });
+
+  return wrapper;
 }
 
 /* ---------- Price Card ---------- */
@@ -695,6 +856,13 @@ export default async function decorate(block) {
 
   // Key facts
   left.append(renderKeyFacts(vehicle));
+
+  // Efficiency stats (CO₂, MPG, electric range)
+  const efficiency = renderEfficiencyStats(vehicle);
+  if (efficiency) left.append(efficiency);
+
+  // AI-style vehicle description
+  left.append(renderVehicleDescription(vehicle));
 
   content.append(left);
 
