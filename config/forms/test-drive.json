@@ -1,0 +1,146 @@
+{
+  "id": "test-drive-booking",
+  "title": "Arrange Your Test Drive",
+  "subtitle": "Test drive subject to applicant status and availability.",
+  "submitText": "Confirm Booking",
+  "hasCaptcha": true,
+  "confirmation": {
+    "title": "Thank You For Requesting A Test Drive",
+    "body": "Your preferred BMW Centre will be in touch shortly. We hope you enjoy your time behind the wheel."
+  },
+  "steps": [
+    {
+      "id": "model",
+      "label": "Your Model",
+      "fields": [
+        {
+          "id": "moi",
+          "element": "model-select",
+          "label": "Find your perfect BMW",
+          "required": true,
+          "dataSource": {
+            "endpoint": "/api/tda/models",
+            "method": "GET",
+            "mapping": {
+              "root": "results",
+              "labelField": "key",
+              "valueField": "key"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "retailer",
+      "label": "Your BMW Centre",
+      "fields": [
+        {
+          "id": "retailerId",
+          "element": "postcode-lookup",
+          "label": "Please enter your postcode",
+          "required": true,
+          "dataSource": {
+            "endpoint": "/api/tda/retailers/{postcode}",
+            "method": "GET",
+            "params": {
+              "limit": 10,
+              "brand": "BMW"
+            },
+            "mapping": {
+              "labelField": "{dealer_name} - {town}",
+              "valueField": "dealer_number"
+            }
+          },
+          "dependsOn": ["moi"]
+        }
+      ]
+    },
+    {
+      "id": "appointment",
+      "label": "Date & Time",
+      "fields": [
+        {
+          "id": "appointment",
+          "element": "appointment-picker",
+          "label": "Select a date and time",
+          "required": true,
+          "dataSource": {
+            "endpoint": "/api/tda/availability",
+            "method": "GET"
+          },
+          "dependsOn": ["retailerId", "moi"]
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "label": "Contact Details",
+      "fields": [
+        {
+          "id": "userFirstName",
+          "element": "text-input",
+          "label": "First Name",
+          "required": true,
+          "attributes": {
+            "type": "text",
+            "maxlength": 60,
+            "autocomplete": "given-name"
+          }
+        },
+        {
+          "id": "userLastName",
+          "element": "text-input",
+          "label": "Last Name",
+          "required": true,
+          "attributes": {
+            "type": "text",
+            "maxlength": 75,
+            "autocomplete": "family-name"
+          },
+          "pattern": "^[a-zA-Z\\s\\-']+$"
+        },
+        {
+          "id": "userEmailAddress",
+          "element": "text-input",
+          "label": "Email Address",
+          "required": true,
+          "attributes": {
+            "type": "email",
+            "maxlength": 100,
+            "autocomplete": "email"
+          }
+        },
+        {
+          "id": "userPhoneNumber",
+          "element": "text-input",
+          "label": "Phone Number",
+          "required": true,
+          "attributes": {
+            "type": "tel",
+            "maxlength": 18,
+            "autocomplete": "tel"
+          }
+        },
+        {
+          "id": "gdprConsent",
+          "element": "checkbox-group",
+          "label": "Marketing Preferences",
+          "required": false,
+          "introHtml": "<p>I would like to receive relevant information and offers from BMW Group via the following channels:</p>",
+          "options": [
+            { "id": "gdprInApp", "label": "Apps of the BMW Group", "values": { "checked": "I", "unchecked": "O" } },
+            { "id": "gdprEmail", "label": "Email", "values": { "checked": "I", "unchecked": "O" } },
+            { "id": "gdprPhone", "label": "Phone", "values": { "checked": "I", "unchecked": "O" } },
+            { "id": "gdprSms", "label": "SMS (Messenger Services)", "values": { "checked": "I", "unchecked": "O" } },
+            { "id": "gdprInCar", "label": "In-Car (if supported)", "values": { "checked": "I", "unchecked": "O" } },
+            { "id": "gdprMail", "label": "Mail", "values": { "checked": "I", "unchecked": "O" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "submission": {
+    "endpoint": "/api/tda/submit",
+    "method": "POST"
+  }
+}
