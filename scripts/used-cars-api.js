@@ -1,4 +1,4 @@
-const API_ENDPOINT = 'https://bmw-backend.2apf03iodbgx.eu-de.codeengine.appdomain.cloud/graphql';
+const API_ENDPOINT = 'https://bmw-backend.2bze4em19kjk.eu-de.codeengine.appdomain.cloud/graphql';
 const API_KEY = 'bmw-demo-api-key-2026';
 
 /**
